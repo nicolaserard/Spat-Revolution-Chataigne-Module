@@ -1,0 +1,39 @@
+{
+  "name": "Spat Revolution",
+  "type": "OSC",
+  "path": "Software",
+  "version": "0.0.1",
+  "description": "Flux Spat Revolution Module",
+  "url": "www.spatrevolution.com",
+  "downloadURL": "www.spatrevolution.com",
+  "hasInput": true,
+  "hasOutput": true,
+  "hideDefaultCommands": false,
+  "hideDefaultParameters": [
+  ],
+  "defaults": {
+    "autoAdd": false,
+    "oscInput": {
+      "localPort": 8500
+    },
+    "OSC Outputs": {
+      "OSC Output": {
+        "local": true,
+        "remoteHost": "192.168.1.100",
+        "remotePort": 8501
+      }
+    }
+  },
+  "parameters": {
+  },
+  	"scripts": [
+		"SpatRevolution.js"
+	],
+
+ "values": {},
+
+  "commands": {
+  }
+}
+
+
