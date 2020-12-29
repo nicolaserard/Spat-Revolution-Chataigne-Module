@@ -22,4 +22,4 @@ Beginning of this module:
 Known bugs:
 - Some bugs appear with position control.
 - Dump doesn't work
-- Ask for sources count doesn't work (not a Chataigne issue, buggy inot Spat Revolution)
+- Ask for sources count doesn't work (not a Chataigne issue, buggy into Spat Revolution)
