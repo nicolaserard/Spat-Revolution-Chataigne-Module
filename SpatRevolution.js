@@ -32,11 +32,7 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 ===============================================================================
 */
 
-/** 
- * Constants
- * Juce Javascript don't allow const so they are defined as global variable instead, see https://docs.juce.com/master/index.html
- */
-
+/* OSC Message: array of all OSCMessage. Use to send OSC message when an value changed.*/
 
 var OSCMessage = {
     'gain': function(index, value)
@@ -70,12 +66,12 @@ var OSCMessage = {
         if (value.get() == 1 && Cartesian == false)
         {
             Cartesian = true;
-            value.getParent().position.set(PolarToCartesian(positionTemp));
+            value.getParent().getChild('position').set(PolarToCartesian(positionTemp));
         }
         else
         {
             Cartesian = false;
-            value.getParent().position.set(CartesianToPolar(value.getParent().position.get()));
+            value.getParent().getChild('position').position.set(CartesianToPolar(value.getParent().position.get()));
         }
     }
 };
@@ -84,10 +80,10 @@ var OSCMessage = {
  * Global variables
  */
 
-var numberSources = 0 ;
-var Sources = [];
-var Cartesian = false;
-//var Edit = false;
+var numberSources = 0 ; // number of sources in Spat Revolution. Should be set automatically, but function not working in Spat Revolution now.
+var Sources = []; // array of all sources container.
+var Cartesian = false; // define the mode of position for all sources. Cartesian when true, Polar when false.
+
 
 /* 	===============================================================================
 *	Chataigne common functions
@@ -103,13 +99,17 @@ var Cartesian = false;
 function init() 
 {
     local.values.removeContainer("Sources");
+
+    // Add Setup container
+
     SetupContainer = local.values.addContainer("Setup", "Setup value");
     
     LenSources = SetupContainer.addTrigger("Ask Sources number", "Ask for the number of sources");
     numberSourcesParameter = SetupContainer.addIntParameter("Sources number", "Define the number of sources in Chataigne (automatically update from Spat).", numberSources, 0, 256);
 
-    var CartesianOrPolar = SetupContainer.addBoolParameter("Cartesian", "Polar or cartesian", false);
+    CartesianOrPolar = SetupContainer.addBoolParameter("Cartesian", "Polar or cartesian", false);
 
+    // Ask Spat Revolution for source count. Not working for now (Spat side)
 
     local.send("/global/project/source/count", 0);
 }
@@ -139,44 +139,45 @@ function moduleParameterChanged(param)
  */
 function moduleValueChanged(value)
 {
-
-    name = value.name;
-    container = value.getParent();
+    var name = value.name;
     if (value.isParameter())
     {
-        if (value.name == 'sourcesNumber')
+        if (name == 'sourcesNumber')
         {
             setSourcesNumber(value.get());
         }
-        else if (value.name == 'cartesian')
+        else if (name == 'cartesian')
         {
             if (value.get() == 1 &&  Cartesian == false)
             {
                 Cartesian = true;
-                for (var i=0; i<=Sources.length;i++)
+                for (var i=0; i<Sources.length;i++)
                 {
-                    Sources[i].position.set(PolarToCartesian(Sources[i].position.get()));
+                    posCartesian = PolarToCartesian(Sources[i].getChild('position').get());
+                    Sources[i].getChild('position').set(posCartesian);
                 }
             }
-            else
+            else if (value.get() == 0 && Cartesian == true)
             {
                 Cartesian = false;
-                for (var i=0; i<=Sources.length;i++)
+                for (var i=0; i<Sources.length;i++)
                 {
-                    Sources[i].position.set(CartesianToPolar(Sources[i].position.get()));
+                    posPolar = CartesianToPolar(Sources[i].getChild('position').get());
+                    Sources[i].getChild('position').set(posPolar);
                 }
-
-
             }
         }
         else
         {
-            OSCMessage[name](container.index.get(), value);
+            if (OSCMessage[name])
+            {
+                OSCMessage[name](value.getParent().index.get(), value);
+            }
         }
     }
     else
     {
-        if (value.name == 'askSourcesNumber')
+        if (name == 'askSourcesNumber')
         {
             local.send("/global/project/source/count", 0);
         }
@@ -205,7 +206,7 @@ function oscEvent(address, args)
     }
     else if (address[1]=='rooom')
     {
-        ocsRoomEvent(address, args);
+        oscRoomEvent(address, args);
     }
     else if (address[1]=='master')
     {
@@ -217,6 +218,13 @@ function oscEvent(address, args)
     }
 
 }
+
+/**
+ * Called when an OSC message related to global is received
+ * Parse received values
+ * @param {string} address
+ * @param {array} args
+ */
 
 function oscGlobalEvent(address, args)
 {
@@ -232,39 +240,55 @@ function oscGlobalEvent(address, args)
     }
 }
 
+/**
+ * Called when an OSC message related to source is received
+ * Parse received values
+ * @param {string} address
+ * @param {array} args
+ */
+
 function oscSourceEvent(address, args)
 {
     var i = parseInt(address[2])-1;
-    var source = Sources[i];
+
+    if (i +1 > Sources.length)
+    {
+        return false;
+    }
+    else
+    {
+        var source = Sources[i];
+    }
+
     if (address[3]=='gain')
 
     {
         if (typeof(args[0]) == 'number')
         {
-            script.log('c\'est le gain');
+            //script.log(source.getChild('gain'));
 
-            source.gain.set(args[0]);
+            source.getChild('gain').set(args[0]);
         }
     }
     if (address[3]=='lfe')
     {
         if (typeof(args[0]) == 'number')
         {
-            source.lfe.set(args[0]);
+            source.getChild('lfe').set(args[0]);
         }
     }
     if (address[3] =='mute')
     {
         if (typeof(args[0]) == 'number')
         {
-            source.mute.set(args[0]);
+            source.getChild('mute').set(args[0]);
         }
     }
     if (address[3] =='solo')
     {
         if (typeof(args[0]) == 'number')
         {
-            source.solo.set(args[0]);
+            source.getChild('solo').set(args[0]);
         }
     }
     if (address[3]=='aed')
@@ -273,23 +297,66 @@ function oscSourceEvent(address, args)
         {
             if (Cartesian == true)
             {
-                source.position.set(PolarToCartesian(args));
+                source.getChild('position').set(PolarToCartesian(args));
             }
             else
             {
-                source.position.set(args);
+                source.getChild('position').set(args);
             }
         }
     }
 }
 
+/**
+ * Called when an OSC message related to room is received
+ * Parse received values
+ * @param {string} address
+ * @param {array} args
+ */
+
+function oscRoomEvent(address, args)
+{
+    // to be completed later
+}
+
+/**
+ * Called when an OSC message related to master is received
+ * Parse received values
+ * @param {string} address
+ * @param {array} args
+ */
+
+function oscMasterEvent(address, args)
+{
+    // to be completed later
+}
+
+/**
+ * Called when an OSC message related to Snapshot is received
+ * Parse received values
+ * @param {string} address
+ * @param {array} args
+ */
+
+function oscSnapshotEvent(address, args)
+{
+    // to be completed later
+}
+
+/**
+ * Called when creating a source
+ * @param {integer} index
+ */
+
 function createSource(index)
 {
+    // Add the Source container
     var source = local.values.addContainer("Source " + index);
 
     var SourceIndex = source.addIntParameter("Index", "source index", index, 1, 256);
-    // this value is an GUI editable parameter
+    SourceIndex.setAttribute("readonly", true);
 
+    // TODO: Add name request from Spat Revolution
     //var channelName = source.addStringParameter("Source Name", "Source Name", "Source Name");
     //channelName.setAttribute("readonly", true);
 
@@ -306,15 +373,20 @@ function createSource(index)
     lfe.setAttribute("readonly", true);
 
     var position = source.addPoint3DParameter("Position", "Position", [0.0,0.0,2.0]);
+    position.setAttribute("readonly", true);
 
     //var edit = source.addBoolParameter("Edit", "Edit", 0);
 
     local.scripts.setCollapsed(true);
 
     return source
-    //script.log(Sources.length);
 }
 
+
+/**
+ * Called when deleting a source
+ * @param {integer} index
+ */
 function delSource(index)
 {
     script.log('Remove source index: ' + index+1 + ', name: ' + Sources[index].name);
@@ -324,6 +396,11 @@ function delSource(index)
     Sources.splice(index, 1);
 }
 
+/**
+ * Called when the source number count changed
+ * Determined if need to add or delete sources
+ * @param {integer} number
+ */
 function setSourcesNumber(number)
 {
     if (numberSources < number)
@@ -331,8 +408,8 @@ function setSourcesNumber(number)
         while (numberSources < number)
         {
             numberSources += 1;
-            Sources.push(createSource(numberSources));
-            local.send("/source/"+numberSources+"/dump", 0);
+            Sources.push(createSource(numberSources)); // add the source to the Sources array
+            local.send("/source/"+numberSources+"/dump", 0); // ask Spat Revolution for the source properties
 
         }
     }
@@ -344,8 +421,12 @@ function setSourcesNumber(number)
             delSource(numberSources);
         }
     }
-
 }
+
+/**
+ * Cartesian to Polar function
+ * @param {float} value
+ */
 
 function CartesianToPolar(value)
 {
@@ -381,11 +462,14 @@ function CartesianToPolar(value)
     return positionAED;
 }
 
+/**
+ * Polar to cartesian function
+ * @param {float} value
+ */
+
 function PolarToCartesian(value)
 {
-    var positionXYZ = [0.0,0.0,0.0];
-    script.log('value: ' + value[2] + ', type: ' + typeof(value[2]));
-    script.log(typeof(Math.cos(DegToRad(value[0]))));
+    var positionXYZ = [0.0,0.0,2.0];
     positionXYZ[0] = value[2] * Math.cos(DegToRad(value[0])) * Math.sin(DegToRad(value[1]));
     positionXYZ[1] = value[2] * Math.sin(DegToRad(value[0])) * Math.sin(DegToRad(value[1]));
     positionXYZ[2] = value[2] * Math.cos(DegToRad(value[1]));
@@ -393,7 +477,12 @@ function PolarToCartesian(value)
     return positionXYZ;
 }
 
+/**
+ * Degrees to Radian function
+ * @param {float} value
+ */
+
 function DegToRad(value)
 {
-    return -1 * Math.PI * (value-90) / 180;
+    return -1 * Math.PI * (value - 90) / 180;
 }
