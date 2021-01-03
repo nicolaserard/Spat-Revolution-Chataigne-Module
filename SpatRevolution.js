@@ -80,8 +80,9 @@ var OSCMessage = {
  * Global variables
  */
 
-var numberSources = 0 ; // number of sources in Spat Revolution. Should be set automatically, but function not working in Spat Revolution now.
-var Sources = []; // array of all sources container.
+var numberSources = 10 ; // number of sources in Spat Revolution. Should be set automatically, but function not working in Spat Revolution now.
+var Sources = [];// array of all sources parameters.
+var SourceContainer = null;
 var Cartesian = false; // define the mode of position for all sources. Cartesian when true, Polar when false.
 
 
@@ -104,14 +105,16 @@ function init()
 
     SetupContainer = local.values.addContainer("Setup", "Setup value");
     
-    LenSources = SetupContainer.addTrigger("Ask Sources number", "Ask for the number of sources");
-    numberSourcesParameter = SetupContainer.addIntParameter("Sources number", "Define the number of sources in Chataigne (automatically update from Spat).", numberSources, 0, 256);
+    //LenSources = SetupContainer.addTrigger("Ask Sources number", "Ask for the number of sources");
+    //numberSourcesParameter = SetupContainer.addIntParameter("Sources number", "Define the number of sources in Chataigne (automatically update from Spat).", numberSources, 0, 256);
+
+    local.send("/global/project/source/count", 0);
 
     CartesianOrPolar = SetupContainer.addBoolParameter("Cartesian", "Polar or cartesian", false);
 
     // Ask Spat Revolution for source count. Not working for now (Spat side)
-
-    local.send("/global/project/source/count", 0);
+    createSourceContainer();
+    setSourcesNumber(128);
 }
 
 /**
@@ -142,6 +145,15 @@ function moduleValueChanged(value)
     var name = value.name;
     if (value.isParameter())
     {
+        if (value.name == 'index')
+        {
+            source = Sources[value.get() - 1];
+            SourceContainer.position.set(source['position']);
+            SourceContainer.mute.set(source['mute']);
+            SourceContainer.solo.set(source['solo']);
+            SourceContainer.gain.set(source['gain']);
+
+        }
         if (name == 'sourcesNumber')
         {
             setSourcesNumber(value.get());
@@ -249,7 +261,7 @@ function oscGlobalEvent(address, args)
 
 function oscSourceEvent(address, args)
 {
-    var i = parseInt(address[2])-1;
+    var i = parseInt(address[2]) - 1;
 
     if (i +1 > Sources.length)
     {
@@ -265,30 +277,45 @@ function oscSourceEvent(address, args)
     {
         if (typeof(args[0]) == 'number')
         {
-            //script.log(source.getChild('gain'));
-
-            source.getChild('gain').set(args[0]);
+            source['gain']= args[0];
+            if (SourceContainer.index.get() == i+1)
+            {
+                SourceContainer.gain.set(args[0]);
+            }
         }
     }
     if (address[3]=='lfe')
     {
+        script.log(args[0]);
         if (typeof(args[0]) == 'number')
         {
-            source.getChild('lfe').set(args[0]);
+            source['lfe'] = args[0];
+            if (SourceContainer.index.get() == i+1)
+            {
+                SourceContainer.lfe.set(args[0]);
+            }
         }
     }
     if (address[3] =='mute')
     {
         if (typeof(args[0]) == 'number')
         {
-            source.getChild('mute').set(args[0]);
+            source['mute'] = args[0];
+            if (SourceContainer.index.get() == i+1)
+            {
+                SourceContainer.mute.set(args[0]);
+            }
         }
     }
     if (address[3] =='solo')
     {
         if (typeof(args[0]) == 'number')
         {
-            source.getChild('solo').set(args[0]);
+            source['solo'] = args[0];
+            if (SourceContainer.index.get() == i+1)
+            {
+                SourceContainer.solo.set(args[0]);
+            }
         }
     }
     if (address[3]=='aed')
@@ -297,11 +324,15 @@ function oscSourceEvent(address, args)
         {
             if (Cartesian == true)
             {
-                source.getChild('position').set(PolarToCartesian(args));
+                source['position'] = PolarToCartesian(args);
             }
             else
             {
-                source.getChild('position').set(args);
+                source['position'] = args;
+            }
+            if (SourceContainer.index.get() == i+1)
+            {
+                SourceContainer.position.set(source['position']);
             }
         }
     }
@@ -348,38 +379,43 @@ function oscSnapshotEvent(address, args)
  * @param {integer} index
  */
 
-function createSource(index)
+function createSourceContainer(index)
 {
     // Add the Source container
-    var source = local.values.addContainer("Source " + index);
+    SourceContainer = local.values.addContainer("Source container");
 
-    var SourceIndex = source.addIntParameter("Index", "source index", index, 1, 256);
-    SourceIndex.setAttribute("readonly", true);
+    var SourceIndex = SourceContainer.addIntParameter("Index", "source index", index, 1, 256);
+    //SourceIndex.setAttribute("readonly", true);
 
     // TODO: Add name request from Spat Revolution
     //var channelName = source.addStringParameter("Source Name", "Source Name", "Source Name");
     //channelName.setAttribute("readonly", true);
 
-    var gain = source.addFloatParameter("Gain", "Matrix input level", 0, -144.5, 24);
+    var gain = SourceContainer.addFloatParameter("Gain", "Matrix input level", 0, -144.5, 24);
     gain.setAttribute("readonly", true);
 
-    var mute = source.addBoolParameter("Mute", "Mute", 0);
+    var mute = SourceContainer.addBoolParameter("Mute", "Mute", 0);
     mute.setAttribute("readonly", true);
 
-    var solo = source.addBoolParameter("Solo", "Solo", 0);
+    var solo = SourceContainer.addBoolParameter("Solo", "Solo", 0);
     solo.setAttribute("readonly", true);
 
-    var lfe = source.addFloatParameter("LFE", "LFE level", -144.5, -144.5, 24);
+    var lfe = SourceContainer.addFloatParameter("LFE", "LFE level", -144.5, -144.5, 24);
     lfe.setAttribute("readonly", true);
 
-    var position = source.addPoint3DParameter("Position", "Position", [0.0,0.0,2.0]);
+    var position = SourceContainer.addPoint3DParameter("Position", "Position", [0.0,0.0,2.0]);
     position.setAttribute("readonly", true);
 
     //var edit = source.addBoolParameter("Edit", "Edit", 0);
 
     local.scripts.setCollapsed(true);
 
-    return source
+}
+
+function createSource(index)
+{
+    newsource = {"position":[0.0,0.0,2.0], "gain":0.0, "solo":false, "mute":false, "lfe":-144.5};
+    return newsource;
 }
 
 
@@ -390,8 +426,11 @@ function createSource(index)
 function delSource(index)
 {
     script.log('Remove source index: ' + index+1 + ', name: ' + Sources[index].name);
-    local.values.removeContainer(Sources[index].name);
     local.scripts.setCollapsed(true);
+    if (SourceContainer.index.get() == index)
+    {
+        SourceContainer.index.set(index-1);
+    }
 
     Sources.splice(index, 1);
 }
