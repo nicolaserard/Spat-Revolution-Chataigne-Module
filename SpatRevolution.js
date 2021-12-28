@@ -73,6 +73,50 @@ var OSCMessage = {
             value.getParent().position.set(Sources[value.getParent().index.get()['positionAED']]);
         }
         stopSendingOSC = true;
+    },
+    'reverbEnable': function(index, value)
+    {
+      local.send("/source/" + index + "/reverb/enable", value.get());
+    },
+    'earlyEnable': function(index, value)
+    {
+      local.send("/source/" + index + "/early", value.get());
+    },
+    'clusterEnable': function(index, value)
+    {
+      local.send("/source/" + index + "/cluster", value.get());
+    },
+    'tailEnable': function(index, value)
+    {
+      local.send("/source/" + index + "/tail", value.get());
+    },
+    'sourceName': function(index, value)
+    {
+      local.send("/source/" + index + "/name", value.get());
+    },
+    'presence': function(index, value)
+    {
+      local.send("/source/" + index + "/pres", value.get());
+    },
+    'roomPresence': function(index, value)
+    {
+      local.send("/source/" + index + "/prer", value.get());
+    },
+    'runningReverberance': function(index, value)
+    {
+      local.send("/source/" + index + "/revp", value.get());
+    },
+    'envelopment': function(index, value)
+    {
+      local.send("/source/" + index + "/env", value.get());
+    },
+    'brillance': function(index, value)
+    {
+      local.send("/source/" + index + "/bril", value.get());
+    },
+    'warmth': function(index, value)
+    {
+      local.send("/source/" + index + "/warmth", value.get());
     }
 };
 
@@ -166,6 +210,17 @@ function moduleValueChanged(value)
             SourceContainer.mute.set(source['mute']);
             SourceContainer.solo.set(source['solo']);
             SourceContainer.gain.set(source['gain']);
+            SourceContainer.reverbEnable.set(source['reverbEnable']);
+            SourceContainer.earlyEnable.set(source['earlyEnable']);
+            SourceContainer.clusterEnable.set(source['clusterEnable']);
+            SourceContainer.tailEnable.set(source['tailEnable']);
+            SourceContainer.sourceName.set(source['name']);
+            SourceContainer.presence.set(source['presence']);
+            SourceContainer.roomPresence.set(source['roomPresence']);
+            SourceContainer.runningReverberance.set(source['runningReverberance']);
+            SourceContainer.envelopment.set(source['envelopment']);
+            SourceContainer.brillance.set(source['brillance']);
+            SourceContainer.warmth.set(source['warmth']);
             stopSendingOSC = false;
 
         }
@@ -371,6 +426,127 @@ function oscSourceEvent(address, args)
             }
         }
     }
+    if (address[3]=='reverb' && address[4]=='enable')
+    {
+      if (typeof(args[0]) == 'number')
+      {
+        source['reverbEnable'] = args[0];
+        if (SourceContainer.index.get() == i+1)
+        {
+          SourceContainer.reverbEnable.set(args[0]);
+        }
+      }
+    }
+    if (address[3] == 'early')
+    {
+      if (typeof(args[0]) == 'number')
+      {
+        source['earlyEnable'] = args[0];
+        if (SourceContainer.index.get() == i+1)
+        {
+          SourceContainer.earlyEnable.set(args[0]);
+        }
+      }
+    }
+    if (address[3] == 'cluster')
+    {
+      if (typeof(args[0]) == 'number')
+      {
+        source['clusterEnable'] = args[0];
+        if (SourceContainer.index.get() == i+1)
+        {
+          SourceContainer.clusterEnable.set(args[0]);
+        }
+      }
+    }
+    if (address[3] == 'tail')
+    {
+      if (typeof(args[0]) == 'number')
+      {
+        source['tailEnable'] = args[0];
+        if (SourceContainer.index.get() == i+1)
+        {
+          SourceContainer.tailEnable.set(args[0]);
+        }
+      }
+    }
+    if (address[3] == 'name')
+    {
+      if (typeof(args[0]) == 'string')
+      {
+        source['name'] = args[0];
+        if (SourceContainer.index.get() == i+1)
+        {
+          SourceContainer.sourceName.set(args[0]);
+        }
+      }
+    }
+  if (address[3]=='pres')
+  {
+    if (typeof(args[0]) == 'number')
+    {
+      source['presence'] = args[0];
+      if (SourceContainer.index.get() == i+1)
+      {
+        SourceContainer.presence.set(args[0]);
+      }
+    }
+  }
+  if (address[3]=='prer')
+  {
+    if (typeof(args[0]) == 'number')
+    {
+      source['roomPresence'] = args[0];
+      if (SourceContainer.index.get() == i+1)
+      {
+        SourceContainer.roomPresence.set(args[0]);
+      }
+    }
+  }
+  if (address[3]=='revp')
+  {
+    if (typeof(args[0]) == 'number')
+    {
+      source['runningReverberance'] = args[0];
+      if (SourceContainer.index.get() == i+1)
+      {
+        SourceContainer.runningReverberance.set(args[0]);
+      }
+    }
+  }
+  if (address[3]=='env')
+  {
+    if (typeof(args[0]) == 'number')
+    {
+      source['envelopment'] = args[0];
+      if (SourceContainer.index.get() == i+1)
+      {
+        SourceContainer.envelopment.set(args[0]);
+      }
+    }
+  }
+  if (address[3]=='warmth')
+  {
+    if (typeof(args[0]) == 'number')
+    {
+      source['warmth'] = args[0];
+      if (SourceContainer.index.get() == i+1)
+      {
+        SourceContainer.warmth.set(args[0]);
+      }
+    }
+  }
+  if (address[3]=='bril')
+  {
+    if (typeof(args[0]) == 'number')
+    {
+      source['brillance'] = args[0];
+      if (SourceContainer.index.get() == i+1)
+      {
+        SourceContainer.brillance.set(args[0]);
+      }
+    }
+  }
 }
 
 /**
@@ -409,11 +585,11 @@ function oscSnapshotEvent(address, args)
     // to be completed later
 }
 
+
 /**
  * Called when creating a source
  * @param {integer} index
  */
-
 function createSourceContainer(index)
 {
     // Add the Source container
@@ -423,9 +599,8 @@ function createSourceContainer(index)
 
     var dump = SourceContainer.addTrigger("Dump", "Dump all source parameters");
 
-    // TODO: Add name request from Spat Revolution
-    //var channelName = source.addStringParameter("Source Name", "Source Name", "Source Name");
-    //channelName.setAttribute("readonly", true);
+    var sourceName = SourceContainer.addStringParameter("Source Name", "Source name", "Source name");
+    sourceName.setAttribute("readonly", true);
 
     var gain = SourceContainer.addFloatParameter("Gain", "Matrix input level", 0, -144.5, 24);
     gain.setAttribute("readonly", true);
@@ -442,7 +617,35 @@ function createSourceContainer(index)
     var position = SourceContainer.addPoint3DParameter("Position", "Position", [0.0,0.0,2.0]);
     position.setAttribute("readonly", true);
 
-    //var edit = source.addBoolParameter("Edit", "Edit", 0);
+    var reverbEnable = SourceContainer.addBoolParameter("Reverb Enable", "Reverb Enable", 1);
+    //reverbEnable.setAttribute("readonly", true);
+
+    var earlyEnable = SourceContainer.addBoolParameter("Early Enable", "Early Enable", 1);
+    //earlyEnable.setAttribute("readonly", true);
+
+    var clusterEnable = SourceContainer.addBoolParameter("Cluster Enable", "Cluster Enable", 1);
+    //clusterEnable.setAttribute("readonly", true);
+
+    var tailEnable = SourceContainer.addBoolParameter("Tail Enable", "Tail Enable", 1);
+    //tailEnable.setAttribute("readonly", true);
+
+    var presence = SourceContainer.addIntParameter("Presence", "Source Presence", 80, 0, 120);
+    //presence.setAttribute("readonly", true);
+
+    var roomPresence = SourceContainer.addIntParameter("Room presence", "Room Presence", 48, 0, 120);
+    //roomPresence.setAttribute("readonly", true);
+
+    var runningReverberance = SourceContainer.addIntParameter("Running Reverberance", "Running Reverberance", 34, 0, 50);
+    //runningReverberance.setAttribute("readonly", true);
+
+    var envelopment = SourceContainer.addIntParameter("Envelopment", "Envelopment", 25, 0, 50);
+    //envelopment.setAttribute("readonly", true);
+
+    var warmth = SourceContainer.addIntParameter("Warmth", "Warmth", 30, 0, 60);
+    //warmth.setAttribute("readonly", true);
+
+    var brillance = SourceContainer.addIntParameter("Brillance", "Brillance", 30, 0, 60);
+    //brillance.setAttribute("readonly", true);
 
     local.scripts.setCollapsed(true);
 
@@ -450,7 +653,7 @@ function createSourceContainer(index)
 
 function createSource()
 {
-    newsource = {"positionAED":[0.0,0.0,2.0], "positionXYZ":[0.0, 2.0, 0.0], "gain":0.0, "solo":false, "mute":false, "lfe":-144.5};
+    newsource = {"positionAED":[0.0,0.0,2.0], "positionXYZ":[0.0, 2.0, 0.0], "gain":0.0, "solo":false, "mute":false, "lfe":-144.5, "reverbEnable":true, "earlyEnable":true, "clusterEnable":true, "tailEnable":true, "name":"Source 1"};
     return newsource;
 }
 
@@ -484,7 +687,8 @@ function setSourcesNumber(number)
         {
             numberSources += 1;
             Sources.push(createSource()); // add the source to the Sources array
-            //local.send("/source/"+numberSources+"/dump", 0); // ask Spat Revolution for the source properties
+            local.send("/source/"+numberSources+"/dump", 0); // ask Spat Revolution for the source properties
+            local.send("/source/"+numberSources+"/name/get", 0);
         }
     }
     else if (numberSources > number)
