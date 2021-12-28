@@ -61,75 +61,75 @@ var OSCMessage = {
     },
     'cartesian': function(index, value)
     {
-        var positionTemp = value.getParent().position.get();
-        script.log(positionTemp[0]);
+        stopSendingOSC = true;
         if (value.get() == 1 && Cartesian == false)
         {
             Cartesian = true;
-            value.getParent().getChild('position').set(PolarToCartesian(positionTemp));
+            value.getParent().position.set(Sources[value.getParent().index.get()['positionXYZ']]);
         }
         else
         {
             Cartesian = false;
-            value.getParent().getChild('position').position.set(CartesianToPolar(value.getParent().position.get()));
+            value.getParent().position.set(Sources[value.getParent().index.get()['positionAED']]);
         }
+        stopSendingOSC = true;
     }
 };
 
-/** 
+/**
  * Global variables
  */
 
-var numberSources = 10 ; // number of sources in Spat Revolution. Should be set automatically, but function not working in Spat Revolution now.
+var numberSources = 0 ; // number of sources in Spat Revolution. Should be set automatically, but function not working in Spat Revolution now.
 var Sources = [];// array of all sources parameters.
 var SourceContainer = null;
 var Cartesian = false; // define the mode of position for all sources. Cartesian when true, Polar when false.
+var stopSendingOSC = false;
 
 
 /* 	===============================================================================
 *	Chataigne common functions
-*	
+*
 *	See https://bkuperberg.gitbook.io/chataigne-docs/scripting/scripting-reference#common-functions
 *	===============================================================================
 */
 
 /**
  * This function is called automatically by Chataigne when you add the module in your Noisette.
- * Used for GUI initialisation, global OSC Rx management with callbacks and soundObjects container construction.
  */
-function init() 
+function init()
 {
     local.values.removeContainer("Sources");
 
     // Add Setup container
 
     SetupContainer = local.values.addContainer("Setup", "Setup value");
-    
     //LenSources = SetupContainer.addTrigger("Ask Sources number", "Ask for the number of sources");
     //numberSourcesParameter = SetupContainer.addIntParameter("Sources number", "Define the number of sources in Chataigne (automatically update from Spat).", numberSources, 0, 256);
 
-    local.send("/global/project/source/count", 0);
-
+    //AskForDump = SetupContainer.addTrigger("Dump", "Ask for all parameter dump");
     CartesianOrPolar = SetupContainer.addBoolParameter("Cartesian", "Polar or cartesian", false);
 
-    // Ask Spat Revolution for source count. Not working for now (Spat side)
+
     createSourceContainer();
-    setSourcesNumber(128);
+    setSourcesNumber(10);
+    local.send("/source/1/dump", 0);
+    SourceContainer.index.set(1);
 }
 
 /**
- * This function is called automatically by Chataigne at updateRate period. 
+ * This function is called automatically by Chataigne at updateRate period.
  * Used to parse OSC received messages to soundObject container values
- * @param {integer} updateRate 
+ * @param {integer} updateRate
  */
-function update(updateRate) 
+function update(updateRate)
 {
 
 }
 
 /**
  * This function is called automatically by Chataigne when a module parameter changes in GUI
- * @param {Parameters} param 
+ * @param {Parameters} param
  */
 function moduleParameterChanged(param)
 {
@@ -138,20 +138,35 @@ function moduleParameterChanged(param)
 
 /**
  * This function is called automatically by Chataigne when a module value changes
- * @param {value} value 
+ * @param {value} value
  */
 function moduleValueChanged(value)
 {
+
     var name = value.name;
     if (value.isParameter())
     {
         if (value.name == 'index')
         {
+            if (value.get() > numberSources)
+            {
+              value.set(value.get() - 1);
+              return;
+            }
+            stopSendingOSC = true;
             source = Sources[value.get() - 1];
-            SourceContainer.position.set(source['position']);
+            if (Cartesian == true)
+            {
+              SourceContainer.position.set(source['positionXYZ']);
+            }
+            else
+            {
+              SourceContainer.position.set(source['positionAED']);
+            }
             SourceContainer.mute.set(source['mute']);
             SourceContainer.solo.set(source['solo']);
             SourceContainer.gain.set(source['gain']);
+            stopSendingOSC = false;
 
         }
         if (name == 'sourcesNumber')
@@ -160,30 +175,26 @@ function moduleValueChanged(value)
         }
         else if (name == 'cartesian')
         {
-            if (value.get() == 1 &&  Cartesian == false)
-            {
-                Cartesian = true;
-                for (var i=0; i<Sources.length;i++)
-                {
-                    posCartesian = PolarToCartesian(Sources[i].getChild('position').get());
-                    Sources[i].getChild('position').set(posCartesian);
-                }
-            }
-            else if (value.get() == 0 && Cartesian == true)
-            {
-                Cartesian = false;
-                for (var i=0; i<Sources.length;i++)
-                {
-                    posPolar = CartesianToPolar(Sources[i].getChild('position').get());
-                    Sources[i].getChild('position').set(posPolar);
-                }
-            }
+          stopSendingOSC = true;
+          if (value.get() == 1 && Cartesian == false)
+          {
+            Cartesian = true;
+            source = Sources[SourceContainer.index.get() - 1];
+            SourceContainer.position.set(source['positionXYZ']);
+          }
+          else if (value.get() == 0 && Cartesian == true)
+          {
+            Cartesian = false;
+            source = Sources[SourceContainer.index.get() - 1];
+            SourceContainer.position.set(source['positionAED']);
+          }
+          stopSendingOSC = false;
         }
         else
         {
-            if (OSCMessage[name])
+            if (!stopSendingOSC && OSCMessage[name])
             {
-                OSCMessage[name](value.getParent().index.get(), value);
+                OSCMessage[name](SourceContainer.index.get(), value);
             }
         }
     }
@@ -191,7 +202,12 @@ function moduleValueChanged(value)
     {
         if (name == 'askSourcesNumber')
         {
-            local.send("/global/project/source/count", 0);
+            local.send("/global/project/source/count/get", 0);
+        }
+        if (name == 'dump')
+        {
+          local.send("/source/" + SourceContainer.index.get() + '/dump', 0);
+
         }
     }
 
@@ -200,9 +216,9 @@ function moduleValueChanged(value)
 
 /**
  * Called when an OSC message is received
- * Parse received values 
- * @param {string} address 
- * @param {array} args 
+ * Parse received values
+ * @param {string} address
+ * @param {array} args
  */
 function oscEvent(address, args)
 {
@@ -216,7 +232,7 @@ function oscEvent(address, args)
     {
         oscSourceEvent(address, args);
     }
-    else if (address[1]=='rooom')
+    else if (address[1]=='room')
     {
         oscRoomEvent(address, args);
     }
@@ -227,6 +243,7 @@ function oscEvent(address, args)
     else if (address[1] == 'snapshot')
     {
         oscSnapshotEvent(address, args);
+
     }
 
 }
@@ -240,16 +257,7 @@ function oscEvent(address, args)
 
 function oscGlobalEvent(address, args)
 {
-    if (address[2] == 'project')
-    {
-        if (address[3] == 'source')
-        {
-            if (address[4] == 'count')
-            {
-                setSourcesNumber(args[0]);
-            }
-        }
-    }
+
 }
 
 /**
@@ -286,7 +294,6 @@ function oscSourceEvent(address, args)
     }
     if (address[3]=='lfe')
     {
-        script.log(args[0]);
         if (typeof(args[0]) == 'number')
         {
             source['lfe'] = args[0];
@@ -322,17 +329,45 @@ function oscSourceEvent(address, args)
     {
         if (typeof(args[0]) == 'number' && typeof(args[1]) == 'number' && typeof(args[2]) == 'number')
         {
-            if (Cartesian == true)
-            {
-                source['position'] = PolarToCartesian(args);
-            }
-            else
-            {
-                source['position'] = args;
-            }
+            source['positionAED'] = args;
+            source['positionXYZ'] =  PolarToCartesian(args);
+
             if (SourceContainer.index.get() == i+1)
             {
-                SourceContainer.position.set(source['position']);
+                stopSendingOSC = true;
+                if (Cartesian == true)
+                {
+                  SourceContainer.position.set(source['positionXYZ']);
+                }
+                else
+                {
+                  SourceContainer.position.set(source['positionAED']);
+
+                }
+                stopSendingOSC = false;
+            }
+        }
+    }
+    if (address[3]=='xyz')
+    {
+        if (typeof(args[0]) == 'number' && typeof(args[1]) == 'number' && typeof(args[2]) == 'number')
+        {
+            source['positionAED'] = CartesianToPolar(args);
+            source['positionXYZ'] = args;
+
+            if (SourceContainer.index.get() == i+1)
+            {
+                stopSendingOSC = true;
+                if (Cartesian == true)
+                {
+                  SourceContainer.position.set(source['positionXYZ']);
+                }
+                else
+                {
+                  SourceContainer.position.set(source['positionAED']);
+
+                }
+                stopSendingOSC = false;
             }
         }
     }
@@ -385,7 +420,8 @@ function createSourceContainer(index)
     SourceContainer = local.values.addContainer("Source container");
 
     var SourceIndex = SourceContainer.addIntParameter("Index", "source index", index, 1, 256);
-    //SourceIndex.setAttribute("readonly", true);
+
+    var dump = SourceContainer.addTrigger("Dump", "Dump all source parameters");
 
     // TODO: Add name request from Spat Revolution
     //var channelName = source.addStringParameter("Source Name", "Source Name", "Source Name");
@@ -412,9 +448,9 @@ function createSourceContainer(index)
 
 }
 
-function createSource(index)
+function createSource()
 {
-    newsource = {"position":[0.0,0.0,2.0], "gain":0.0, "solo":false, "mute":false, "lfe":-144.5};
+    newsource = {"positionAED":[0.0,0.0,2.0], "positionXYZ":[0.0, 2.0, 0.0], "gain":0.0, "solo":false, "mute":false, "lfe":-144.5};
     return newsource;
 }
 
@@ -447,9 +483,8 @@ function setSourcesNumber(number)
         while (numberSources < number)
         {
             numberSources += 1;
-            Sources.push(createSource(numberSources)); // add the source to the Sources array
-            local.send("/source/"+numberSources+"/dump", 0); // ask Spat Revolution for the source properties
-
+            Sources.push(createSource()); // add the source to the Sources array
+            //local.send("/source/"+numberSources+"/dump", 0); // ask Spat Revolution for the source properties
         }
     }
     else if (numberSources > number)

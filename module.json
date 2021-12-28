@@ -14,13 +14,13 @@
   "defaults": {
     "autoAdd": false,
     "oscInput": {
-      "localPort": 8500
+      "localPort": 8001
     },
     "OSC Outputs": {
       "OSC Output": {
-        "local": true,
+        "local": false,
         "remoteHost": "192.168.1.100",
-        "remotePort": 8501
+        "remotePort": 8000
       }
     }
   },
@@ -30,7 +30,60 @@
 		"SpatRevolution.js"
 	],
 
- "values": {},
+ "values": {
+   "Setup":
+   {
+     "type":"Container",
+
+     "Cartesian":
+     {
+       "type":"Boolean",
+       "description":"Define if cartesian or polar data are displayed\n",
+      }
+
+ },
+   "Source container":
+   {
+     "type":"Container",
+     "Index":
+     {
+       "type": "Integer",
+       "description":"Specify index of source.\n",
+       "min":1,
+       "max":128
+     },
+     "Gain":
+     {
+       "type":"Float",
+       "description":"Source gain.\n",
+       "min": -144.5,
+       "max": 24.0
+     },
+     "Mute":
+     {
+       "type":"Boolean",
+       "description":"Mute the source\n"
+     },
+     "Solo":
+     {
+       "type":"Boolean",
+       "description":"Solo the source\n"
+     },
+     "Gain":
+     {
+     "type":"Float",
+     "description":"LFE gain.\n",
+     "min": -144.5,
+     "max": 12.0
+      },
+     "Position":
+     {
+       "type":"Point3D",
+       "min":[-100,-100,-100],
+       "max":[100,100,100]
+     }
+   }
+   },
 
   "commands": {
   }
