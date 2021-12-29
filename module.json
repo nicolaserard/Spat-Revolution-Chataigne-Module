@@ -69,7 +69,7 @@
        "type":"Boolean",
        "description":"Solo the source\n"
      },
-     "Gain":
+     "LFE":
      {
      "type":"Float",
      "description":"LFE gain.\n",
@@ -81,6 +81,110 @@
        "type":"Point3D",
        "min":[-100,-100,-100],
        "max":[100,100,100]
+     },
+     "Reverb Enable":
+     {
+       "type":"Boolean",
+       "description":"Enable the all reverberation\n"
+     },
+     "Early Enable":
+     {
+       "type":"Boolean",
+       "description":"Enable the early reflections\n"
+     },
+     "Cluster Enable":
+     {
+       "type":"Boolean",
+       "description":"Enable the cluster\n"
+     },
+     "Tail Enable":
+     {
+       "type":"Boolean",
+       "description":"Enable the tail reverberation\n"
+     },
+     "Presence":
+     {
+       "type": "Integer",
+       "description":"Set the source presence.\n",
+       "min":0,
+       "max":120
+     },
+     "Room presence":
+     {
+       "type": "Integer",
+       "description":"Set the source room presence.\n",
+       "min":0,
+       "max":120
+     },
+     "Running Reverberance":
+     {
+       "type": "Integer",
+       "description":"Set the source running reverberance parameter.\n",
+       "min":0,
+       "max":50
+     },
+     "Envelopment":
+     {
+       "type": "Integer",
+       "description":"Set the source envelopment.\n",
+       "min":0,
+       "max":50
+     },
+     "Warmth":
+     {
+       "type": "Integer",
+       "description":"Set the source warmth.\n",
+       "min":0,
+       "max":60
+     },
+     "Brillance":
+     {
+       "type": "Integer",
+       "description":"Set the source brillance.\n",
+       "min":0,
+       "max":60
+     },
+     "Yaw":
+     {
+       "type": "Float",
+       "description":"Set the source yaw.\n",
+       "min":-180,
+       "max":180
+     },
+     "Pitch":
+     {
+       "type": "Float",
+       "description":"Set the source pitch.\n",
+       "min":-90,
+       "max":90
+     },
+     "Aperture":
+     {
+       "type": "Float",
+       "description":"Set the source aperture.\n",
+       "min":0,
+       "max":180
+     },
+     "Scale":
+     {
+       "type": "Float",
+       "description":"Set the source scale (for multichannel sources).\n",
+       "min":0,
+       "max":100
+     },
+     "Spread":
+     {
+       "type": "Float",
+       "description":"Set the source spread.\n",
+       "min":0,
+       "max":100
+     },
+     "Knn":
+     {
+       "type": "Float",
+       "description":"Set the source Knn.\n",
+       "min":0,
+       "max":100
      }
    }
    },

@@ -117,6 +117,30 @@ var OSCMessage = {
     'warmth': function(index, value)
     {
       local.send("/source/" + index + "/warmth", value.get());
+    },
+    'yaw': function(index, value)
+    {
+      local.send("/source/" + index + "/yaw", value.get());
+    },
+    'pitch': function(index, value)
+    {
+      local.send("/source/" + index + "/pitch", value.get());
+    },
+    'aperture': function(index, value)
+    {
+      local.send("/source/" + index + "/aperture", value.get());
+    },
+    'scale': function(index, value)
+    {
+      local.send("/source/" + index + "/scale", value.get());
+    },
+    'spread': function(index, value)
+    {
+      local.send("/source/" + index + "/spread", value.get());
+    },
+    'KNN': function(index, value)
+    {
+      local.send("/source/" + index + "/nneig", value.get());
     }
 };
 
@@ -221,6 +245,12 @@ function moduleValueChanged(value)
             SourceContainer.envelopment.set(source['envelopment']);
             SourceContainer.brillance.set(source['brillance']);
             SourceContainer.warmth.set(source['warmth']);
+            SourceContainer.yaw.set(source['yaw']);
+            SourceContainer.pitch.set(source['pitch']);
+            SourceContainer.aperture.set(source['aperture']);
+            SourceContainer.scale.set(source['scale']);
+            SourceContainer.spread.set(source['spread']);
+            SourceContainer.knn.set(source['knn']);
             stopSendingOSC = false;
 
         }
@@ -547,6 +577,72 @@ function oscSourceEvent(address, args)
       }
     }
   }
+  if (address[3]=='yaw')
+  {
+    if (typeof(args[0]) == 'number')
+    {
+      source['yaw'] = args[0];
+      if (SourceContainer.index.get() == i+1)
+      {
+        SourceContainer.yaw.set(args[0]);
+      }
+    }
+  }
+  if (address[3]=='pitch')
+  {
+    if (typeof(args[0]) == 'number')
+    {
+      source['pitch'] = args[0];
+      if (SourceContainer.index.get() == i+1)
+      {
+        SourceContainer.pitch.set(args[0]);
+      }
+    }
+  }
+  if (address[3]=='aperture')
+  {
+    if (typeof(args[0]) == 'number')
+    {
+      source['aperture'] = args[0];
+      if (SourceContainer.index.get() == i+1)
+      {
+        SourceContainer.aperture.set(args[0]);
+      }
+    }
+  }
+  if (address[3]=='scale')
+  {
+    if (typeof(args[0]) == 'number')
+    {
+      source['scale'] = args[0];
+      if (SourceContainer.index.get() == i+1)
+      {
+        SourceContainer.scale.set(args[0]);
+      }
+    }
+  }
+  if (address[3]=='spread')
+  {
+    if (typeof(args[0]) == 'number')
+    {
+      source['spread'] = args[0];
+      if (SourceContainer.index.get() == i+1)
+      {
+        SourceContainer.spread.set(args[0]);
+      }
+    }
+  }
+  if (address[3]=='nneig')
+  {
+    if (typeof(args[0]) == 'number')
+    {
+      source['knn'] = args[0];
+      if (SourceContainer.index.get() == i+1)
+      {
+        SourceContainer.knn.set(args[0]);
+      }
+    }
+  }
 }
 
 /**
@@ -647,13 +743,31 @@ function createSourceContainer(index)
     var brillance = SourceContainer.addIntParameter("Brillance", "Brillance", 30, 0, 60);
     //brillance.setAttribute("readonly", true);
 
+    var yaw = SourceContainer.addFloatParameter("Yaw", "Yaw", -180, 0, 180);
+    //yaw.setAttribute("readonly", true);
+
+    var pitch = SourceContainer.addFloatParameter("Pitch", "Pitch", -90, 0, 90);
+    //pitch.setAttribute("readonly", true);
+
+    var aperture = SourceContainer.addFloatParameter("Aperture", "Aperture", 10, 0, 180);
+    //aperture.setAttribute("readonly", true);
+
+    var scale = SourceContainer.addFloatParameter("Scale", "Scale", 1, 0.01, 100.0);
+    //scale.setAttribute("readonly", true);
+
+    var spread = SourceContainer.addFloatParameter("Spread", "Spread", 0, 0, 100);
+    //spread.setAttribute("readonly", true);
+
+    var knn = SourceContainer.addIntParameter("Knn", "Knn", 0, 0, 100);
+    //knn.setAttribute("readonly", true);
+
     local.scripts.setCollapsed(true);
 
 }
 
 function createSource()
 {
-    newsource = {"positionAED":[0.0,0.0,2.0], "positionXYZ":[0.0, 2.0, 0.0], "gain":0.0, "solo":false, "mute":false, "lfe":-144.5, "reverbEnable":true, "earlyEnable":true, "clusterEnable":true, "tailEnable":true, "name":"Source 1"};
+    newsource = {"positionAED":[0.0,0.0,2.0], "positionXYZ":[0.0, 2.0, 0.0], "gain":0.0, "solo":false, "mute":false, "lfe":-144.5, "reverbEnable":true, "earlyEnable":true, "clusterEnable":true, "tailEnable":true, "name":"Source 1", "yaw":0.0, "pitch":0.0, "aperture":10.0, "scale":1.0, "spread":0.0, "knn":0.0};
     return newsource;
 }
 
