@@ -165,6 +165,10 @@ var OSCMessage = {
     'coordinatesMode': function(index, value)
     {
       local.send("/source/" + index + "/cm", value.get());
+    },
+    'rotationXYZ': function(index, value)
+    {
+      local.send("/source/" + index + "/rotation", value.get());
     }
 };
 
@@ -179,6 +183,7 @@ var reverbSourceContainer = null;
 var perceptualFactorSourceContainer = null;
 var spreadingSourceContainer = null;
 var optionsSourceContainer = null;
+var barycentricSourceContainer = null;
 var Cartesian = false; // define the mode of position for all sources. Cartesian when true, Polar when false.
 var stopSendingOSC = false;
 
@@ -262,29 +267,30 @@ function moduleValueChanged(value)
             SourceContainer.mute.set(source['mute']);
             SourceContainer.solo.set(source['solo']);
             SourceContainer.gain.set(source['gain']);
-            SourceContainer.reverbEnable.set(source['reverbEnable']);
-            SourceContainer.earlyEnable.set(source['earlyEnable']);
-            SourceContainer.clusterEnable.set(source['clusterEnable']);
-            SourceContainer.tailEnable.set(source['tailEnable']);
+            reverbSourceContainer.reverbEnable.set(source['reverbEnable']);
+            reverbSourceContainer.earlyEnable.set(source['earlyEnable']);
+            reverbSourceContainer.clusterEnable.set(source['clusterEnable']);
+            reverbSourceContainer.tailEnable.set(source['tailEnable']);
             SourceContainer.sourceName.set(source['name']);
-            SourceContainer.presence.set(source['presence']);
-            SourceContainer.roomPresence.set(source['roomPresence']);
-            SourceContainer.runningReverberance.set(source['runningReverberance']);
-            SourceContainer.envelopment.set(source['envelopment']);
-            SourceContainer.brillance.set(source['brillance']);
-            SourceContainer.warmth.set(source['warmth']);
+            perceptualFactorSourceContainer.presence.set(source['presence']);
+            perceptualFactorSourceContainer.roomPresence.set(source['roomPresence']);
+            perceptualFactorSourceContainer.runningReverberance.set(source['runningReverberance']);
+            perceptualFactorSourceContainer.envelopment.set(source['envelopment']);
+            perceptualFactorSourceContainer.brillance.set(source['brillance']);
+            perceptualFactorSourceContainer.warmth.set(source['warmth']);
             SourceContainer.yaw.set(source['yaw']);
             SourceContainer.pitch.set(source['pitch']);
             SourceContainer.aperture.set(source['aperture']);
-            SourceContainer.scale.set(source['scale']);
-            SourceContainer.spread.set(source['spread']);
-            SourceContainer.knn.set(source['knn']);
-            SourceContainer.earlyWidth.set(source['earlyWidth']);
-            SourceContainer.panRev.set(source['panRev']);
-            SourceContainer.doppler.set(source['doppler']);
-            SourceContainer.radius.set(source['radius']);
-            SourceContainer.airAbsorption.set(source['airAbsorption']);
-            SourceContainer.coordinatesMode.set(source['coordinatesMode']);
+            barycentricSourceContainer.scale.set(source['scale']);
+            spreadingSourceContainer.spread.set(source['spread']);
+            spreadingSourceContainer.knn.set(source['knn']);
+            reverbSourceContainer.earlyWidth.set(source['earlyWidth']);
+            reverbSourceContainer.panRev.set(source['panRev']);
+            optionsSourceContainer.doppler.set(source['doppler']);
+            optionsSourceContainer.radius.set(source['radius']);
+            optionsSourceContainer.airAbsorption.set(source['airAbsorption']);
+            optionsSourceContainer.coordinatesMode.set(source['coordinatesMode']);
+            barycentricSourceContainer.rotationXYZ.set(source['rotationXYZ']);
             stopSendingOSC = false;
 
         }
@@ -651,7 +657,7 @@ function oscSourceEvent(address, args)
         source['scale'] = args[0];
         if (SourceContainer.index.get() == i+1)
         {
-          SourceContainer.scale.set(args[0]);
+          barycentricSourceContainer.scale.set(args[0]);
         }
       }
     }
@@ -740,6 +746,37 @@ function oscSourceEvent(address, args)
         if (SourceContainer.index.get() == i+1)
         {
           optionsSourceContainer.coordinatesMode.set(args[0]);
+        }
+      }
+    }
+    if (address[3]=='rotx')
+    {
+      if (typeof(args[0]) == 'number')
+      {
+        source['rotationXYZ'][0] = args[0];
+        if (SourceContainer.index.get() == i+1)
+        {
+          barycentricSourceContainer.rotationXYZ.set(source['rotationXYZ']);
+        }
+      }
+    }if (address[3]=='roty')
+    {
+      if (typeof(args[0]) == 'number')
+      {
+        source['rotationXYZ'][1] = args[0];
+        if (SourceContainer.index.get() == i+1)
+        {
+          barycentricSourceContainer.rotationXYZ.set(source['rotationXYZ']);
+        }
+      }
+    }if (address[3]=='rotz')
+    {
+      if (typeof(args[0]) == 'number')
+      {
+        source['rotationXYZ'][2] = args[0];
+        if (SourceContainer.index.get() == i+1)
+        {
+          barycentricSourceContainer.rotationXYZ.set(source['rotationXYZ']);
         }
       }
     }
@@ -854,8 +891,12 @@ function createSourceContainer(index)
     var aperture = SourceContainer.addFloatParameter("Aperture", "Aperture", 10, 0, 180);
     aperture.setAttribute("readonly", true);
 
-    var scale = SourceContainer.addFloatParameter("Scale", "Scale", 1, 0.01, 100.0);
+    barycentricSourceContainer = SourceContainer.addContainer("Barycentric");
+    var scale = barycentricSourceContainer.addFloatParameter("Scale", "Scale", 1, 0.01, 100.0);
     scale.setAttribute("readonly", true);
+
+    var rotationXYZ = barycentricSourceContainer.addPoint3DParameter("Rotation XYZ", "Rotation XYZ", [0.0, 0.0, 0.0]);
+    rotationXYZ.setAttribute("readonly", true);
 
     spreadingSourceContainer = SourceContainer.addContainer("Spreading");
     var spread = spreadingSourceContainer.addFloatParameter("Spread", "Spread", 0, 0, 100);
@@ -887,13 +928,14 @@ function createSourceContainer(index)
     perceptualFactorSourceContainer.setCollapsed(true);
     spreadingSourceContainer.setCollapsed(true);
     optionsSourceContainer.setCollapsed(true);
+    barycentricSourceContainer.setCollapsed(true);
     local.scripts.setCollapsed(true);
 
 }
 
 function createSource()
 {
-    newsource = {"positionAED":[0.0,0.0,2.0], "positionXYZ":[0.0, 2.0, 0.0], "gain":0.0, "solo":false, "mute":false, "lfe":-144.5, "reverbEnable":true, "earlyEnable":true, "clusterEnable":true, "tailEnable":true, "name":"Source 1", "yaw":0.0, "pitch":0.0, "aperture":10.0, "scale":1.0, "spread":0.0, "knn":0.0, "earlyWidth":10.0, "panRev":0.0, "doppler":false, "radius":2.0, "airAbsorption":true, "coordinatesMode":false};
+    newsource = {"positionAED":[0.0,0.0,2.0], "positionXYZ":[0.0, 2.0, 0.0], "gain":0.0, "solo":false, "mute":false, "lfe":-144.5, "reverbEnable":true, "earlyEnable":true, "clusterEnable":true, "tailEnable":true, "name":"Source 1", "yaw":0.0, "pitch":0.0, "aperture":10.0, "scale":1.0, "spread":0.0, "knn":0.0, "earlyWidth":10.0, "panRev":0.0, "doppler":false, "radius":2.0, "airAbsorption":true, "coordinatesMode":false, "rotationXYZ":[0.0, 0.0, 0.0]};
     return newsource;
 }
 

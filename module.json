@@ -52,17 +52,14 @@
        "min":1,
        "max":128
      },
-     "Name":
+     "Dump":
+     {
+       "type": "Trigger"
+     },
+     "Source Name":
      {
        "type":"String",
        "description": "Source Name\n"
-     },
-     "Gain":
-     {
-       "type":"Float",
-       "description":"Source gain.\n",
-       "min": -144.5,
-       "max": 24.0
      },
      "Mute":
      {
@@ -73,6 +70,13 @@
      {
        "type":"Boolean",
        "description":"Solo the source\n"
+     },
+     "Gain":
+     {
+       "type":"Float",
+       "description":"Source gain.\n",
+       "min": -144.5,
+       "max": 24.0
      },
      "LFE":
      {
@@ -182,12 +186,24 @@
        "min":0,
        "max":180
      },
-     "Scale":
+     "Barycentric":
      {
-       "type": "Float",
-       "description":"Set the source scale (for multichannel sources).\n",
-       "min":0,
-       "max":100
+       "type": "Container",
+       "Scale":
+       {
+         "type": "Float",
+         "description": "Set the source scale (for multichannel sources).\n",
+         "min": 0,
+         "max": 100
+       },
+       "Rotation XYZ":
+       {
+         "type": "Point3D",
+         "min":
+         [-100, -100, -100],
+         "max":
+         [100, 100, 100]
+       }
      },
      "Spreading":
      {
