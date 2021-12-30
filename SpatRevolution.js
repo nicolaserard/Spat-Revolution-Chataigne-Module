@@ -1006,7 +1006,17 @@ function oscRoomEvent(address, args)
     var room = Rooms[i];
   }
 
-  if (address[3]=='gain')
+  if (address[3]=='name')
+  {
+    if (typeof(args[0]) == 'string')
+    {
+      room['name'] = args[0];
+      if (roomContainer.index.get() == i+1)
+      {
+        roomContainer.roomName.set(room['name']);
+      }
+    }
+  }  if (address[3]=='gain')
   {
     if (typeof(args[0]) == 'number')
     {
@@ -1583,7 +1593,7 @@ function createSource()
 
 function createRoom()
 {
-  newRoom = {'mute': false, 'listenerPosition':[0.0, 0.0, 0.0],'listenerOrientation':[0.0, 0.0, 0.0], 'gain':0.0, 'reverbDensity':false, 'reverbEnableRoom':true, 'sizeRoom':2500, 'reverbStart':81.0, 'reverbFactor':1.0, 'reverberance':65.0, 'heaviness':25.0, 'liveness':35.0, 'earlyMin':24.2, 'earlyMax':40.0, 'earlyShape':0.5, 'earlyDist':0.5, 'clusterMin':24.2, 'clusterMax':40.0, 'clusterDist':0.5, 'reverbInfinite':false, 'airEnable':true, 'airFreq':10000.0, 'reverbModalDensity':0.5, 'frequencyLow':177.0, 'frequencyHigh':5657.0};
+  newRoom = {"name": "Room Name", 'mute': false, 'listenerPosition':[0.0, 0.0, 0.0],'listenerOrientation':[0.0, 0.0, 0.0], 'gain':0.0, 'reverbDensity':false, 'reverbEnableRoom':true, 'sizeRoom':2500, 'reverbStart':81.0, 'reverbFactor':1.0, 'reverberance':65.0, 'heaviness':25.0, 'liveness':35.0, 'earlyMin':24.2, 'earlyMax':40.0, 'earlyShape':0.5, 'earlyDist':0.5, 'clusterMin':24.2, 'clusterMax':40.0, 'clusterDist':0.5, 'reverbInfinite':false, 'airEnable':true, 'airFreq':10000.0, 'reverbModalDensity':0.5, 'frequencyLow':177.0, 'frequencyHigh':5657.0};
   return newRoom;
 }
 
