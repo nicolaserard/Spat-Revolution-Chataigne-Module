@@ -176,12 +176,14 @@ var OSCSourceMessage = {
     'rotationXYZ': function(index, value)
     {
       local.send("/source/" + index + "/rotation", value.get());
-    }
-};
+    },
 
-/* OSCRoomMessage: array of all OSC Room Messages. Use to send OSC message when an value changed.*/
-var OSCRoomMessage = {
-  'gainRoom': function(index, value)
+    //ROOM Parameter
+  'roomName': function(index, value)
+  {
+    local.send("/room/" + index + "/name", value.get());
+  }
+  ,  'gainRoom': function(index, value)
   {
     local.send("/room/" + index + "/gain", value.get());
   },
@@ -201,7 +203,7 @@ var OSCRoomMessage = {
   {
     local.send("/room/" + index + "/reverb/enable", value.get());
   },
-  'size': function(index, value)
+  'roomSize': function(index, value)
   {
     local.send("/room/" + index + "/size", value.get());
   },
@@ -247,7 +249,7 @@ var OSCRoomMessage = {
   },
   'clusterMin': function(index, value)
   {
-    local.send("/room/" + index + "/early/min", value.get());
+    local.send("/room/" + index + "/cluster/min", value.get());
   },
   'clusterMax': function(index, value)
   {
@@ -269,7 +271,7 @@ var OSCRoomMessage = {
   {
     local.send("/room/" + index + "/air/freq", value.get());
   },
-  'reverbModalDensity': function(index, value)
+  'modalDensity': function(index, value)
   {
     local.send("/room/" + index + "/reverb/modal/density", value.get());
   },
@@ -346,7 +348,7 @@ function init()
     createRoomContainer();
     setRoomsNumber(1);
     local.send("/room/1/dump", 0);
-    roomContainer.roomIndex.set(1);
+    roomContainer.index.set(1);
 }
 
 /**
@@ -427,7 +429,8 @@ function moduleValueChanged(value)
             barycentricSourceContainer.rotationXYZ.set(source['rotationXYZ']);
             stopSendingOSC = false;
 
-        }if (value.name == 'roomindex')
+        }
+        if (value.name == 'roomindex')
         {
             if (value.get() > numberRooms)
             {
@@ -1008,9 +1011,9 @@ function oscRoomEvent(address, args)
     if (typeof(args[0]) == 'number')
     {
       room['gain'] = args[0];
-      if (roomContainer.roomIndex.get() == i+1)
+      if (roomContainer.index.get() == i+1)
       {
-        roomContainer.gain.set(room['gain']);
+        roomContainer.gainRoom.set(room['gain']);
       }
     }
   }
@@ -1019,9 +1022,9 @@ function oscRoomEvent(address, args)
     if (typeof(args[0]) == 'number')
     {
       room['mute'] = args[0];
-      if (roomContainer.roomIndex.get() == i+1)
+      if (roomContainer.index.get() == i+1)
       {
-        roomContainer.mute.set(room['mute']);
+        roomContainer.muteRoom.set(room['mute']);
       }
     }
   }
@@ -1030,7 +1033,7 @@ function oscRoomEvent(address, args)
     if (typeof(args[0]) == 'number')
     {
       room['listenerPosition'] = args[0];
-      if (roomContainer.roomIndex.get() == i+1)
+      if (roomContainer.index.get() == i+1)
       {
         roomContainer.listenerPosition.set(room['listenerPosition']);
       }
@@ -1041,7 +1044,7 @@ function oscRoomEvent(address, args)
     if (typeof(args[0]) == 'number')
     {
       room['listenerOrientation'][0] = args[0];
-      if (roomContainer.roomIndex.get() == i+1)
+      if (roomContainer.index.get() == i+1)
       {
         roomContainer.listenerOrientation.set(room['listenerOrientation']);
       }
@@ -1052,7 +1055,7 @@ function oscRoomEvent(address, args)
     if (typeof(args[0]) == 'number')
     {
       room['listenerOrientation'][1] = args[0];
-      if (roomContainer.roomIndex.get() == i+1)
+      if (roomContainer.index.get() == i+1)
       {
         roomContainer.listenerOrientation.set(room['listenerOrientation']);
       }
@@ -1063,7 +1066,7 @@ function oscRoomEvent(address, args)
     if (typeof(args[0]) == 'number')
     {
       room['listenerOrientation'][2] = args[0];
-      if (roomContainer.roomIndex.get() == i+1)
+      if (roomContainer.index.get() == i+1)
       {
         roomContainer.listenerOrientation.set(room['listenerOrientation']);
       }
@@ -1074,9 +1077,9 @@ function oscRoomEvent(address, args)
     if (typeof(args[0]) == 'number')
     {
       room['size'] = args[0];
-      if (roomContainer.roomIndex.get() == i+1)
+      if (roomContainer.index.get() == i+1)
       {
-        roomReverbContainer.sizeRoom.set(room['size']);
+        roomReverbContainer.romSize.set(room['size']);
       }
     }
   }
@@ -1085,7 +1088,7 @@ function oscRoomEvent(address, args)
     if (typeof(args[0]) == 'number')
     {
       room['reverberance'] = args[0];
-      if (roomContainer.roomIndex.get() == i+1)
+      if (roomContainer.index.get() == i+1)
       {
         perceptualFactorRoomContainer.reverberance.set(room['reverberance']);
       }
@@ -1096,7 +1099,7 @@ function oscRoomEvent(address, args)
     if (typeof(args[0]) == 'number')
     {
       room['heaviness'] = args[0];
-      if (roomContainer.roomIndex.get() == i+1)
+      if (roomContainer.index.get() == i+1)
       {
         perceptualFactorRoomContainer.heaviness.set(room['heaviness']);
       }
@@ -1107,7 +1110,7 @@ function oscRoomEvent(address, args)
     if (typeof(args[0]) == 'number')
     {
       room['liveness'] = args[0];
-      if (roomContainer.roomIndex.get() == i+1)
+      if (roomContainer.index.get() == i+1)
       {
         perceptualFactorRoomContainer.liveness.set(room['liveness']);
       }
@@ -1120,7 +1123,7 @@ function oscRoomEvent(address, args)
       if (typeof (args[0]) == 'number')
       {
         room['density'] = args[0];
-        if (roomContainer.roomIndex.get() == i + 1)
+        if (roomContainer.index.get() == i + 1)
         {
           roomReverbContainer.reverbDensity.set(room['density']);
         }
@@ -1130,10 +1133,10 @@ function oscRoomEvent(address, args)
     {
       if (typeof (args[0]) == 'number')
       {
-        room['reverbEnable'] = args[0];
-        if (roomContainer.roomIndex.get() == i + 1)
+        room['reverbEnableRoom'] = args[0];
+        if (roomContainer.index.get() == i + 1)
         {
-          roomReverbContainer.reverbEnable.set(room['reverbEnable']);
+          roomReverbContainer.reverbEnableRoom.set(room['reverbEnableRoom']);
         }
       }
     }
@@ -1142,7 +1145,7 @@ function oscRoomEvent(address, args)
       if (typeof (args[0]) == 'number')
       {
         room['reverbStart'] = args[0];
-        if (roomContainer.roomIndex.get() == i + 1)
+        if (roomContainer.index.get() == i + 1)
         {
           roomReverbContainer.reverbStart.set(room['reverbStart']);
         }
@@ -1153,7 +1156,7 @@ function oscRoomEvent(address, args)
       if (typeof (args[0]) == 'number')
       {
         room['reverbGain'] = args[0];
-        if (roomContainer.roomIndex.get() == i + 1)
+        if (roomContainer.index.get() == i + 1)
         {
           roomReverbContainer.reverbGain.set(room['reverbGain']);
         }
@@ -1164,7 +1167,7 @@ function oscRoomEvent(address, args)
       if (typeof (args[0]) == 'number')
       {
         room['reverbFactor'] = args[0];
-        if (roomContainer.roomIndex.get() == i + 1)
+        if (roomContainer.index.get() == i + 1)
         {
           roomReverbContainer.reverbFactor.set(room['reverbFactor']);
         }
@@ -1175,7 +1178,7 @@ function oscRoomEvent(address, args)
       if (typeof (args[0]) == 'number')
       {
         room['reverbInfinite'] = args[0];
-        if (roomContainer.roomIndex.get() == i + 1)
+        if (roomContainer.index.get() == i + 1)
         {
           reverbOptionsRoomContainer.reverbInfinite.set(room['reverbInfinite']);
         }
@@ -1186,7 +1189,7 @@ function oscRoomEvent(address, args)
       if (typeof (args[0]) == 'number')
       {
         room['modalDensity'] = args[0];
-        if (roomContainer.roomIndex.get() == i + 1)
+        if (roomContainer.index.get() == i + 1)
         {
           reverbOptionsRoomContainer.modalDensity.set(room['modalDensity']);
         }
@@ -1197,7 +1200,7 @@ function oscRoomEvent(address, args)
       if (typeof (args[0]) == 'number')
       {
         room['frequencyLow'] = args[0];
-        if (roomContainer.roomIndex.get() == i + 1)
+        if (roomContainer.index.get() == i + 1)
         {
           reverbCrossoverRoomContainer.frequencyLow.set(room['frequencyLow']);
         }
@@ -1208,7 +1211,7 @@ function oscRoomEvent(address, args)
       if (typeof (args[0]) == 'number')
       {
         room['frequencyHigh'] = args[0];
-        if (roomContainer.roomIndex.get() == i + 1)
+        if (roomContainer.index.get() == i + 1)
         {
           reverbCrossoverRoomContainer.frequencyHigh.set(room['frequencyHigh']);
         }
@@ -1222,7 +1225,7 @@ function oscRoomEvent(address, args)
       if (typeof (args[0]) == 'number')
       {
         room['earlyMin'] = args[0];
-        if (roomContainer.roomIndex.get() == i + 1)
+        if (roomContainer.index.get() == i + 1)
         {
           roomResponseRoomContainer.earlyMin.set(room['earlyMin']);
         }
@@ -1233,7 +1236,7 @@ function oscRoomEvent(address, args)
       if (typeof (args[0]) == 'number')
       {
         room['earlyMax'] = args[0];
-        if (roomContainer.roomIndex.get() == i + 1)
+        if (roomContainer.index.get() == i + 1)
         {
           roomResponseRoomContainer.earlyMax.set(room['earlyMax']);
         }
@@ -1244,7 +1247,7 @@ function oscRoomEvent(address, args)
       if (typeof (args[0]) == 'number')
       {
         room['earlyDist'] = args[0];
-        if (roomContainer.roomIndex.get() == i + 1)
+        if (roomContainer.index.get() == i + 1)
         {
           roomResponseRoomContainer.earlyDist.set(room['earlyDist']);
         }
@@ -1255,7 +1258,7 @@ function oscRoomEvent(address, args)
       if (typeof (args[0]) == 'number')
       {
         room['earlyShape'] = args[0];
-        if (roomContainer.roomIndex.get() == i + 1)
+        if (roomContainer.index.get() == i + 1)
         {
           roomResponseRoomContainer.earlyShape.set(room['earlyShape']);
         }
@@ -1269,7 +1272,7 @@ function oscRoomEvent(address, args)
       if (typeof (args[0]) == 'number')
       {
         room['clusterMin'] = args[0];
-        if (roomContainer.roomIndex.get() == i + 1)
+        if (roomContainer.index.get() == i + 1)
         {
           roomResponseRoomContainer.clusterMin.set(room['clusterMin']);
         }
@@ -1280,7 +1283,7 @@ function oscRoomEvent(address, args)
       if (typeof (args[0]) == 'number')
       {
         room['clusterMax'] = args[0];
-        if (roomContainer.roomIndex.get() == i + 1)
+        if (roomContainer.index.get() == i + 1)
         {
           roomResponseRoomContainer.clusterMax.set(room['clusterMax']);
         }
@@ -1291,7 +1294,7 @@ function oscRoomEvent(address, args)
       if (typeof (args[0]) == 'number')
       {
         room['clusterDist'] = args[0];
-        if (roomContainer.roomIndex.get() == i + 1)
+        if (roomContainer.index.get() == i + 1)
         {
           roomResponseRoomContainer.clusterDist.set(room['clusterDist']);
         }
@@ -1304,7 +1307,7 @@ function oscRoomEvent(address, args)
       if (typeof (args[0]) == 'number')
       {
         room['airEnable'] = args[0];
-        if (roomContainer.roomIndex.get() == i + 1)
+        if (roomContainer.index.get() == i + 1)
         {
           reverbOptionsRoomContainer.airEnable.set(room['airEnable']);
         }
@@ -1315,7 +1318,7 @@ function oscRoomEvent(address, args)
       if (typeof (args[0]) == 'number')
       {
         room['airFreq'] = args[0];
-        if (roomContainer.roomIndex.get() == i + 1)
+        if (roomContainer.index.get() == i + 1)
         {
           reverbOptionsRoomContainer.airFreq.set(room['airFreq']);
         }
@@ -1352,11 +1355,12 @@ function oscSnapshotEvent(address, args)
 /**
  * Called when creating a source
  */
-function createSourceContainer() {
+function createSourceContainer()
+{
   // Add the Source container
   SourceContainer = local.values.addContainer("Source container");
 
-  var sourceIndex = SourceContainer.addIntParameter("Source Index", "source index", 1, 1, 256);
+  var index = SourceContainer.addIntParameter("Index", "source index", 1, 1, 256);
 
   var dump = SourceContainer.addTrigger("Dump Source", "Dump all source parameters");
 
@@ -1469,98 +1473,98 @@ function createSourceContainer() {
 
 function createRoomContainer()
 {
-    // Add the Source container
+    // Add the Room container
     roomContainer = local.values.addContainer("Room container");
 
-    var roomIndex = roomContainer.addIntParameter("Room Index", "room index", 1, 1, 256);
+    var index = roomContainer.addIntParameter("Index", "room index", 1, 1, 256);
 
     var dumpRoom = roomContainer.addTrigger("Dump Room", "Dump all room parameters");
 
     var roomName = roomContainer.addStringParameter("Room Name", "Room name", "Room name");
-    roomName.setAttribute("readonly", true);
+    //roomName.setAttribute("readonly", true);
 
-    var gain = roomContainer.addFloatParameter("Gain", "Matrix input level", 0, -144.5, 24);
-    gainRoom.setAttribute("readonly", true);
+    var gainRoom = roomContainer.addFloatParameter("Gain Room", "Matrix input level", 0, -144.5, 24);
+  //gainRoom.setAttribute("readonly", true);
 
-    var muteRoom = roomContainer.addBoolParameter("Mute", "Mute", 0);
-    muteRoom.setAttribute("readonly", true);
+    var muteRoom = roomContainer.addBoolParameter("Mute Room", "Mute", 0);
+  //muteRoom.setAttribute("readonly", true);
 
     var listenerPosition = roomContainer.addPoint3DParameter("Listener Position", "Listener Position", [0.0,0.0,0.0]);
-    listenerPosition.setAttribute("readonly", true);
+  //listenerPosition.setAttribute("readonly", true);
 
     var listenerOrientation = roomContainer.addPoint3DParameter("Listener Orientation", "Listener Orientation", [0.0,0.0,0.0]);
-  listenerOrientation.setAttribute("readonly", true);
+  //listenerOrientation.setAttribute("readonly", true);
 
     roomReverbContainer = roomContainer.addContainer("Reverb");
     var reverbDensity = roomReverbContainer.addBoolParameter("Reverb Density", "Reverb Density", 1);
-    reverbDensity.setAttribute("readonly", true);
+  //reverbDensity.setAttribute("readonly", true);
 
-    var reverbEnableRoom = roomReverbContainer.addBoolParameter("Reverb Enable", "Reverb Enable", 1);
-    reverbEnableRoom.setAttribute("readonly", true);
+    var reverbEnableRoom = roomReverbContainer.addBoolParameter("Reverb Enable Room", "Reverb Enable", 1);
+  //reverbEnableRoom.setAttribute("readonly", true);
 
-    var sizeRoom = reverbSourceContainer.addFloatParameter("Room size", "Room size", 2500, 10, 15000);
-    sizeRoom.setAttribute("readonly", true);
+    var roomSize = roomReverbContainer.addFloatParameter("Room size", "Room size", 2500, 10, 15000);
+  //sizeRoom.setAttribute("readonly", true);
 
-    var reverbStart = reverbSourceContainer.addFloatParameter("Reverb Start", "Reverb Start", 80.0, 8.0, 500.0);
-    reverbStart.setAttribute("readonly", true);
+    var reverbStart = roomReverbContainer.addFloatParameter("Reverb Start", "Reverb Start", 80.0, 8.0, 500.0);
+  //reverbStart.setAttribute("readonly", true);
 
-    var reverbGain = reverbSourceContainer.addFloatParameter("Reverb Gain", "Reverb Gain", 0, -24.0, 24.0);
-    reverbGain.setAttribute("readonly", true);
+    var reverbGain = roomReverbContainer.addFloatParameter("Reverb Gain", "Reverb Gain", 0, -24.0, 24.0);
+  //reverbGain.setAttribute("readonly", true);
 
-    var reverbFactor = reverbSourceContainer.addFloatParameter("Reverb Factor", "Reverb Factor", 1.0, 0.10, 2.0);
-    reverbFactor.setAttribute("readonly", true);
+    var reverbFactor = roomReverbContainer.addFloatParameter("Reverb Factor", "Reverb Factor", 1.0, 0.10, 2.0);
+  //reverbFactor.setAttribute("readonly", true);
 
     perceptualFactorRoomContainer = roomContainer.addContainer("Perceptual Factor");
-    var reverberance = perceptualFactorRoomContainer.addIntParameter("Reverberance", "Reverberance", 80, 0, 120);
-    reverberance.setAttribute("readonly", true);
+    var reverberance = perceptualFactorRoomContainer.addFloatParameter("Reverberance", "Reverberance", 80, 0, 120);
+  //reverberance.setAttribute("readonly", true);
 
-    var heaviness = perceptualFactorRoomContainer.addIntParameter("Heaviness", "Heaviness", 80, 0, 120);
-    heaviness.setAttribute("readonly", true);
+    var heaviness = perceptualFactorRoomContainer.addFloatParameter("Heaviness", "Heaviness", 80, 0, 120);
+  //heaviness.setAttribute("readonly", true);
 
-    var liveness = perceptualFactorRoomContainer.addIntParameter("Liveness", "Liveness", 80, 0, 120);
-    liveness.setAttribute("readonly", true);
+    var liveness = perceptualFactorRoomContainer.addFloatParameter("Liveness", "Liveness", 80, 0, 120);
+  //liveness.setAttribute("readonly", true);
 
     roomResponseRoomContainer = roomContainer.addContainer("Room Response");
-    var earlyMin = roomResponseRoomContainer.addIntParameter("Early Min", "Early Min", 34, 0, 50);
-    earlyMin.setAttribute("readonly", true);
+    var earlyMin = roomResponseRoomContainer.addFloatParameter("Early Min", "Early Min", 34, 0, 50);
+  //earlyMin.setAttribute("readonly", true);
 
-    var earlyMax = roomResponseRoomContainer.addIntParameter("Early Max", "Early Max", 25, 0, 50);
-    earlyMax.setAttribute("readonly", true);
+    var earlyMax = roomResponseRoomContainer.addFloatParameter("Early Max", "Early Max", 25, 0, 50);
+  //earlyMax.setAttribute("readonly", true);
 
-    var earlyDist = roomResponseRoomContainer.addIntParameter("Early Dist", "Early Dist", 30, 0, 60);
-    earlyDist.setAttribute("readonly", true);
+    var earlyDist = roomResponseRoomContainer.addFloatParameter("Early Dist", "Early Dist", 30, 0, 60);
+  //earlyDist.setAttribute("readonly", true);
 
-    var earlyShape = roomResponseRoomContainer.addIntParameter("Early Shape", "Early Shape", 30, 0, 60);
-    earlyShape.setAttribute("readonly", true);
+    var earlyShape = roomResponseRoomContainer.addFloatParameter("Early Shape", "Early Shape", 30, 0, 60);
+  //arlyShape.setAttribute("readonly", true);
 
-    var clusterMin = roomResponseRoomContainer.addIntParameter("Cluster Min", "Cluster Min", 34, 0, 50);
-    clusterMin.setAttribute("readonly", true);
+    var clusterMin = roomResponseRoomContainer.addFloatParameter("Cluster Min", "Cluster Min", 34, 0, 50);
+  //clusterMin.setAttribute("readonly", true);
 
-    var clusterMax = roomResponseRoomContainer.addIntParameter("Cluster Max", "Cluster Max", 25, 0, 50);
-    clusterMax.setAttribute("readonly", true);
+    var clusterMax = roomResponseRoomContainer.addFloatParameter("Cluster Max", "Cluster Max", 25, 0, 50);
+  //clusterMax.setAttribute("readonly", true);
 
-    var clusterDist = roomResponseRoomContainer.addIntParameter("Cluster Dist", "Cluster Dist", 30, 0, 60);
-    clusterDist.setAttribute("readonly", true);
+    var clusterDist = roomResponseRoomContainer.addFloatParameter("Cluster Dist", "Cluster Dist", 30, 0, 60);
+  //clusterDist.setAttribute("readonly", true);
 
     reverbOptionsRoomContainer = roomContainer.addContainer("Options");
     var reverbInfinite = reverbOptionsRoomContainer.addBoolParameter("Reverb Infinite", "Reverb Infinite", 0);
-    reverbInfinite.setAttribute("readonly", true);
+  //reverbInfinite.setAttribute("readonly", true);
 
     var airEnable = reverbOptionsRoomContainer.addBoolParameter("Air Enable", "Air Enable", 1);
-    airEnable.setAttribute("readonly", true);
+  //airEnable.setAttribute("readonly", true);
 
-    var airFreq = reverbOptionsRoomContainer.addFloatParameter("Air absorption Frequency", "Air absorption Frequency", 10000, 20, 20000);
-    airFreq.setAttribute("readonly", true);
+    var airFreq = reverbOptionsRoomContainer.addFloatParameter("Air Freq", "Air absorption Frequency", 10000, 20, 20000);
+  //airFreq.setAttribute("readonly", true);
 
-    var reverbModalDensity = reverbOptionsRoomContainer.addFloatParameter("Modal Density", "Modal Density", 1.0, 0.2, 2.0);
-    reverbModalDensity.setAttribute("readonly", true);
+    var modalDensity = reverbOptionsRoomContainer.addFloatParameter("Modal Density", "Modal Density", 1.0, 0.2, 2.0);
+  //reverbModalDensity.setAttribute("readonly", true);
 
     reverbCrossoverRoomContainer = roomContainer.addContainer("Crossover");
     var frequencyLow = reverbCrossoverRoomContainer.addFloatParameter("Frequency Low", "Frequency Low", 10, 0, 180);
-    frequencyLow.setAttribute("readonly", true);
+  //frequencyLow.setAttribute("readonly", true);
 
     var frequencyHigh = reverbCrossoverRoomContainer.addFloatParameter("Frequency High", "Frequency High", 10, 0, 180);
-    frequencyHigh.setAttribute("readonly", true);
+  //frequencyHigh.setAttribute("readonly", true);
 
     roomReverbContainer.setCollapsed(true);
     perceptualFactorRoomContainer.setCollapsed(true);
@@ -1607,9 +1611,9 @@ function delRoom(index)
 {
     script.log('Remove room index: ' + index+1 + ', name: ' + Rooms[index].name);
     local.scripts.setCollapsed(true);
-    if (roomContainer.roomIndex.get() == index)
+    if (roomContainer.index.get() == index)
     {
-      roomContainer.roomIndex.set(index-1);
+      roomContainer.index.set(index-1);
     }
 
     Rooms.splice(index, 1);
