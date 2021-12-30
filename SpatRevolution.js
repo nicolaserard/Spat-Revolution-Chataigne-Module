@@ -1061,7 +1061,7 @@ function oscRoomEvent(address, args)
       }
     }
   }
-  if (address[3]=='rpll')
+  if (address[3]=='roll')
   {
     if (typeof(args[0]) == 'number')
     {
@@ -1079,7 +1079,7 @@ function oscRoomEvent(address, args)
       room['size'] = args[0];
       if (roomContainer.index.get() == i+1)
       {
-        roomReverbContainer.romSize.set(room['size']);
+        roomReverbContainer.roomSize.set(room['size']);
       }
     }
   }
