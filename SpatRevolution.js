@@ -166,6 +166,14 @@ var OSCMessage = {
     {
       local.send("/source/" + index + "/cm", value.get());
     },
+    'dropLog': function(index, value)
+    {
+      local.send("/source/" + index + "/drop/type", value.get());
+    },
+    'dropFactor': function(index, value)
+    {
+      local.send("/source/" + index + "/drop/value", value.get());
+    },
     'rotationXYZ': function(index, value)
     {
       local.send("/source/" + index + "/rotation", value.get());
@@ -290,6 +298,9 @@ function moduleValueChanged(value)
             optionsSourceContainer.radius.set(source['radius']);
             optionsSourceContainer.airAbsorption.set(source['airAbsorption']);
             optionsSourceContainer.coordinatesMode.set(source['coordinatesMode']);
+            optionsSourceContainer.coordinatesMode.set(source['coordinatesMode']);
+            optionsSourceContainer.dropLog.set(source['dropLog']);
+            optionsSourceContainer.dropFactor.set(source['dropFactor']);
             barycentricSourceContainer.rotationXYZ.set(source['rotationXYZ']);
             stopSendingOSC = false;
 
@@ -410,10 +421,10 @@ function oscSourceEvent(address, args)
     {
         if (typeof(args[0]) == 'number')
         {
-            source['gain']= args[0];
+            source['gain'] = args[0];
             if (SourceContainer.index.get() == i+1)
             {
-                SourceContainer.gain.set(args[0]);
+                SourceContainer.gain.set(source['gain']);
             }
         }
     }
@@ -424,7 +435,7 @@ function oscSourceEvent(address, args)
             source['lfe'] = args[0];
             if (SourceContainer.index.get() == i+1)
             {
-                SourceContainer.lfe.set(args[0]);
+                SourceContainer.lfe.set(source['lfe']);
             }
         }
     }
@@ -435,7 +446,7 @@ function oscSourceEvent(address, args)
             source['mute'] = args[0];
             if (SourceContainer.index.get() == i+1)
             {
-                SourceContainer.mute.set(args[0]);
+                SourceContainer.mute.set(source['mute']);
             }
         }
     }
@@ -446,7 +457,7 @@ function oscSourceEvent(address, args)
             source['solo'] = args[0];
             if (SourceContainer.index.get() == i+1)
             {
-                SourceContainer.solo.set(args[0]);
+                SourceContainer.solo.set(source['solo']);
             }
         }
     }
@@ -503,7 +514,7 @@ function oscSourceEvent(address, args)
         source['reverbEnable'] = args[0];
         if (SourceContainer.index.get() == i+1)
         {
-          reverbSourceContainer.reverbEnable.set(args[0]);
+          reverbSourceContainer.reverbEnable.set(source['reverbEnable']);
         }
       }
     }
@@ -514,7 +525,7 @@ function oscSourceEvent(address, args)
         source['earlyEnable'] = args[0];
         if (SourceContainer.index.get() == i+1)
         {
-          reverbSourceContainer.earlyEnable.set(args[0]);
+          reverbSourceContainer.earlyEnable.set(source['earlyEnable']);
         }
       }
     }
@@ -525,7 +536,7 @@ function oscSourceEvent(address, args)
         source['clusterEnable'] = args[0];
         if (SourceContainer.index.get() == i+1)
         {
-          reverbSourceContainer.clusterEnable.set(args[0]);
+          reverbSourceContainer.clusterEnable.set(source['clusterEnable']);
         }
       }
     }
@@ -536,7 +547,7 @@ function oscSourceEvent(address, args)
         source['tailEnable'] = args[0];
         if (SourceContainer.index.get() == i+1)
         {
-          reverbSourceContainer.tailEnable.set(args[0]);
+          reverbSourceContainer.tailEnable.set(source['tailEnable']);
         }
       }
     }
@@ -547,7 +558,7 @@ function oscSourceEvent(address, args)
         source['name'] = args[0];
         if (SourceContainer.index.get() == i+1)
         {
-          SourceContainer.sourceName.set(args[0]);
+          SourceContainer.sourceName.set(source['name']);
         }
       }
     }
@@ -558,7 +569,7 @@ function oscSourceEvent(address, args)
         source['presence'] = args[0];
         if (SourceContainer.index.get() == i+1)
         {
-          perceptualFactorSourceContainer.presence.set(args[0]);
+          perceptualFactorSourceContainer.presence.set(source['presence']);
         }
       }
     }
@@ -569,7 +580,7 @@ function oscSourceEvent(address, args)
         source['roomPresence'] = args[0];
         if (SourceContainer.index.get() == i+1)
         {
-          perceptualFactorSourceContainer.roomPresence.set(args[0]);
+          perceptualFactorSourceContainer.roomPresence.set(source['roomPresence']);
         }
       }
     }
@@ -580,7 +591,7 @@ function oscSourceEvent(address, args)
         source['runningReverberance'] = args[0];
         if (SourceContainer.index.get() == i+1)
         {
-          perceptualFactorSourceContainer.runningReverberance.set(args[0]);
+          perceptualFactorSourceContainer.runningReverberance.set(source['runningReverberance']);
         }
       }
     }
@@ -591,7 +602,7 @@ function oscSourceEvent(address, args)
         source['envelopment'] = args[0];
         if (SourceContainer.index.get() == i+1)
         {
-          perceptualFactorSourceContainer.envelopment.set(args[0]);
+          perceptualFactorSourceContainer.envelopment.set(source['envelopment']);
         }
       }
     }
@@ -602,7 +613,7 @@ function oscSourceEvent(address, args)
         source['warmth'] = args[0];
         if (SourceContainer.index.get() == i+1)
         {
-          perceptualFactorSourceContainer.warmth.set(args[0]);
+          perceptualFactorSourceContainer.warmth.set(source['warmth']);
         }
       }
     }
@@ -613,7 +624,7 @@ function oscSourceEvent(address, args)
         source['brillance'] = args[0];
         if (SourceContainer.index.get() == i+1)
         {
-          perceptualFactorSourceContainer.brillance.set(args[0]);
+          perceptualFactorSourceContainer.brillance.set(source['brillance']);
         }
       }
     }
@@ -624,7 +635,7 @@ function oscSourceEvent(address, args)
         source['yaw'] = args[0];
         if (SourceContainer.index.get() == i+1)
         {
-          SourceContainer.yaw.set(args[0]);
+          SourceContainer.yaw.set(source['yaw']);
         }
       }
     }
@@ -635,7 +646,7 @@ function oscSourceEvent(address, args)
         source['pitch'] = args[0];
         if (SourceContainer.index.get() == i+1)
         {
-          SourceContainer.pitch.set(args[0]);
+          SourceContainer.pitch.set(source['pitch']);
         }
       }
     }
@@ -646,7 +657,7 @@ function oscSourceEvent(address, args)
         source['aperture'] = args[0];
         if (SourceContainer.index.get() == i+1)
         {
-          SourceContainer.aperture.set(args[0]);
+          SourceContainer.aperture.set(source['aperture']);
         }
       }
     }
@@ -657,7 +668,7 @@ function oscSourceEvent(address, args)
         source['scale'] = args[0];
         if (SourceContainer.index.get() == i+1)
         {
-          barycentricSourceContainer.scale.set(args[0]);
+          barycentricSourceContainer.scale.set(source['scale']);
         }
       }
     }
@@ -668,7 +679,7 @@ function oscSourceEvent(address, args)
         source['spread'] = args[0];
         if (SourceContainer.index.get() == i+1)
         {
-          spreadingSourceContainer.spread.set(args[0]);
+          spreadingSourceContainer.spread.set(source['spread']);
         }
       }
     }
@@ -679,7 +690,7 @@ function oscSourceEvent(address, args)
         source['knn'] = args[0];
         if (SourceContainer.index.get() == i+1)
         {
-          spreadingSourceContainer.knn.set(args[0]);
+          spreadingSourceContainer.knn.set(source['knn']);
         }
       }
     }
@@ -690,7 +701,7 @@ function oscSourceEvent(address, args)
         source['earlyWidth'] = args[0];
         if (SourceContainer.index.get() == i+1)
         {
-          reverbSourceContainer.earlyWidth.set(args[0]);
+          reverbSourceContainer.earlyWidth.set(source['earlyWidth']);
         }
       }
     }
@@ -701,7 +712,7 @@ function oscSourceEvent(address, args)
         source['panRev'] = args[0];
         if (SourceContainer.index.get() == i+1)
         {
-          reverbSourceContainer.panRev.set(args[0]);
+          reverbSourceContainer.panRev.set(source['panRev']);
         }
       }
     }
@@ -712,7 +723,7 @@ function oscSourceEvent(address, args)
         source['doppler'] = args[0];
         if (SourceContainer.index.get() == i+1)
         {
-          optionsSourceContainer.doppler.set(args[0]);
+          optionsSourceContainer.doppler.set(source['doppler']);
         }
       }
     }
@@ -723,7 +734,7 @@ function oscSourceEvent(address, args)
         source['radius'] = args[0];
         if (SourceContainer.index.get() == i+1)
         {
-          optionsSourceContainer.radius.set(args[0]);
+          optionsSourceContainer.radius.set(source['radius']);
         }
       }
     }
@@ -734,7 +745,7 @@ function oscSourceEvent(address, args)
         source['airAbsorption'] = args[0];
         if (SourceContainer.index.get() == i+1)
         {
-          optionsSourceContainer.airAbsorption.set(args[0]);
+          optionsSourceContainer.airAbsorption.set(source['airAbsorption']);
         }
       }
     }
@@ -745,9 +756,34 @@ function oscSourceEvent(address, args)
         source['coordinatesMode'] = args[0];
         if (SourceContainer.index.get() == i+1)
         {
-          optionsSourceContainer.coordinatesMode.set(args[0]);
+          optionsSourceContainer.coordinatesMode.set(source['coordinatesMode']);
         }
       }
+    }
+    if (address[3]=='drop')
+    {
+      if (address[4] =='type')
+      {
+        if (typeof(args[0]) == 'number')
+        {
+          source['dropLog'] = args[0];
+          if (SourceContainer.index.get() == i+1)
+          {
+            optionsSourceContainer.dropLog.set(source['dropLog']);
+          }
+        }
+      }if (address[4] =='value')
+      {
+        if (typeof(args[0]) == 'number')
+        {
+          source['dropFactor'] = args[0];
+          if (SourceContainer.index.get() == i+1)
+          {
+            optionsSourceContainer.dropFactor.set(source['dropFactor']);
+          }
+        }
+      }
+
     }
     if (address[3]=='rotx')
     {
@@ -921,6 +957,12 @@ function createSourceContainer(index)
     var coordinatesMode = optionsSourceContainer.addBoolParameter("Coordinates Mode", "Coordinates Mode", 0);
     coordinatesMode.setAttribute("readonly", true);
 
+    var dropLog = optionsSourceContainer.addBoolParameter("Drop Log", "Drop Log", 0);
+    //dropLog.setAttribute("readonly", true);
+
+    var dropFactor = optionsSourceContainer.addFloatParameter("Drop Factor", "Drop Factor", 6.0, -10.0, 30.0);
+    //dropFactor.setAttribute("readonly", true);
+
     var radius = optionsSourceContainer.addFloatParameter("Radius", "Radius", 1.0, 0.001, 100.0);
     radius.setAttribute("readonly", true);
 
@@ -935,7 +977,7 @@ function createSourceContainer(index)
 
 function createSource()
 {
-    newsource = {"positionAED":[0.0,0.0,2.0], "positionXYZ":[0.0, 2.0, 0.0], "gain":0.0, "solo":false, "mute":false, "lfe":-144.5, "reverbEnable":true, "earlyEnable":true, "clusterEnable":true, "tailEnable":true, "name":"Source 1", "yaw":0.0, "pitch":0.0, "aperture":10.0, "scale":1.0, "spread":0.0, "knn":0.0, "earlyWidth":10.0, "panRev":0.0, "doppler":false, "radius":2.0, "airAbsorption":true, "coordinatesMode":false, "rotationXYZ":[0.0, 0.0, 0.0]};
+    newsource = {"positionAED":[0.0,0.0,2.0], "positionXYZ":[0.0, 2.0, 0.0], "gain":0.0, "solo":false, "mute":false, "lfe":-144.5, "reverbEnable":true, "earlyEnable":true, "clusterEnable":true, "tailEnable":true, "name":"Source 1", "yaw":0.0, "pitch":0.0, "aperture":10.0, "scale":1.0, "spread":0.0, "knn":0.0, "earlyWidth":10.0, "panRev":0.0, "doppler":false, "radius":2.0, "airAbsorption":true, "coordinatesMode":false, "rotationXYZ":[0.0, 0.0, 0.0], "dropLog":true, "dropFactor":6};
     return newsource;
 }
 
