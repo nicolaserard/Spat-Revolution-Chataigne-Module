@@ -38,7 +38,7 @@
      "Cartesian":
      {
        "type":"Boolean",
-       "description":"Define if cartesian or polar data are displayed\n",
+       "description":"Define if cartesian or polar data are displayed\n"
       }
 
  },
@@ -51,6 +51,11 @@
        "description":"Specify index of source.\n",
        "min":1,
        "max":128
+     },
+     "Name":
+     {
+       "type":"String",
+       "description": "Source Name\n"
      },
      "Gain":
      {
@@ -82,74 +87,86 @@
        "min":[-100,-100,-100],
        "max":[100,100,100]
      },
-     "Reverb Enable":
+     "Reverb":
      {
-       "type":"Boolean",
-       "description":"Enable the all reverberation\n"
+       "type": "Container",
+       "Reverb Enable": {
+         "type": "Boolean",
+         "description": "Enable the all reverberation\n"
+       },
+       "Early Enable": {
+         "type": "Boolean",
+         "description": "Enable the early reflections\n"
+       },
+       "Cluster Enable": {
+         "type": "Boolean",
+         "description": "Enable the cluster\n"
+       },
+       "Tail Enable": {
+         "type": "Boolean",
+         "description": "Enable the tail reverberation\n"
+       },
+       "Early Width":
+       {
+         "type":"Float",
+         "description":"Set the width of the early reflections.\n",
+         "min": 0,
+         "max": 100.0
+       },
+       "PanRev":
+       {
+         "type":"Float",
+         "description":"Define if the cluster reflections are relocalized with the Early or not.\n",
+         "min": 0,
+         "max": 100.0
+       }
      },
-     "Early Enable":
+     "Perceptual Factor":
      {
-       "type":"Boolean",
-       "description":"Enable the early reflections\n"
-     },
-     "Cluster Enable":
-     {
-       "type":"Boolean",
-       "description":"Enable the cluster\n"
-     },
-     "Tail Enable":
-     {
-       "type":"Boolean",
-       "description":"Enable the tail reverberation\n"
-     },
-     "Presence":
-     {
-       "type": "Integer",
-       "description":"Set the source presence.\n",
-       "min":0,
-       "max":120
-     },
-     "Room presence":
-     {
-       "type": "Integer",
-       "description":"Set the source room presence.\n",
-       "min":0,
-       "max":120
-     },
-     "Running Reverberance":
-     {
-       "type": "Integer",
-       "description":"Set the source running reverberance parameter.\n",
-       "min":0,
-       "max":50
-     },
-     "Envelopment":
-     {
-       "type": "Integer",
-       "description":"Set the source envelopment.\n",
-       "min":0,
-       "max":50
-     },
-     "Warmth":
-     {
-       "type": "Integer",
-       "description":"Set the source warmth.\n",
-       "min":0,
-       "max":60
-     },
-     "Brillance":
-     {
-       "type": "Integer",
-       "description":"Set the source brillance.\n",
-       "min":0,
-       "max":60
+       "type": "Container",
+       "Presence": {
+         "type": "Integer",
+         "description": "Set the source presence.\n",
+         "min": 0,
+         "max": 120
+       },
+       "Room presence": {
+         "type": "Integer",
+         "description": "Set the source room presence.\n",
+         "min": 0,
+         "max": 120
+       },
+       "Running Reverberance": {
+         "type": "Integer",
+         "description": "Set the source running reverberance parameter.\n",
+         "min": 0,
+         "max": 50
+       },
+       "Envelopment": {
+         "type": "Integer",
+         "description": "Set the source envelopment.\n",
+         "min": 0,
+         "max": 50
+       },
+       "Warmth": {
+         "type": "Integer",
+         "description": "Set the source warmth.\n",
+         "min": 0,
+         "max": 60
+       },
+       "Brillance": {
+         "type": "Integer",
+         "description": "Set the source brillance.\n",
+         "min": 0,
+         "max": 60
+       }
      },
      "Yaw":
      {
        "type": "Float",
-       "description":"Set the source yaw.\n",
-       "min":-180,
-       "max":180
+       "description": "Set the source yaw.\n",
+       "min": -180,
+       "max": 180
      },
      "Pitch":
      {
@@ -172,20 +189,51 @@
        "min":0,
        "max":100
      },
-     "Spread":
+     "Spreading":
      {
-       "type": "Float",
-       "description":"Set the source spread.\n",
-       "min":0,
-       "max":100
+       "type": "Container",
+       "Spread":
+       {
+         "type": "Float",
+         "description":"Set the source spread.\n",
+         "min":0,
+         "max":100
+       },
+       "Knn":
+       {
+         "type": "Float",
+         "description":"Set the source Knn.\n",
+         "min":0,
+         "max":100
+       }
      },
-     "Knn":
+     "Options":
      {
-       "type": "Float",
-       "description":"Set the source Knn.\n",
-       "min":0,
-       "max":100
+       "type": "Container",
+       "Doppler":
+       {
+         "type": "Boolean",
+         "description":"Enable/Disable the Doppler.\n"
+       },
+       "Air Absorption":
+       {
+         "type": "Boolean",
+         "description":"Enable/Disable the air absorption.\n"
+       },
+       "Coordinates Mode":
+       {
+         "type": "Boolean",
+         "description":"Coordinates Mode.\n"
+       },
+       "Radius":
+       {
+         "type": "Float",
+         "description":"Set radius parameter.\n",
+         "min": 0.001,
+         "max": 100.0
+       }
      }
+
    }
    },
 

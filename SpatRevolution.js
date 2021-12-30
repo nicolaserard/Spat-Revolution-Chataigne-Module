@@ -141,6 +141,30 @@ var OSCMessage = {
     'KNN': function(index, value)
     {
       local.send("/source/" + index + "/nneig", value.get());
+    },
+    'earlyWidth': function(index, value)
+    {
+      local.send("/source/" + index + "/early/width", value.get());
+    },
+    'panRev': function(index, value)
+    {
+      local.send("/source/" + index + "/prevf", value.get());
+    },
+    'doppler': function(index, value)
+    {
+      local.send("/source/" + index + "/doppler/enable", value.get());
+    },
+    'radius': function(index, value)
+    {
+      local.send("/source/" + index + "/radius", value.get());
+    },
+    'airAbsorption': function(index, value)
+    {
+      local.send("/source/" + index + "/air/enable", value.get());
+    },
+    'coordinatesMode': function(index, value)
+    {
+      local.send("/source/" + index + "/cm", value.get());
     }
 };
 
@@ -151,6 +175,10 @@ var OSCMessage = {
 var numberSources = 0 ; // number of sources in Spat Revolution. Should be set automatically, but function not working in Spat Revolution now.
 var Sources = [];// array of all sources parameters.
 var SourceContainer = null;
+var reverbSourceContainer = null;
+var perceptualFactorSourceContainer = null;
+var spreadingSourceContainer = null;
+var optionsSourceContainer = null;
 var Cartesian = false; // define the mode of position for all sources. Cartesian when true, Polar when false.
 var stopSendingOSC = false;
 
@@ -251,6 +279,12 @@ function moduleValueChanged(value)
             SourceContainer.scale.set(source['scale']);
             SourceContainer.spread.set(source['spread']);
             SourceContainer.knn.set(source['knn']);
+            SourceContainer.earlyWidth.set(source['earlyWidth']);
+            SourceContainer.panRev.set(source['panRev']);
+            SourceContainer.doppler.set(source['doppler']);
+            SourceContainer.radius.set(source['radius']);
+            SourceContainer.airAbsorption.set(source['airAbsorption']);
+            SourceContainer.coordinatesMode.set(source['coordinatesMode']);
             stopSendingOSC = false;
 
         }
@@ -463,7 +497,7 @@ function oscSourceEvent(address, args)
         source['reverbEnable'] = args[0];
         if (SourceContainer.index.get() == i+1)
         {
-          SourceContainer.reverbEnable.set(args[0]);
+          reverbSourceContainer.reverbEnable.set(args[0]);
         }
       }
     }
@@ -474,7 +508,7 @@ function oscSourceEvent(address, args)
         source['earlyEnable'] = args[0];
         if (SourceContainer.index.get() == i+1)
         {
-          SourceContainer.earlyEnable.set(args[0]);
+          reverbSourceContainer.earlyEnable.set(args[0]);
         }
       }
     }
@@ -485,7 +519,7 @@ function oscSourceEvent(address, args)
         source['clusterEnable'] = args[0];
         if (SourceContainer.index.get() == i+1)
         {
-          SourceContainer.clusterEnable.set(args[0]);
+          reverbSourceContainer.clusterEnable.set(args[0]);
         }
       }
     }
@@ -496,7 +530,7 @@ function oscSourceEvent(address, args)
         source['tailEnable'] = args[0];
         if (SourceContainer.index.get() == i+1)
         {
-          SourceContainer.tailEnable.set(args[0]);
+          reverbSourceContainer.tailEnable.set(args[0]);
         }
       }
     }
@@ -511,138 +545,204 @@ function oscSourceEvent(address, args)
         }
       }
     }
-  if (address[3]=='pres')
-  {
-    if (typeof(args[0]) == 'number')
+    if (address[3]=='pres')
     {
-      source['presence'] = args[0];
-      if (SourceContainer.index.get() == i+1)
+      if (typeof(args[0]) == 'number')
       {
-        SourceContainer.presence.set(args[0]);
+        source['presence'] = args[0];
+        if (SourceContainer.index.get() == i+1)
+        {
+          perceptualFactorSourceContainer.presence.set(args[0]);
+        }
       }
     }
-  }
-  if (address[3]=='prer')
-  {
-    if (typeof(args[0]) == 'number')
+    if (address[3]=='prer')
     {
-      source['roomPresence'] = args[0];
-      if (SourceContainer.index.get() == i+1)
+      if (typeof(args[0]) == 'number')
       {
-        SourceContainer.roomPresence.set(args[0]);
+        source['roomPresence'] = args[0];
+        if (SourceContainer.index.get() == i+1)
+        {
+          perceptualFactorSourceContainer.roomPresence.set(args[0]);
+        }
       }
     }
-  }
-  if (address[3]=='revp')
-  {
-    if (typeof(args[0]) == 'number')
+    if (address[3]=='revp')
     {
-      source['runningReverberance'] = args[0];
-      if (SourceContainer.index.get() == i+1)
+      if (typeof(args[0]) == 'number')
       {
-        SourceContainer.runningReverberance.set(args[0]);
+        source['runningReverberance'] = args[0];
+        if (SourceContainer.index.get() == i+1)
+        {
+          perceptualFactorSourceContainer.runningReverberance.set(args[0]);
+        }
       }
     }
-  }
-  if (address[3]=='env')
-  {
-    if (typeof(args[0]) == 'number')
+    if (address[3]=='env')
     {
-      source['envelopment'] = args[0];
-      if (SourceContainer.index.get() == i+1)
+      if (typeof(args[0]) == 'number')
       {
-        SourceContainer.envelopment.set(args[0]);
+        source['envelopment'] = args[0];
+        if (SourceContainer.index.get() == i+1)
+        {
+          perceptualFactorSourceContainer.envelopment.set(args[0]);
+        }
       }
     }
-  }
-  if (address[3]=='warmth')
-  {
-    if (typeof(args[0]) == 'number')
+    if (address[3]=='warmth')
     {
-      source['warmth'] = args[0];
-      if (SourceContainer.index.get() == i+1)
+      if (typeof(args[0]) == 'number')
       {
-        SourceContainer.warmth.set(args[0]);
+        source['warmth'] = args[0];
+        if (SourceContainer.index.get() == i+1)
+        {
+          perceptualFactorSourceContainer.warmth.set(args[0]);
+        }
       }
     }
-  }
-  if (address[3]=='bril')
-  {
-    if (typeof(args[0]) == 'number')
+    if (address[3]=='bril')
     {
-      source['brillance'] = args[0];
-      if (SourceContainer.index.get() == i+1)
+      if (typeof(args[0]) == 'number')
       {
-        SourceContainer.brillance.set(args[0]);
+        source['brillance'] = args[0];
+        if (SourceContainer.index.get() == i+1)
+        {
+          perceptualFactorSourceContainer.brillance.set(args[0]);
+        }
       }
     }
-  }
-  if (address[3]=='yaw')
-  {
-    if (typeof(args[0]) == 'number')
+    if (address[3]=='yaw')
     {
-      source['yaw'] = args[0];
-      if (SourceContainer.index.get() == i+1)
+      if (typeof(args[0]) == 'number')
       {
-        SourceContainer.yaw.set(args[0]);
+        source['yaw'] = args[0];
+        if (SourceContainer.index.get() == i+1)
+        {
+          SourceContainer.yaw.set(args[0]);
+        }
       }
     }
-  }
-  if (address[3]=='pitch')
-  {
-    if (typeof(args[0]) == 'number')
+    if (address[3]=='pitch')
     {
-      source['pitch'] = args[0];
-      if (SourceContainer.index.get() == i+1)
+      if (typeof(args[0]) == 'number')
       {
-        SourceContainer.pitch.set(args[0]);
+        source['pitch'] = args[0];
+        if (SourceContainer.index.get() == i+1)
+        {
+          SourceContainer.pitch.set(args[0]);
+        }
       }
     }
-  }
-  if (address[3]=='aperture')
-  {
-    if (typeof(args[0]) == 'number')
+    if (address[3]=='aperture')
     {
-      source['aperture'] = args[0];
-      if (SourceContainer.index.get() == i+1)
+      if (typeof(args[0]) == 'number')
       {
-        SourceContainer.aperture.set(args[0]);
+        source['aperture'] = args[0];
+        if (SourceContainer.index.get() == i+1)
+        {
+          SourceContainer.aperture.set(args[0]);
+        }
       }
     }
-  }
-  if (address[3]=='scale')
-  {
-    if (typeof(args[0]) == 'number')
+    if (address[3]=='scale')
     {
-      source['scale'] = args[0];
-      if (SourceContainer.index.get() == i+1)
+      if (typeof(args[0]) == 'number')
       {
-        SourceContainer.scale.set(args[0]);
+        source['scale'] = args[0];
+        if (SourceContainer.index.get() == i+1)
+        {
+          SourceContainer.scale.set(args[0]);
+        }
       }
     }
-  }
-  if (address[3]=='spread')
-  {
-    if (typeof(args[0]) == 'number')
+    if (address[3]=='spread')
     {
-      source['spread'] = args[0];
-      if (SourceContainer.index.get() == i+1)
+      if (typeof(args[0]) == 'number')
       {
-        SourceContainer.spread.set(args[0]);
+        source['spread'] = args[0];
+        if (SourceContainer.index.get() == i+1)
+        {
+          spreadingSourceContainer.spread.set(args[0]);
+        }
       }
     }
-  }
-  if (address[3]=='nneig')
-  {
-    if (typeof(args[0]) == 'number')
+    if (address[3]=='nneig')
     {
-      source['knn'] = args[0];
-      if (SourceContainer.index.get() == i+1)
+      if (typeof(args[0]) == 'number')
       {
-        SourceContainer.knn.set(args[0]);
+        source['knn'] = args[0];
+        if (SourceContainer.index.get() == i+1)
+        {
+          spreadingSourceContainer.knn.set(args[0]);
+        }
       }
     }
-  }
+    if (address[3]=='early' && address[4]=='width')
+    {
+      if (typeof(args[0]) == 'number')
+      {
+        source['earlyWidth'] = args[0];
+        if (SourceContainer.index.get() == i+1)
+        {
+          reverbSourceContainer.earlyWidth.set(args[0]);
+        }
+      }
+    }
+    if (address[3]=='prevf')
+    {
+      if (typeof(args[0]) == 'number')
+      {
+        source['panRev'] = args[0];
+        if (SourceContainer.index.get() == i+1)
+        {
+          reverbSourceContainer.panRev.set(args[0]);
+        }
+      }
+    }
+    if (address[3]=='doppler' && address[4]=='enable')
+    {
+      if (typeof(args[0]) == 'number')
+      {
+        source['doppler'] = args[0];
+        if (SourceContainer.index.get() == i+1)
+        {
+          optionsSourceContainer.doppler.set(args[0]);
+        }
+      }
+    }
+    if (address[3]=='radius')
+    {
+      if (typeof(args[0]) == 'number')
+      {
+        source['radius'] = args[0];
+        if (SourceContainer.index.get() == i+1)
+        {
+          optionsSourceContainer.radius.set(args[0]);
+        }
+      }
+    }
+    if (address[3]=='air' && address[4]=='enable')
+    {
+      if (typeof(args[0]) == 'number')
+      {
+        source['airAbsorption'] = args[0];
+        if (SourceContainer.index.get() == i+1)
+        {
+          optionsSourceContainer.airAbsorption.set(args[0]);
+        }
+      }
+    }
+    if (address[3]=='cm')
+    {
+      if (typeof(args[0]) == 'number')
+      {
+        source['coordinatesMode'] = args[0];
+        if (SourceContainer.index.get() == i+1)
+        {
+          optionsSourceContainer.coordinatesMode.set(args[0]);
+        }
+      }
+    }
 }
 
 /**
@@ -713,61 +813,87 @@ function createSourceContainer(index)
     var position = SourceContainer.addPoint3DParameter("Position", "Position", [0.0,0.0,2.0]);
     position.setAttribute("readonly", true);
 
-    var reverbEnable = SourceContainer.addBoolParameter("Reverb Enable", "Reverb Enable", 1);
-    //reverbEnable.setAttribute("readonly", true);
+    reverbSourceContainer = SourceContainer.addContainer("Reverb");
+    var reverbEnable = reverbSourceContainer.addBoolParameter("Reverb Enable", "Reverb Enable", 1);
+    reverbEnable.setAttribute("readonly", true);
 
-    var earlyEnable = SourceContainer.addBoolParameter("Early Enable", "Early Enable", 1);
-    //earlyEnable.setAttribute("readonly", true);
+    var earlyEnable = reverbSourceContainer.addBoolParameter("Early Enable", "Early Enable", 1);
+    earlyEnable.setAttribute("readonly", true);
 
-    var clusterEnable = SourceContainer.addBoolParameter("Cluster Enable", "Cluster Enable", 1);
-    //clusterEnable.setAttribute("readonly", true);
+    var clusterEnable = reverbSourceContainer.addBoolParameter("Cluster Enable", "Cluster Enable", 1);
+    clusterEnable.setAttribute("readonly", true);
 
-    var tailEnable = SourceContainer.addBoolParameter("Tail Enable", "Tail Enable", 1);
-    //tailEnable.setAttribute("readonly", true);
+    var tailEnable = reverbSourceContainer.addBoolParameter("Tail Enable", "Tail Enable", 1);
+    tailEnable.setAttribute("readonly", true);
 
-    var presence = SourceContainer.addIntParameter("Presence", "Source Presence", 80, 0, 120);
-    //presence.setAttribute("readonly", true);
+    perceptualFactorSourceContainer = SourceContainer.addContainer("Perceptual Factor");
+    var presence = perceptualFactorSourceContainer.addIntParameter("Presence", "Source Presence", 80, 0, 120);
+    presence.setAttribute("readonly", true);
 
-    var roomPresence = SourceContainer.addIntParameter("Room presence", "Room Presence", 48, 0, 120);
-    //roomPresence.setAttribute("readonly", true);
+    var roomPresence = perceptualFactorSourceContainer.addIntParameter("Room presence", "Room Presence", 48, 0, 120);
+    roomPresence.setAttribute("readonly", true);
 
-    var runningReverberance = SourceContainer.addIntParameter("Running Reverberance", "Running Reverberance", 34, 0, 50);
-    //runningReverberance.setAttribute("readonly", true);
+    var runningReverberance = perceptualFactorSourceContainer.addIntParameter("Running Reverberance", "Running Reverberance", 34, 0, 50);
+    runningReverberance.setAttribute("readonly", true);
 
-    var envelopment = SourceContainer.addIntParameter("Envelopment", "Envelopment", 25, 0, 50);
-    //envelopment.setAttribute("readonly", true);
+    var envelopment = perceptualFactorSourceContainer.addIntParameter("Envelopment", "Envelopment", 25, 0, 50);
+    envelopment.setAttribute("readonly", true);
 
-    var warmth = SourceContainer.addIntParameter("Warmth", "Warmth", 30, 0, 60);
-    //warmth.setAttribute("readonly", true);
+    var warmth = perceptualFactorSourceContainer.addIntParameter("Warmth", "Warmth", 30, 0, 60);
+    warmth.setAttribute("readonly", true);
 
-    var brillance = SourceContainer.addIntParameter("Brillance", "Brillance", 30, 0, 60);
-    //brillance.setAttribute("readonly", true);
+    var brillance = perceptualFactorSourceContainer.addIntParameter("Brillance", "Brillance", 30, 0, 60);
+    brillance.setAttribute("readonly", true);
 
     var yaw = SourceContainer.addFloatParameter("Yaw", "Yaw", -180, 0, 180);
-    //yaw.setAttribute("readonly", true);
+    yaw.setAttribute("readonly", true);
 
     var pitch = SourceContainer.addFloatParameter("Pitch", "Pitch", -90, 0, 90);
-    //pitch.setAttribute("readonly", true);
+    pitch.setAttribute("readonly", true);
 
     var aperture = SourceContainer.addFloatParameter("Aperture", "Aperture", 10, 0, 180);
-    //aperture.setAttribute("readonly", true);
+    aperture.setAttribute("readonly", true);
 
     var scale = SourceContainer.addFloatParameter("Scale", "Scale", 1, 0.01, 100.0);
-    //scale.setAttribute("readonly", true);
+    scale.setAttribute("readonly", true);
 
-    var spread = SourceContainer.addFloatParameter("Spread", "Spread", 0, 0, 100);
-    //spread.setAttribute("readonly", true);
+    spreadingSourceContainer = SourceContainer.addContainer("Spreading");
+    var spread = spreadingSourceContainer.addFloatParameter("Spread", "Spread", 0, 0, 100);
+    spread.setAttribute("readonly", true);
 
-    var knn = SourceContainer.addIntParameter("Knn", "Knn", 0, 0, 100);
-    //knn.setAttribute("readonly", true);
+    var knn = spreadingSourceContainer.addIntParameter("Knn", "Knn", 0, 0, 100);
+    knn.setAttribute("readonly", true);
 
+    var earlyWidth = reverbSourceContainer.addFloatParameter("Early Width", "Early Width", 10, 0, 100);
+    earlyWidth.setAttribute("readonly", true);
+
+    var panRev = reverbSourceContainer.addFloatParameter("PanRev", "Pan Rev", 0, 0, 100);
+    panRev.setAttribute("readonly", true);
+
+    optionsSourceContainer = SourceContainer.addContainer("Options");
+    var doppler = optionsSourceContainer.addBoolParameter("Doppler", "Doppler", 0);
+    doppler.setAttribute("readonly", true);
+
+    var airAbsorption = optionsSourceContainer.addBoolParameter("Air Absorption", "Air Absorption", 1);
+    airAbsorption.setAttribute("readonly", true);
+
+    var coordinatesMode = optionsSourceContainer.addBoolParameter("Coordinates Mode", "Coordinates Mode", 0);
+    coordinatesMode.setAttribute("readonly", true);
+
+    var radius = optionsSourceContainer.addFloatParameter("Radius", "Radius", 1.0, 0.001, 100.0);
+    radius.setAttribute("readonly", true);
+
+    reverbSourceContainer.setCollapsed(true);
+    perceptualFactorSourceContainer.setCollapsed(true);
+    spreadingSourceContainer.setCollapsed(true);
+    optionsSourceContainer.setCollapsed(true);
     local.scripts.setCollapsed(true);
 
 }
 
 function createSource()
 {
-    newsource = {"positionAED":[0.0,0.0,2.0], "positionXYZ":[0.0, 2.0, 0.0], "gain":0.0, "solo":false, "mute":false, "lfe":-144.5, "reverbEnable":true, "earlyEnable":true, "clusterEnable":true, "tailEnable":true, "name":"Source 1", "yaw":0.0, "pitch":0.0, "aperture":10.0, "scale":1.0, "spread":0.0, "knn":0.0};
+    newsource = {"positionAED":[0.0,0.0,2.0], "positionXYZ":[0.0, 2.0, 0.0], "gain":0.0, "solo":false, "mute":false, "lfe":-144.5, "reverbEnable":true, "earlyEnable":true, "clusterEnable":true, "tailEnable":true, "name":"Source 1", "yaw":0.0, "pitch":0.0, "aperture":10.0, "scale":1.0, "spread":0.0, "knn":0.0, "earlyWidth":10.0, "panRev":0.0, "doppler":false, "radius":2.0, "airAbsorption":true, "coordinatesMode":false};
     return newsource;
 }
 
