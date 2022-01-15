@@ -1053,6 +1053,39 @@ function oscRoomEvent(address, args)
       }
     }
   }
+  if (address[3]=='x')
+  {
+    if (typeof(args[0]) == 'number')
+    {
+      room['listenerPosition'][0] = args[0];
+      if (roomContainer.roomIndex.get() == i+1)
+      {
+        roomContainer.listenerPosition.set(room['listenerPosition']);
+      }
+    }
+  }
+  if (address[3]=='y')
+  {
+    if (typeof(args[0]) == 'number')
+    {
+      room['listenerPosition'][1] = args[0];
+      if (roomContainer.roomIndex.get() == i+1)
+      {
+        roomContainer.listenerPosition.set(room['listenerPosition']);
+      }
+    }
+  }
+  if (address[3]=='z')
+  {
+    if (typeof(args[0]) == 'number')
+    {
+      room['listenerPosition'][2] = args[0];
+      if (roomContainer.roomIndex.get() == i+1)
+      {
+        roomContainer.listenerPosition.set(room['listenerPosition']);
+      }
+    }
+  }
   if (address[3]=='yaw')
   {
     if (typeof(args[0]) == 'number')
@@ -1551,10 +1584,10 @@ function createRoomContainer()
     var earlyShape = roomResponseRoomContainer.addFloatParameter("Early Shape", "Early Shape", 0.5, 0.1, 0.9);
   //arlyShape.setAttribute("readonly", true);
 
-    var clusterMin = roomResponseRoomContainer.addFloatParameter("Cluster Min", "Cluster Min", 24.2, 1.0, 120.0);
+    var clusterMin = roomResponseRoomContainer.addFloatParameter("Cluster Min", "Cluster Min", 36.0, 1.0, 300.0);
   //clusterMin.setAttribute("readonly", true);
 
-    var clusterMax = roomResponseRoomContainer.addFloatParameter("Cluster Max", "Cluster Max", 40.0, 1.0, 120.0);
+    var clusterMax = roomResponseRoomContainer.addFloatParameter("Cluster Max", "Cluster Max", 90.0, 1.0, 300.0);
   //clusterMax.setAttribute("readonly", true);
 
     var clusterDist = roomResponseRoomContainer.addFloatParameter("Cluster Dist", "Cluster Dist", 0.5, 0.1, 0.9);

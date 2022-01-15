@@ -317,10 +317,6 @@
          "type": "Boolean",
          "description": "Enable the room reverb\n"
        },
-       "Cluster Enable": {
-         "type": "Boolean",
-         "description": "Enable the cluster\n"
-       },
        "Room size":
        {
          "type":"Float",
@@ -407,14 +403,14 @@
            "type": "Float",
            "description": "Set the cluster minimum of the reverb.\n",
            "min": 1.0,
-           "max": 120.0
+           "max": 300.0
          },
          "Cluster Max":
          {
            "type": "Float",
            "description": "Set the cluster maximum of the reverb.\n",
            "min": 1.0,
-           "max": 120.0
+           "max": 300.0
          },
          "Cluster Dist":
          {
@@ -437,7 +433,7 @@
            "type": "Boolean",
            "description":"Enable/Disable the air absorption.\n"
          },
-         "Air freq":
+         "Air Freq":
          {
            "type": "Float",
            "description":"Set the air absorption frequency.\n",
@@ -459,6 +455,13 @@
          {
            "type": "Float",
            "description":"Set the low/mid crossover frequency of the reverb for the room.\n",
+           "min": 20.0,
+           "max": 20000.0
+         },
+         "Frequency High":
+         {
+           "type": "Float",
+           "description":"Set the mid/high crossover frequency of the reverb for the room.\n",
            "min": 20.0,
            "max": 20000.0
          }
