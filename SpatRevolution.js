@@ -64,12 +64,12 @@ var OSCSourceMessage = {
         if (value.get() == 1 && Cartesian == false)
         {
             Cartesian = true;
-            value.getParent().position.set(Sources[value.getParent().index.get()['positionXYZ']]);
+            value.getParent().position.set(Sources[value.getParent().sourceIndex.get()['positionXYZ']]);
         }
         else
         {
             Cartesian = false;
-            value.getParent().position.set(Sources[value.getParent().index.get()['positionAED']]);
+            value.getParent().position.set(Sources[value.getParent().sourceIndex.get()['positionAED']]);
         }
         stopSendingOSC = true;
     },
@@ -340,15 +340,14 @@ function init()
     //AskForDump = SetupContainer.addTrigger("Dump", "Ask for all parameter dump");
     CartesianOrPolar = SetupContainer.addBoolParameter("Cartesian", "Polar or cartesian", false);
 
-
     createSourceContainer();
-    setSourcesNumber(10);
+    setSourcesNumber(128);
     local.send("/source/1/dump", 0);
-    SourceContainer.index.set(1);
+    SourceContainer.sourceIndex.set(1);
     createRoomContainer();
-    setRoomsNumber(1);
+    setRoomsNumber(10);
     local.send("/room/1/dump", 0);
-    roomContainer.index.set(1);
+    roomContainer.roomIndex.set(1);
 }
 
 /**
@@ -367,7 +366,11 @@ function update(updateRate)
  */
 function moduleParameterChanged(param)
 {
-
+  if (param.name == 'remotePort')
+  {
+    local.send("/source/*/dump", 0);
+    local.send("/room/*/dump", 0);
+  }
 }
 
 /**
@@ -376,11 +379,11 @@ function moduleParameterChanged(param)
  */
 function moduleValueChanged(value)
 {
-
+    script.log("Test");
     var name = value.name;
     if (value.isParameter())
     {
-        if (value.name == 'sourceindex')
+        if (value.name == 'sourceIndex')
         {
             if (value.get() > numberSources)
             {
@@ -430,7 +433,7 @@ function moduleValueChanged(value)
             stopSendingOSC = false;
 
         }
-        if (value.name == 'roomindex')
+        if (value.name == 'roomIndex')
         {
             if (value.get() > numberRooms)
             {
@@ -444,7 +447,7 @@ function moduleValueChanged(value)
             roomContainer.gainRoom.set(room['gain']);
             roomReverbContainer.reverbDensity.set(room['reverbDensity']);
             roomReverbContainer.reverbEnableRoom.set(room['reverbEnableRoom']);
-            roomReverbContainer.sizeRoom.set(room['sizeRoom']);
+            roomReverbContainer.roomSize.set(room['sizeRoom']);
             roomReverbContainer.reverbStart.set(room['reverbStart']);
             roomReverbContainer.reverbGain.set(room['reverbGain']);
             roomReverbContainer.reverbFactor.set(room['reverbFactor']);
@@ -461,9 +464,10 @@ function moduleValueChanged(value)
             reverbOptionsRoomContainer.reverbInfinite.set(room['reverbInfinite']);
             reverbOptionsRoomContainer.airEnable.set(room['airEnable']);
             reverbOptionsRoomContainer.airFreq.set(room['airFreq']);
-            reverbOptionsRoomContainer.reverbModalDensity.set(room['reverbModalDensity']);
+            reverbOptionsRoomContainer.modalDensity.set(room['reverbModalDensity']);
             reverbCrossoverRoomContainer.frequencyLow.set(room['frequencyLow']);
             reverbCrossoverRoomContainer.frequencyHigh.set(room['frequencyHigh']);
+
             stopSendingOSC = false;
 
         }
@@ -477,13 +481,13 @@ function moduleValueChanged(value)
           if (value.get() == 1 && Cartesian == false)
           {
             Cartesian = true;
-            source = Sources[SourceContainer.index.get() - 1];
+            source = Sources[SourceContainer.sourceIndex.get() - 1];
             SourceContainer.position.set(source['positionXYZ']);
           }
           else if (value.get() == 0 && Cartesian == true)
           {
             Cartesian = false;
-            source = Sources[SourceContainer.index.get() - 1];
+            source = Sources[SourceContainer.sourceIndex.get() - 1];
             SourceContainer.position.set(source['positionAED']);
           }
           stopSendingOSC = false;
@@ -492,7 +496,7 @@ function moduleValueChanged(value)
         {
             if (!stopSendingOSC && OSCSourceMessage[name])
             {
-                OSCSourceMessage[name](SourceContainer.index.get(), value);
+                OSCSourceMessage[name](SourceContainer.sourceIndex.get(), value);
             }
         }
     }
@@ -504,12 +508,12 @@ function moduleValueChanged(value)
         }
         if (name == 'dumpSource')
         {
-          local.send("/source/" + SourceContainer.index.get() + '/dump', 0);
+          local.send("/source/" + SourceContainer.sourceIndex.get() + '/dump', 0);
 
         }
         if (name == 'dumpRoom')
         {
-          local.send("/room/" + SourceContainer.index.get() + '/dump', 0);
+          local.send("/room/" + SourceContainer.sourceIndex.get() + '/dump', 0);
 
         }
     }
@@ -588,7 +592,7 @@ function oscSourceEvent(address, args)
         if (typeof(args[0]) == 'number')
         {
             source['gain'] = args[0];
-            if (SourceContainer.index.get() == i+1)
+            if (SourceContainer.sourceIndex.get() == i+1)
             {
                 SourceContainer.gain.set(source['gain']);
             }
@@ -599,7 +603,7 @@ function oscSourceEvent(address, args)
         if (typeof(args[0]) == 'number')
         {
             source['lfe'] = args[0];
-            if (SourceContainer.index.get() == i+1)
+            if (SourceContainer.sourceIndex.get() == i+1)
             {
                 SourceContainer.lfe.set(source['lfe']);
             }
@@ -610,7 +614,7 @@ function oscSourceEvent(address, args)
         if (typeof(args[0]) == 'number')
         {
             source['mute'] = args[0];
-            if (SourceContainer.index.get() == i+1)
+            if (SourceContainer.sourceIndex.get() == i+1)
             {
                 SourceContainer.mute.set(source['mute']);
             }
@@ -621,7 +625,7 @@ function oscSourceEvent(address, args)
         if (typeof(args[0]) == 'number')
         {
             source['solo'] = args[0];
-            if (SourceContainer.index.get() == i+1)
+            if (SourceContainer.sourceIndex.get() == i+1)
             {
                 SourceContainer.solo.set(source['solo']);
             }
@@ -634,7 +638,7 @@ function oscSourceEvent(address, args)
             source['positionAED'] = args;
             source['positionXYZ'] =  PolarToCartesian(args);
 
-            if (SourceContainer.index.get() == i+1)
+            if (SourceContainer.sourceIndex.get() == i+1)
             {
                 stopSendingOSC = true;
                 if (Cartesian == true)
@@ -657,7 +661,7 @@ function oscSourceEvent(address, args)
             source['positionAED'] = CartesianToPolar(args);
             source['positionXYZ'] = args;
 
-            if (SourceContainer.index.get() == i+1)
+            if (SourceContainer.sourceIndex.get() == i+1)
             {
                 stopSendingOSC = true;
                 if (Cartesian == true)
@@ -678,7 +682,7 @@ function oscSourceEvent(address, args)
       if (typeof(args[0]) == 'number')
       {
         source['reverbEnable'] = args[0];
-        if (SourceContainer.index.get() == i+1)
+        if (SourceContainer.sourceIndex.get() == i+1)
         {
           reverbSourceContainer.reverbEnable.set(source['reverbEnable']);
         }
@@ -689,7 +693,7 @@ function oscSourceEvent(address, args)
       if (typeof(args[0]) == 'number')
       {
         source['earlyEnable'] = args[0];
-        if (SourceContainer.index.get() == i+1)
+        if (SourceContainer.sourceIndex.get() == i+1)
         {
           reverbSourceContainer.earlyEnable.set(source['earlyEnable']);
         }
@@ -700,7 +704,7 @@ function oscSourceEvent(address, args)
       if (typeof(args[0]) == 'number')
       {
         source['clusterEnable'] = args[0];
-        if (SourceContainer.index.get() == i+1)
+        if (SourceContainer.sourceIndex.get() == i+1)
         {
           reverbSourceContainer.clusterEnable.set(source['clusterEnable']);
         }
@@ -711,7 +715,7 @@ function oscSourceEvent(address, args)
       if (typeof(args[0]) == 'number')
       {
         source['tailEnable'] = args[0];
-        if (SourceContainer.index.get() == i+1)
+        if (SourceContainer.sourceIndex.get() == i+1)
         {
           reverbSourceContainer.tailEnable.set(source['tailEnable']);
         }
@@ -722,7 +726,7 @@ function oscSourceEvent(address, args)
       if (typeof(args[0]) == 'string')
       {
         source['name'] = args[0];
-        if (SourceContainer.index.get() == i+1)
+        if (SourceContainer.sourceIndex.get() == i+1)
         {
           SourceContainer.sourceName.set(source['name']);
         }
@@ -733,7 +737,7 @@ function oscSourceEvent(address, args)
       if (typeof(args[0]) == 'number')
       {
         source['presence'] = args[0];
-        if (SourceContainer.index.get() == i+1)
+        if (SourceContainer.sourceIndex.get() == i+1)
         {
           perceptualFactorSourceContainer.presence.set(source['presence']);
         }
@@ -744,7 +748,7 @@ function oscSourceEvent(address, args)
       if (typeof(args[0]) == 'number')
       {
         source['roomPresence'] = args[0];
-        if (SourceContainer.index.get() == i+1)
+        if (SourceContainer.sourceIndex.get() == i+1)
         {
           perceptualFactorSourceContainer.roomPresence.set(source['roomPresence']);
         }
@@ -755,7 +759,7 @@ function oscSourceEvent(address, args)
       if (typeof(args[0]) == 'number')
       {
         source['runningReverberance'] = args[0];
-        if (SourceContainer.index.get() == i+1)
+        if (SourceContainer.sourceIndex.get() == i+1)
         {
           perceptualFactorSourceContainer.runningReverberance.set(source['runningReverberance']);
         }
@@ -766,7 +770,7 @@ function oscSourceEvent(address, args)
       if (typeof(args[0]) == 'number')
       {
         source['envelopment'] = args[0];
-        if (SourceContainer.index.get() == i+1)
+        if (SourceContainer.sourceIndex.get() == i+1)
         {
           perceptualFactorSourceContainer.envelopment.set(source['envelopment']);
         }
@@ -777,7 +781,7 @@ function oscSourceEvent(address, args)
       if (typeof(args[0]) == 'number')
       {
         source['warmth'] = args[0];
-        if (SourceContainer.index.get() == i+1)
+        if (SourceContainer.sourceIndex.get() == i+1)
         {
           perceptualFactorSourceContainer.warmth.set(source['warmth']);
         }
@@ -788,7 +792,7 @@ function oscSourceEvent(address, args)
       if (typeof(args[0]) == 'number')
       {
         source['brillance'] = args[0];
-        if (SourceContainer.index.get() == i+1)
+        if (SourceContainer.sourceIndex.get() == i+1)
         {
           perceptualFactorSourceContainer.brillance.set(source['brillance']);
         }
@@ -799,7 +803,7 @@ function oscSourceEvent(address, args)
       if (typeof(args[0]) == 'number')
       {
         source['yaw'] = args[0];
-        if (SourceContainer.index.get() == i+1)
+        if (SourceContainer.sourceIndex.get() == i+1)
         {
           SourceContainer.yaw.set(source['yaw']);
         }
@@ -810,7 +814,7 @@ function oscSourceEvent(address, args)
       if (typeof(args[0]) == 'number')
       {
         source['pitch'] = args[0];
-        if (SourceContainer.index.get() == i+1)
+        if (SourceContainer.sourceIndex.get() == i+1)
         {
           SourceContainer.pitch.set(source['pitch']);
         }
@@ -821,7 +825,7 @@ function oscSourceEvent(address, args)
       if (typeof(args[0]) == 'number')
       {
         source['aperture'] = args[0];
-        if (SourceContainer.index.get() == i+1)
+        if (SourceContainer.sourceIndex.get() == i+1)
         {
           SourceContainer.aperture.set(source['aperture']);
         }
@@ -832,7 +836,7 @@ function oscSourceEvent(address, args)
       if (typeof(args[0]) == 'number')
       {
         source['scale'] = args[0];
-        if (SourceContainer.index.get() == i+1)
+        if (SourceContainer.sourceIndex.get() == i+1)
         {
           barycentricSourceContainer.scale.set(source['scale']);
         }
@@ -843,7 +847,7 @@ function oscSourceEvent(address, args)
       if (typeof(args[0]) == 'number')
       {
         source['spread'] = args[0];
-        if (SourceContainer.index.get() == i+1)
+        if (SourceContainer.sourceIndex.get() == i+1)
         {
           spreadingSourceContainer.spread.set(source['spread']);
         }
@@ -854,7 +858,7 @@ function oscSourceEvent(address, args)
       if (typeof(args[0]) == 'number')
       {
         source['knn'] = args[0];
-        if (SourceContainer.index.get() == i+1)
+        if (SourceContainer.sourceIndex.get() == i+1)
         {
           spreadingSourceContainer.knn.set(source['knn']);
         }
@@ -865,7 +869,7 @@ function oscSourceEvent(address, args)
       if (typeof(args[0]) == 'number')
       {
         source['earlyWidth'] = args[0];
-        if (SourceContainer.index.get() == i+1)
+        if (SourceContainer.sourceIndex.get() == i+1)
         {
           reverbSourceContainer.earlyWidth.set(source['earlyWidth']);
         }
@@ -876,7 +880,7 @@ function oscSourceEvent(address, args)
       if (typeof(args[0]) == 'number')
       {
         source['panRev'] = args[0];
-        if (SourceContainer.index.get() == i+1)
+        if (SourceContainer.sourceIndex.get() == i+1)
         {
           reverbSourceContainer.panRev.set(source['panRev']);
         }
@@ -887,7 +891,7 @@ function oscSourceEvent(address, args)
       if (typeof(args[0]) == 'number')
       {
         source['doppler'] = args[0];
-        if (SourceContainer.index.get() == i+1)
+        if (SourceContainer.sourceIndex.get() == i+1)
         {
           optionsSourceContainer.doppler.set(source['doppler']);
         }
@@ -898,7 +902,7 @@ function oscSourceEvent(address, args)
       if (typeof(args[0]) == 'number')
       {
         source['radius'] = args[0];
-        if (SourceContainer.index.get() == i+1)
+        if (SourceContainer.sourceIndex.get() == i+1)
         {
           optionsSourceContainer.radius.set(source['radius']);
         }
@@ -909,7 +913,7 @@ function oscSourceEvent(address, args)
       if (typeof(args[0]) == 'number')
       {
         source['airAbsorption'] = args[0];
-        if (SourceContainer.index.get() == i+1)
+        if (SourceContainer.sourceIndex.get() == i+1)
         {
           optionsSourceContainer.airAbsorption.set(source['airAbsorption']);
         }
@@ -920,7 +924,7 @@ function oscSourceEvent(address, args)
       if (typeof(args[0]) == 'number')
       {
         source['coordinatesMode'] = args[0];
-        if (SourceContainer.index.get() == i+1)
+        if (SourceContainer.sourceIndex.get() == i+1)
         {
           optionsSourceContainer.coordinatesMode.set(source['coordinatesMode']);
         }
@@ -933,7 +937,7 @@ function oscSourceEvent(address, args)
         if (typeof(args[0]) == 'number')
         {
           source['dropLog'] = args[0];
-          if (SourceContainer.index.get() == i+1)
+          if (SourceContainer.sourceIndex.get() == i+1)
           {
             optionsSourceContainer.dropLog.set(source['dropLog']);
           }
@@ -944,7 +948,7 @@ function oscSourceEvent(address, args)
         if (typeof(args[0]) == 'number')
         {
           source['dropFactor'] = args[0];
-          if (SourceContainer.index.get() == i+1)
+          if (SourceContainer.sourceIndex.get() == i+1)
           {
             optionsSourceContainer.dropFactor.set(source['dropFactor']);
           }
@@ -956,7 +960,7 @@ function oscSourceEvent(address, args)
       if (typeof(args[0]) == 'number')
       {
         source['rotationXYZ'][0] = args[0];
-        if (SourceContainer.index.get() == i+1)
+        if (SourceContainer.sourceIndex.get() == i+1)
         {
           barycentricSourceContainer.rotationXYZ.set(source['rotationXYZ']);
         }
@@ -967,7 +971,7 @@ function oscSourceEvent(address, args)
       if (typeof(args[0]) == 'number')
       {
         source['rotationXYZ'][1] = args[0];
-        if (SourceContainer.index.get() == i+1)
+        if (SourceContainer.sourceIndex.get() == i+1)
         {
           barycentricSourceContainer.rotationXYZ.set(source['rotationXYZ']);
         }
@@ -978,7 +982,7 @@ function oscSourceEvent(address, args)
       if (typeof(args[0]) == 'number')
       {
         source['rotationXYZ'][2] = args[0];
-        if (SourceContainer.index.get() == i+1)
+        if (SourceContainer.sourceIndex.get() == i+1)
         {
           barycentricSourceContainer.rotationXYZ.set(source['rotationXYZ']);
         }
@@ -1011,7 +1015,7 @@ function oscRoomEvent(address, args)
     if (typeof(args[0]) == 'string')
     {
       room['name'] = args[0];
-      if (roomContainer.index.get() == i+1)
+      if (roomContainer.roomIndex.get() == i+1)
       {
         roomContainer.roomName.set(room['name']);
       }
@@ -1021,7 +1025,7 @@ function oscRoomEvent(address, args)
     if (typeof(args[0]) == 'number')
     {
       room['gain'] = args[0];
-      if (roomContainer.index.get() == i+1)
+      if (roomContainer.roomIndex.get() == i+1)
       {
         roomContainer.gainRoom.set(room['gain']);
       }
@@ -1032,7 +1036,7 @@ function oscRoomEvent(address, args)
     if (typeof(args[0]) == 'number')
     {
       room['mute'] = args[0];
-      if (roomContainer.index.get() == i+1)
+      if (roomContainer.roomIndex.get() == i+1)
       {
         roomContainer.muteRoom.set(room['mute']);
       }
@@ -1043,7 +1047,7 @@ function oscRoomEvent(address, args)
     if (typeof(args[0]) == 'number')
     {
       room['listenerPosition'] = args[0];
-      if (roomContainer.index.get() == i+1)
+      if (roomContainer.roomIndex.get() == i+1)
       {
         roomContainer.listenerPosition.set(room['listenerPosition']);
       }
@@ -1054,7 +1058,7 @@ function oscRoomEvent(address, args)
     if (typeof(args[0]) == 'number')
     {
       room['listenerOrientation'][0] = args[0];
-      if (roomContainer.index.get() == i+1)
+      if (roomContainer.roomIndex.get() == i+1)
       {
         roomContainer.listenerOrientation.set(room['listenerOrientation']);
       }
@@ -1065,7 +1069,7 @@ function oscRoomEvent(address, args)
     if (typeof(args[0]) == 'number')
     {
       room['listenerOrientation'][1] = args[0];
-      if (roomContainer.index.get() == i+1)
+      if (roomContainer.roomIndex.get() == i+1)
       {
         roomContainer.listenerOrientation.set(room['listenerOrientation']);
       }
@@ -1076,7 +1080,7 @@ function oscRoomEvent(address, args)
     if (typeof(args[0]) == 'number')
     {
       room['listenerOrientation'][2] = args[0];
-      if (roomContainer.index.get() == i+1)
+      if (roomContainer.roomIndex.get() == i+1)
       {
         roomContainer.listenerOrientation.set(room['listenerOrientation']);
       }
@@ -1087,7 +1091,7 @@ function oscRoomEvent(address, args)
     if (typeof(args[0]) == 'number')
     {
       room['size'] = args[0];
-      if (roomContainer.index.get() == i+1)
+      if (roomContainer.roomIndex.get() == i+1)
       {
         roomReverbContainer.roomSize.set(room['size']);
       }
@@ -1098,7 +1102,7 @@ function oscRoomEvent(address, args)
     if (typeof(args[0]) == 'number')
     {
       room['reverberance'] = args[0];
-      if (roomContainer.index.get() == i+1)
+      if (roomContainer.roomIndex.get() == i+1)
       {
         perceptualFactorRoomContainer.reverberance.set(room['reverberance']);
       }
@@ -1109,7 +1113,7 @@ function oscRoomEvent(address, args)
     if (typeof(args[0]) == 'number')
     {
       room['heaviness'] = args[0];
-      if (roomContainer.index.get() == i+1)
+      if (roomContainer.roomIndex.get() == i+1)
       {
         perceptualFactorRoomContainer.heaviness.set(room['heaviness']);
       }
@@ -1120,7 +1124,7 @@ function oscRoomEvent(address, args)
     if (typeof(args[0]) == 'number')
     {
       room['liveness'] = args[0];
-      if (roomContainer.index.get() == i+1)
+      if (roomContainer.roomIndex.get() == i+1)
       {
         perceptualFactorRoomContainer.liveness.set(room['liveness']);
       }
@@ -1133,7 +1137,7 @@ function oscRoomEvent(address, args)
       if (typeof (args[0]) == 'number')
       {
         room['density'] = args[0];
-        if (roomContainer.index.get() == i + 1)
+        if (roomContainer.roomIndex.get() == i + 1)
         {
           roomReverbContainer.reverbDensity.set(room['density']);
         }
@@ -1144,7 +1148,7 @@ function oscRoomEvent(address, args)
       if (typeof (args[0]) == 'number')
       {
         room['reverbEnableRoom'] = args[0];
-        if (roomContainer.index.get() == i + 1)
+        if (roomContainer.roomIndex.get() == i + 1)
         {
           roomReverbContainer.reverbEnableRoom.set(room['reverbEnableRoom']);
         }
@@ -1155,7 +1159,7 @@ function oscRoomEvent(address, args)
       if (typeof (args[0]) == 'number')
       {
         room['reverbStart'] = args[0];
-        if (roomContainer.index.get() == i + 1)
+        if (roomContainer.roomIndex.get() == i + 1)
         {
           roomReverbContainer.reverbStart.set(room['reverbStart']);
         }
@@ -1166,7 +1170,7 @@ function oscRoomEvent(address, args)
       if (typeof (args[0]) == 'number')
       {
         room['reverbGain'] = args[0];
-        if (roomContainer.index.get() == i + 1)
+        if (roomContainer.roomIndex.get() == i + 1)
         {
           roomReverbContainer.reverbGain.set(room['reverbGain']);
         }
@@ -1177,7 +1181,7 @@ function oscRoomEvent(address, args)
       if (typeof (args[0]) == 'number')
       {
         room['reverbFactor'] = args[0];
-        if (roomContainer.index.get() == i + 1)
+        if (roomContainer.roomIndex.get() == i + 1)
         {
           roomReverbContainer.reverbFactor.set(room['reverbFactor']);
         }
@@ -1188,7 +1192,7 @@ function oscRoomEvent(address, args)
       if (typeof (args[0]) == 'number')
       {
         room['reverbInfinite'] = args[0];
-        if (roomContainer.index.get() == i + 1)
+        if (roomContainer.roomIndex.get() == i + 1)
         {
           reverbOptionsRoomContainer.reverbInfinite.set(room['reverbInfinite']);
         }
@@ -1199,7 +1203,7 @@ function oscRoomEvent(address, args)
       if (typeof (args[0]) == 'number')
       {
         room['modalDensity'] = args[0];
-        if (roomContainer.index.get() == i + 1)
+        if (roomContainer.roomIndex.get() == i + 1)
         {
           reverbOptionsRoomContainer.modalDensity.set(room['modalDensity']);
         }
@@ -1210,7 +1214,7 @@ function oscRoomEvent(address, args)
       if (typeof (args[0]) == 'number')
       {
         room['frequencyLow'] = args[0];
-        if (roomContainer.index.get() == i + 1)
+        if (roomContainer.roomIndex.get() == i + 1)
         {
           reverbCrossoverRoomContainer.frequencyLow.set(room['frequencyLow']);
         }
@@ -1221,7 +1225,7 @@ function oscRoomEvent(address, args)
       if (typeof (args[0]) == 'number')
       {
         room['frequencyHigh'] = args[0];
-        if (roomContainer.index.get() == i + 1)
+        if (roomContainer.roomIndex.get() == i + 1)
         {
           reverbCrossoverRoomContainer.frequencyHigh.set(room['frequencyHigh']);
         }
@@ -1235,7 +1239,7 @@ function oscRoomEvent(address, args)
       if (typeof (args[0]) == 'number')
       {
         room['earlyMin'] = args[0];
-        if (roomContainer.index.get() == i + 1)
+        if (roomContainer.roomIndex.get() == i + 1)
         {
           roomResponseRoomContainer.earlyMin.set(room['earlyMin']);
         }
@@ -1246,7 +1250,7 @@ function oscRoomEvent(address, args)
       if (typeof (args[0]) == 'number')
       {
         room['earlyMax'] = args[0];
-        if (roomContainer.index.get() == i + 1)
+        if (roomContainer.roomIndex.get() == i + 1)
         {
           roomResponseRoomContainer.earlyMax.set(room['earlyMax']);
         }
@@ -1257,7 +1261,7 @@ function oscRoomEvent(address, args)
       if (typeof (args[0]) == 'number')
       {
         room['earlyDist'] = args[0];
-        if (roomContainer.index.get() == i + 1)
+        if (roomContainer.roomIndex.get() == i + 1)
         {
           roomResponseRoomContainer.earlyDist.set(room['earlyDist']);
         }
@@ -1268,7 +1272,7 @@ function oscRoomEvent(address, args)
       if (typeof (args[0]) == 'number')
       {
         room['earlyShape'] = args[0];
-        if (roomContainer.index.get() == i + 1)
+        if (roomContainer.roomIndex.get() == i + 1)
         {
           roomResponseRoomContainer.earlyShape.set(room['earlyShape']);
         }
@@ -1282,7 +1286,7 @@ function oscRoomEvent(address, args)
       if (typeof (args[0]) == 'number')
       {
         room['clusterMin'] = args[0];
-        if (roomContainer.index.get() == i + 1)
+        if (roomContainer.roomIndex.get() == i + 1)
         {
           roomResponseRoomContainer.clusterMin.set(room['clusterMin']);
         }
@@ -1293,7 +1297,7 @@ function oscRoomEvent(address, args)
       if (typeof (args[0]) == 'number')
       {
         room['clusterMax'] = args[0];
-        if (roomContainer.index.get() == i + 1)
+        if (roomContainer.roomIndex.get() == i + 1)
         {
           roomResponseRoomContainer.clusterMax.set(room['clusterMax']);
         }
@@ -1304,7 +1308,7 @@ function oscRoomEvent(address, args)
       if (typeof (args[0]) == 'number')
       {
         room['clusterDist'] = args[0];
-        if (roomContainer.index.get() == i + 1)
+        if (roomContainer.roomIndex.get() == i + 1)
         {
           roomResponseRoomContainer.clusterDist.set(room['clusterDist']);
         }
@@ -1317,7 +1321,7 @@ function oscRoomEvent(address, args)
       if (typeof (args[0]) == 'number')
       {
         room['airEnable'] = args[0];
-        if (roomContainer.index.get() == i + 1)
+        if (roomContainer.roomIndex.get() == i + 1)
         {
           reverbOptionsRoomContainer.airEnable.set(room['airEnable']);
         }
@@ -1328,7 +1332,7 @@ function oscRoomEvent(address, args)
       if (typeof (args[0]) == 'number')
       {
         room['airFreq'] = args[0];
-        if (roomContainer.index.get() == i + 1)
+        if (roomContainer.roomIndex.get() == i + 1)
         {
           reverbOptionsRoomContainer.airFreq.set(room['airFreq']);
         }
@@ -1370,7 +1374,7 @@ function createSourceContainer()
   // Add the Source container
   SourceContainer = local.values.addContainer("Source container");
 
-  var index = SourceContainer.addIntParameter("Index", "source index", 1, 1, 256);
+  var sourceIndex = SourceContainer.addIntParameter("Source Index", "source index", 1, 1, 256);
 
   var dump = SourceContainer.addTrigger("Dump Source", "Dump all source parameters");
 
@@ -1486,7 +1490,7 @@ function createRoomContainer()
     // Add the Room container
     roomContainer = local.values.addContainer("Room container");
 
-    var index = roomContainer.addIntParameter("Index", "room index", 1, 1, 256);
+    var roomIndex = roomContainer.addIntParameter("Room Index", "room index", 1, 1, 256);
 
     var dumpRoom = roomContainer.addTrigger("Dump Room", "Dump all room parameters");
 
@@ -1524,39 +1528,39 @@ function createRoomContainer()
     var reverbFactor = roomReverbContainer.addFloatParameter("Reverb Factor", "Reverb Factor", 1.0, 0.10, 2.0);
   //reverbFactor.setAttribute("readonly", true);
 
-    perceptualFactorRoomContainer = roomContainer.addContainer("Perceptual Factor");
-    var reverberance = perceptualFactorRoomContainer.addFloatParameter("Reverberance", "Reverberance", 80, 0, 120);
+    perceptualFactorRoomContainer = roomReverbContainer.addContainer("Perceptual Factor");
+    var reverberance = perceptualFactorRoomContainer.addFloatParameter("Reverberance", "Reverberance", 65.0, 5.0, 100.0);
   //reverberance.setAttribute("readonly", true);
 
-    var heaviness = perceptualFactorRoomContainer.addFloatParameter("Heaviness", "Heaviness", 80, 0, 120);
+    var heaviness = perceptualFactorRoomContainer.addFloatParameter("Heaviness", "Heaviness", 25.0, 5.0, 50.0);
   //heaviness.setAttribute("readonly", true);
 
-    var liveness = perceptualFactorRoomContainer.addFloatParameter("Liveness", "Liveness", 80, 0, 120);
+    var liveness = perceptualFactorRoomContainer.addFloatParameter("Liveness", "Liveness", 35.0, 5.0, 50.0);
   //liveness.setAttribute("readonly", true);
 
-    roomResponseRoomContainer = roomContainer.addContainer("Room Response");
-    var earlyMin = roomResponseRoomContainer.addFloatParameter("Early Min", "Early Min", 34, 0, 50);
+    roomResponseRoomContainer = roomReverbContainer.addContainer("Room Response");
+    var earlyMin = roomResponseRoomContainer.addFloatParameter("Early Min", "Early Min", 24.2, 1.0, 120.0);
   //earlyMin.setAttribute("readonly", true);
 
-    var earlyMax = roomResponseRoomContainer.addFloatParameter("Early Max", "Early Max", 25, 0, 50);
+    var earlyMax = roomResponseRoomContainer.addFloatParameter("Early Max", "Early Max", 40.0, 1.0, 120.0);
   //earlyMax.setAttribute("readonly", true);
 
-    var earlyDist = roomResponseRoomContainer.addFloatParameter("Early Dist", "Early Dist", 30, 0, 60);
+    var earlyDist = roomResponseRoomContainer.addFloatParameter("Early Dist", "Early Dist", 0.5, 0.1, 0.9);
   //earlyDist.setAttribute("readonly", true);
 
-    var earlyShape = roomResponseRoomContainer.addFloatParameter("Early Shape", "Early Shape", 30, 0, 60);
+    var earlyShape = roomResponseRoomContainer.addFloatParameter("Early Shape", "Early Shape", 0.5, 0.1, 0.9);
   //arlyShape.setAttribute("readonly", true);
 
-    var clusterMin = roomResponseRoomContainer.addFloatParameter("Cluster Min", "Cluster Min", 34, 0, 50);
+    var clusterMin = roomResponseRoomContainer.addFloatParameter("Cluster Min", "Cluster Min", 24.2, 1.0, 120.0);
   //clusterMin.setAttribute("readonly", true);
 
-    var clusterMax = roomResponseRoomContainer.addFloatParameter("Cluster Max", "Cluster Max", 25, 0, 50);
+    var clusterMax = roomResponseRoomContainer.addFloatParameter("Cluster Max", "Cluster Max", 40.0, 1.0, 120.0);
   //clusterMax.setAttribute("readonly", true);
 
-    var clusterDist = roomResponseRoomContainer.addFloatParameter("Cluster Dist", "Cluster Dist", 30, 0, 60);
+    var clusterDist = roomResponseRoomContainer.addFloatParameter("Cluster Dist", "Cluster Dist", 0.5, 0.1, 0.9);
   //clusterDist.setAttribute("readonly", true);
 
-    reverbOptionsRoomContainer = roomContainer.addContainer("Options");
+    reverbOptionsRoomContainer = roomReverbContainer.addContainer("Options");
     var reverbInfinite = reverbOptionsRoomContainer.addBoolParameter("Reverb Infinite", "Reverb Infinite", 0);
   //reverbInfinite.setAttribute("readonly", true);
 
@@ -1569,11 +1573,11 @@ function createRoomContainer()
     var modalDensity = reverbOptionsRoomContainer.addFloatParameter("Modal Density", "Modal Density", 1.0, 0.2, 2.0);
   //reverbModalDensity.setAttribute("readonly", true);
 
-    reverbCrossoverRoomContainer = roomContainer.addContainer("Crossover");
-    var frequencyLow = reverbCrossoverRoomContainer.addFloatParameter("Frequency Low", "Frequency Low", 10, 0, 180);
+    reverbCrossoverRoomContainer = roomReverbContainer.addContainer("Crossover");
+    var frequencyLow = reverbCrossoverRoomContainer.addFloatParameter("Frequency Low", "Frequency Low", 177.0, 20.0, 20000.0);
   //frequencyLow.setAttribute("readonly", true);
 
-    var frequencyHigh = reverbCrossoverRoomContainer.addFloatParameter("Frequency High", "Frequency High", 10, 0, 180);
+    var frequencyHigh = reverbCrossoverRoomContainer.addFloatParameter("Frequency High", "Frequency High", 5657.0, 20.0, 20000.0);
   //frequencyHigh.setAttribute("readonly", true);
 
     roomReverbContainer.setCollapsed(true);
@@ -1605,9 +1609,9 @@ function delSource(index)
 {
     script.log('Remove source index: ' + index+1 + ', name: ' + Sources[index].name);
     local.scripts.setCollapsed(true);
-    if (SourceContainer.index.get() == index)
+    if (SourceContainer.sourceIndex.get() == index)
     {
-        SourceContainer.index.set(index-1);
+        SourceContainer.sourceIndex.set(index-1);
     }
 
     Sources.splice(index, 1);
@@ -1621,9 +1625,9 @@ function delRoom(index)
 {
     script.log('Remove room index: ' + index+1 + ', name: ' + Rooms[index].name);
     local.scripts.setCollapsed(true);
-    if (roomContainer.index.get() == index)
+    if (roomContainer.roomIndex.get() == index)
     {
-      roomContainer.index.set(index-1);
+      roomContainer.roomIndex.set(index-1);
     }
 
     Rooms.splice(index, 1);

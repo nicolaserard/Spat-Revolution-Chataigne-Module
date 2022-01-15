@@ -1,11 +1,11 @@
 {
   "name": "Spat Revolution",
   "type": "OSC",
-  "path": "Software",
-  "version": "0.0.1",
-  "description": "Flux Spat Revolution Module",
-  "url": "www.spatrevolution.com",
-  "downloadURL": "www.spatrevolution.com",
+  "path": "Immersive solution",
+  "version": "1.0.0",
+  "description": "FLUX Spat Revolution Module",
+  "url": "https://github.com/nicolaserard/Spat-Revolution-Chataigne-Module",
+  "downloadURL": "https://github.com/nicolaserard/Spat-Revolution-Chataigne-Module/archive/master.zip",
   "hasInput": true,
   "hasOutput": true,
   "hideDefaultCommands": false,
@@ -45,14 +45,14 @@
    "Source container":
    {
      "type":"Container",
-     "Index":
+     "Source Index":
      {
        "type": "Integer",
-       "description":"Specify index of source.\n",
+       "description":"Specify source's index.\n",
        "min":1,
        "max":128
      },
-     "Dump":
+     "Dump Source":
      {
        "type": "Trigger"
      },
@@ -90,6 +90,27 @@
        "type":"Point3D",
        "min":[-100,-100,-100],
        "max":[100,100,100]
+     },
+     "Yaw":
+     {
+       "type":"Float",
+       "description":"Yaw.\n",
+       "min": -180.0,
+       "max": 180.0
+     },
+     "Pitch":
+     {
+       "type":"Float",
+       "description":"Pitch.\n",
+       "min": -90.0,
+       "max": 90.0
+     },
+     "Aperture":
+     {
+       "type":"Float",
+       "description":"Aperture.\n",
+       "min": 0.0,
+       "max": 180.0
      },
      "Reverb":
      {
@@ -165,27 +186,6 @@
          "max": 60
        }
      },
-     "Yaw":
-     {
-       "type": "Float",
-       "description": "Set the source yaw.\n",
-       "min": -180,
-       "max": 180
-     },
-     "Pitch":
-     {
-       "type": "Float",
-       "description":"Set the source pitch.\n",
-       "min":-90,
-       "max":90
-     },
-     "Aperture":
-     {
-       "type": "Float",
-       "description":"Set the source aperture.\n",
-       "min":0,
-       "max":180
-     },
      "Barycentric":
      {
        "type": "Container",
@@ -259,6 +259,210 @@
          "description":"Set the drop factor.\n",
          "min": -10.0,
          "max": 30.0
+       }
+     }
+
+   },
+   "Room container":
+   {
+     "type":"Container",
+     "Room Index":
+     {
+       "type": "Integer",
+       "description":"Specify room's index.\n",
+       "min":1,
+       "max":128
+     },
+     "Dump Room":
+     {
+       "type": "Trigger"
+     },
+     "Room Name":
+     {
+       "type":"String",
+       "description": "Room Name\n"
+     },
+     "Mute Room":
+     {
+       "type":"Boolean",
+       "description":"Mute the room\n"
+     },
+     "Gain Room":
+     {
+       "type":"Float",
+       "description":"Room gain.\n",
+       "min": -144.5,
+       "max": 24.0
+     },
+     "Listener Position":
+     {
+       "type":"Point3D",
+       "min":[-100,-100,-100],
+       "max":[100,100,100]
+     },
+     "Listener Orientation":
+     {
+       "type":"Point3D",
+       "min":[-180.0,-180.0,-180.0],
+       "max":[180.0,180.0,180.0]
+     },
+     "Reverb":
+     {
+       "type": "Container",
+       "Reverb Density": {
+         "type": "Boolean",
+         "description": "Choose the room density (8 or 16 channels)\n"
+       },
+       "Reverb Enable Room": {
+         "type": "Boolean",
+         "description": "Enable the room reverb\n"
+       },
+       "Cluster Enable": {
+         "type": "Boolean",
+         "description": "Enable the cluster\n"
+       },
+       "Room size":
+       {
+         "type":"Float",
+         "description":"Set the room size.\n",
+         "min": 0,
+         "max": 15000.0
+       },
+       "Reverb start":
+       {
+         "type":"Float",
+         "description":"Set the reverb start.\n",
+         "min": 8.0,
+         "max": 500.0
+       },
+       "Reverb Gain":
+       {
+         "type":"Float",
+         "description":"Set the reverb Gain.\n",
+         "min": -24.0,
+         "max": 24.0
+       },
+       "Reverb Factor":
+       {
+         "type":"Float",
+         "description":"Set the reverb Factor.\n",
+         "min": 0.5,
+         "max": 2.0
+       },
+       "Perceptual Factor":
+       {
+         "type": "Container",
+         "Reverberance": {
+           "type": "Float",
+           "description": "Set the reverb Reverberance.\n",
+           "min": 5.0,
+           "max": 100.0
+         },
+         "Heaviness": {
+           "type": "Float",
+           "description": "Set the room reverb Heaviness.\n",
+           "min": 5.0,
+           "max": 50.0
+         },
+         "Liveness": {
+           "type": "Float",
+           "description": "Set the room reverb Liveness.\n",
+           "min": 5.0,
+           "max": 50.0
+         }
+       },
+       "Room Response":
+       {
+         "type": "Container",
+         "Early Min":
+         {
+           "type": "Float",
+           "description": "Set the early minimum of the reverb.\n",
+           "min": 1.0,
+           "max": 120.0
+         },
+         "Early Max":
+         {
+           "type": "Float",
+           "description": "Set the early maximum of the reverb.\n",
+           "min": 1.0,
+           "max": 120.0
+         },
+         "Early Dist":
+         {
+           "type": "Float",
+           "description": "Set the early distribution of the reverb.\n",
+           "min": 0.1,
+           "max": 0.9
+         },
+         "Early Shape":
+         {
+           "type": "Float",
+           "description": "Set the early shape of the reverb.\n",
+           "min": 0.1,
+           "max": 0.9
+         },
+         "Cluster Min":
+         {
+           "type": "Float",
+           "description": "Set the cluster minimum of the reverb.\n",
+           "min": 1.0,
+           "max": 120.0
+         },
+         "Cluster Max":
+         {
+           "type": "Float",
+           "description": "Set the cluster maximum of the reverb.\n",
+           "min": 1.0,
+           "max": 120.0
+         },
+         "Cluster Dist":
+         {
+           "type": "Float",
+           "description": "Set the cluster distribution of the reverb.\n",
+           "min": 0.1,
+           "max": 0.9
+         }
+       },
+       "Options":
+       {
+         "type": "Container",
+         "Reverb Infinite":
+         {
+           "type": "Boolean",
+           "description":"Enable/Disable the infinite reverberation.\n"
+         },
+         "Air Enable":
+         {
+           "type": "Boolean",
+           "description":"Enable/Disable the air absorption.\n"
+         },
+         "Air freq":
+         {
+           "type": "Float",
+           "description":"Set the air absorption frequency.\n",
+           "min": 20.0,
+           "max": 20000.0
+         },
+         "Modal Density":
+         {
+           "type": "Float",
+           "description":"Set the modal density.\n",
+           "min": 0.2,
+           "max": 2.0
+         }
+       },
+       "Crossover":
+       {
+         "type": "Container",
+         "Frequency Low":
+         {
+           "type": "Float",
+           "description":"Set the low/mid crossover frequency of the reverb for the room.\n",
+           "min": 20.0,
+           "max": 20000.0
+         }
+         }
        }
      }
 
