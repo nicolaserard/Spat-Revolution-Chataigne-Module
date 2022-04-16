@@ -3,11 +3,11 @@
 
   Chataigne Module for SPAT Revolution
 
-  Copyright: Nicolas Erard, December 2021
+  Copyright: Nicolas Erard, April 2022
 
   ==============================================================================
 ===============================================================================
-This file is a Chataigne Custom Module to remote control Flux SE SPAT Revolution.
+This file is a Chataigne Custom Module to remote control SPAT Revolution.
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are met:
