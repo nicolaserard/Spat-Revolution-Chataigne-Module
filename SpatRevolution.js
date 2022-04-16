@@ -56,7 +56,7 @@ var OSCSourceMessage = {
         local.send("/source/" + index + "/lfe4", value.get());
     },
     'position': function (index, value) {
-        if (Cartesian == true) {
+        if (Cartesian === true) {
             local.send("/source/" + index + "/aed", CartesianToPolar(value.get()));
         } else {
             local.send("/source/" + index + "/aed", value.get());
@@ -65,13 +65,7 @@ var OSCSourceMessage = {
     },
     'cartesian': function (index, value) {
         stopSendingOSC = true;
-        if (value.get() == 1 && Cartesian == false) {
-            Cartesian = true;
-            //value.getParent().position.set(Sources[value.getParent().sourceIndex.get()['positionXYZ']]);
-        } else {
-            Cartesian = false;
-            //value.getParent().position.set(Sources[value.getParent().sourceIndex.get()['positionAED']]);
-        }
+        Cartesian = value.get() === 1 && Cartesian === false;
         stopSendingOSC = true;
     },
     'reverbEnable': function (index, value) {
@@ -277,15 +271,12 @@ var OSCRoomMessage = {
  */
 
 var Sources = [];// array of all sources parameters.
-var SourceContainer = null;
 var reverbSourceContainer = null;
 var perceptualFactorSourceContainer = null;
 var spreadingSourceContainer = null;
 var optionsSourceContainer = null;
-var barycentricSourceContainer = null;
-var numberRooms = 0 ; // number of rooms in Spat Revolution. Should be set automatically, but function not working in Spat Revolution now.
+var barycentricSourceContainer = null; // number of rooms in Spat Revolution. Should be set automatically, but function not working in Spat Revolution now.
 var Rooms = []; // array of all rooms parameters
-var roomContainer = null;
 var roomReverbContainer = null;
 var perceptualFactorRoomContainer = null;
 var roomResponseRoomContainer = null;
@@ -335,7 +326,7 @@ function update(updateRate)
  */
 function moduleParameterChanged(param)
 {
-  if (param.name == 'remotePort' || param.name == 'local' || param.name == 'remoteHost')
+  if (param.name === 'remotePort' || param.name === 'local' || param.name === 'remoteHost')
   {
     local.send("/source/*/dump", 0);
     local.send("/room/*/dump", 0);
@@ -351,10 +342,10 @@ function moduleValueChanged(value)
   var name = value.name;
   if (value.isParameter())
   {
-    if (name == 'cartesian')
+    if (name === 'cartesian')
     {
       stopSendingOSC = true;
-      if (value.get() == 1 && Cartesian == false)
+      if (value.get() === 1 && Cartesian === false)
       {
         Cartesian = true;
         for (var i = 0; i < Sources.length; i++)
@@ -362,7 +353,7 @@ function moduleValueChanged(value)
           Sources[i]['container'].position.set(Sources[i]['positionXYZ']);
         }
       }
-      else if (value.get() == 0 && Cartesian == true)
+      else if (value.get() === 0 && Cartesian === true)
       {
         Cartesian = false;
         for (var i = 0; i < Sources.length; i++)
@@ -375,15 +366,15 @@ function moduleValueChanged(value)
     else {
         if (!stopSendingOSC && OSCSourceMessage[name]) {
             var index = parseInt(value.getParent().name.substring(6, value.getParent().name.length));
-            if (index == 0) {
+            if (index === 0) {
                 index = parseInt(value.getParent().getParent().name.substring(6, value.getParent().getParent().name.length));
             }
             OSCSourceMessage[name](index, value);
         } else if (!stopSendingOSC && OSCRoomMessage[name]) {
             var index = parseInt(value.getParent().name.substring(4, value.getParent().name.length));
-            if (index == 0) {
+            if (index === 0) {
                 index = parseInt(value.getParent().getParent().name.substring(4, value.getParent().getParent().name.length));
-                if (index == 0) {
+                if (index === 0) {
                     index = parseInt(value.getParent().getParent().getParent().name.substring(4, value.getParent().getParent().name.length));
                     }
                 }
@@ -403,23 +394,23 @@ function oscEvent(address, args)
 {
     var address = address.split("/");
 
-    if (address[1] == 'global')
+    if (address[1] === 'global')
     {
         oscGlobalEvent(address, args);
     }
-    else if (address[1]=='source')
+    else if (address[1]==='source')
     {
         oscSourceEvent(address, args);
     }
-    else if (address[1]=='room')
+    else if (address[1]==='room')
     {
         oscRoomEvent(address, args);
     }
-    else if (address[1]=='master')
+    else if (address[1]==='master')
     {
         oscMasterEvent(address, args);
     }
-    else if (address[1] == 'snapshot')
+    else if (address[1] === 'snapshot')
     {
         oscSnapshotEvent(address, args);
     }
@@ -458,7 +449,7 @@ function oscSourceEvent(address, args)
         var source = Sources[i]['container'];
     }
 
-    if (address[3]=='gain')
+    if (address[3]==='gain')
 
     {
         if (typeof(args[0]) == 'number')
@@ -466,35 +457,35 @@ function oscSourceEvent(address, args)
           source.gain.set(args[0]);
         }
     }
-    if (address[3]=='lfe')
+    if (address[3]==='lfe')
     {
         if (typeof(args[0]) == 'number')
         {
           source.lfe.set(args[0]);
         }
     }
-    if (address[3] =='mute')
+    if (address[3] ==='mute')
     {
         if (typeof(args[0]) == 'number')
         {
           source.mute.set(args[0]);
         }
     }
-    if (address[3] =='solo')
+    if (address[3] ==='solo')
     {
         if (typeof(args[0]) == 'number')
         {
           source.solo.set(args[0]);
         }
     }
-    if (address[3]=='aed')
+    if (address[3]==='aed')
     {
         if (typeof(args[0]) == 'number' && typeof(args[1]) == 'number' && typeof(args[2]) == 'number')
         {
           Sources[i]['positionAED'] = args;
           Sources[i]['positionXYZ'] = PolarToCartesian(args);
           stopSendingOSC = true;
-          if (Cartesian == true)
+          if (Cartesian === true)
           {
             source.position.set(Sources[i]['positionXYZ']);
           }
@@ -505,14 +496,14 @@ function oscSourceEvent(address, args)
           stopSendingOSC = false;
         }
     }
-    if (address[3]=='xyz')
+    if (address[3]==='xyz')
     {
         if (typeof(args[0]) == 'number' && typeof(args[1]) == 'number' && typeof(args[2]) == 'number')
         {
           Sources[i]['positionAED'] = CartesianToPolar(args);
           Sources[i]['positionXYZ'] = args;
           stopSendingOSC = true;
-          if (Cartesian == true)
+          if (Cartesian === true)
           {
             source.position.set(Sources[i]['positionXYZ']);
           }
@@ -524,184 +515,184 @@ function oscSourceEvent(address, args)
           stopSendingOSC = false;
         }
     }
-    if (address[3]=='reverb' && address[4]=='enable')
+    if (address[3]==='reverb' && address[4]==='enable')
     {
       if (typeof(args[0]) == 'number')
       {
         source.getChild("Reverb").reverbEnable.set(args[0]);
       }
     }
-    if (address.length == 4 && address[3] == 'early')
+    if (address.length === 4 && address[3] === 'early')
     {
       if (typeof(args[0]) == 'number')
       {
         source.getChild("Reverb").earlyEnable.set(args[0]);
       }
     }
-    if (address[3] == 'cluster')
+    if (address[3] === 'cluster')
     {
       if (typeof(args[0]) == 'number')
       {
         source.getChild("Reverb").clusterEnable.set(args[0]);
       }
     }
-    if (address[3] == 'tail')
+    if (address[3] === 'tail')
     {
       if (typeof(args[0]) == 'number')
       {
         source.getChild("Reverb").tailEnable.set(args[0]);
       }
     }
-    if (address[3] == 'name')
+    if (address[3] === 'name')
     {
       if (typeof(args[0]) == 'string')
       {
         source.sourceName.set(args[0]);
       }
     }
-    if (address[3]=='pres')
+    if (address[3]==='pres')
     {
       if (typeof(args[0]) == 'number')
       {
         source.getChild("Perceptual Factors").presence.set(args[0]);
       }
     }
-    if (address[3]=='prer')
+    if (address[3]==='prer')
     {
       if (typeof(args[0]) == 'number')
       {
         source.getChild("Perceptual Factors").roomPresence.set(args[0]);
       }
     }
-    if (address[3]=='revp')
+    if (address[3]==='revp')
     {
       if (typeof(args[0]) == 'number')
       {
         source.getChild("Perceptual Factors").runningReverberance.set(args[0]);
       }
     }
-    if (address[3]=='env')
+    if (address[3]==='env')
     {
       if (typeof(args[0]) == 'number')
       {
         source.getChild("Perceptual Factors").envelopment.set(args[0]);
       }
     }
-    if (address[3]=='warmth')
+    if (address[3]==='warmth')
     {
       if (typeof(args[0]) == 'number')
       {
         source.getChild("Perceptual Factors").warmth.set(args[0]);
       }
     }
-    if (address[3]=='bril')
+    if (address[3]==='bril')
     {
       if (typeof(args[0]) == 'number')
       {
         source.getChild("Perceptual Factors").brilliance.set(args[0]);
       }
     }
-    if (address[3]=='yaw')
+    if (address[3]==='yaw')
     {
       if (typeof(args[0]) == 'number')
       {
         source.yaw.set(args[0]);
       }
     }
-    if (address[3]=='pitch')
+    if (address[3]==='pitch')
     {
       if (typeof(args[0]) == 'number')
       {
         source.pitch.set(args[0]);
       }
     }
-    if (address[3]=='aperture')
+    if (address[3]==='aperture')
     {
       if (typeof(args[0]) == 'number')
       {
         source.aperture.set(args[0]);
       }
     }
-    if (address[3]=='scale')
+    if (address[3]==='scale')
     {
       if (typeof(args[0]) == 'number')
       {
         source.getChild("Barycentric").scale.set(args[0]);
       }
     }
-    if (address[3]=='spread')
+    if (address[3]==='spread')
     {
       if (typeof(args[0]) == 'number')
       {
         source.getChild("Spreading").spread.set(args[0]);
       }
     }
-    if (address[3]=='nneig')
+    if (address[3]==='nneig')
     {
       if (typeof(args[0]) == 'number')
       {
         source.getChild("Spreading").knn.set(args[0]);
       }
     }
-    if (address[3]=='early' && address[4]=='width')
+    if (address[3]==='early' && address[4]==='width')
     {
       if (typeof(args[0]) == 'number')
       {
         source.getChild("Reverb").earlyWidth.set(args[0]);
       }
     }
-    if (address[3]=='prevf')
+    if (address[3]==='prevf')
     {
       if (typeof(args[0]) == 'number')
       {
         source.getChild("Reverb").panRev.set(args[0]);
       }
     }
-    if (address[3]=='doppler' && address[4]=='enable')
+    if (address[3]==='doppler' && address[4]==='enable')
     {
       if (typeof(args[0]) == 'number')
       {
         source.getChild("Options").doppler.set(args[0]);
       }
     }
-    if (address[3]=='radius')
+    if (address[3]==='radius')
     {
       if (typeof(args[0]) == 'number')
       {
         source.getChild("Options").radius.set(args[0]);
       }
     }
-    if (address[3]=='air' && address[4]=='enable')
+    if (address[3]==='air' && address[4]==='enable')
     {
       if (typeof(args[0]) == 'number')
       {
         source.getChild("Options").airAbsorption.set(args[0]);
       }
     }
-    if (address[3]=='cm')
+    if (address[3]==='cm')
     {
       if (typeof(args[0]) == 'number')
       {
         source.getChild("Options").xyCoordinatesMode.set(args[0]);
       }
     }
-    if (address[3]=='zcm')
+    if (address[3]==='zcm')
     {
       if (typeof(args[0]) == 'number')
       {
         source.getChild("Options").zCoordinatesMode.set(args[0]);
       }
     }
-    if (address[3]=='drop')
+    if (address[3]==='drop')
     {
-      if (address[4] =='type')
+      if (address[4] ==='type')
       {
         if (typeof(args[0]) == 'number')
         {
           source.getChild("Options").dropLog.set(args[0]);
         }
       }
-      if (address[4] =='value')
+      if (address[4] ==='value')
       {
         if (typeof(args[0]) == 'number')
         {
@@ -709,7 +700,7 @@ function oscSourceEvent(address, args)
         }
       }
     }
-    if (address[3]=='rotx')
+    if (address[3]==='rotx')
     {
       if (typeof(args[0]) == 'number')
       {
@@ -718,7 +709,7 @@ function oscSourceEvent(address, args)
         source.getChild("Barycentric").rotationXYZ.set(value);
       }
     }
-    if (address[3]=='roty')
+    if (address[3]==='roty')
     {
       if (typeof(args[0]) == 'number')
       {
@@ -727,7 +718,7 @@ function oscSourceEvent(address, args)
         source.getChild("Barycentric").rotationXYZ.set(value);
       }
     }
-    if (address[3]=='rotz')
+    if (address[3]==='rotz')
     {
       if (typeof(args[0]) == 'number')
       {
@@ -758,35 +749,35 @@ function oscRoomEvent(address, args)
     var room = Rooms[i]['container'];
   }
 
-  if (address[3]=='name')
+  if (address[3]==='name')
   {
     if (typeof(args[0]) == 'string')
     {
         room.roomName.set(args[0]);
     }
   }
-  if (address[3]=='gain')
+  if (address[3]==='gain')
   {
     if (typeof(args[0]) == 'number')
     {
         room.gainRoom.set(args[0]);
     }
   }
-  if (address[3]=='mute')
+  if (address[3]==='mute')
   {
     if (typeof(args[0]) == 'number')
     {
         room.muteRoom.set(args[0]);
     }
   }
-  if (address[3]=='xyz')
+  if (address[3]==='xyz')
   {
     if (typeof(args[0]) == 'number' && typeof(args[1]) == 'number' && typeof(args[2]) == 'number')
     {
         room.listenerPosition.set(args);
     }
   }
-  if (address[3]=='x')
+  if (address[3]==='x')
   {
     if (typeof(args[0]) == 'number')
     {
@@ -794,7 +785,7 @@ function oscRoomEvent(address, args)
         value = [args[0], value[1], value[2]];
         room.listenerPosition.set(value);    }
   }
-  if (address[3]=='y')
+  if (address[3]==='y')
   {
     if (typeof(args[0]) == 'number')
     {
@@ -803,7 +794,7 @@ function oscRoomEvent(address, args)
         room.listenerPosition.set(value);
       }
     }
-  if (address[3]=='z')
+  if (address[3]==='z')
   {
     if (typeof(args[0]) == 'number')
     {
@@ -812,7 +803,7 @@ function oscRoomEvent(address, args)
         room.listenerPosition.set(values);
     }
   }
-  if (address[3]=='yaw')
+  if (address[3]==='yaw')
   {
     if (typeof(args[0]) == 'number')
     {
@@ -821,7 +812,7 @@ function oscRoomEvent(address, args)
         room.listenerOrientation.set(values);
     }
   }
-  if (address[3]=='pitch')
+  if (address[3]==='pitch')
   {
     if (typeof(args[0]) == 'number')
     {
@@ -830,7 +821,7 @@ function oscRoomEvent(address, args)
         room.listenerOrientation.set(values);
     }
   }
-  if (address[3]=='roll')
+  if (address[3]==='roll')
   {
     if (typeof(args[0]) == 'number')
     {
@@ -839,21 +830,21 @@ function oscRoomEvent(address, args)
         room.listenerOrientation.set(values);
     }
   }
-  if (address[3]=='size')
+  if (address[3]==='size')
   {
     if (typeof(args[0]) == 'number')
     {
         room.getChild("Reverb").roomSize.set(args[0]);
     }
   }
-  if (address[3]=='reverberance')
+  if (address[3]==='reverberance')
   {
     if (typeof(args[0]) == 'number')
     {
         room.getChild("Reverb").getChild("PerceptualFactors").reverberance.set(args[0]);
     }
   }
-  if (address[3]=='heaviness')
+  if (address[3]==='heaviness')
   {
     if (typeof(args[0]) == 'number')
     {
@@ -861,37 +852,37 @@ function oscRoomEvent(address, args)
 
     }
   }
-  if (address[3]=='liveness')
+  if (address[3]==='liveness')
   {
     if (typeof(args[0]) == 'number')
     {
         room.getChild("Reverb").getChild("PerceptualFactors").liveness.set(args[0]);
     }
   }
-  if (address[3]=='reverb')
+  if (address[3]==='reverb')
   {
-    if (address[4] == 'density')
+    if (address[4] === 'density')
     {
       if (typeof (args[0]) == 'number')
       {
           room.getChild("Reverb").reverbDensity.set(args[0]);
       }
     }
-    if (address[4] == 'enable')
+    if (address[4] === 'enable')
     {
       if (typeof (args[0]) == 'number')
       {
           room.getChild("Reverb").reverbEnableRoom.set(args[0]);
       }
     }
-    if (address[4] == 'start')
+    if (address[4] === 'start')
     {
       if (typeof (args[0]) == 'number')
       {
           room.getChild("Reverb").reverbStart.set(args[0]);
       }
     }
-    if (address[4] == 'gain')
+    if (address[4] === 'gain')
     {
       if (typeof (args[0]) == 'number')
       {
@@ -899,14 +890,14 @@ function oscRoomEvent(address, args)
 
       }
     }
-    if (address[4] == 'factor')
+    if (address[4] === 'factor')
     {
       if (typeof (args[0]) == 'number')
       {
           room.getChild("Reverb").reverbFactor.set(args[0]);
       }
     }
-    if (address[4] == 'infinite')
+    if (address[4] === 'infinite')
     {
       if (typeof (args[0]) == 'number')
       {
@@ -914,7 +905,7 @@ function oscRoomEvent(address, args)
 
       }
     }
-    if (address[4] == 'modal' && address[5] == 'density')
+    if (address[4] === 'modal' && address[5] === 'density')
     {
       if (typeof (args[0]) == 'number')
       {
@@ -922,7 +913,7 @@ function oscRoomEvent(address, args)
 
       }
     }
-    if (address[4] == 'fl')
+    if (address[4] === 'fl')
     {
       if (typeof (args[0]) == 'number')
       {
@@ -930,7 +921,7 @@ function oscRoomEvent(address, args)
 
       }
     }
-    if (address[4] == 'fh')
+    if (address[4] === 'fh')
     {
       if (typeof (args[0]) == 'number')
       {
@@ -939,30 +930,30 @@ function oscRoomEvent(address, args)
       }
     }
   }
-  if (address[3]=='early')
+  if (address[3]==='early')
   {
-    if (address[4] == 'min')
+    if (address[4] === 'min')
     {
       if (typeof (args[0]) == 'number')
       {
           room.getChild("Reverb").getChild("RoomResponse").earlyMin.set(args[0]);
       }
     }
-    if (address[4] == 'max')
+    if (address[4] === 'max')
     {
       if (typeof (args[0]) == 'number')
       {
           room.getChild("Reverb").getChild("RoomResponse").earlyMax.set(args[0]);
       }
     }
-    if (address[4] == 'dist')
+    if (address[4] === 'dist')
     {
       if (typeof (args[0]) == 'number')
       {
           room.getChild("Reverb").getChild("RoomResponse").earlyDist.set(args[0]);
       }
     }
-    if (address[4] == 'shape')
+    if (address[4] === 'shape')
     {
       if (typeof (args[0]) == 'number')
       {
@@ -970,33 +961,33 @@ function oscRoomEvent(address, args)
       }
     }
   }
-  if (address[3]=='cluster') {
-      if (address[4] == 'min') {
+  if (address[3]==='cluster') {
+      if (address[4] === 'min') {
           if (typeof (args[0]) == 'number') {
               room.getChild("Reverb").getChild("RoomResponse").clusterMin.set(args[0]);
           }
       }
-      if (address[4] == 'max') {
+      if (address[4] === 'max') {
           if (typeof (args[0]) == 'number') {
               room.getChild("Reverb").getChild("RoomResponse").clusterMax.set(args[0]);
           }
       }
-      if (address[4] == 'dist') {
+      if (address[4] === 'dist') {
           if (typeof (args[0]) == 'number') {
               room.getChild("Reverb").getChild("RoomResponse").clusterDist.set(args[0]);
           }
       }
   }
-  if (address[3]=='air')
+  if (address[3]==='air')
   {
-    if (address[4] == 'enable')
+    if (address[4] === 'enable')
     {
       if (typeof (args[0]) == 'number')
       {
           room.getChild("Reverb").getChild("Options").airEnable.set(args[0]);
       }
     }
-    if (address[4] == 'freq')
+    if (address[4] === 'freq')
     {
       if (typeof (args[0]) == 'number')
       {
@@ -1276,7 +1267,7 @@ function createRoomContainer()
 function CartesianToPolar(value)
 {
     var positionAED = [0,0,0];
-    if (value[0] !=0 || value[1] != 0 || value[2] !=0 )
+    if (value[0] !==0 || value[1] !== 0 || value[2] !==0 )
     {
         positionAED[1] = -180 * Math.acos(z/Math.sqrt(Math.pow(value[0],2) + Math.pow(value[1],2) + Math.pow(value[2],2))) / Math.PI + 90;
         positionAED[2] = Math.sqrt(Math.pow(value[0],2) + Math.pow(value[1],2) + Math.pow(value[2],2));
@@ -1287,21 +1278,21 @@ function CartesianToPolar(value)
         positionAED[2] = 0;
     }
 
-    if(value[0]==0 && value[1]==0)
+    if(value[0]===0 && value[1]===0)
     {
         positionAED[0] = 0;
     }
-    else if (value[0] == 0 && value[1] > 0)
+    else if (value[0] === 0 && value[1] > 0)
     {positionAED[0] = 0;}
-    else if(value[0] == 0 && value[1] < 0)
+    else if(value[0] === 0 && value[1] < 0)
     {positionAED[0] = -180;}
-    else if(value[1] == 0 && value[0] > 0)
+    else if(value[1] === 0 && value[0] > 0)
     {positionAED[0] = 90;}
-    else if(value[1] == 0 && value[0] < 0)
+    else if(value[1] === 0 && value[0] < 0)
     {positionAED[0] = -90;}
-    else if (value[0] > 0 && value[1] != 0)
+    else if (value[0] > 0 && value[1] !== 0)
     {positionAED[0] = (-180 * Math.atan(value[1]/value[0]) / Math.PI) + 90;}
-    else if(value[0] < 0 && value[1] != 0)
+    else if(value[0] < 0 && value[1] !== 0)
     {positionAED[0] = (-180 * Math.atan(value[1]/value[0]) / Math.PI) - 90;}
 
     return positionAED;
