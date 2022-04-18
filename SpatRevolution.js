@@ -1242,34 +1242,34 @@ function createSourceContainer()
 
     roomGainsSourceContainer = SourceContainer.addContainer("Room Gains");
     var roomGain1 = roomGainsSourceContainer.addFloatParameter("Room Gain 1", "Room Gain 1", 0, -144.5, 24);
-    //roomGain1.setAttribute("readonly", true);
+    roomGain1.setAttribute("readonly", true);
 
     var roomGain2 = roomGainsSourceContainer.addFloatParameter("Room Gain 2", "Room Gain 2", 0, -144.5, 24);
-    //roomGain1.setAttribute("readonly", true);
+    roomGain2.setAttribute("readonly", true);
 
     var roomGain3 = roomGainsSourceContainer.addFloatParameter("Room Gain 3", "Room Gain 3", 0, -144.5, 24);
-    //roomGain1.setAttribute("readonly", true);
+    roomGain3.setAttribute("readonly", true);
 
     var roomGain4 = roomGainsSourceContainer.addFloatParameter("Room Gain 4", "Room Gain 4", 0, -144.5, 24);
-    //roomGain1.setAttribute("readonly", true);
+    roomGain4.setAttribute("readonly", true);
 
     var roomGain5 = roomGainsSourceContainer.addFloatParameter("Room Gain 5", "Room Gain 5", 0, -144.5, 24);
-    //roomGain1.setAttribute("readonly", true);
+    roomGain5.setAttribute("readonly", true);
 
     var roomGain6 = roomGainsSourceContainer.addFloatParameter("Room Gain 6", "Room Gain 6", 0, -144.5, 24);
-    //roomGain1.setAttribute("readonly", true);
+    roomGain6.setAttribute("readonly", true);
 
     var roomGain7 = roomGainsSourceContainer.addFloatParameter("Room Gain 7", "Room Gain 7", 0, -144.5, 24);
-    //roomGain1.setAttribute("readonly", true);
+    roomGain7.setAttribute("readonly", true);
 
     var roomGain8 = roomGainsSourceContainer.addFloatParameter("Room Gain 8", "Room Gain 8", 0, -144.5, 24);
-    //roomGain1.setAttribute("readonly", true);
+    roomGain8.setAttribute("readonly", true);
 
     var roomGain9 = roomGainsSourceContainer.addFloatParameter("Room Gain 9", "Room Gain 9", 0, -144.5, 24);
-    //roomGain1.setAttribute("readonly", true);
+    roomGain9.setAttribute("readonly", true);
 
     var roomGain10 = roomGainsSourceContainer.addFloatParameter("Room Gain 10", "Room Gain 10", 0, -144.5, 24);
-    //roomGain1.setAttribute("readonly", true);
+    roomGain10.setAttribute("readonly", true);
 
     reverbSourceContainer.setCollapsed(true);
     perceptualFactorSourceContainer.setCollapsed(true);
