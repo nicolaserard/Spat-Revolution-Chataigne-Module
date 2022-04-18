@@ -149,6 +149,36 @@ var OSCSourceMessage = {
     'rotationXYZ': function (index, value) {
         local.send("/source/" + index + "/rotation", value.get());
     },
+    'roomGain1': function (index, value) {
+        local.send("/source/" + index + "/rg1", value.get());
+    },
+    'roomGain2': function (index, value) {
+        local.send("/source/" + index + "/rg2", value.get());
+    },
+    'roomGain3': function (index, value) {
+        local.send("/source/" + index + "/rg3", value.get());
+    },
+    'roomGain4': function (index, value) {
+        local.send("/source/" + index + "/rg4", value.get());
+    },
+    'roomGain5': function (index, value) {
+        local.send("/source/" + index + "/rg5", value.get());
+    },
+    'roomGain6': function (index, value) {
+        local.send("/source/" + index + "/rg6", value.get());
+    },
+    'roomGain7': function (index, value) {
+        local.send("/source/" + index + "/rg7", value.get());
+    },
+    'roomGain8': function (index, value) {
+        local.send("/source/" + index + "/rg8", value.get());
+    },
+    'roomGain9': function (index, value) {
+        local.send("/source/" + index + "/rg9", value.get());
+    },
+    'roomGain10': function (index, value) {
+        local.send("/source/" + index + "/rg10", value.get());
+    }
 };
     //ROOM Parameter
 var OSCRoomMessage = {
@@ -457,28 +487,28 @@ function oscSourceEvent(address, args)
           source.gain.set(args[0]);
         }
     }
-    if (address[3]==='lfe')
+    else if (address[3]==='lfe')
     {
         if (typeof(args[0]) == 'number')
         {
           source.lfe.set(args[0]);
         }
     }
-    if (address[3] ==='mute')
+    else if (address[3] ==='mute')
     {
         if (typeof(args[0]) == 'number')
         {
           source.mute.set(args[0]);
         }
     }
-    if (address[3] ==='solo')
+    else if (address[3] ==='solo')
     {
         if (typeof(args[0]) == 'number')
         {
           source.solo.set(args[0]);
         }
     }
-    if (address[3]==='aed')
+    else if (address[3]==='aed')
     {
         if (typeof(args[0]) == 'number' && typeof(args[1]) == 'number' && typeof(args[2]) == 'number')
         {
@@ -496,7 +526,7 @@ function oscSourceEvent(address, args)
           stopSendingOSC = false;
         }
     }
-    if (address[3]==='xyz')
+    else if (address[3]==='xyz')
     {
         if (typeof(args[0]) == 'number' && typeof(args[1]) == 'number' && typeof(args[2]) == 'number')
         {
@@ -515,175 +545,175 @@ function oscSourceEvent(address, args)
           stopSendingOSC = false;
         }
     }
-    if (address[3]==='reverb' && address[4]==='enable')
+    else if (address[3]==='reverb' && address[4]==='enable')
     {
       if (typeof(args[0]) == 'number')
       {
         source.getChild("Reverb").reverbEnable.set(args[0]);
       }
     }
-    if (address.length === 4 && address[3] === 'early')
+    else if (address.length === 4 && address[3] === 'early')
     {
       if (typeof(args[0]) == 'number')
       {
         source.getChild("Reverb").earlyEnable.set(args[0]);
       }
     }
-    if (address[3] === 'cluster')
+    else if (address[3] === 'cluster')
     {
       if (typeof(args[0]) == 'number')
       {
         source.getChild("Reverb").clusterEnable.set(args[0]);
       }
     }
-    if (address[3] === 'tail')
+    else if (address[3] === 'tail')
     {
       if (typeof(args[0]) == 'number')
       {
         source.getChild("Reverb").tailEnable.set(args[0]);
       }
     }
-    if (address[3] === 'name')
+    else if (address[3] === 'name')
     {
       if (typeof(args[0]) == 'string')
       {
         source.sourceName.set(args[0]);
       }
     }
-    if (address[3]==='pres')
+    else if (address[3]==='pres')
     {
       if (typeof(args[0]) == 'number')
       {
         source.getChild("Perceptual Factors").presence.set(args[0]);
       }
     }
-    if (address[3]==='prer')
+    else if (address[3]==='prer')
     {
       if (typeof(args[0]) == 'number')
       {
         source.getChild("Perceptual Factors").roomPresence.set(args[0]);
       }
     }
-    if (address[3]==='revp')
+    else if (address[3]==='revp')
     {
       if (typeof(args[0]) == 'number')
       {
         source.getChild("Perceptual Factors").runningReverberance.set(args[0]);
       }
     }
-    if (address[3]==='env')
+    else if (address[3]==='env')
     {
       if (typeof(args[0]) == 'number')
       {
         source.getChild("Perceptual Factors").envelopment.set(args[0]);
       }
     }
-    if (address[3]==='warmth')
+    else if (address[3]==='warmth')
     {
       if (typeof(args[0]) == 'number')
       {
         source.getChild("Perceptual Factors").warmth.set(args[0]);
       }
     }
-    if (address[3]==='bril')
+    else if (address[3]==='bril')
     {
       if (typeof(args[0]) == 'number')
       {
         source.getChild("Perceptual Factors").brilliance.set(args[0]);
       }
     }
-    if (address[3]==='yaw')
+    else if (address[3]==='yaw')
     {
       if (typeof(args[0]) == 'number')
       {
         source.yaw.set(args[0]);
       }
     }
-    if (address[3]==='pitch')
+    else if (address[3]==='pitch')
     {
       if (typeof(args[0]) == 'number')
       {
         source.pitch.set(args[0]);
       }
     }
-    if (address[3]==='aperture')
+    else if (address[3]==='aperture')
     {
       if (typeof(args[0]) == 'number')
       {
         source.aperture.set(args[0]);
       }
     }
-    if (address[3]==='scale')
+    else if (address[3]==='scale')
     {
       if (typeof(args[0]) == 'number')
       {
         source.getChild("Barycentric").scale.set(args[0]);
       }
     }
-    if (address[3]==='spread')
+    else if (address[3]==='spread')
     {
       if (typeof(args[0]) == 'number')
       {
         source.getChild("Spreading").spread.set(args[0]);
       }
     }
-    if (address[3]==='nneig')
+    else if (address[3]==='nneig')
     {
       if (typeof(args[0]) == 'number')
       {
         source.getChild("Spreading").knn.set(args[0]);
       }
     }
-    if (address[3]==='early' && address[4]==='width')
+    else if (address[3]==='early' && address[4]==='width')
     {
       if (typeof(args[0]) == 'number')
       {
         source.getChild("Reverb").earlyWidth.set(args[0]);
       }
     }
-    if (address[3]==='prevf')
+    else if (address[3]==='prevf')
     {
       if (typeof(args[0]) == 'number')
       {
         source.getChild("Reverb").panRev.set(args[0]);
       }
     }
-    if (address[3]==='doppler' && address[4]==='enable')
+    else if (address[3]==='doppler' && address[4]==='enable')
     {
       if (typeof(args[0]) == 'number')
       {
         source.getChild("Options").doppler.set(args[0]);
       }
     }
-    if (address[3]==='radius')
+    else if (address[3]==='radius')
     {
       if (typeof(args[0]) == 'number')
       {
         source.getChild("Options").radius.set(args[0]);
       }
     }
-    if (address[3]==='air' && address[4]==='enable')
+    else if (address[3]==='air' && address[4]==='enable')
     {
       if (typeof(args[0]) == 'number')
       {
         source.getChild("Options").airAbsorption.set(args[0]);
       }
     }
-    if (address[3]==='cm')
+    else if (address[3]==='cm')
     {
       if (typeof(args[0]) == 'number')
       {
         source.getChild("Options").xyCoordinatesMode.set(args[0]);
       }
     }
-    if (address[3]==='zcm')
+    else if (address[3]==='zcm')
     {
       if (typeof(args[0]) == 'number')
       {
         source.getChild("Options").zCoordinatesMode.set(args[0]);
       }
     }
-    if (address[3]==='drop')
+    else if (address[3]==='drop')
     {
       if (address[4] ==='type')
       {
@@ -700,7 +730,7 @@ function oscSourceEvent(address, args)
         }
       }
     }
-    if (address[3]==='rotx')
+    else if (address[3]==='rotx')
     {
       if (typeof(args[0]) == 'number')
       {
@@ -709,7 +739,7 @@ function oscSourceEvent(address, args)
         source.getChild("Barycentric").rotationXYZ.set(value);
       }
     }
-    if (address[3]==='roty')
+    else if (address[3]==='roty')
     {
       if (typeof(args[0]) == 'number')
       {
@@ -718,7 +748,7 @@ function oscSourceEvent(address, args)
         source.getChild("Barycentric").rotationXYZ.set(value);
       }
     }
-    if (address[3]==='rotz')
+    else if (address[3]==='rotz')
     {
       if (typeof(args[0]) == 'number')
       {
@@ -726,6 +756,76 @@ function oscSourceEvent(address, args)
         value = [value[0], value[1], args[2]];
         source.getChild("Barycentric").rotationXYZ.set(value);
       }
+    }
+    else if (address[3]==='rg1')
+    {
+        if (typeof(args[0]) == 'number')
+        {
+            source.getChild("RoomGains").roomGain1.set(args[0]);
+        }
+    }
+    else if (address[3]==='rg2')
+    {
+        if (typeof(args[0]) == 'number')
+        {
+            source.getChild("RoomGains").roomGain2.set(args[0]);
+        }
+    }
+    else if (address[3]==='rg3')
+    {
+        if (typeof(args[0]) == 'number')
+        {
+            source.getChild("RoomGains").roomGain3.set(args[0]);
+        }
+    }
+    else if (address[3]==='rg4')
+    {
+        if (typeof(args[0]) == 'number')
+        {
+            source.getChild("RoomGains").roomGain4.set(args[0]);
+        }
+    }
+    else if (address[3]==='rg5')
+    {
+        if (typeof(args[0]) == 'number')
+        {
+            source.getChild("RoomGains").roomGain5.set(args[0]);
+        }
+    }
+    else if (address[3]==='rg6')
+    {
+        if (typeof(args[0]) == 'number')
+        {
+            source.getChild("RoomGains").roomGain6.set(args[0]);
+        }
+    }
+    else if (address[3]==='rg7')
+    {
+        if (typeof(args[0]) == 'number')
+        {
+            source.getChild("RoomGains").roomGain7.set(args[0]);
+        }
+    }
+    else if (address[3]==='rg8')
+    {
+        if (typeof(args[0]) == 'number')
+        {
+            source.getChild("RoomGains").roomGain8.set(args[0]);
+        }
+    }
+    else if (address[3]==='rg9')
+    {
+        if (typeof(args[0]) == 'number')
+        {
+            source.getChild("RoomGains").roomGain9.set(args[0]);
+        }
+    }
+    else if (address[3]==='rg10')
+    {
+        if (typeof(args[0]) == 'number')
+        {
+            source.getChild("RoomGains").roomGain10.set(args[0]);
+        }
     }
 }
 
@@ -1042,7 +1142,7 @@ function createSourceContainer()
     var sourceName = SourceContainer.addStringParameter("Source Name", "Source name", "Source name");
     sourceName.setAttribute("readonly", true);
 
-    var gain = SourceContainer.addFloatParameter("Gain", "Matrix input level", 0, -144.5, 24);
+    var gain = SourceContainer.addFloatParameter("Gain", "Gain", 0, -144.5, 24);
     gain.setAttribute("readonly", true);
 
     var mute = SourceContainer.addBoolParameter("Mute", "Mute", 0);
@@ -1139,6 +1239,37 @@ function createSourceContainer()
 
     var radius = optionsSourceContainer.addFloatParameter("Radius", "Radius", 1.0, 0.001, 100.0);
     radius.setAttribute("readonly", true);
+
+    roomGainsSourceContainer = SourceContainer.addContainer("Room Gains");
+    var roomGain1 = roomGainsSourceContainer.addFloatParameter("Room Gain 1", "Room Gain 1", 0, -144.5, 24);
+    //roomGain1.setAttribute("readonly", true);
+
+    var roomGain2 = roomGainsSourceContainer.addFloatParameter("Room Gain 2", "Room Gain 2", 0, -144.5, 24);
+    //roomGain1.setAttribute("readonly", true);
+
+    var roomGain3 = roomGainsSourceContainer.addFloatParameter("Room Gain 3", "Room Gain 3", 0, -144.5, 24);
+    //roomGain1.setAttribute("readonly", true);
+
+    var roomGain4 = roomGainsSourceContainer.addFloatParameter("Room Gain 4", "Room Gain 4", 0, -144.5, 24);
+    //roomGain1.setAttribute("readonly", true);
+
+    var roomGain5 = roomGainsSourceContainer.addFloatParameter("Room Gain 5", "Room Gain 5", 0, -144.5, 24);
+    //roomGain1.setAttribute("readonly", true);
+
+    var roomGain6 = roomGainsSourceContainer.addFloatParameter("Room Gain 6", "Room Gain 6", 0, -144.5, 24);
+    //roomGain1.setAttribute("readonly", true);
+
+    var roomGain7 = roomGainsSourceContainer.addFloatParameter("Room Gain 7", "Room Gain 7", 0, -144.5, 24);
+    //roomGain1.setAttribute("readonly", true);
+
+    var roomGain8 = roomGainsSourceContainer.addFloatParameter("Room Gain 8", "Room Gain 8", 0, -144.5, 24);
+    //roomGain1.setAttribute("readonly", true);
+
+    var roomGain9 = roomGainsSourceContainer.addFloatParameter("Room Gain 9", "Room Gain 9", 0, -144.5, 24);
+    //roomGain1.setAttribute("readonly", true);
+
+    var roomGain10 = roomGainsSourceContainer.addFloatParameter("Room Gain 10", "Room Gain 10", 0, -144.5, 24);
+    //roomGain1.setAttribute("readonly", true);
 
     reverbSourceContainer.setCollapsed(true);
     perceptualFactorSourceContainer.setCollapsed(true);

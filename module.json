@@ -239,6 +239,69 @@
            "min": -10.0,
            "max": 30.0
          }
+       },
+       "Room Gains": {
+         "type": "Container",
+         "Room Gain 1": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 1.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 2": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 2.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 3": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 3.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 4": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 4.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 5": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 5.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 6": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 6.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 7": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 7.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 8": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 8.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 9": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 9.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 10": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 10.\n",
+           "min": -144.5,
+           "max": 24.0
+         }
        }
      },
      "Source 2": {
@@ -434,6 +497,69 @@
            "description": "Set the drop factor.\n",
            "min": -10.0,
            "max": 30.0
+         }
+       },
+       "Room Gains": {
+         "type": "Container",
+         "Room Gain 1": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 1.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 2": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 2.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 3": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 3.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 4": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 4.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 5": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 5.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 6": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 6.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 7": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 7.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 8": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 8.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 9": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 9.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 10": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 10.\n",
+           "min": -144.5,
+           "max": 24.0
          }
        }
      },
@@ -631,6 +757,69 @@
            "min": -10.0,
            "max": 30.0
          }
+       },
+       "Room Gains": {
+         "type": "Container",
+         "Room Gain 1": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 1.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 2": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 2.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 3": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 3.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 4": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 4.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 5": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 5.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 6": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 6.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 7": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 7.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 8": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 8.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 9": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 9.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 10": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 10.\n",
+           "min": -144.5,
+           "max": 24.0
+         }
        }
      },
      "Source 4": {
@@ -826,6 +1015,69 @@
            "description": "Set the drop factor.\n",
            "min": -10.0,
            "max": 30.0
+         }
+       },
+       "Room Gains": {
+         "type": "Container",
+         "Room Gain 1": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 1.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 2": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 2.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 3": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 3.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 4": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 4.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 5": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 5.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 6": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 6.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 7": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 7.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 8": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 8.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 9": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 9.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 10": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 10.\n",
+           "min": -144.5,
+           "max": 24.0
          }
        }
      },
@@ -1023,6 +1275,69 @@
            "min": -10.0,
            "max": 30.0
          }
+       },
+       "Room Gains": {
+         "type": "Container",
+         "Room Gain 1": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 1.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 2": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 2.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 3": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 3.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 4": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 4.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 5": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 5.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 6": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 6.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 7": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 7.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 8": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 8.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 9": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 9.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 10": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 10.\n",
+           "min": -144.5,
+           "max": 24.0
+         }
        }
      },
      "Source 6": {
@@ -1218,6 +1533,69 @@
            "description": "Set the drop factor.\n",
            "min": -10.0,
            "max": 30.0
+         }
+       },
+       "Room Gains": {
+         "type": "Container",
+         "Room Gain 1": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 1.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 2": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 2.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 3": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 3.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 4": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 4.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 5": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 5.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 6": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 6.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 7": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 7.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 8": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 8.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 9": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 9.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 10": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 10.\n",
+           "min": -144.5,
+           "max": 24.0
          }
        }
      },
@@ -1415,6 +1793,69 @@
            "min": -10.0,
            "max": 30.0
          }
+       },
+       "Room Gains": {
+         "type": "Container",
+         "Room Gain 1": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 1.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 2": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 2.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 3": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 3.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 4": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 4.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 5": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 5.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 6": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 6.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 7": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 7.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 8": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 8.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 9": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 9.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 10": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 10.\n",
+           "min": -144.5,
+           "max": 24.0
+         }
        }
      },
      "Source 8": {
@@ -1610,6 +2051,69 @@
            "description": "Set the drop factor.\n",
            "min": -10.0,
            "max": 30.0
+         }
+       },
+       "Room Gains": {
+         "type": "Container",
+         "Room Gain 1": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 1.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 2": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 2.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 3": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 3.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 4": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 4.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 5": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 5.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 6": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 6.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 7": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 7.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 8": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 8.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 9": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 9.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 10": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 10.\n",
+           "min": -144.5,
+           "max": 24.0
          }
        }
      },
@@ -1807,6 +2311,69 @@
            "min": -10.0,
            "max": 30.0
          }
+       },
+       "Room Gains": {
+         "type": "Container",
+         "Room Gain 1": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 1.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 2": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 2.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 3": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 3.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 4": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 4.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 5": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 5.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 6": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 6.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 7": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 7.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 8": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 8.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 9": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 9.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 10": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 10.\n",
+           "min": -144.5,
+           "max": 24.0
+         }
        }
      },
      "Source 10": {
@@ -2002,6 +2569,69 @@
            "description": "Set the drop factor.\n",
            "min": -10.0,
            "max": 30.0
+         }
+       },
+       "Room Gains": {
+         "type": "Container",
+         "Room Gain 1": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 1.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 2": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 2.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 3": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 3.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 4": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 4.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 5": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 5.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 6": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 6.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 7": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 7.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 8": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 8.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 9": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 9.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 10": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 10.\n",
+           "min": -144.5,
+           "max": 24.0
          }
        }
      },
@@ -2199,6 +2829,69 @@
            "min": -10.0,
            "max": 30.0
          }
+       },
+       "Room Gains": {
+         "type": "Container",
+         "Room Gain 1": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 1.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 2": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 2.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 3": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 3.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 4": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 4.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 5": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 5.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 6": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 6.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 7": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 7.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 8": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 8.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 9": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 9.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 10": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 10.\n",
+           "min": -144.5,
+           "max": 24.0
+         }
        }
      },
      "Source 12": {
@@ -2394,6 +3087,69 @@
            "description": "Set the drop factor.\n",
            "min": -10.0,
            "max": 30.0
+         }
+       },
+       "Room Gains": {
+         "type": "Container",
+         "Room Gain 1": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 1.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 2": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 2.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 3": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 3.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 4": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 4.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 5": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 5.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 6": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 6.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 7": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 7.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 8": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 8.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 9": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 9.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 10": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 10.\n",
+           "min": -144.5,
+           "max": 24.0
          }
        }
      },
@@ -2591,6 +3347,69 @@
            "min": -10.0,
            "max": 30.0
          }
+       },
+       "Room Gains": {
+         "type": "Container",
+         "Room Gain 1": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 1.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 2": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 2.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 3": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 3.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 4": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 4.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 5": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 5.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 6": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 6.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 7": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 7.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 8": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 8.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 9": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 9.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 10": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 10.\n",
+           "min": -144.5,
+           "max": 24.0
+         }
        }
      },
      "Source 14": {
@@ -2786,6 +3605,69 @@
            "description": "Set the drop factor.\n",
            "min": -10.0,
            "max": 30.0
+         }
+       },
+       "Room Gains": {
+         "type": "Container",
+         "Room Gain 1": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 1.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 2": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 2.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 3": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 3.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 4": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 4.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 5": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 5.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 6": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 6.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 7": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 7.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 8": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 8.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 9": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 9.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 10": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 10.\n",
+           "min": -144.5,
+           "max": 24.0
          }
        }
      },
@@ -2983,6 +3865,69 @@
            "min": -10.0,
            "max": 30.0
          }
+       },
+       "Room Gains": {
+         "type": "Container",
+         "Room Gain 1": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 1.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 2": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 2.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 3": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 3.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 4": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 4.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 5": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 5.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 6": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 6.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 7": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 7.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 8": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 8.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 9": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 9.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 10": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 10.\n",
+           "min": -144.5,
+           "max": 24.0
+         }
        }
      },
      "Source 16": {
@@ -3178,6 +4123,69 @@
            "description": "Set the drop factor.\n",
            "min": -10.0,
            "max": 30.0
+         }
+       },
+       "Room Gains": {
+         "type": "Container",
+         "Room Gain 1": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 1.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 2": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 2.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 3": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 3.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 4": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 4.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 5": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 5.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 6": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 6.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 7": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 7.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 8": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 8.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 9": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 9.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 10": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 10.\n",
+           "min": -144.5,
+           "max": 24.0
          }
        }
      },
@@ -3375,6 +4383,69 @@
            "min": -10.0,
            "max": 30.0
          }
+       },
+       "Room Gains": {
+         "type": "Container",
+         "Room Gain 1": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 1.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 2": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 2.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 3": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 3.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 4": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 4.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 5": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 5.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 6": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 6.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 7": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 7.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 8": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 8.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 9": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 9.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 10": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 10.\n",
+           "min": -144.5,
+           "max": 24.0
+         }
        }
      },
      "Source 18": {
@@ -3570,6 +4641,69 @@
            "description": "Set the drop factor.\n",
            "min": -10.0,
            "max": 30.0
+         }
+       },
+       "Room Gains": {
+         "type": "Container",
+         "Room Gain 1": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 1.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 2": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 2.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 3": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 3.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 4": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 4.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 5": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 5.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 6": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 6.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 7": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 7.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 8": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 8.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 9": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 9.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 10": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 10.\n",
+           "min": -144.5,
+           "max": 24.0
          }
        }
      },
@@ -3767,6 +4901,69 @@
            "min": -10.0,
            "max": 30.0
          }
+       },
+       "Room Gains": {
+         "type": "Container",
+         "Room Gain 1": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 1.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 2": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 2.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 3": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 3.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 4": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 4.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 5": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 5.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 6": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 6.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 7": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 7.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 8": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 8.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 9": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 9.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 10": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 10.\n",
+           "min": -144.5,
+           "max": 24.0
+         }
        }
      },
      "Source 20": {
@@ -3962,6 +5159,69 @@
            "description": "Set the drop factor.\n",
            "min": -10.0,
            "max": 30.0
+         }
+       },
+       "Room Gains": {
+         "type": "Container",
+         "Room Gain 1": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 1.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 2": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 2.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 3": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 3.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 4": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 4.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 5": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 5.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 6": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 6.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 7": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 7.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 8": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 8.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 9": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 9.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 10": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 10.\n",
+           "min": -144.5,
+           "max": 24.0
          }
        }
      },
@@ -4159,6 +5419,69 @@
            "min": -10.0,
            "max": 30.0
          }
+       },
+       "Room Gains": {
+         "type": "Container",
+         "Room Gain 1": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 1.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 2": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 2.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 3": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 3.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 4": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 4.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 5": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 5.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 6": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 6.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 7": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 7.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 8": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 8.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 9": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 9.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 10": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 10.\n",
+           "min": -144.5,
+           "max": 24.0
+         }
        }
      },
      "Source 22": {
@@ -4354,6 +5677,69 @@
            "description": "Set the drop factor.\n",
            "min": -10.0,
            "max": 30.0
+         }
+       },
+       "Room Gains": {
+         "type": "Container",
+         "Room Gain 1": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 1.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 2": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 2.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 3": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 3.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 4": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 4.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 5": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 5.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 6": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 6.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 7": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 7.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 8": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 8.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 9": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 9.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 10": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 10.\n",
+           "min": -144.5,
+           "max": 24.0
          }
        }
      },
@@ -4551,6 +5937,69 @@
            "min": -10.0,
            "max": 30.0
          }
+       },
+       "Room Gains": {
+         "type": "Container",
+         "Room Gain 1": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 1.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 2": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 2.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 3": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 3.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 4": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 4.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 5": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 5.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 6": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 6.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 7": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 7.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 8": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 8.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 9": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 9.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 10": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 10.\n",
+           "min": -144.5,
+           "max": 24.0
+         }
        }
      },
      "Source 24": {
@@ -4746,6 +6195,69 @@
            "description": "Set the drop factor.\n",
            "min": -10.0,
            "max": 30.0
+         }
+       },
+       "Room Gains": {
+         "type": "Container",
+         "Room Gain 1": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 1.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 2": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 2.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 3": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 3.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 4": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 4.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 5": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 5.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 6": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 6.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 7": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 7.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 8": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 8.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 9": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 9.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 10": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 10.\n",
+           "min": -144.5,
+           "max": 24.0
          }
        }
      },
@@ -4943,6 +6455,69 @@
            "min": -10.0,
            "max": 30.0
          }
+       },
+       "Room Gains": {
+         "type": "Container",
+         "Room Gain 1": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 1.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 2": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 2.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 3": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 3.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 4": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 4.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 5": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 5.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 6": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 6.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 7": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 7.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 8": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 8.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 9": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 9.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 10": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 10.\n",
+           "min": -144.5,
+           "max": 24.0
+         }
        }
      },
      "Source 26": {
@@ -5138,6 +6713,69 @@
            "description": "Set the drop factor.\n",
            "min": -10.0,
            "max": 30.0
+         }
+       },
+       "Room Gains": {
+         "type": "Container",
+         "Room Gain 1": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 1.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 2": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 2.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 3": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 3.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 4": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 4.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 5": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 5.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 6": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 6.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 7": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 7.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 8": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 8.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 9": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 9.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 10": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 10.\n",
+           "min": -144.5,
+           "max": 24.0
          }
        }
      },
@@ -5335,6 +6973,69 @@
            "min": -10.0,
            "max": 30.0
          }
+       },
+       "Room Gains": {
+         "type": "Container",
+         "Room Gain 1": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 1.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 2": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 2.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 3": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 3.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 4": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 4.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 5": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 5.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 6": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 6.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 7": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 7.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 8": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 8.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 9": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 9.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 10": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 10.\n",
+           "min": -144.5,
+           "max": 24.0
+         }
        }
      },
      "Source 28": {
@@ -5530,6 +7231,69 @@
            "description": "Set the drop factor.\n",
            "min": -10.0,
            "max": 30.0
+         }
+       },
+       "Room Gains": {
+         "type": "Container",
+         "Room Gain 1": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 1.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 2": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 2.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 3": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 3.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 4": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 4.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 5": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 5.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 6": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 6.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 7": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 7.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 8": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 8.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 9": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 9.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 10": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 10.\n",
+           "min": -144.5,
+           "max": 24.0
          }
        }
      },
@@ -5727,6 +7491,69 @@
            "min": -10.0,
            "max": 30.0
          }
+       },
+       "Room Gains": {
+         "type": "Container",
+         "Room Gain 1": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 1.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 2": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 2.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 3": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 3.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 4": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 4.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 5": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 5.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 6": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 6.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 7": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 7.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 8": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 8.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 9": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 9.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 10": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 10.\n",
+           "min": -144.5,
+           "max": 24.0
+         }
        }
      },
      "Source 30": {
@@ -5922,6 +7749,69 @@
            "description": "Set the drop factor.\n",
            "min": -10.0,
            "max": 30.0
+         }
+       },
+       "Room Gains": {
+         "type": "Container",
+         "Room Gain 1": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 1.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 2": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 2.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 3": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 3.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 4": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 4.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 5": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 5.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 6": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 6.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 7": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 7.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 8": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 8.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 9": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 9.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 10": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 10.\n",
+           "min": -144.5,
+           "max": 24.0
          }
        }
      },
@@ -6119,6 +8009,69 @@
            "min": -10.0,
            "max": 30.0
          }
+       },
+       "Room Gains": {
+         "type": "Container",
+         "Room Gain 1": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 1.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 2": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 2.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 3": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 3.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 4": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 4.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 5": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 5.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 6": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 6.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 7": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 7.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 8": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 8.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 9": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 9.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 10": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 10.\n",
+           "min": -144.5,
+           "max": 24.0
+         }
        }
      },
      "Source 32": {
@@ -6314,6 +8267,69 @@
            "description": "Set the drop factor.\n",
            "min": -10.0,
            "max": 30.0
+         }
+       },
+       "Room Gains": {
+         "type": "Container",
+         "Room Gain 1": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 1.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 2": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 2.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 3": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 3.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 4": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 4.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 5": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 5.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 6": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 6.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 7": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 7.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 8": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 8.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 9": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 9.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 10": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 10.\n",
+           "min": -144.5,
+           "max": 24.0
          }
        }
      },
@@ -6511,6 +8527,69 @@
            "min": -10.0,
            "max": 30.0
          }
+       },
+       "Room Gains": {
+         "type": "Container",
+         "Room Gain 1": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 1.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 2": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 2.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 3": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 3.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 4": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 4.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 5": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 5.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 6": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 6.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 7": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 7.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 8": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 8.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 9": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 9.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 10": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 10.\n",
+           "min": -144.5,
+           "max": 24.0
+         }
        }
      },
      "Source 34": {
@@ -6706,6 +8785,69 @@
            "description": "Set the drop factor.\n",
            "min": -10.0,
            "max": 30.0
+         }
+       },
+       "Room Gains": {
+         "type": "Container",
+         "Room Gain 1": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 1.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 2": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 2.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 3": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 3.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 4": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 4.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 5": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 5.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 6": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 6.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 7": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 7.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 8": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 8.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 9": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 9.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 10": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 10.\n",
+           "min": -144.5,
+           "max": 24.0
          }
        }
      },
@@ -6903,6 +9045,69 @@
            "min": -10.0,
            "max": 30.0
          }
+       },
+       "Room Gains": {
+         "type": "Container",
+         "Room Gain 1": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 1.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 2": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 2.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 3": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 3.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 4": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 4.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 5": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 5.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 6": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 6.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 7": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 7.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 8": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 8.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 9": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 9.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 10": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 10.\n",
+           "min": -144.5,
+           "max": 24.0
+         }
        }
      },
      "Source 36": {
@@ -7098,6 +9303,69 @@
            "description": "Set the drop factor.\n",
            "min": -10.0,
            "max": 30.0
+         }
+       },
+       "Room Gains": {
+         "type": "Container",
+         "Room Gain 1": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 1.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 2": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 2.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 3": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 3.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 4": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 4.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 5": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 5.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 6": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 6.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 7": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 7.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 8": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 8.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 9": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 9.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 10": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 10.\n",
+           "min": -144.5,
+           "max": 24.0
          }
        }
      },
@@ -7295,6 +9563,69 @@
            "min": -10.0,
            "max": 30.0
          }
+       },
+       "Room Gains": {
+         "type": "Container",
+         "Room Gain 1": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 1.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 2": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 2.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 3": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 3.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 4": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 4.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 5": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 5.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 6": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 6.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 7": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 7.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 8": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 8.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 9": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 9.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 10": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 10.\n",
+           "min": -144.5,
+           "max": 24.0
+         }
        }
      },
      "Source 38": {
@@ -7490,6 +9821,69 @@
            "description": "Set the drop factor.\n",
            "min": -10.0,
            "max": 30.0
+         }
+       },
+       "Room Gains": {
+         "type": "Container",
+         "Room Gain 1": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 1.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 2": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 2.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 3": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 3.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 4": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 4.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 5": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 5.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 6": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 6.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 7": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 7.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 8": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 8.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 9": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 9.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 10": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 10.\n",
+           "min": -144.5,
+           "max": 24.0
          }
        }
      },
@@ -7687,6 +10081,69 @@
            "min": -10.0,
            "max": 30.0
          }
+       },
+       "Room Gains": {
+         "type": "Container",
+         "Room Gain 1": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 1.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 2": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 2.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 3": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 3.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 4": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 4.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 5": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 5.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 6": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 6.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 7": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 7.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 8": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 8.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 9": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 9.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 10": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 10.\n",
+           "min": -144.5,
+           "max": 24.0
+         }
        }
      },
      "Source 40": {
@@ -7882,6 +10339,69 @@
            "description": "Set the drop factor.\n",
            "min": -10.0,
            "max": 30.0
+         }
+       },
+       "Room Gains": {
+         "type": "Container",
+         "Room Gain 1": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 1.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 2": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 2.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 3": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 3.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 4": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 4.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 5": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 5.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 6": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 6.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 7": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 7.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 8": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 8.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 9": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 9.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 10": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 10.\n",
+           "min": -144.5,
+           "max": 24.0
          }
        }
      },
@@ -8079,6 +10599,69 @@
            "min": -10.0,
            "max": 30.0
          }
+       },
+       "Room Gains": {
+         "type": "Container",
+         "Room Gain 1": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 1.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 2": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 2.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 3": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 3.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 4": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 4.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 5": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 5.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 6": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 6.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 7": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 7.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 8": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 8.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 9": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 9.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 10": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 10.\n",
+           "min": -144.5,
+           "max": 24.0
+         }
        }
      },
      "Source 42": {
@@ -8274,6 +10857,69 @@
            "description": "Set the drop factor.\n",
            "min": -10.0,
            "max": 30.0
+         }
+       },
+       "Room Gains": {
+         "type": "Container",
+         "Room Gain 1": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 1.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 2": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 2.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 3": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 3.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 4": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 4.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 5": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 5.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 6": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 6.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 7": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 7.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 8": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 8.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 9": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 9.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 10": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 10.\n",
+           "min": -144.5,
+           "max": 24.0
          }
        }
      },
@@ -8471,6 +11117,69 @@
            "min": -10.0,
            "max": 30.0
          }
+       },
+       "Room Gains": {
+         "type": "Container",
+         "Room Gain 1": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 1.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 2": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 2.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 3": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 3.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 4": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 4.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 5": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 5.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 6": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 6.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 7": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 7.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 8": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 8.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 9": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 9.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 10": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 10.\n",
+           "min": -144.5,
+           "max": 24.0
+         }
        }
      },
      "Source 44": {
@@ -8666,6 +11375,69 @@
            "description": "Set the drop factor.\n",
            "min": -10.0,
            "max": 30.0
+         }
+       },
+       "Room Gains": {
+         "type": "Container",
+         "Room Gain 1": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 1.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 2": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 2.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 3": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 3.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 4": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 4.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 5": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 5.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 6": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 6.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 7": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 7.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 8": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 8.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 9": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 9.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 10": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 10.\n",
+           "min": -144.5,
+           "max": 24.0
          }
        }
      },
@@ -8863,6 +11635,69 @@
            "min": -10.0,
            "max": 30.0
          }
+       },
+       "Room Gains": {
+         "type": "Container",
+         "Room Gain 1": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 1.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 2": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 2.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 3": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 3.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 4": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 4.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 5": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 5.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 6": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 6.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 7": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 7.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 8": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 8.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 9": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 9.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 10": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 10.\n",
+           "min": -144.5,
+           "max": 24.0
+         }
        }
      },
      "Source 46": {
@@ -9058,6 +11893,69 @@
            "description": "Set the drop factor.\n",
            "min": -10.0,
            "max": 30.0
+         }
+       },
+       "Room Gains": {
+         "type": "Container",
+         "Room Gain 1": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 1.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 2": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 2.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 3": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 3.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 4": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 4.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 5": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 5.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 6": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 6.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 7": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 7.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 8": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 8.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 9": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 9.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 10": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 10.\n",
+           "min": -144.5,
+           "max": 24.0
          }
        }
      },
@@ -9255,6 +12153,69 @@
            "min": -10.0,
            "max": 30.0
          }
+       },
+       "Room Gains": {
+         "type": "Container",
+         "Room Gain 1": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 1.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 2": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 2.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 3": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 3.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 4": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 4.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 5": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 5.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 6": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 6.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 7": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 7.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 8": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 8.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 9": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 9.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 10": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 10.\n",
+           "min": -144.5,
+           "max": 24.0
+         }
        }
      },
      "Source 48": {
@@ -9450,6 +12411,69 @@
            "description": "Set the drop factor.\n",
            "min": -10.0,
            "max": 30.0
+         }
+       },
+       "Room Gains": {
+         "type": "Container",
+         "Room Gain 1": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 1.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 2": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 2.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 3": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 3.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 4": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 4.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 5": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 5.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 6": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 6.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 7": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 7.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 8": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 8.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 9": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 9.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 10": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 10.\n",
+           "min": -144.5,
+           "max": 24.0
          }
        }
      },
@@ -9647,6 +12671,69 @@
            "min": -10.0,
            "max": 30.0
          }
+       },
+       "Room Gains": {
+         "type": "Container",
+         "Room Gain 1": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 1.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 2": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 2.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 3": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 3.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 4": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 4.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 5": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 5.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 6": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 6.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 7": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 7.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 8": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 8.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 9": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 9.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 10": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 10.\n",
+           "min": -144.5,
+           "max": 24.0
+         }
        }
      },
      "Source 50": {
@@ -9842,6 +12929,69 @@
            "description": "Set the drop factor.\n",
            "min": -10.0,
            "max": 30.0
+         }
+       },
+       "Room Gains": {
+         "type": "Container",
+         "Room Gain 1": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 1.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 2": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 2.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 3": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 3.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 4": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 4.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 5": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 5.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 6": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 6.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 7": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 7.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 8": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 8.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 9": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 9.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 10": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 10.\n",
+           "min": -144.5,
+           "max": 24.0
          }
        }
      },
@@ -10039,6 +13189,69 @@
            "min": -10.0,
            "max": 30.0
          }
+       },
+       "Room Gains": {
+         "type": "Container",
+         "Room Gain 1": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 1.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 2": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 2.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 3": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 3.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 4": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 4.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 5": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 5.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 6": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 6.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 7": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 7.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 8": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 8.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 9": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 9.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 10": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 10.\n",
+           "min": -144.5,
+           "max": 24.0
+         }
        }
      },
      "Source 52": {
@@ -10234,6 +13447,69 @@
            "description": "Set the drop factor.\n",
            "min": -10.0,
            "max": 30.0
+         }
+       },
+       "Room Gains": {
+         "type": "Container",
+         "Room Gain 1": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 1.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 2": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 2.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 3": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 3.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 4": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 4.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 5": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 5.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 6": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 6.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 7": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 7.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 8": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 8.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 9": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 9.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 10": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 10.\n",
+           "min": -144.5,
+           "max": 24.0
          }
        }
      },
@@ -10431,6 +13707,69 @@
            "min": -10.0,
            "max": 30.0
          }
+       },
+       "Room Gains": {
+         "type": "Container",
+         "Room Gain 1": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 1.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 2": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 2.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 3": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 3.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 4": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 4.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 5": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 5.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 6": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 6.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 7": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 7.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 8": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 8.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 9": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 9.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 10": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 10.\n",
+           "min": -144.5,
+           "max": 24.0
+         }
        }
      },
      "Source 54": {
@@ -10626,6 +13965,69 @@
            "description": "Set the drop factor.\n",
            "min": -10.0,
            "max": 30.0
+         }
+       },
+       "Room Gains": {
+         "type": "Container",
+         "Room Gain 1": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 1.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 2": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 2.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 3": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 3.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 4": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 4.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 5": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 5.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 6": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 6.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 7": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 7.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 8": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 8.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 9": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 9.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 10": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 10.\n",
+           "min": -144.5,
+           "max": 24.0
          }
        }
      },
@@ -10823,6 +14225,69 @@
            "min": -10.0,
            "max": 30.0
          }
+       },
+       "Room Gains": {
+         "type": "Container",
+         "Room Gain 1": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 1.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 2": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 2.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 3": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 3.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 4": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 4.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 5": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 5.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 6": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 6.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 7": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 7.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 8": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 8.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 9": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 9.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 10": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 10.\n",
+           "min": -144.5,
+           "max": 24.0
+         }
        }
      },
      "Source 56": {
@@ -11018,6 +14483,69 @@
            "description": "Set the drop factor.\n",
            "min": -10.0,
            "max": 30.0
+         }
+       },
+       "Room Gains": {
+         "type": "Container",
+         "Room Gain 1": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 1.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 2": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 2.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 3": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 3.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 4": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 4.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 5": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 5.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 6": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 6.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 7": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 7.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 8": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 8.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 9": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 9.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 10": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 10.\n",
+           "min": -144.5,
+           "max": 24.0
          }
        }
      },
@@ -11215,6 +14743,69 @@
            "min": -10.0,
            "max": 30.0
          }
+       },
+       "Room Gains": {
+         "type": "Container",
+         "Room Gain 1": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 1.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 2": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 2.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 3": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 3.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 4": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 4.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 5": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 5.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 6": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 6.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 7": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 7.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 8": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 8.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 9": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 9.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 10": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 10.\n",
+           "min": -144.5,
+           "max": 24.0
+         }
        }
      },
      "Source 58": {
@@ -11410,6 +15001,69 @@
            "description": "Set the drop factor.\n",
            "min": -10.0,
            "max": 30.0
+         }
+       },
+       "Room Gains": {
+         "type": "Container",
+         "Room Gain 1": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 1.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 2": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 2.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 3": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 3.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 4": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 4.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 5": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 5.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 6": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 6.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 7": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 7.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 8": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 8.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 9": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 9.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 10": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 10.\n",
+           "min": -144.5,
+           "max": 24.0
          }
        }
      },
@@ -11607,6 +15261,69 @@
            "min": -10.0,
            "max": 30.0
          }
+       },
+       "Room Gains": {
+         "type": "Container",
+         "Room Gain 1": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 1.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 2": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 2.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 3": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 3.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 4": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 4.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 5": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 5.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 6": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 6.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 7": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 7.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 8": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 8.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 9": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 9.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 10": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 10.\n",
+           "min": -144.5,
+           "max": 24.0
+         }
        }
      },
      "Source 60": {
@@ -11802,6 +15519,69 @@
            "description": "Set the drop factor.\n",
            "min": -10.0,
            "max": 30.0
+         }
+       },
+       "Room Gains": {
+         "type": "Container",
+         "Room Gain 1": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 1.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 2": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 2.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 3": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 3.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 4": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 4.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 5": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 5.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 6": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 6.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 7": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 7.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 8": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 8.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 9": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 9.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 10": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 10.\n",
+           "min": -144.5,
+           "max": 24.0
          }
        }
      },
@@ -11999,6 +15779,69 @@
            "min": -10.0,
            "max": 30.0
          }
+       },
+       "Room Gains": {
+         "type": "Container",
+         "Room Gain 1": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 1.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 2": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 2.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 3": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 3.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 4": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 4.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 5": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 5.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 6": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 6.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 7": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 7.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 8": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 8.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 9": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 9.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 10": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 10.\n",
+           "min": -144.5,
+           "max": 24.0
+         }
        }
      },
      "Source 62": {
@@ -12194,6 +16037,69 @@
            "description": "Set the drop factor.\n",
            "min": -10.0,
            "max": 30.0
+         }
+       },
+       "Room Gains": {
+         "type": "Container",
+         "Room Gain 1": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 1.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 2": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 2.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 3": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 3.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 4": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 4.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 5": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 5.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 6": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 6.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 7": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 7.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 8": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 8.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 9": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 9.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 10": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 10.\n",
+           "min": -144.5,
+           "max": 24.0
          }
        }
      },
@@ -12391,6 +16297,69 @@
            "min": -10.0,
            "max": 30.0
          }
+       },
+       "Room Gains": {
+         "type": "Container",
+         "Room Gain 1": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 1.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 2": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 2.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 3": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 3.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 4": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 4.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 5": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 5.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 6": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 6.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 7": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 7.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 8": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 8.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 9": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 9.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 10": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 10.\n",
+           "min": -144.5,
+           "max": 24.0
+         }
        }
      },
      "Source 64": {
@@ -12586,6 +16555,69 @@
            "description": "Set the drop factor.\n",
            "min": -10.0,
            "max": 30.0
+         }
+       },
+       "Room Gains": {
+         "type": "Container",
+         "Room Gain 1": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 1.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 2": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 2.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 3": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 3.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 4": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 4.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 5": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 5.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 6": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 6.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 7": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 7.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 8": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 8.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 9": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 9.\n",
+           "min": -144.5,
+           "max": 24.0
+         },
+         "Room Gain 10": {
+           "type": "Float",
+           "description": "Set the specific gain for the room 10.\n",
+           "min": -144.5,
+           "max": 24.0
          }
        }
      }
