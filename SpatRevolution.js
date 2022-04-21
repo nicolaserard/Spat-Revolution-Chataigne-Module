@@ -314,6 +314,9 @@ var reverbOptionsRoomContainer = null;
 var reverbCrossoverRoomContainer = null;
 var Cartesian = false; // define the mode of position for all sources. Cartesian when true, Polar when false.
 var stopSendingOSC = false;
+var stereo = ['false', 'false', 'false', 'false', 'false', 'false', 'false', 'false', 'false', 'true', 'true', 'true', 'true', 'true', 'false', 'true', 'true', 'true', 'true', 'false', 'true'];
+var transformStereoToMono = false;
+var normalizedRange = [-10, 10, -10, 10, -10, 10];
 
 /* 	===============================================================================
 *	Chataigne common functions
@@ -514,6 +517,76 @@ function oscSourceEvent(address, args)
         {
           Sources[i]['positionAED'] = args;
           Sources[i]['positionXYZ'] = PolarToCartesian(args);
+
+
+          if(transformStereoToMono)
+          {
+              var index = 1;
+              script.log("Index:" + i);
+              var a = 0;
+              if (stereo.length > parseInt(i))
+              {
+                  for (var j = 0; j < i; j++){
+                      if (stereo[j])
+                      {
+                          index += 2 ;
+                      }
+                      else
+                      {
+                          index += 1;
+                      }
+
+                  }
+
+                  var x = 0;
+                  var y = 0;
+                  var z = 0;
+                  var normalizedValue = [0.5, 0.5, 0.5];
+                  var azim = DegToRad(args[0]);
+                  var elev = DegToRad(args[1]);
+                  var distance = args[2];
+
+                  if (stereo[i] === 'true')
+                  {
+                      var scale = source.getChild("Barycentric").scale.get();
+
+                      x = distance * Math.cos(azim) * Math.sin(elev) - scale * Math.sin(azim);
+                      y = distance * Math.sin(azim) * Math.sin(elev) + scale * Math.cos(azim);
+                      z = distance * Math.cos(elev);
+
+                      normalizedValue = [Math.max(Math.min(x, normalizedRange[1]), normalizedRange[0]) / (normalizedRange[1] - normalizedRange[0]),
+                          Math.max(Math.min(y, normalizedRange[3]), normalizedRange[2]) / (normalizedRange[3] - normalizedRange[2]),
+                          Math.max(Math.min(z, normalizedRange[5]), normalizedRange[4]) / (normalizedRange[5] - normalizedRange[4])];
+
+                      local.send("/adm/obj/" + index + "/xyz", normalizedValue);
+
+                      index += 1;
+                      x = distance * Math.cos(azim) * Math.sin(elev) + scale * Math.sin(azim);
+                      y = distance * Math.sin(azim) * Math.sin(elev) - scale * Math.cos(azim);
+                      z = distance * Math.cos(elev);
+
+                      normalizedValue = [Math.max(Math.min(x, normalizedRange[1]), normalizedRange[0]) / (normalizedRange[1] - normalizedRange[0]),
+                          Math.max(Math.min(y, normalizedRange[3]), normalizedRange[2]) / (normalizedRange[3] - normalizedRange[2]),
+                          Math.max(Math.min(z, normalizedRange[5]), normalizedRange[4]) / (normalizedRange[5] - normalizedRange[4])];
+
+                      local.send("/adm/obj/" + index + "/xyz", normalizedValue);
+                  }
+                  else
+                  {
+                      x = distance * Math.cos(azim) * Math.sin(elev);
+                      y = distance * Math.sin(azim) * Math.sin(elev);
+                      z = distance * Math.cos(elev);
+
+                      normalizedValue = [Math.max(Math.min(x, normalizedRange[1]), normalizedRange[0]) / (normalizedRange[1] - normalizedRange[0]),
+                          Math.max(Math.min(y, normalizedRange[3]), normalizedRange[2]) / (normalizedRange[3] - normalizedRange[2]),
+                          Math.max(Math.min(z, normalizedRange[5]), normalizedRange[4]) / (normalizedRange[5] - normalizedRange[4])];
+
+                      local.send("/adm/obj/" + index + "/xyz", normalizedValue);
+                  }
+              }
+          }
+
+
           stopSendingOSC = true;
           if (Cartesian === true)
           {
@@ -1199,8 +1272,9 @@ function createSourceContainer()
     aperture.setAttribute("readonly", true);
 
     barycentricSourceContainer = SourceContainer.addContainer("Barycentric");
-    var scale = barycentricSourceContainer.addFloatParameter("Scale", "Scale", 1, 0.01, 100.0);
+    var scale = barycentricSourceContainer.addFloatParameter("Scale", "Scale", 1.0, 0.01, 100.0);
     scale.setAttribute("readonly", true);
+    scale.set(1.0);
 
     var rotationXYZ = barycentricSourceContainer.addPoint3DParameter("Rotation XYZ", "Rotation XYZ", [0.0, 0.0, 0.0]);
     rotationXYZ.setAttribute("readonly", true);
