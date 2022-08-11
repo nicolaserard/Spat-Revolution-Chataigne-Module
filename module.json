@@ -65,7 +65,25 @@
          "min": -144.5,
          "max": 24.0
        },
-       "LFE": {
+       "LFE1": {
+         "type": "Float",
+         "description": "LFE gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE2": {
+         "type": "Float",
+         "description": "LFE gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE3": {
+         "type": "Float",
+         "description": "LFE gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE4": {
          "type": "Float",
          "description": "LFE gain.\n",
          "min": -144.5,
@@ -324,9 +342,27 @@
          "min": -144.5,
          "max": 24.0
        },
-       "LFE": {
+       "LFE1": {
          "type": "Float",
-         "description": "LFE gain.\n",
+         "description": "LFE 1 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE2": {
+         "type": "Float",
+         "description": "LFE 2 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE3": {
+         "type": "Float",
+         "description": "LFE 3 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE4": {
+         "type": "Float",
+         "description": "LFE 4 gain.\n",
          "min": -144.5,
          "max": 12.0
        },
@@ -583,9 +619,27 @@
          "min": -144.5,
          "max": 24.0
        },
-       "LFE": {
+       "LFE1": {
          "type": "Float",
-         "description": "LFE gain.\n",
+         "description": "LFE 1 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE2": {
+         "type": "Float",
+         "description": "LFE 2 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE3": {
+         "type": "Float",
+         "description": "LFE 3 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE4": {
+         "type": "Float",
+         "description": "LFE 4 gain.\n",
          "min": -144.5,
          "max": 12.0
        },
@@ -842,9 +896,27 @@
          "min": -144.5,
          "max": 24.0
        },
-       "LFE": {
+       "LFE1": {
          "type": "Float",
-         "description": "LFE gain.\n",
+         "description": "LFE 1 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE2": {
+         "type": "Float",
+         "description": "LFE 2 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE3": {
+         "type": "Float",
+         "description": "LFE 3 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE4": {
+         "type": "Float",
+         "description": "LFE 4 gain.\n",
          "min": -144.5,
          "max": 12.0
        },
@@ -1101,9 +1173,27 @@
          "min": -144.5,
          "max": 24.0
        },
-       "LFE": {
+       "LFE1": {
          "type": "Float",
-         "description": "LFE gain.\n",
+         "description": "LFE 1 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE2": {
+         "type": "Float",
+         "description": "LFE 2 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE3": {
+         "type": "Float",
+         "description": "LFE 3 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE4": {
+         "type": "Float",
+         "description": "LFE 4 gain.\n",
          "min": -144.5,
          "max": 12.0
        },
@@ -1360,9 +1450,27 @@
          "min": -144.5,
          "max": 24.0
        },
-       "LFE": {
+       "LFE1": {
          "type": "Float",
-         "description": "LFE gain.\n",
+         "description": "LFE 1 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE2": {
+         "type": "Float",
+         "description": "LFE 2 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE3": {
+         "type": "Float",
+         "description": "LFE 3 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE4": {
+         "type": "Float",
+         "description": "LFE 4 gain.\n",
          "min": -144.5,
          "max": 12.0
        },
@@ -1619,9 +1727,27 @@
          "min": -144.5,
          "max": 24.0
        },
-       "LFE": {
+       "LFE1": {
          "type": "Float",
-         "description": "LFE gain.\n",
+         "description": "LFE 1 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE2": {
+         "type": "Float",
+         "description": "LFE 2 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE3": {
+         "type": "Float",
+         "description": "LFE 3 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE4": {
+         "type": "Float",
+         "description": "LFE 4 gain.\n",
          "min": -144.5,
          "max": 12.0
        },
@@ -1878,9 +2004,27 @@
          "min": -144.5,
          "max": 24.0
        },
-       "LFE": {
+       "LFE1": {
          "type": "Float",
-         "description": "LFE gain.\n",
+         "description": "LFE 1 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE2": {
+         "type": "Float",
+         "description": "LFE 2 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE3": {
+         "type": "Float",
+         "description": "LFE 3 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE4": {
+         "type": "Float",
+         "description": "LFE 4 gain.\n",
          "min": -144.5,
          "max": 12.0
        },
@@ -2137,9 +2281,27 @@
          "min": -144.5,
          "max": 24.0
        },
-       "LFE": {
+       "LFE1": {
          "type": "Float",
-         "description": "LFE gain.\n",
+         "description": "LFE 1 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE2": {
+         "type": "Float",
+         "description": "LFE 2 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE3": {
+         "type": "Float",
+         "description": "LFE 3 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE4": {
+         "type": "Float",
+         "description": "LFE 4 gain.\n",
          "min": -144.5,
          "max": 12.0
        },
@@ -2396,9 +2558,27 @@
          "min": -144.5,
          "max": 24.0
        },
-       "LFE": {
+       "LFE1": {
          "type": "Float",
-         "description": "LFE gain.\n",
+         "description": "LFE 1 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE2": {
+         "type": "Float",
+         "description": "LFE 2 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE3": {
+         "type": "Float",
+         "description": "LFE 3 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE4": {
+         "type": "Float",
+         "description": "LFE 4 gain.\n",
          "min": -144.5,
          "max": 12.0
        },
@@ -2655,9 +2835,27 @@
          "min": -144.5,
          "max": 24.0
        },
-       "LFE": {
+       "LFE1": {
          "type": "Float",
-         "description": "LFE gain.\n",
+         "description": "LFE 1 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE2": {
+         "type": "Float",
+         "description": "LFE 2 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE3": {
+         "type": "Float",
+         "description": "LFE 3 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE4": {
+         "type": "Float",
+         "description": "LFE 4 gain.\n",
          "min": -144.5,
          "max": 12.0
        },
@@ -2914,9 +3112,27 @@
          "min": -144.5,
          "max": 24.0
        },
-       "LFE": {
+       "LFE1": {
          "type": "Float",
-         "description": "LFE gain.\n",
+         "description": "LFE 1 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE2": {
+         "type": "Float",
+         "description": "LFE 2 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE3": {
+         "type": "Float",
+         "description": "LFE 3 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE4": {
+         "type": "Float",
+         "description": "LFE 4 gain.\n",
          "min": -144.5,
          "max": 12.0
        },
@@ -3173,9 +3389,27 @@
          "min": -144.5,
          "max": 24.0
        },
-       "LFE": {
+       "LFE1": {
          "type": "Float",
-         "description": "LFE gain.\n",
+         "description": "LFE 1 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE2": {
+         "type": "Float",
+         "description": "LFE 2 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE3": {
+         "type": "Float",
+         "description": "LFE 3 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE4": {
+         "type": "Float",
+         "description": "LFE 4 gain.\n",
          "min": -144.5,
          "max": 12.0
        },
@@ -3432,9 +3666,27 @@
          "min": -144.5,
          "max": 24.0
        },
-       "LFE": {
+       "LFE1": {
          "type": "Float",
-         "description": "LFE gain.\n",
+         "description": "LFE 1 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE2": {
+         "type": "Float",
+         "description": "LFE 2 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE3": {
+         "type": "Float",
+         "description": "LFE 3 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE4": {
+         "type": "Float",
+         "description": "LFE 4 gain.\n",
          "min": -144.5,
          "max": 12.0
        },
@@ -3691,9 +3943,27 @@
          "min": -144.5,
          "max": 24.0
        },
-       "LFE": {
+       "LFE1": {
          "type": "Float",
-         "description": "LFE gain.\n",
+         "description": "LFE 1 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE2": {
+         "type": "Float",
+         "description": "LFE 2 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE3": {
+         "type": "Float",
+         "description": "LFE 3 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE4": {
+         "type": "Float",
+         "description": "LFE 4 gain.\n",
          "min": -144.5,
          "max": 12.0
        },
@@ -3950,9 +4220,27 @@
          "min": -144.5,
          "max": 24.0
        },
-       "LFE": {
+       "LFE1": {
          "type": "Float",
-         "description": "LFE gain.\n",
+         "description": "LFE 1 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE2": {
+         "type": "Float",
+         "description": "LFE 2 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE3": {
+         "type": "Float",
+         "description": "LFE 3 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE4": {
+         "type": "Float",
+         "description": "LFE 4 gain.\n",
          "min": -144.5,
          "max": 12.0
        },
@@ -4209,9 +4497,27 @@
          "min": -144.5,
          "max": 24.0
        },
-       "LFE": {
+       "LFE1": {
          "type": "Float",
-         "description": "LFE gain.\n",
+         "description": "LFE 1 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE2": {
+         "type": "Float",
+         "description": "LFE 2 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE3": {
+         "type": "Float",
+         "description": "LFE 3 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE4": {
+         "type": "Float",
+         "description": "LFE 4 gain.\n",
          "min": -144.5,
          "max": 12.0
        },
@@ -4468,9 +4774,27 @@
          "min": -144.5,
          "max": 24.0
        },
-       "LFE": {
+       "LFE1": {
          "type": "Float",
-         "description": "LFE gain.\n",
+         "description": "LFE 1 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE2": {
+         "type": "Float",
+         "description": "LFE 2 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE3": {
+         "type": "Float",
+         "description": "LFE 3 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE4": {
+         "type": "Float",
+         "description": "LFE 4 gain.\n",
          "min": -144.5,
          "max": 12.0
        },
@@ -4727,9 +5051,27 @@
          "min": -144.5,
          "max": 24.0
        },
-       "LFE": {
+       "LFE1": {
          "type": "Float",
-         "description": "LFE gain.\n",
+         "description": "LFE 1 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE2": {
+         "type": "Float",
+         "description": "LFE 2 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE3": {
+         "type": "Float",
+         "description": "LFE 3 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE4": {
+         "type": "Float",
+         "description": "LFE 4 gain.\n",
          "min": -144.5,
          "max": 12.0
        },
@@ -4986,9 +5328,27 @@
          "min": -144.5,
          "max": 24.0
        },
-       "LFE": {
+       "LFE1": {
          "type": "Float",
-         "description": "LFE gain.\n",
+         "description": "LFE 1 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE2": {
+         "type": "Float",
+         "description": "LFE 2 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE3": {
+         "type": "Float",
+         "description": "LFE 3 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE4": {
+         "type": "Float",
+         "description": "LFE 4 gain.\n",
          "min": -144.5,
          "max": 12.0
        },
@@ -5245,9 +5605,27 @@
          "min": -144.5,
          "max": 24.0
        },
-       "LFE": {
+       "LFE1": {
          "type": "Float",
-         "description": "LFE gain.\n",
+         "description": "LFE 1 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE2": {
+         "type": "Float",
+         "description": "LFE 2 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE3": {
+         "type": "Float",
+         "description": "LFE 3 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE4": {
+         "type": "Float",
+         "description": "LFE 4 gain.\n",
          "min": -144.5,
          "max": 12.0
        },
@@ -5504,9 +5882,27 @@
          "min": -144.5,
          "max": 24.0
        },
-       "LFE": {
+       "LFE1": {
          "type": "Float",
-         "description": "LFE gain.\n",
+         "description": "LFE 1 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE2": {
+         "type": "Float",
+         "description": "LFE 2 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE3": {
+         "type": "Float",
+         "description": "LFE 3 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE4": {
+         "type": "Float",
+         "description": "LFE 4 gain.\n",
          "min": -144.5,
          "max": 12.0
        },
@@ -5763,9 +6159,27 @@
          "min": -144.5,
          "max": 24.0
        },
-       "LFE": {
+       "LFE1": {
          "type": "Float",
-         "description": "LFE gain.\n",
+         "description": "LFE 1 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE2": {
+         "type": "Float",
+         "description": "LFE 2 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE3": {
+         "type": "Float",
+         "description": "LFE 3 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE4": {
+         "type": "Float",
+         "description": "LFE 4 gain.\n",
          "min": -144.5,
          "max": 12.0
        },
@@ -6022,9 +6436,27 @@
          "min": -144.5,
          "max": 24.0
        },
-       "LFE": {
+       "LFE1": {
          "type": "Float",
-         "description": "LFE gain.\n",
+         "description": "LFE 1 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE2": {
+         "type": "Float",
+         "description": "LFE 2 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE3": {
+         "type": "Float",
+         "description": "LFE 3 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE4": {
+         "type": "Float",
+         "description": "LFE 4 gain.\n",
          "min": -144.5,
          "max": 12.0
        },
@@ -6281,9 +6713,27 @@
          "min": -144.5,
          "max": 24.0
        },
-       "LFE": {
+       "LFE1": {
          "type": "Float",
-         "description": "LFE gain.\n",
+         "description": "LFE 1 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE2": {
+         "type": "Float",
+         "description": "LFE 2 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE3": {
+         "type": "Float",
+         "description": "LFE 3 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE4": {
+         "type": "Float",
+         "description": "LFE 4 gain.\n",
          "min": -144.5,
          "max": 12.0
        },
@@ -6540,9 +6990,27 @@
          "min": -144.5,
          "max": 24.0
        },
-       "LFE": {
+       "LFE1": {
          "type": "Float",
-         "description": "LFE gain.\n",
+         "description": "LFE 1 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE2": {
+         "type": "Float",
+         "description": "LFE 2 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE3": {
+         "type": "Float",
+         "description": "LFE 3 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE4": {
+         "type": "Float",
+         "description": "LFE 4 gain.\n",
          "min": -144.5,
          "max": 12.0
        },
@@ -6799,9 +7267,27 @@
          "min": -144.5,
          "max": 24.0
        },
-       "LFE": {
+       "LFE1": {
          "type": "Float",
-         "description": "LFE gain.\n",
+         "description": "LFE 1 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE2": {
+         "type": "Float",
+         "description": "LFE 2 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE3": {
+         "type": "Float",
+         "description": "LFE 3 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE4": {
+         "type": "Float",
+         "description": "LFE 4 gain.\n",
          "min": -144.5,
          "max": 12.0
        },
@@ -7058,9 +7544,27 @@
          "min": -144.5,
          "max": 24.0
        },
-       "LFE": {
+       "LFE1": {
          "type": "Float",
-         "description": "LFE gain.\n",
+         "description": "LFE 1 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE2": {
+         "type": "Float",
+         "description": "LFE 2 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE3": {
+         "type": "Float",
+         "description": "LFE 3 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE4": {
+         "type": "Float",
+         "description": "LFE 4 gain.\n",
          "min": -144.5,
          "max": 12.0
        },
@@ -7317,9 +7821,27 @@
          "min": -144.5,
          "max": 24.0
        },
-       "LFE": {
+       "LFE1": {
          "type": "Float",
-         "description": "LFE gain.\n",
+         "description": "LFE 1 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE2": {
+         "type": "Float",
+         "description": "LFE 2 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE3": {
+         "type": "Float",
+         "description": "LFE 3 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE4": {
+         "type": "Float",
+         "description": "LFE 4 gain.\n",
          "min": -144.5,
          "max": 12.0
        },
@@ -7576,9 +8098,27 @@
          "min": -144.5,
          "max": 24.0
        },
-       "LFE": {
+       "LFE1": {
          "type": "Float",
-         "description": "LFE gain.\n",
+         "description": "LFE 1 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE2": {
+         "type": "Float",
+         "description": "LFE 2 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE3": {
+         "type": "Float",
+         "description": "LFE 3 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE4": {
+         "type": "Float",
+         "description": "LFE 4 gain.\n",
          "min": -144.5,
          "max": 12.0
        },
@@ -7835,9 +8375,27 @@
          "min": -144.5,
          "max": 24.0
        },
-       "LFE": {
+       "LFE1": {
          "type": "Float",
-         "description": "LFE gain.\n",
+         "description": "LFE 1 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE2": {
+         "type": "Float",
+         "description": "LFE 2 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE3": {
+         "type": "Float",
+         "description": "LFE 3 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE4": {
+         "type": "Float",
+         "description": "LFE 4 gain.\n",
          "min": -144.5,
          "max": 12.0
        },
@@ -8094,9 +8652,27 @@
          "min": -144.5,
          "max": 24.0
        },
-       "LFE": {
+       "LFE1": {
          "type": "Float",
-         "description": "LFE gain.\n",
+         "description": "LFE 1 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE2": {
+         "type": "Float",
+         "description": "LFE 2 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE3": {
+         "type": "Float",
+         "description": "LFE 3 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE4": {
+         "type": "Float",
+         "description": "LFE 4 gain.\n",
          "min": -144.5,
          "max": 12.0
        },
@@ -8353,9 +8929,27 @@
          "min": -144.5,
          "max": 24.0
        },
-       "LFE": {
+       "LFE1": {
          "type": "Float",
-         "description": "LFE gain.\n",
+         "description": "LFE 1 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE2": {
+         "type": "Float",
+         "description": "LFE 2 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE3": {
+         "type": "Float",
+         "description": "LFE 3 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE4": {
+         "type": "Float",
+         "description": "LFE 4 gain.\n",
          "min": -144.5,
          "max": 12.0
        },
@@ -8612,9 +9206,27 @@
          "min": -144.5,
          "max": 24.0
        },
-       "LFE": {
+       "LFE1": {
          "type": "Float",
-         "description": "LFE gain.\n",
+         "description": "LFE 1 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE2": {
+         "type": "Float",
+         "description": "LFE 2 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE3": {
+         "type": "Float",
+         "description": "LFE 3 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE4": {
+         "type": "Float",
+         "description": "LFE 4 gain.\n",
          "min": -144.5,
          "max": 12.0
        },
@@ -8871,9 +9483,27 @@
          "min": -144.5,
          "max": 24.0
        },
-       "LFE": {
+       "LFE1": {
          "type": "Float",
-         "description": "LFE gain.\n",
+         "description": "LFE 1 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE2": {
+         "type": "Float",
+         "description": "LFE 2 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE3": {
+         "type": "Float",
+         "description": "LFE 3 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE4": {
+         "type": "Float",
+         "description": "LFE 4 gain.\n",
          "min": -144.5,
          "max": 12.0
        },
@@ -9130,9 +9760,27 @@
          "min": -144.5,
          "max": 24.0
        },
-       "LFE": {
+       "LFE1": {
          "type": "Float",
-         "description": "LFE gain.\n",
+         "description": "LFE 1 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE2": {
+         "type": "Float",
+         "description": "LFE 2 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE3": {
+         "type": "Float",
+         "description": "LFE 3 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE4": {
+         "type": "Float",
+         "description": "LFE 4 gain.\n",
          "min": -144.5,
          "max": 12.0
        },
@@ -9389,9 +10037,27 @@
          "min": -144.5,
          "max": 24.0
        },
-       "LFE": {
+       "LFE1": {
          "type": "Float",
-         "description": "LFE gain.\n",
+         "description": "LFE 1 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE2": {
+         "type": "Float",
+         "description": "LFE 2 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE3": {
+         "type": "Float",
+         "description": "LFE 3 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE4": {
+         "type": "Float",
+         "description": "LFE 4 gain.\n",
          "min": -144.5,
          "max": 12.0
        },
@@ -9648,9 +10314,27 @@
          "min": -144.5,
          "max": 24.0
        },
-       "LFE": {
+       "LFE1": {
          "type": "Float",
-         "description": "LFE gain.\n",
+         "description": "LFE 1 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE2": {
+         "type": "Float",
+         "description": "LFE 2 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE3": {
+         "type": "Float",
+         "description": "LFE 3 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE4": {
+         "type": "Float",
+         "description": "LFE 4 gain.\n",
          "min": -144.5,
          "max": 12.0
        },
@@ -9907,9 +10591,27 @@
          "min": -144.5,
          "max": 24.0
        },
-       "LFE": {
+       "LFE1": {
          "type": "Float",
-         "description": "LFE gain.\n",
+         "description": "LFE 1 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE2": {
+         "type": "Float",
+         "description": "LFE 2 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE3": {
+         "type": "Float",
+         "description": "LFE 3 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE4": {
+         "type": "Float",
+         "description": "LFE 4 gain.\n",
          "min": -144.5,
          "max": 12.0
        },
@@ -10166,9 +10868,27 @@
          "min": -144.5,
          "max": 24.0
        },
-       "LFE": {
+       "LFE1": {
          "type": "Float",
-         "description": "LFE gain.\n",
+         "description": "LFE 1 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE2": {
+         "type": "Float",
+         "description": "LFE 2 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE3": {
+         "type": "Float",
+         "description": "LFE 3 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE4": {
+         "type": "Float",
+         "description": "LFE 4 gain.\n",
          "min": -144.5,
          "max": 12.0
        },
@@ -10425,9 +11145,27 @@
          "min": -144.5,
          "max": 24.0
        },
-       "LFE": {
+       "LFE1": {
          "type": "Float",
-         "description": "LFE gain.\n",
+         "description": "LFE 1 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE2": {
+         "type": "Float",
+         "description": "LFE 2 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE3": {
+         "type": "Float",
+         "description": "LFE 3 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE4": {
+         "type": "Float",
+         "description": "LFE 4 gain.\n",
          "min": -144.5,
          "max": 12.0
        },
@@ -10684,9 +11422,27 @@
          "min": -144.5,
          "max": 24.0
        },
-       "LFE": {
+       "LFE1": {
          "type": "Float",
-         "description": "LFE gain.\n",
+         "description": "LFE 1 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE2": {
+         "type": "Float",
+         "description": "LFE 2 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE3": {
+         "type": "Float",
+         "description": "LFE 3 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE4": {
+         "type": "Float",
+         "description": "LFE 4 gain.\n",
          "min": -144.5,
          "max": 12.0
        },
@@ -10943,9 +11699,27 @@
          "min": -144.5,
          "max": 24.0
        },
-       "LFE": {
+       "LFE1": {
          "type": "Float",
-         "description": "LFE gain.\n",
+         "description": "LFE 1 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE2": {
+         "type": "Float",
+         "description": "LFE 2 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE3": {
+         "type": "Float",
+         "description": "LFE 3 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE4": {
+         "type": "Float",
+         "description": "LFE 4 gain.\n",
          "min": -144.5,
          "max": 12.0
        },
@@ -11202,9 +11976,27 @@
          "min": -144.5,
          "max": 24.0
        },
-       "LFE": {
+       "LFE1": {
          "type": "Float",
-         "description": "LFE gain.\n",
+         "description": "LFE 1 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE2": {
+         "type": "Float",
+         "description": "LFE 2 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE3": {
+         "type": "Float",
+         "description": "LFE 3 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE4": {
+         "type": "Float",
+         "description": "LFE 4 gain.\n",
          "min": -144.5,
          "max": 12.0
        },
@@ -11461,9 +12253,27 @@
          "min": -144.5,
          "max": 24.0
        },
-       "LFE": {
+       "LFE1": {
          "type": "Float",
-         "description": "LFE gain.\n",
+         "description": "LFE 1 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE2": {
+         "type": "Float",
+         "description": "LFE 2 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE3": {
+         "type": "Float",
+         "description": "LFE 3 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE4": {
+         "type": "Float",
+         "description": "LFE 4 gain.\n",
          "min": -144.5,
          "max": 12.0
        },
@@ -11720,9 +12530,27 @@
          "min": -144.5,
          "max": 24.0
        },
-       "LFE": {
+       "LFE1": {
          "type": "Float",
-         "description": "LFE gain.\n",
+         "description": "LFE 1 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE2": {
+         "type": "Float",
+         "description": "LFE 2 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE3": {
+         "type": "Float",
+         "description": "LFE 3 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE4": {
+         "type": "Float",
+         "description": "LFE 4 gain.\n",
          "min": -144.5,
          "max": 12.0
        },
@@ -11979,9 +12807,27 @@
          "min": -144.5,
          "max": 24.0
        },
-       "LFE": {
+       "LFE1": {
          "type": "Float",
-         "description": "LFE gain.\n",
+         "description": "LFE 1 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE2": {
+         "type": "Float",
+         "description": "LFE 2 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE3": {
+         "type": "Float",
+         "description": "LFE 3 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE4": {
+         "type": "Float",
+         "description": "LFE 4 gain.\n",
          "min": -144.5,
          "max": 12.0
        },
@@ -12238,9 +13084,27 @@
          "min": -144.5,
          "max": 24.0
        },
-       "LFE": {
+       "LFE1": {
          "type": "Float",
-         "description": "LFE gain.\n",
+         "description": "LFE 1 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE2": {
+         "type": "Float",
+         "description": "LFE 2 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE3": {
+         "type": "Float",
+         "description": "LFE 3 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE4": {
+         "type": "Float",
+         "description": "LFE 4 gain.\n",
          "min": -144.5,
          "max": 12.0
        },
@@ -12497,9 +13361,27 @@
          "min": -144.5,
          "max": 24.0
        },
-       "LFE": {
+       "LFE1": {
          "type": "Float",
-         "description": "LFE gain.\n",
+         "description": "LFE 1 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE2": {
+         "type": "Float",
+         "description": "LFE 2 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE3": {
+         "type": "Float",
+         "description": "LFE 3 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE4": {
+         "type": "Float",
+         "description": "LFE 4 gain.\n",
          "min": -144.5,
          "max": 12.0
        },
@@ -12756,9 +13638,27 @@
          "min": -144.5,
          "max": 24.0
        },
-       "LFE": {
+       "LFE1": {
          "type": "Float",
-         "description": "LFE gain.\n",
+         "description": "LFE 1 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE2": {
+         "type": "Float",
+         "description": "LFE 2 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE3": {
+         "type": "Float",
+         "description": "LFE 3 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE4": {
+         "type": "Float",
+         "description": "LFE 4 gain.\n",
          "min": -144.5,
          "max": 12.0
        },
@@ -13015,9 +13915,27 @@
          "min": -144.5,
          "max": 24.0
        },
-       "LFE": {
+       "LFE1": {
          "type": "Float",
-         "description": "LFE gain.\n",
+         "description": "LFE 1 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE2": {
+         "type": "Float",
+         "description": "LFE 2 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE3": {
+         "type": "Float",
+         "description": "LFE 3 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE4": {
+         "type": "Float",
+         "description": "LFE 4 gain.\n",
          "min": -144.5,
          "max": 12.0
        },
@@ -13274,9 +14192,27 @@
          "min": -144.5,
          "max": 24.0
        },
-       "LFE": {
+       "LFE1": {
          "type": "Float",
-         "description": "LFE gain.\n",
+         "description": "LFE 1 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE2": {
+         "type": "Float",
+         "description": "LFE 2 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE3": {
+         "type": "Float",
+         "description": "LFE 3 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE4": {
+         "type": "Float",
+         "description": "LFE 4 gain.\n",
          "min": -144.5,
          "max": 12.0
        },
@@ -13533,9 +14469,27 @@
          "min": -144.5,
          "max": 24.0
        },
-       "LFE": {
+       "LFE1": {
          "type": "Float",
-         "description": "LFE gain.\n",
+         "description": "LFE 1 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE2": {
+         "type": "Float",
+         "description": "LFE 2 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE3": {
+         "type": "Float",
+         "description": "LFE 3 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE4": {
+         "type": "Float",
+         "description": "LFE 4 gain.\n",
          "min": -144.5,
          "max": 12.0
        },
@@ -13792,9 +14746,27 @@
          "min": -144.5,
          "max": 24.0
        },
-       "LFE": {
+       "LFE1": {
          "type": "Float",
-         "description": "LFE gain.\n",
+         "description": "LFE 1 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE2": {
+         "type": "Float",
+         "description": "LFE 2 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE3": {
+         "type": "Float",
+         "description": "LFE 3 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE4": {
+         "type": "Float",
+         "description": "LFE 4 gain.\n",
          "min": -144.5,
          "max": 12.0
        },
@@ -14051,9 +15023,27 @@
          "min": -144.5,
          "max": 24.0
        },
-       "LFE": {
+       "LFE1": {
          "type": "Float",
-         "description": "LFE gain.\n",
+         "description": "LFE 1 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE2": {
+         "type": "Float",
+         "description": "LFE 2 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE3": {
+         "type": "Float",
+         "description": "LFE 3 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE4": {
+         "type": "Float",
+         "description": "LFE 4 gain.\n",
          "min": -144.5,
          "max": 12.0
        },
@@ -14310,9 +15300,27 @@
          "min": -144.5,
          "max": 24.0
        },
-       "LFE": {
+       "LFE1": {
          "type": "Float",
-         "description": "LFE gain.\n",
+         "description": "LFE 1 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE2": {
+         "type": "Float",
+         "description": "LFE 2 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE3": {
+         "type": "Float",
+         "description": "LFE 3 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE4": {
+         "type": "Float",
+         "description": "LFE 4 gain.\n",
          "min": -144.5,
          "max": 12.0
        },
@@ -14569,9 +15577,27 @@
          "min": -144.5,
          "max": 24.0
        },
-       "LFE": {
+       "LFE1": {
          "type": "Float",
-         "description": "LFE gain.\n",
+         "description": "LFE 1 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE2": {
+         "type": "Float",
+         "description": "LFE 2 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE3": {
+         "type": "Float",
+         "description": "LFE 3 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE4": {
+         "type": "Float",
+         "description": "LFE 4 gain.\n",
          "min": -144.5,
          "max": 12.0
        },
@@ -14828,9 +15854,27 @@
          "min": -144.5,
          "max": 24.0
        },
-       "LFE": {
+       "LFE1": {
          "type": "Float",
-         "description": "LFE gain.\n",
+         "description": "LFE 1 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE2": {
+         "type": "Float",
+         "description": "LFE 2 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE3": {
+         "type": "Float",
+         "description": "LFE 3 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE4": {
+         "type": "Float",
+         "description": "LFE 4 gain.\n",
          "min": -144.5,
          "max": 12.0
        },
@@ -15087,9 +16131,27 @@
          "min": -144.5,
          "max": 24.0
        },
-       "LFE": {
+       "LFE1": {
          "type": "Float",
-         "description": "LFE gain.\n",
+         "description": "LFE 1 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE2": {
+         "type": "Float",
+         "description": "LFE 2 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE3": {
+         "type": "Float",
+         "description": "LFE 3 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE4": {
+         "type": "Float",
+         "description": "LFE 4 gain.\n",
          "min": -144.5,
          "max": 12.0
        },
@@ -15346,9 +16408,27 @@
          "min": -144.5,
          "max": 24.0
        },
-       "LFE": {
+       "LFE1": {
          "type": "Float",
-         "description": "LFE gain.\n",
+         "description": "LFE 1 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE2": {
+         "type": "Float",
+         "description": "LFE 2 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE3": {
+         "type": "Float",
+         "description": "LFE 3 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE4": {
+         "type": "Float",
+         "description": "LFE 4 gain.\n",
          "min": -144.5,
          "max": 12.0
        },
@@ -15605,9 +16685,27 @@
          "min": -144.5,
          "max": 24.0
        },
-       "LFE": {
+       "LFE1": {
          "type": "Float",
-         "description": "LFE gain.\n",
+         "description": "LFE 1 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE2": {
+         "type": "Float",
+         "description": "LFE 2 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE3": {
+         "type": "Float",
+         "description": "LFE 3 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE4": {
+         "type": "Float",
+         "description": "LFE 4 gain.\n",
          "min": -144.5,
          "max": 12.0
        },
@@ -15864,9 +16962,27 @@
          "min": -144.5,
          "max": 24.0
        },
-       "LFE": {
+       "LFE1": {
          "type": "Float",
-         "description": "LFE gain.\n",
+         "description": "LFE 1 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE2": {
+         "type": "Float",
+         "description": "LFE 2 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE3": {
+         "type": "Float",
+         "description": "LFE 3 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE4": {
+         "type": "Float",
+         "description": "LFE 4 gain.\n",
          "min": -144.5,
          "max": 12.0
        },
@@ -16123,9 +17239,27 @@
          "min": -144.5,
          "max": 24.0
        },
-       "LFE": {
+       "LFE1": {
          "type": "Float",
-         "description": "LFE gain.\n",
+         "description": "LFE 1 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE2": {
+         "type": "Float",
+         "description": "LFE 2 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE3": {
+         "type": "Float",
+         "description": "LFE 3 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE4": {
+         "type": "Float",
+         "description": "LFE 4 gain.\n",
          "min": -144.5,
          "max": 12.0
        },
@@ -16382,9 +17516,27 @@
          "min": -144.5,
          "max": 24.0
        },
-       "LFE": {
+       "LFE1": {
          "type": "Float",
-         "description": "LFE gain.\n",
+         "description": "LFE 1 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE2": {
+         "type": "Float",
+         "description": "LFE 2 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE3": {
+         "type": "Float",
+         "description": "LFE 3 gain.\n",
+         "min": -144.5,
+         "max": 12.0
+       },
+       "LFE4": {
+         "type": "Float",
+         "description": "LFE 4 gain.\n",
          "min": -144.5,
          "max": 12.0
        },

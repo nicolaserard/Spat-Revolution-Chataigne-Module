@@ -43,7 +43,7 @@ var OSCSourceMessage = {
     'solo': function (index, value) {
         local.send("/source/" + index + "/solo", value.get());
     },
-    'lfe': function (index, value) {
+    'lfe1': function (index, value) {
         local.send("/source/" + index + "/lfe", value.get());
     },
     'lfe2': function (index, value) {
@@ -494,7 +494,28 @@ function oscSourceEvent(address, args)
     {
         if (typeof(args[0]) == 'number')
         {
-          source.lfe.set(args[0]);
+          source.lfe1.set(args[0]);
+        }
+    }
+    else if (address[3]==='lfe2')
+    {
+        if (typeof(args[0]) == 'number')
+        {
+          source.lfe2.set(args[0]);
+        }
+    }
+    else if (address[3]==='lfe3')
+    {
+        if (typeof(args[0]) == 'number')
+        {
+          source.lfe3.set(args[0]);
+        }
+    }
+    else if (address[3]==='lfe4')
+    {
+        if (typeof(args[0]) == 'number')
+        {
+          source.lfe4.set(args[0]);
         }
     }
     else if (address[3] ==='mute')
@@ -1224,8 +1245,17 @@ function createSourceContainer()
     var solo = SourceContainer.addBoolParameter("Solo", "Solo", 0);
     solo.setAttribute("readonly", true);
 
-    var lfe = SourceContainer.addFloatParameter("LFE", "LFE level", -144.5, -144.5, 24);
-    lfe.setAttribute("readonly", true);
+    var lfe1 = SourceContainer.addFloatParameter("LFE 1", "LFE level", -144.5, -144.5, 24);
+    lfe1.setAttribute("readonly", true);
+
+    var lfe2 = SourceContainer.addFloatParameter("LFE 2", "LFE level", -144.5, -144.5, 24);
+    lfe2.setAttribute("readonly", true);
+
+    var lfe3 = SourceContainer.addFloatParameter("LFE 3", "LFE level", -144.5, -144.5, 24);
+    lfe3.setAttribute("readonly", true);
+
+    var lfe4 = SourceContainer.addFloatParameter("LFE 4", "LFE level", -144.5, -144.5, 24);
+    lfe4.setAttribute("readonly", true);
 
     var position = SourceContainer.addPoint3DParameter("Position", "Position", [0.0, 0.0, 2.0]);
     position.setAttribute("readonly", true);
