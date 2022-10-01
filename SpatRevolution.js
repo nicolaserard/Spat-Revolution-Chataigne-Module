@@ -307,6 +307,7 @@ var spreadingSourceContainer = null;
 var optionsSourceContainer = null;
 var barycentricSourceContainer = null; // number of rooms in Spat Revolution. Should be set automatically, but function not working in Spat Revolution now.
 var Rooms = []; // array of all rooms parameters
+var Remote = [];
 var roomReverbContainer = null;
 var perceptualFactorRoomContainer = null;
 var roomResponseRoomContainer = null;
@@ -339,6 +340,7 @@ function init()
 
     createSourceContainer();
     createRoomContainer();
+    createRemoteContainer();
     local.send("/source/*/dump", 0);
     local.send("/room/1/dump", 0);
 }
@@ -395,6 +397,61 @@ function moduleValueChanged(value)
         }
       }
       stopSendingOSC = false;
+    }
+    else if (name === 'numberOfRemotes')
+    {
+
+    }
+    else if (name === 'index')
+    {
+        var index = parseInt(value.getParent().name.substring(6, value.getParent().name.length));
+        Remote[index - 1]['index'] = value.get();
+    }
+    else if (name === 'controlsNumber')
+    {
+        var index = parseInt(value.getParent().name.substring(6, value.getParent().name.length));
+        Remote[index - 1]['controlsNumber'] = value.get();
+    }
+    else if (name === 'onOffNumber')
+    {
+        var index = parseInt(value.getParent().name.substring(6, value.getParent().name.length));
+        if (value.get() > Remote[index - 1]["onOffNumber"])
+        {
+            var onOff = value.getParent().addContainer("OnOff" + value.get());
+            //value.getParent().addStringParameter("onOff" + value.get(), "onOff" + value.get(), "onOff" + value.get());
+            onOff.addEnumParameter("Parameter", "parameter", "Reverb on", "revOn", "Early On", "earlyOn", "Cluster On", "clusterOn");
+            for (var i = 1; i < value.getParent().controlsNumber.get() + 1; i++)
+            {
+                onOff.addTargetParameter("Target" + i, "Target for control number " + i);
+            }
+        }
+        else if (value.get() < Remote[index - 1]["onOffNumber"])
+        {
+            i = value.get() + 1;
+            value.getParent().removeContainer("OnOff" + i);
+        }
+        Remote[index - 1]["onOffNumber"] = value.get();
+    }
+    else if (name === 'floatNumber')
+    {
+        var index = parseInt(value.getParent().name.substring(6, value.getParent().name.length));
+        if (value.get() > Remote[index - 1]["floatNumber"])
+        {
+            var float = value.getParent().addContainer("Float" + value.get());
+            float.addEnumParameter("Parameter", "Parameter controlled", "Azimuth", "azimuth", "Elevation", "Distance", "distance", "gain", "gain");
+            for (var i = 1; i < value.getParent().controlsNumber.get() + 1; i++)
+            {
+                float.addTargetParameter("Target" + i, "Target for control number " + i);
+            }
+        }
+        else if (value.get() < Remote[index - 1]["floatNumber"])
+        {
+            i = value.get() + 1;
+            value.getParent().removeContainer("Float" + i);
+        }
+        Remote[index - 1]["floatNumber"] = value.get();
+
+
     }
     else {
         if (!stopSendingOSC && OSCSourceMessage[name]) {
@@ -472,6 +529,7 @@ function oscGlobalEvent(address, args)
 function oscSourceEvent(address, args)
 {
     var i = parseInt(address[2]) - 1;
+    var controlName = 'None';
 
     if (i +1 > Sources.length)
     {
@@ -488,6 +546,7 @@ function oscSourceEvent(address, args)
         if (typeof(args[0]) == 'number')
         {
           source.gain.set(args[0]);
+          controlName = 'gain';
         }
     }
     else if (address[3]==='lfe')
@@ -644,6 +703,7 @@ function oscSourceEvent(address, args)
       if (typeof(args[0]) == 'number')
       {
         source.getChild("Reverb").reverbEnable.set(args[0]);
+        controlName = 'revOn';
       }
     }
     else if (address.length === 4 && address[3] === 'early')
@@ -651,6 +711,7 @@ function oscSourceEvent(address, args)
       if (typeof(args[0]) == 'number')
       {
         source.getChild("Reverb").earlyEnable.set(args[0]);
+        controlName = 'earlyOn';
       }
     }
     else if (address[3] === 'cluster')
@@ -658,6 +719,7 @@ function oscSourceEvent(address, args)
       if (typeof(args[0]) == 'number')
       {
         source.getChild("Reverb").clusterEnable.set(args[0]);
+        controlName = 'clusterOn';
       }
     }
     else if (address[3] === 'tail')
@@ -665,6 +727,7 @@ function oscSourceEvent(address, args)
       if (typeof(args[0]) == 'number')
       {
         source.getChild("Reverb").tailEnable.set(args[0]);
+        controlName = 'tailOn';
       }
     }
     else if (address[3] === 'name')
@@ -921,6 +984,23 @@ function oscSourceEvent(address, args)
             source.getChild("RoomGains").roomGain10.set(args[0]);
         }
     }
+
+    for (var k = 1; k < Remote.length + 1; k++)
+    {
+        if (Math.floor(i/ Remote[k-1]["controlsNumber"]) == Remote[k-1]["index"])
+        {
+            for (var j = 1; j < Remote[k - 1]['onOffNumber'] + 1; j++)
+            {
+                var cont = Remote[k - 1]['container'].getChild("OnOff" + j);
+                if (cont.getChild("Parameter").get() === controlName)
+                {
+                    script.log("On y est");
+                }
+            }
+        }
+
+    }
+
 }
 
 /**
@@ -1492,6 +1572,23 @@ function createRoomContainer()
       RoomContainer.setCollapsed(true);
   }
   local.scripts.setCollapsed(true);
+}
+
+function createRemoteContainer()
+{
+    // Add the Remote container
+    RemotesContainer = local.values.addContainer("Remotes");
+
+    var numberOfRemotes = RemotesContainer.addIntParameter("number of  remotes", "number of remotes", 1, 1, 50);
+    for (var i = 1; i < numberOfRemotes.get() + 1; i++)
+    {
+        RemoteContainer = RemotesContainer.addContainer("Remote " + i);
+        Remote.push({"index": 0, "container": RemoteContainer, 'controlsNumber': 8, 'onOffNumber': 0, 'floatNumber':0});
+        indexNumber = RemoteContainer.addIntParameter("Index", "index", 0, 0, 64);
+        controlsNumber = RemoteContainer.addIntParameter("Controls number", "controls number", 8 ,1, 50);
+        onOffNumber = RemoteContainer.addIntParameter("On Off Number", "on off number", 0, 0, 50);
+        floatNumber = RemoteContainer.addIntParameter("Float Number", "float number", 0, 0, 50);
+    }
 }
 
 /**
