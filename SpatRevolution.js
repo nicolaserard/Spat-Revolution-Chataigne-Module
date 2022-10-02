@@ -32,6 +32,201 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 ===============================================================================
 */
 
+var ParameterFromString = {
+    'gain': function(index)
+    {
+        return Sources[index]['container'].getChild('gain').get();
+    },
+    'lfe': function(index)
+    {
+        return Sources[index]['container'].getChild('lfe').get();
+    },
+    'lfe2': function(index)
+    {
+        return Sources[index]['container'].getChild('lfe2').get();
+    },
+    'lfe3': function(index)
+    {
+        return Sources[index]['container'].getChild('lfe3').get();
+    },
+    'lfe4': function(index)
+    {
+        return Sources[index]['container'].getChild('lfe4').get();
+    },
+    'solo': function(index)
+    {
+        return Sources[index]['container'].getChild('solo').get();
+    },
+    'mute': function(index)
+    {
+        return Sources[index]['container'].getChild('mute').get();
+    },
+    'azimuth': function(index)
+    {
+        return Sources[index]['container'].getChild('position').get()[0];
+    },
+    'elevation': function(index)
+    {
+        return Sources[index]['container'].getChild('position').get()[1];
+    },
+    'distance': function(index)
+    {
+        return Sources[index]['container'].getChild('position').get()[2];
+    },
+    'reverbEnable': function(index)
+    {
+        return Sources[index]['container'].getChild("reverb").getChild('reverbEnable').get();
+    },
+    'earlyEnable': function(index)
+    {
+        return Sources[index]['container'].getChild("reverb").getChild('earlyEnable').get();
+    },
+    'clusterEnable': function(index)
+    {
+        return Sources[index]['container'].getChild("reverb").getChild('clusterEnable').get();
+    },
+    'tailEnable': function(index)
+    {
+        return Sources[index]['container'].getChild("reverb").getChild('tailEnable').get();
+    },
+    'presence': function(index)
+    {
+        return Sources[index]['container'].getChild("perceptualFactors").getChild('presence').get();
+    },
+    'roomPresence': function(index)
+    {
+        return Sources[index]['container'].getChild("perceptualFactors").getChild('roomPresence').get();
+    },
+    'ruuningReverberance': function(index)
+    {
+        return Sources[index]['container'].getChild("perceptualFactors").getChild('ruuningReverberance').get();
+    },
+    'envelopment': function(index)
+    {
+        return Sources[index]['container'].getChild("perceptualFactors").getChild('envelopment').get();
+    },
+    'brilliance': function(index)
+    {
+        return Sources[index]['container'].getChild("perceptualFactors").getChild('brilliance').get();
+    },
+    'warmth': function(index)
+    {
+        return Sources[index]['container'].getChild("perceptualFactors").getChild('warmth').get();
+    },
+    'yaw': function(index)
+    {
+        return Sources[index]['container'].getChild('yaw').get();
+    },
+    'pitch': function(index)
+    {
+        return Sources[index]['container'].getChild('pitch').get();
+    },
+    'aperture': function(index)
+    {
+        return Sources[index]['container'].getChild('aperture').get();
+    },
+    'scale': function(index)
+    {
+        return Sources[index]['container'].getChild("barycentric").getChild('scale').get();
+    },
+    'spread': function(index)
+    {
+        return Sources[index]['container'].getChild("spreading").getChild('spread').get();
+    },
+    'knn': function(index)
+    {
+        return Sources[index]['container'].getChild("spreading").getChild('knn').get();
+    },
+    'earlyWidth': function(index)
+    {
+        return Sources[index]['container'].getChild("reverb").getChild('earlyWidth').get();
+    },
+    'panRev': function(index)
+    {
+        return Sources[index]['container'].getChild("reverb").getChild('panRev').get();
+    },
+    'doppler': function(index)
+    {
+        return Sources[index]['container'].getChild("options").getChild('doppler').get();
+    },
+    'radius': function(index)
+    {
+        return Sources[index]['container'].getChild("options").getChild('radius').get();
+    },
+    'airAbsorption': function(index)
+    {
+        return Sources[index]['container'].getChild("options").getChild('airAbsorption').get();
+    },
+    'xyCoordinatesMode': function(index)
+    {
+        return Sources[index]['container'].getChild("options").getChild('xyCoordinatesMode').get();
+    },
+    'zCoordinatesMode': function(index)
+    {
+        return Sources[index]['container'].getChild("options").getChild('zCoordinatesMode').get();
+    },
+    'dropLog': function(index)
+    {
+        return Sources[index]['container'].getChild("options").getChild('dropLog').get();
+    },
+    'dropFactor': function(index)
+    {
+        return Sources[index]['container'].getChild("options").getChild('dropFactor').get();
+    },
+    'rotx': function(index)
+    {
+        return Sources[index]['container'].getChild("barycentric").getChild('rotationXYZ').get()[0];
+    },
+    'roty': function(index)
+    {
+        return Sources[index]['container'].getChild("barycentric").getChild('rotationXYZ').get()[1];
+    },
+    'rotz': function(index)
+    {
+        return Sources[index]['container'].getChild("barycentric").getChild('rotationXYZ').get()[2];
+    },
+    'roomGain1': function(index)
+    {
+        return Sources[index]['container'].getChild("roomGains").getChild('roomGain1').get();
+    },
+    'roomGain2': function(index)
+    {
+        return Sources[index]['container'].getChild("roomGains").getChild('roomGain2').get();
+    },
+    'roomGain3': function(index)
+    {
+        return Sources[index]['container'].getChild("roomGains").getChild('roomGain3').get();
+    },
+    'roomGain4': function(index)
+    {
+        return Sources[index]['container'].getChild("roomGains").getChild('roomGain4').get();
+    },
+    'roomGain5': function(index)
+    {
+        return Sources[index]['container'].getChild("roomGains").getChild('roomGain5').get();
+    },
+    'roomGain6': function(index)
+    {
+        return Sources[index]['container'].getChild("roomGains").getChild('roomGain6').get();
+    },
+    'roomGain7': function(index)
+    {
+        return Sources[index]['container'].getChild("roomGains").getChild('roomGain7').get();
+    },
+    'roomGain8': function(index)
+    {
+        return Sources[index]['container'].getChild("roomGains").getChild('roomGain8').get();
+    },
+    'roomGain9': function(index)
+    {
+        return Sources[index]['container'].getChild("roomGains").getChild('roomGain9').get();
+    },
+    'roomGain10': function(index)
+    {
+        return Sources[index]['container'].getChild("roomGains").getChild('roomGain10').get();
+    }
+};
+
 /* OSCSourceMessage: array of all OSC Source Messages. Use to send OSC message when a value changed.*/
 var OSCSourceMessage = {
     'gain': function (index, value) {
@@ -404,13 +599,51 @@ function moduleValueChanged(value)
     }
     else if (name === 'index')
     {
-        var index = parseInt(value.getParent().name.substring(6, value.getParent().name.length));
-        Remote[index - 1]['index'] = value.get();
+        var remoteIndex = parseInt(value.getParent().name.substring(6, value.getParent().name.length));
+        Remote[remoteIndex - 1]['index'] = parseInt(value.get());
+
+        // onOff
+        for (var j = 1; j < Remote[remoteIndex - 1]['onOffNumber'] + 1; j++)
+        {
+            var onOffCont = Remote[remoteIndex - 1]['container'].getChild("OnOff" + j);
+            for (var l = 1; l < Remote[remoteIndex - 1]["controlsNumber"] + 1; l++)
+            {
+                var val = ParameterFromString[onOffCont.getChild("parameter").get()](value.get()*Remote[remoteIndex - 1]['controlsNumber'] + l - 1);
+                onOffCont.getChild("Target" + l).getTarget().set(val * 127);
+            }
+        }
+
+        //float
+        for (var j = 1; j < Remote[remoteIndex - 1]['floatNumber'] + 1; j++)
+        {
+            var floatCont = Remote[remoteIndex - 1]['container'].getChild("float" + j);
+            for (var l = 1; l < Remote[remoteIndex - 1]["controlsNumber"] + 1; l++)
+            {
+                var val = ParameterFromString[floatCont.getChild("parameter").get()](value.get()*Remote[remoteIndex - 1]['controlsNumber'] + l - 1);
+                floatCont.getChild("Target" + l).getTarget().set(val * 127);
+            }
+        }
+
+    }
+    else if (name === 'parameter')
+    {
+        var remoteIndex = parseInt(value.getParent().getParent().name.substring(6, value.getParent().getParent().name.length));
+        Remote[remoteIndex - 1]['parameter'] = value.get();
+        var cont = value.getParent();
+        for (var l = 1; l < Remote[remoteIndex - 1]["controlsNumber"] + 1; l++)
+        {
+            var ind = Remote[remoteIndex-  1]["index"] * Remote[remoteIndex - 1]['controlsNumber'] + l - 1;
+            var val = ParameterFromString[value.get()](ind);
+            var target = cont.getChild("Target" + l).getTarget();
+            if (target)
+            {target.set(val * 127);}
+        }
+
     }
     else if (name === 'controlsNumber')
     {
         var index = parseInt(value.getParent().name.substring(6, value.getParent().name.length));
-        Remote[index - 1]['controlsNumber'] = value.get();
+        Remote[index - 1]['controlsNumber'] = parseInt(value.get());
     }
     else if (name === 'onOffNumber')
     {
@@ -419,7 +652,7 @@ function moduleValueChanged(value)
         {
             var onOff = value.getParent().addContainer("OnOff" + value.get());
             //value.getParent().addStringParameter("onOff" + value.get(), "onOff" + value.get(), "onOff" + value.get());
-            onOff.addEnumParameter("Parameter", "parameter", "Reverb on", "revOn", "Early On", "earlyOn", "Cluster On", "clusterOn");
+            onOff.addEnumParameter("Parameter", "parameter", "Reverb on", "reverbEnable", "Early On", "earlyEnable", "Cluster On", "clusterEnable");
             for (var i = 1; i < value.getParent().controlsNumber.get() + 1; i++)
             {
                 onOff.addTargetParameter("Target" + i, "Target for control number " + i);
@@ -450,9 +683,8 @@ function moduleValueChanged(value)
             value.getParent().removeContainer("Float" + i);
         }
         Remote[index - 1]["floatNumber"] = value.get();
-
-
     }
+
     else {
         if (!stopSendingOSC && OSCSourceMessage[name]) {
             var index = parseInt(value.getParent().name.substring(6, value.getParent().name.length));
@@ -554,6 +786,7 @@ function oscSourceEvent(address, args)
         if (typeof(args[0]) == 'number')
         {
           source.lfe1.set(args[0]);
+          controlName = 'lfe';
         }
     }
     else if (address[3]==='lfe2')
@@ -561,6 +794,7 @@ function oscSourceEvent(address, args)
         if (typeof(args[0]) == 'number')
         {
           source.lfe2.set(args[0]);
+            controlName = 'lfe2';
         }
     }
     else if (address[3]==='lfe3')
@@ -568,6 +802,7 @@ function oscSourceEvent(address, args)
         if (typeof(args[0]) == 'number')
         {
           source.lfe3.set(args[0]);
+            controlName = 'lfe3';
         }
     }
     else if (address[3]==='lfe4')
@@ -575,6 +810,7 @@ function oscSourceEvent(address, args)
         if (typeof(args[0]) == 'number')
         {
           source.lfe4.set(args[0]);
+            controlName = 'lfe4';
         }
     }
     else if (address[3] ==='mute')
@@ -582,6 +818,7 @@ function oscSourceEvent(address, args)
         if (typeof(args[0]) == 'number')
         {
           source.mute.set(args[0]);
+            controlName = 'mute';
         }
     }
     else if (address[3] ==='solo')
@@ -589,6 +826,7 @@ function oscSourceEvent(address, args)
         if (typeof(args[0]) == 'number')
         {
           source.solo.set(args[0]);
+            controlName = 'solo';
         }
     }
     else if (address[3]==='aed')
@@ -703,15 +941,15 @@ function oscSourceEvent(address, args)
       if (typeof(args[0]) == 'number')
       {
         source.getChild("Reverb").reverbEnable.set(args[0]);
-        controlName = 'revOn';
+        controlName = 'reverbEnable';
       }
     }
-    else if (address.length === 4 && address[3] === 'early')
+    else if (address[3] === 'early')
     {
       if (typeof(args[0]) == 'number')
       {
         source.getChild("Reverb").earlyEnable.set(args[0]);
-        controlName = 'earlyOn';
+        controlName = 'earlyEnable';
       }
     }
     else if (address[3] === 'cluster')
@@ -719,7 +957,7 @@ function oscSourceEvent(address, args)
       if (typeof(args[0]) == 'number')
       {
         source.getChild("Reverb").clusterEnable.set(args[0]);
-        controlName = 'clusterOn';
+        controlName = 'clusterEnable';
       }
     }
     else if (address[3] === 'tail')
@@ -727,7 +965,7 @@ function oscSourceEvent(address, args)
       if (typeof(args[0]) == 'number')
       {
         source.getChild("Reverb").tailEnable.set(args[0]);
-        controlName = 'tailOn';
+        controlName = 'tailEnable';
       }
     }
     else if (address[3] === 'name')
@@ -735,6 +973,7 @@ function oscSourceEvent(address, args)
       if (typeof(args[0]) == 'string')
       {
         source.sourceName.set(args[0]);
+          controlName = 'name';
       }
     }
     else if (address[3]==='pres')
@@ -742,6 +981,7 @@ function oscSourceEvent(address, args)
       if (typeof(args[0]) == 'number')
       {
         source.getChild("Perceptual Factors").presence.set(args[0]);
+          controlName = 'presence';
       }
     }
     else if (address[3]==='prer')
@@ -749,6 +989,7 @@ function oscSourceEvent(address, args)
       if (typeof(args[0]) == 'number')
       {
         source.getChild("Perceptual Factors").roomPresence.set(args[0]);
+          controlName = 'roomPresence';
       }
     }
     else if (address[3]==='revp')
@@ -756,6 +997,7 @@ function oscSourceEvent(address, args)
       if (typeof(args[0]) == 'number')
       {
         source.getChild("Perceptual Factors").runningReverberance.set(args[0]);
+          controlName = 'runningReverberance';
       }
     }
     else if (address[3]==='env')
@@ -763,6 +1005,7 @@ function oscSourceEvent(address, args)
       if (typeof(args[0]) == 'number')
       {
         source.getChild("Perceptual Factors").envelopment.set(args[0]);
+          controlName = 'envelopment';
       }
     }
     else if (address[3]==='warmth')
@@ -770,6 +1013,7 @@ function oscSourceEvent(address, args)
       if (typeof(args[0]) == 'number')
       {
         source.getChild("Perceptual Factors").warmth.set(args[0]);
+          controlName = 'warmth';
       }
     }
     else if (address[3]==='bril')
@@ -777,6 +1021,7 @@ function oscSourceEvent(address, args)
       if (typeof(args[0]) == 'number')
       {
         source.getChild("Perceptual Factors").brilliance.set(args[0]);
+          controlName = 'brilliance';
       }
     }
     else if (address[3]==='yaw')
@@ -784,6 +1029,7 @@ function oscSourceEvent(address, args)
       if (typeof(args[0]) == 'number')
       {
         source.yaw.set(args[0]);
+        controlName = 'yaw';
       }
     }
     else if (address[3]==='pitch')
@@ -791,6 +1037,7 @@ function oscSourceEvent(address, args)
       if (typeof(args[0]) == 'number')
       {
         source.pitch.set(args[0]);
+        controlName = 'pitch';
       }
     }
     else if (address[3]==='aperture')
@@ -798,6 +1045,7 @@ function oscSourceEvent(address, args)
       if (typeof(args[0]) == 'number')
       {
         source.aperture.set(args[0]);
+        controlName = 'aperture';
       }
     }
     else if (address[3]==='scale')
@@ -805,6 +1053,7 @@ function oscSourceEvent(address, args)
       if (typeof(args[0]) == 'number')
       {
         source.getChild("Barycentric").scale.set(args[0]);
+        controlName = 'scale';
       }
     }
     else if (address[3]==='spread')
@@ -812,6 +1061,7 @@ function oscSourceEvent(address, args)
       if (typeof(args[0]) == 'number')
       {
         source.getChild("Spreading").spread.set(args[0]);
+        controlName = 'spread';
       }
     }
     else if (address[3]==='nneig')
@@ -819,6 +1069,7 @@ function oscSourceEvent(address, args)
       if (typeof(args[0]) == 'number')
       {
         source.getChild("Spreading").knn.set(args[0]);
+        controlName = 'knn';
       }
     }
     else if (address[3]==='early' && address[4]==='width')
@@ -826,6 +1077,7 @@ function oscSourceEvent(address, args)
       if (typeof(args[0]) == 'number')
       {
         source.getChild("Reverb").earlyWidth.set(args[0]);
+        controlName = 'earlyWidth';
       }
     }
     else if (address[3]==='prevf')
@@ -833,6 +1085,7 @@ function oscSourceEvent(address, args)
       if (typeof(args[0]) == 'number')
       {
         source.getChild("Reverb").panRev.set(args[0]);
+        controlName = 'panRev';
       }
     }
     else if (address[3]==='doppler' && address[4]==='enable')
@@ -840,6 +1093,7 @@ function oscSourceEvent(address, args)
       if (typeof(args[0]) == 'number')
       {
         source.getChild("Options").doppler.set(args[0]);
+        controlName = 'options';
       }
     }
     else if (address[3]==='radius')
@@ -847,6 +1101,7 @@ function oscSourceEvent(address, args)
       if (typeof(args[0]) == 'number')
       {
         source.getChild("Options").radius.set(args[0]);
+        controlName = 'radius';
       }
     }
     else if (address[3]==='air' && address[4]==='enable')
@@ -854,6 +1109,7 @@ function oscSourceEvent(address, args)
       if (typeof(args[0]) == 'number')
       {
         source.getChild("Options").airAbsorption.set(args[0]);
+        controlName = 'airAbsorption';
       }
     }
     else if (address[3]==='cm')
@@ -861,6 +1117,7 @@ function oscSourceEvent(address, args)
       if (typeof(args[0]) == 'number')
       {
         source.getChild("Options").xyCoordinatesMode.set(args[0]);
+        controlName = 'xyCoordinatesMode';
       }
     }
     else if (address[3]==='zcm')
@@ -868,6 +1125,7 @@ function oscSourceEvent(address, args)
       if (typeof(args[0]) == 'number')
       {
         source.getChild("Options").zCoordinatesMode.set(args[0]);
+        controlName = 'zCoordinatesMode';
       }
     }
     else if (address[3]==='drop')
@@ -877,6 +1135,7 @@ function oscSourceEvent(address, args)
         if (typeof(args[0]) == 'number')
         {
           source.getChild("Options").dropLog.set(args[0]);
+          controlName = 'dropLog';
         }
       }
       if (address[4] ==='value')
@@ -884,6 +1143,7 @@ function oscSourceEvent(address, args)
         if (typeof(args[0]) == 'number')
         {
           source.getChild("Options").dropFactor.set(args[0]);
+          controlName = 'dropFactor';
         }
       }
     }
@@ -894,6 +1154,7 @@ function oscSourceEvent(address, args)
         var value = source.getChild("Barycentric").rotationXYZ.get();
         value = [args[0], value[1], value[2]];
         source.getChild("Barycentric").rotationXYZ.set(value);
+        controlName = 'rotx';
       }
     }
     else if (address[3]==='roty')
@@ -903,6 +1164,7 @@ function oscSourceEvent(address, args)
         var value = source.getChild("Barycentric").rotationXYZ.get();
           value = [value[0], args[1], value[2]];
         source.getChild("Barycentric").rotationXYZ.set(value);
+        controlName = 'roty';
       }
     }
     else if (address[3]==='rotz')
@@ -912,6 +1174,7 @@ function oscSourceEvent(address, args)
         var value = source.getChild("Barycentric").rotationXYZ.get();
         value = [value[0], value[1], args[2]];
         source.getChild("Barycentric").rotationXYZ.set(value);
+          controlName = 'rotz';
       }
     }
     else if (address[3]==='rg1')
@@ -919,6 +1182,7 @@ function oscSourceEvent(address, args)
         if (typeof(args[0]) == 'number')
         {
             source.getChild("RoomGains").roomGain1.set(args[0]);
+            controlName = 'roomGain1';
         }
     }
     else if (address[3]==='rg2')
@@ -926,6 +1190,7 @@ function oscSourceEvent(address, args)
         if (typeof(args[0]) == 'number')
         {
             source.getChild("RoomGains").roomGain2.set(args[0]);
+            controlName = 'roomGain2';
         }
     }
     else if (address[3]==='rg3')
@@ -933,6 +1198,7 @@ function oscSourceEvent(address, args)
         if (typeof(args[0]) == 'number')
         {
             source.getChild("RoomGains").roomGain3.set(args[0]);
+            controlName = 'roomGain3';
         }
     }
     else if (address[3]==='rg4')
@@ -940,6 +1206,7 @@ function oscSourceEvent(address, args)
         if (typeof(args[0]) == 'number')
         {
             source.getChild("RoomGains").roomGain4.set(args[0]);
+            controlName = 'roomGain4';
         }
     }
     else if (address[3]==='rg5')
@@ -947,6 +1214,7 @@ function oscSourceEvent(address, args)
         if (typeof(args[0]) == 'number')
         {
             source.getChild("RoomGains").roomGain5.set(args[0]);
+            controlName = 'roomGain5';
         }
     }
     else if (address[3]==='rg6')
@@ -954,6 +1222,7 @@ function oscSourceEvent(address, args)
         if (typeof(args[0]) == 'number')
         {
             source.getChild("RoomGains").roomGain6.set(args[0]);
+            controlName = 'roomGain6';
         }
     }
     else if (address[3]==='rg7')
@@ -961,6 +1230,7 @@ function oscSourceEvent(address, args)
         if (typeof(args[0]) == 'number')
         {
             source.getChild("RoomGains").roomGain7.set(args[0]);
+            controlName = 'roomGain7';
         }
     }
     else if (address[3]==='rg8')
@@ -975,6 +1245,7 @@ function oscSourceEvent(address, args)
         if (typeof(args[0]) == 'number')
         {
             source.getChild("RoomGains").roomGain9.set(args[0]);
+            controlName = 'roomGain9';
         }
     }
     else if (address[3]==='rg10')
@@ -982,6 +1253,7 @@ function oscSourceEvent(address, args)
         if (typeof(args[0]) == 'number')
         {
             source.getChild("RoomGains").roomGain10.set(args[0]);
+            controlName = 'roomGain10';
         }
     }
 
@@ -994,7 +1266,15 @@ function oscSourceEvent(address, args)
                 var cont = Remote[k - 1]['container'].getChild("OnOff" + j);
                 if (cont.getChild("Parameter").get() === controlName)
                 {
-                    script.log("On y est");
+                    cont.getChild("Target" + (i % Remote[k-1]["controlsNumber"] + 1)).getTarget().set(args[0] * 127);
+                }
+            }
+            for (var j = 1; j < Remote[k - 1]['floatNumber'] + 1; j++)
+            {
+                var cont = Remote[k - 1]['container'].getChild("float" + j);
+                if (cont.getChild("Parameter").get() === controlName)
+                {
+                    cont.getChild("Target" + (i % Remote[k-1]["controlsNumber"] + 1)).getTarget().set(args[0] * 127);
                 }
             }
         }
