@@ -227,6 +227,45 @@ var ParameterFromString = {
     }
 };
 
+var RangeForParameter = {
+    'gain': [-144.5, 24.0],
+    'lfe': [-144.5, 24.0],
+    'lfe2': [-144.5, 24.0],
+    'lfe3': [-144.5, 24.0],
+    'lfe4': [-144.5, 24.0],
+    'azimuth': [-180.0, 180.0],
+    'distance': [0, 100.0],
+    'presence': [0, 120.0],
+    'roomPresence': [0, 50.0],
+    'runningReverberance': [0, 50.0],
+    'envelopment': [0, 50.0],
+    'brillance': [0, 60.0],
+    'warmth': [0, 60.0],
+    'yaw': [-180, 180.0],
+    'pitch': [-90, 90.0],
+    'aperture': [10.0, 180.0],
+    'scale': [0.1, 100.0],
+    'spread': [0, 100.0],
+    'knn': [1, 100.0],
+    'earlyWidth': [1, 180.0],
+    'panRev': [0, 1.0],
+    'radius': [0.2, 100.0],
+    'dropFactor': [-10, 30.0],
+    'rotx': [-180, 180.0],
+    'roty': [-180, 180.0],
+    'rotz': [-180, 180.0],
+    'roomGain1': [-144.5, 24.0],
+    'roomGain2': [-144.5, 24.0],
+    'roomGain3': [-144.5, 24.0],
+    'roomGain4': [-144.5, 24.0],
+    'roomGain5': [-144.5, 24.0],
+    'roomGain6': [-144.5, 24.0],
+    'roomGain7': [-144.5, 24.0],
+    'roomGain8': [-144.5, 24.0],
+    'roomGain9': [-144.5, 24.0],
+    'roomGain10': [-144.5, 24.0]
+};
+
 /* OSCSourceMessage: array of all OSC Source Messages. Use to send OSC message when a value changed.*/
 var OSCSourceMessage = {
     'gain': function (index, value) {
@@ -242,6 +281,7 @@ var OSCSourceMessage = {
         local.send("/source/" + index + "/lfe", value.get());
     },
     'lfe2': function (index, value) {
+        local.send("/source/" + index + "/lfe2", value.get());
         local.send("/source/" + index + "/lfe2", value.get());
     },
     'lfe3': function (index, value) {
@@ -658,15 +698,11 @@ function moduleValueChanged(value)
                 var target = floatCont.getChild("Target" + l).getTarget();
                 if (target)
                 {
-                    target.set(val * 127);
+                    target.set((val - RangeForParameter[floatCont.getChild("parameter").get()][0]) / (RangeForParameter[floatCont.getChild("parameter").get()][1] - RangeForParameter[floatCont.getChild("parameter").get()][0]) * 127);
                 }
-                floatCont.getChild("Values").getChild("Value" + l).set(val);
+                floatCont.getChild("Values").getChild("Value" + l).set((val - RangeForParameter[floatCont.getChild("parameter").get()][0]) / (RangeForParameter[floatCont.getChild("parameter").get()][1] - RangeForParameter[floatCont.getChild("parameter").get()][0]));
             }
         }
-        var value = 0.2524;
-        var val = 20 * Math.log10(value);
-        script.log(val);
-        script.log(Math.pow(10, val/20));
 
     }
     else if (name === 'parameter')
@@ -783,7 +819,7 @@ function moduleValueChanged(value)
         {
             var valueIndex = parseInt(value.name.substring(5, value.getParent().name.length));
             var index = valueIndex + value.getParent().getParent().getParent().getChild("Index").get() * value.getParent().getParent().getParent().getChild("controlsNumber").get();
-            ParameterFromString[value.getParent().getParent().getChild("parameter").get()](index - 1).set(value.get());
+            ParameterFromString[value.getParent().getParent().getChild("parameter").get()](index - 1).set(value.get() * (RangeForParameter[value.getParent().getParent().getChild("parameter").get()][1] - RangeForParameter[value.getParent().getParent().getChild("parameter").get()][0]) + RangeForParameter[value.getParent().getParent().getChild("parameter").get()][0]);
         }
 
     else {
@@ -1379,7 +1415,11 @@ function oscSourceEvent(address, args)
                 var cont = Remote[k - 1]['container'].getChild("OnOff" + j);
                 if (cont.getChild("Parameter").get() === controlName)
                 {
-                    cont.getChild("Target" + (i % Remote[k-1]["controlsNumber"] + 1)).getTarget().set(args[0] * 127);
+                    var target = cont.getChild("Target" + (i % Remote[k-1]["controlsNumber"] + 1)).getTarget();
+                    if (target)
+                    {
+                        target.set(args[0] * 127);
+                    }
                     cont.getChild("Values").getChild("Value" + (i % Remote[k-1]["controlsNumber"] + 1)).set(args[0]);
                 }
             }
@@ -1388,7 +1428,12 @@ function oscSourceEvent(address, args)
                 var cont = Remote[k - 1]['container'].getChild("float" + j);
                 if (cont.getChild("Parameter").get() === controlName)
                 {
-                    cont.getChild("Target" + (i % Remote[k-1]["controlsNumber"] + 1)).getTarget().set(args[0] * 127);
+                    var val = (args[0] - RangeForParameter[controlName][0])/ (RangeForParameter[controlName][1] - RangeForParameter[controlName][0]);
+                    var target = cont.getChild("Target" + (i % Remote[k-1]["controlsNumber"] + 1)).getTarget();
+                    if (target)
+                    {
+                        target.set(val * 127);
+                    }
                     cont.getChild("Values").getChild("Value" + (i % Remote[k-1]["controlsNumber"] + 1)).set(args[0]);
                 }
             }
