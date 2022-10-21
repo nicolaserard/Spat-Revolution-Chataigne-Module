@@ -63,15 +63,15 @@ var ParameterFromString = {
     },
     'azimuth': function(index)
     {
-        return Sources[index]['container'].getChild('position')[0];
+        return Sources[index]['container'].getChild('position');
     },
     'elevation': function(index)
     {
-        return Sources[index]['container'].getChild('position')[1];
+        return Sources[index]['container'].getChild('position');
     },
     'distance': function(index)
     {
-        return Sources[index]['container'].getChild('position')[2];
+        return Sources[index]['container'].getChild('position');
     },
     'reverbEnable': function(index)
     {
@@ -175,15 +175,15 @@ var ParameterFromString = {
     },
     'rotx': function(index)
     {
-        return Sources[index]['container'].getChild("barycentric").getChild('rotationXYZ')[0];
+        return Sources[index]['container'].getChild("barycentric").getChild('rotationXYZ');
     },
     'roty': function(index)
     {
-        return Sources[index]['container'].getChild("barycentric").getChild('rotationXYZ')[1];
+        return Sources[index]['container'].getChild("barycentric").getChild('rotationXYZ');
     },
     'rotz': function(index)
     {
-        return Sources[index]['container'].getChild("barycentric").getChild('rotationXYZ')[2];
+        return Sources[index]['container'].getChild("barycentric").getChild('rotationXYZ');
     },
     'roomGain1': function(index)
     {
@@ -234,23 +234,24 @@ var RangeForParameter = {
     'lfe3': [-144.5, 24.0],
     'lfe4': [-144.5, 24.0],
     'azimuth': [-180.0, 180.0],
+    'elevation': [-90.0, 90.0],
     'distance': [0, 100.0],
     'presence': [0, 120.0],
-    'roomPresence': [0, 50.0],
-    'runningReverberance': [0, 50.0],
-    'envelopment': [0, 50.0],
-    'brillance': [0, 60.0],
+    'roomPresence': [0.0, 50.0],
+    'runningReverberance': [0.0, 50.0],
+    'envelopment': [0.0, 50.0],
+    'brillance': [0.0, 60.0],
     'warmth': [0, 60.0],
     'yaw': [-180, 180.0],
     'pitch': [-90, 90.0],
     'aperture': [10.0, 180.0],
     'scale': [0.1, 100.0],
-    'spread': [0, 100.0],
+    'spread': [0.0, 100.0],
     'knn': [1, 100.0],
-    'earlyWidth': [1, 180.0],
+    'earlyWidth': [1.0, 180.0],
     'panRev': [0, 1.0],
     'radius': [0.2, 100.0],
-    'dropFactor': [-10, 30.0],
+    'dropFactor': [-10.0, 30.0],
     'rotx': [-180, 180.0],
     'roty': [-180, 180.0],
     'rotz': [-180, 180.0],
@@ -695,6 +696,19 @@ function moduleValueChanged(value)
             for (var l = 1; l < Remote[remoteIndex - 1]["controlsNumber"] + 1; l++)
             {
                 var val = ParameterFromString[floatCont.getChild("parameter").get()](value.get()*Remote[remoteIndex - 1]['controlsNumber'] + l - 1).get();
+                if (floatCont.getChild("parameter").get() === "azimuth")
+                {
+                    val = val[0];
+                }
+                else if (floatCont.getChild("parameter").get() === "elevation")
+                {
+                    val = val[1];
+                }
+                else if (floatCont.getChild("parameter").get() === 'distance')
+                {
+                    val = val[2];
+                }
+
                 var target = floatCont.getChild("Target" + l).getTarget();
                 if (target)
                 {
@@ -714,9 +728,24 @@ function moduleValueChanged(value)
         {
             var ind = Remote[remoteIndex-  1]["index"] * Remote[remoteIndex - 1]['controlsNumber'] + l - 1;
             var val = ParameterFromString[value.get()](ind).get();
+            if (value.get() === 'rotx' | value.get() === 'azimuth')
+            {
+                val = val[0];
+            }
+            else if (value.get() === 'roty' | value.get() === 'elevation')
+            {
+                val = val[1];
+            }
+            else if (value.get() === 'rotz' | value.get() === 'distance')
+            {
+                val = val[2];
+            }
             var target = cont.getChild("Target" + l).getTarget();
+            val = (val - RangeForParameter[value.get()][0]) / (RangeForParameter[value.get()][1] - RangeForParameter[value.get()][0]);
             if (target)
-            {target.set(val * 127);}
+            {
+                target.set(val * 127);
+            }
             cont.getChild("Values").getChild("value" + l).set(val);
         }
 
@@ -819,7 +848,24 @@ function moduleValueChanged(value)
         {
             var valueIndex = parseInt(value.name.substring(5, value.getParent().name.length));
             var index = valueIndex + value.getParent().getParent().getParent().getChild("Index").get() * value.getParent().getParent().getParent().getChild("controlsNumber").get();
-            ParameterFromString[value.getParent().getParent().getChild("parameter").get()](index - 1).set(value.get() * (RangeForParameter[value.getParent().getParent().getChild("parameter").get()][1] - RangeForParameter[value.getParent().getParent().getChild("parameter").get()][0]) + RangeForParameter[value.getParent().getParent().getChild("parameter").get()][0]);
+            var param = ParameterFromString[value.getParent().getParent().getChild("parameter").get()](index - 1);
+            var val = value.get() * (RangeForParameter[value.getParent().getParent().getChild("parameter").get()][1] - RangeForParameter[value.getParent().getParent().getChild("parameter").get()][0]) + RangeForParameter[value.getParent().getParent().getChild("parameter").get()][0];
+            if (value.getParent().getParent().getChild("parameter").get() === "azimuth" | value.getParent().getParent().getChild("parameter").get() === "rotx")
+            {
+                param.set(val, param.get()[1], param.get()[2]);
+            }
+            else if (value.getParent().getParent().getChild("parameter").get() === "elevation" | value.getParent().getParent().getChild("parameter").get() === "roty")
+            {
+                param.set(param.get()[0], val, param.get()[2]);
+            }
+            else if (value.getParent().getParent().getChild("parameter").get() === "distance" | value.getParent().getParent().getChild("parameter").get() === "rotz")
+            {
+                param.set(param.get()[0], param.get()[1], val);
+            }
+            else
+            {
+                param.set(val);
+            }
         }
 
     else {
@@ -982,7 +1028,7 @@ function oscSourceEvent(address, args)
         {
           Sources[i]['positionAED'] = args;
           Sources[i]['positionXYZ'] = PolarToCartesian(args);
-
+          controlName = 'position';
 
           if(transformStereoToMono)
           {
@@ -1071,6 +1117,7 @@ function oscSourceEvent(address, args)
           Sources[i]['positionAED'] = CartesianToPolar(args);
           Sources[i]['positionXYZ'] = args;
           stopSendingOSC = true;
+          controlName = 'position';
           if (Cartesian === true)
           {
             source.position.set(Sources[i]['positionXYZ']);
@@ -1413,7 +1460,7 @@ function oscSourceEvent(address, args)
             for (var j = 1; j < Remote[k - 1]['onOffNumber'] + 1; j++)
             {
                 var cont = Remote[k - 1]['container'].getChild("OnOff" + j);
-                if (cont.getChild("Parameter").get() === controlName)
+                if (cont.getChild("Parameter").get() === controlName)// | (cont.getChild("Parameter").get() === 'azimuth' | cont.getChild("Parameter").get() === 'elevation' | cont.getChild("Parameter").get() === 'elevation') && controlName === 'position')
                 {
                     var target = cont.getChild("Target" + (i % Remote[k-1]["controlsNumber"] + 1)).getTarget();
                     if (target)
@@ -1426,15 +1473,24 @@ function oscSourceEvent(address, args)
             for (var j = 1; j < Remote[k - 1]['floatNumber'] + 1; j++)
             {
                 var cont = Remote[k - 1]['container'].getChild("float" + j);
-                if (cont.getChild("Parameter").get() === controlName)
+                if (cont.getChild("Parameter").get() === controlName | ((cont.getChild("Parameter").get() === 'azimuth' | cont.getChild("Parameter").get() === 'elevation' | cont.getChild("Parameter").get() === 'distance') && controlName === 'position'))
                 {
-                    var val = (args[0] - RangeForParameter[controlName][0])/ (RangeForParameter[controlName][1] - RangeForParameter[controlName][0]);
+                    var arg = args[0];
+                    if (cont.getChild("Parameter").get() === "elevation")
+                    {
+                        arg = args[1];
+                    }
+                    else if (cont.getChild("Parameter").get() === "distance")
+                    {
+                        arg = args[2];
+                    }
+                    var val = (arg - RangeForParameter[cont.getChild("Parameter").get()][0])/ (RangeForParameter[cont.getChild("Parameter").get()][1] - RangeForParameter[cont.getChild("Parameter").get()][0]);
                     var target = cont.getChild("Target" + (i % Remote[k-1]["controlsNumber"] + 1)).getTarget();
                     if (target)
                     {
                         target.set(val * 127);
                     }
-                    cont.getChild("Values").getChild("Value" + (i % Remote[k-1]["controlsNumber"] + 1)).set(args[0]);
+                    cont.getChild("Values").getChild("Value" + (i % Remote[k-1]["controlsNumber"] + 1)).set(val);
                 }
             }
         }
