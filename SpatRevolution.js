@@ -35,195 +35,195 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 var ParameterFromString = {
     'gain': function(index)
     {
-        return Sources[index]['container'].getChild('gain').get();
+        return Sources[index]['container'].getChild('gain');
     },
     'lfe': function(index)
     {
-        return Sources[index]['container'].getChild('lfe').get();
+        return Sources[index]['container'].getChild('lfe');
     },
     'lfe2': function(index)
     {
-        return Sources[index]['container'].getChild('lfe2').get();
+        return Sources[index]['container'].getChild('lfe2');
     },
     'lfe3': function(index)
     {
-        return Sources[index]['container'].getChild('lfe3').get();
+        return Sources[index]['container'].getChild('lfe3');
     },
     'lfe4': function(index)
     {
-        return Sources[index]['container'].getChild('lfe4').get();
+        return Sources[index]['container'].getChild('lfe4');
     },
     'solo': function(index)
     {
-        return Sources[index]['container'].getChild('solo').get();
+        return Sources[index]['container'].getChild('solo');
     },
     'mute': function(index)
     {
-        return Sources[index]['container'].getChild('mute').get();
+        return Sources[index]['container'].getChild('mute');
     },
     'azimuth': function(index)
     {
-        return Sources[index]['container'].getChild('position').get()[0];
+        return Sources[index]['container'].getChild('position')[0];
     },
     'elevation': function(index)
     {
-        return Sources[index]['container'].getChild('position').get()[1];
+        return Sources[index]['container'].getChild('position')[1];
     },
     'distance': function(index)
     {
-        return Sources[index]['container'].getChild('position').get()[2];
+        return Sources[index]['container'].getChild('position')[2];
     },
     'reverbEnable': function(index)
     {
-        return Sources[index]['container'].getChild("reverb").getChild('reverbEnable').get();
+        return Sources[index]['container'].getChild("reverb").getChild('reverbEnable');
     },
     'earlyEnable': function(index)
     {
-        return Sources[index]['container'].getChild("reverb").getChild('earlyEnable').get();
+        return Sources[index]['container'].getChild("reverb").getChild('earlyEnable');
     },
     'clusterEnable': function(index)
     {
-        return Sources[index]['container'].getChild("reverb").getChild('clusterEnable').get();
+        return Sources[index]['container'].getChild("reverb").getChild('clusterEnable');
     },
     'tailEnable': function(index)
     {
-        return Sources[index]['container'].getChild("reverb").getChild('tailEnable').get();
+        return Sources[index]['container'].getChild("reverb").getChild('tailEnable');
     },
     'presence': function(index)
     {
-        return Sources[index]['container'].getChild("perceptualFactors").getChild('presence').get();
+        return Sources[index]['container'].getChild("perceptualFactors").getChild('presence');
     },
     'roomPresence': function(index)
     {
-        return Sources[index]['container'].getChild("perceptualFactors").getChild('roomPresence').get();
+        return Sources[index]['container'].getChild("perceptualFactors").getChild('roomPresence');
     },
     'ruuningReverberance': function(index)
     {
-        return Sources[index]['container'].getChild("perceptualFactors").getChild('ruuningReverberance').get();
+        return Sources[index]['container'].getChild("perceptualFactors").getChild('ruuningReverberance');
     },
     'envelopment': function(index)
     {
-        return Sources[index]['container'].getChild("perceptualFactors").getChild('envelopment').get();
+        return Sources[index]['container'].getChild("perceptualFactors").getChild('envelopment');
     },
     'brilliance': function(index)
     {
-        return Sources[index]['container'].getChild("perceptualFactors").getChild('brilliance').get();
+        return Sources[index]['container'].getChild("perceptualFactors").getChild('brilliance');
     },
     'warmth': function(index)
     {
-        return Sources[index]['container'].getChild("perceptualFactors").getChild('warmth').get();
+        return Sources[index]['container'].getChild("perceptualFactors").getChild('warmth');
     },
     'yaw': function(index)
     {
-        return Sources[index]['container'].getChild('yaw').get();
+        return Sources[index]['container'].getChild('yaw');
     },
     'pitch': function(index)
     {
-        return Sources[index]['container'].getChild('pitch').get();
+        return Sources[index]['container'].getChild('pitch');
     },
     'aperture': function(index)
     {
-        return Sources[index]['container'].getChild('aperture').get();
+        return Sources[index]['container'].getChild('aperture');
     },
     'scale': function(index)
     {
-        return Sources[index]['container'].getChild("barycentric").getChild('scale').get();
+        return Sources[index]['container'].getChild("barycentric").getChild('scale');
     },
     'spread': function(index)
     {
-        return Sources[index]['container'].getChild("spreading").getChild('spread').get();
+        return Sources[index]['container'].getChild("spreading").getChild('spread');
     },
     'knn': function(index)
     {
-        return Sources[index]['container'].getChild("spreading").getChild('knn').get();
+        return Sources[index]['container'].getChild("spreading").getChild('knn');
     },
     'earlyWidth': function(index)
     {
-        return Sources[index]['container'].getChild("reverb").getChild('earlyWidth').get();
+        return Sources[index]['container'].getChild("reverb").getChild('earlyWidth');
     },
     'panRev': function(index)
     {
-        return Sources[index]['container'].getChild("reverb").getChild('panRev').get();
+        return Sources[index]['container'].getChild("reverb").getChild('panRev');
     },
     'doppler': function(index)
     {
-        return Sources[index]['container'].getChild("options").getChild('doppler').get();
+        return Sources[index]['container'].getChild("options").getChild('doppler');
     },
     'radius': function(index)
     {
-        return Sources[index]['container'].getChild("options").getChild('radius').get();
+        return Sources[index]['container'].getChild("options").getChild('radius');
     },
     'airAbsorption': function(index)
     {
-        return Sources[index]['container'].getChild("options").getChild('airAbsorption').get();
+        return Sources[index]['container'].getChild("options").getChild('airAbsorption');
     },
     'xyCoordinatesMode': function(index)
     {
-        return Sources[index]['container'].getChild("options").getChild('xyCoordinatesMode').get();
+        return Sources[index]['container'].getChild("options").getChild('xyCoordinatesMode');
     },
     'zCoordinatesMode': function(index)
     {
-        return Sources[index]['container'].getChild("options").getChild('zCoordinatesMode').get();
+        return Sources[index]['container'].getChild("options").getChild('zCoordinatesMode');
     },
     'dropLog': function(index)
     {
-        return Sources[index]['container'].getChild("options").getChild('dropLog').get();
+        return Sources[index]['container'].getChild("options").getChild('dropLog');
     },
     'dropFactor': function(index)
     {
-        return Sources[index]['container'].getChild("options").getChild('dropFactor').get();
+        return Sources[index]['container'].getChild("options").getChild('dropFactor');
     },
     'rotx': function(index)
     {
-        return Sources[index]['container'].getChild("barycentric").getChild('rotationXYZ').get()[0];
+        return Sources[index]['container'].getChild("barycentric").getChild('rotationXYZ')[0];
     },
     'roty': function(index)
     {
-        return Sources[index]['container'].getChild("barycentric").getChild('rotationXYZ').get()[1];
+        return Sources[index]['container'].getChild("barycentric").getChild('rotationXYZ')[1];
     },
     'rotz': function(index)
     {
-        return Sources[index]['container'].getChild("barycentric").getChild('rotationXYZ').get()[2];
+        return Sources[index]['container'].getChild("barycentric").getChild('rotationXYZ')[2];
     },
     'roomGain1': function(index)
     {
-        return Sources[index]['container'].getChild("roomGains").getChild('roomGain1').get();
+        return Sources[index]['container'].getChild("roomGains").getChild('roomGain1');
     },
     'roomGain2': function(index)
     {
-        return Sources[index]['container'].getChild("roomGains").getChild('roomGain2').get();
+        return Sources[index]['container'].getChild("roomGains").getChild('roomGain2');
     },
     'roomGain3': function(index)
     {
-        return Sources[index]['container'].getChild("roomGains").getChild('roomGain3').get();
+        return Sources[index]['container'].getChild("roomGains").getChild('roomGain3');
     },
     'roomGain4': function(index)
     {
-        return Sources[index]['container'].getChild("roomGains").getChild('roomGain4').get();
+        return Sources[index]['container'].getChild("roomGains").getChild('roomGain4');
     },
     'roomGain5': function(index)
     {
-        return Sources[index]['container'].getChild("roomGains").getChild('roomGain5').get();
+        return Sources[index]['container'].getChild("roomGains").getChild('roomGain5');
     },
     'roomGain6': function(index)
     {
-        return Sources[index]['container'].getChild("roomGains").getChild('roomGain6').get();
+        return Sources[index]['container'].getChild("roomGains").getChild('roomGain6');
     },
     'roomGain7': function(index)
     {
-        return Sources[index]['container'].getChild("roomGains").getChild('roomGain7').get();
+        return Sources[index]['container'].getChild("roomGains").getChild('roomGain7');
     },
     'roomGain8': function(index)
     {
-        return Sources[index]['container'].getChild("roomGains").getChild('roomGain8').get();
+        return Sources[index]['container'].getChild("roomGains").getChild('roomGain8');
     },
     'roomGain9': function(index)
     {
-        return Sources[index]['container'].getChild("roomGains").getChild('roomGain9').get();
+        return Sources[index]['container'].getChild("roomGains").getChild('roomGain9');
     },
     'roomGain10': function(index)
     {
-        return Sources[index]['container'].getChild("roomGains").getChild('roomGain10').get();
+        return Sources[index]['container'].getChild("roomGains").getChild('roomGain10');
     }
 };
 
@@ -513,6 +513,7 @@ var stopSendingOSC = false;
 var stereo = ['false', 'false', 'false', 'false', 'false', 'false', 'false', 'false', 'false', 'true', 'true', 'true', 'true', 'true', 'false', 'true', 'true', 'true', 'true', 'false', 'true'];
 var transformStereoToMono = false;
 var normalizedRange = [-10, 10, -10, 10, -10, 10];
+var stopSendForSource = -1;
 
 /* 	===============================================================================
 *	Chataigne common functions
@@ -542,11 +543,40 @@ function init()
 
 /**
  * This function is called automatically by Chataigne at updateRate period.
- * Used to parse OSC received messages to soundObject container values
  * @param {integer} updateRate
  */
 function update(updateRate)
 {
+
+    for (var remoteIndex = 0; remoteIndex <= Remote.length; remoteIndex ++)
+    {
+        for (var j = 1; j < Remote[remoteIndex - 1]['onOffNumber'] + 1; j++)
+        {
+            var onOffCont = Remote[remoteIndex - 1]['container'].getChild("OnOff" + j);
+            for (var l = 1; l < Remote[remoteIndex - 1]["controlsNumber"] + 1; l++)
+            {
+                var target = onOffCont.getChild("Target" + l).getTarget();
+                if (target && target.get()*127 != onOffCont.getChild("Values").getChild("Value" + l).get())
+                {
+                    onOffCont.getChild("Values").getChild("Value" + l).set(target.get()/127);
+                }
+            }
+        }
+        //float
+        for (var j = 1; j < Remote[remoteIndex - 1]['floatNumber'] + 1; j++)
+        {
+            var floatCont = Remote[remoteIndex - 1]['container'].getChild("float" + j);
+            for (var l = 1; l < Remote[remoteIndex - 1]["controlsNumber"] + 1; l++)
+            {
+                var target = floatCont.getChild("Target" + l).getTarget();
+                if (target && target.get()*127 != floatCont.getChild("Values").getChild("Value" + l).get())
+                {
+                    floatCont.getChild("Values").getChild("Value" + l).set(target.get()/127);
+                }
+            }
+        }
+    }
+
 
 }
 
@@ -608,8 +638,13 @@ function moduleValueChanged(value)
             var onOffCont = Remote[remoteIndex - 1]['container'].getChild("OnOff" + j);
             for (var l = 1; l < Remote[remoteIndex - 1]["controlsNumber"] + 1; l++)
             {
-                var val = ParameterFromString[onOffCont.getChild("parameter").get()](value.get()*Remote[remoteIndex - 1]['controlsNumber'] + l - 1);
-                onOffCont.getChild("Target" + l).getTarget().set(val * 127);
+                var val = ParameterFromString[onOffCont.getChild("parameter").get()](value.get()*Remote[remoteIndex - 1]['controlsNumber'] + l - 1).get();
+                var target = onOffCont.getChild("Target" + l).getTarget();
+                if (target)
+                {
+                    target.set(val*127);
+                }
+                onOffCont.getChild("Values").getChild("Value" + l).set(val);
             }
         }
 
@@ -619,10 +654,19 @@ function moduleValueChanged(value)
             var floatCont = Remote[remoteIndex - 1]['container'].getChild("float" + j);
             for (var l = 1; l < Remote[remoteIndex - 1]["controlsNumber"] + 1; l++)
             {
-                var val = ParameterFromString[floatCont.getChild("parameter").get()](value.get()*Remote[remoteIndex - 1]['controlsNumber'] + l - 1);
-                floatCont.getChild("Target" + l).getTarget().set(val * 127);
+                var val = ParameterFromString[floatCont.getChild("parameter").get()](value.get()*Remote[remoteIndex - 1]['controlsNumber'] + l - 1).get();
+                var target = floatCont.getChild("Target" + l).getTarget();
+                if (target)
+                {
+                    target.set(val * 127);
+                }
+                floatCont.getChild("Values").getChild("Value" + l).set(val);
             }
         }
+        var value = 0.2524;
+        var val = 20 * Math.log10(value);
+        script.log(val);
+        script.log(Math.pow(10, val/20));
 
     }
     else if (name === 'parameter')
@@ -633,17 +677,63 @@ function moduleValueChanged(value)
         for (var l = 1; l < Remote[remoteIndex - 1]["controlsNumber"] + 1; l++)
         {
             var ind = Remote[remoteIndex-  1]["index"] * Remote[remoteIndex - 1]['controlsNumber'] + l - 1;
-            var val = ParameterFromString[value.get()](ind);
+            var val = ParameterFromString[value.get()](ind).get();
             var target = cont.getChild("Target" + l).getTarget();
             if (target)
             {target.set(val * 127);}
+            cont.getChild("Values").getChild("value" + l).set(val);
         }
 
     }
     else if (name === 'controlsNumber')
     {
         var index = parseInt(value.getParent().name.substring(6, value.getParent().name.length));
+        if (value.get() > Remote[index - 1]['controlsNumber'])
+        {
+            while (Remote[index -1]['controlsNumber'] < value.get())
+            {
+                // onOff
+                for (var j = 1; j < Remote[index - 1]['onOffNumber'] + 1; j++)
+                {
+                    var onOffCont = Remote[index - 1]['container'].getChild("OnOff" + j);
+                    onOffCont.addTargetParameter("Target" + parseInt(Remote[index-1]['controlsNumber']+1), "Target" + parseInt(Remote[index-1]['controlsNumber']+1));
+                    onOffCont.getChild("Values").addBoolParameter("Value" + parseInt(Remote[index-1]['controlsNumber'] + 1), "Value" + parseInt(Remote[index-1]['controlsNumber'] + 1), false);
+                }
+                // float
+                for (var j = 1; j < Remote[index - 1]['floatNumber'] + 1; j++)
+                {
+                    var floatCont = Remote[index - 1]['container'].getChild("Float" + j);
+                    floatCont.addTargetParameter("Target" + parseInt(Remote[index-1]['controlsNumber']+1), "Target" + parseInt(Remote[index-1]['controlsNumber']+1));
+                    floatCont.getChild("Values").addFloatParameter("Value" + parseInt(Remote[index-1]['controlsNumber'] + 1), "Value" + parseInt(Remote[index-1]['controlsNumber'] + 1), 0.0, 0.0, 1.0);
+                }
+                Remote[index-1]['controlsNumber'] +=1;
+            }
+
+        }
+        else if (value.get() < Remote[index - 1]['controlsNumber'])
+        {
+            // onOff
+            while (Remote[index -1]['controlsNumber'] > value.get())
+            {
+                //onOff
+                for (var j = 1; j < Remote[index - 1]['onOffNumber'] + 1; j++)
+                {
+                    var onOffCont = Remote[index - 1]['container'].getChild("OnOff" + j);
+                    onOffCont.removeParameter("Target"+parseInt(Remote[index-1]['controlsNumber']));
+                    onOffCont.getChild("Values").removeParameter("Value" + parseInt(Remote[index-1]['controlsNumber']));
+                }
+                //float
+                for (var j = 1; j < Remote[index - 1]['floatNumber'] + 1; j++)
+                {
+                    var floatCont = Remote[index - 1]['container'].getChild("Float" + j);
+                    floatCont.removeParameter("Target"+parseInt(Remote[index-1]['controlsNumber']));
+                    floatCont.getChild("Values").removeParameter("Value" + parseInt(Remote[index-1]['controlsNumber']));
+                }
+                Remote[index-1]['controlsNumber'] -=1;
+            }
+        }
         Remote[index - 1]['controlsNumber'] = parseInt(value.get());
+
     }
     else if (name === 'onOffNumber')
     {
@@ -653,8 +743,10 @@ function moduleValueChanged(value)
             var onOff = value.getParent().addContainer("OnOff" + value.get());
             //value.getParent().addStringParameter("onOff" + value.get(), "onOff" + value.get(), "onOff" + value.get());
             onOff.addEnumParameter("Parameter", "parameter", "Reverb on", "reverbEnable", "Early On", "earlyEnable", "Cluster On", "clusterEnable");
+            var valContainer = onOff.addContainer("Values");
             for (var i = 1; i < value.getParent().controlsNumber.get() + 1; i++)
             {
+                valContainer.addBoolParameter("Value" + i, "Value" + i, false);
                 onOff.addTargetParameter("Target" + i, "Target for control number " + i);
             }
         }
@@ -671,9 +763,11 @@ function moduleValueChanged(value)
         if (value.get() > Remote[index - 1]["floatNumber"])
         {
             var float = value.getParent().addContainer("Float" + value.get());
-            float.addEnumParameter("Parameter", "Parameter controlled", "Azimuth", "azimuth", "Elevation", "Distance", "distance", "gain", "gain");
+            float.addEnumParameter("Parameter", "Parameter controlled", "Azimuth", "azimuth", "Elevation", "elevation", "Distance", "distance", "Gain", "gain");
+            var valContainer = float.addContainer("Values");
             for (var i = 1; i < value.getParent().controlsNumber.get() + 1; i++)
             {
+                valContainer.addFloatParameter("Value" + i, "Value for control number " + i, 0.0, 0.0, 1.0);
                 float.addTargetParameter("Target" + i, "Target for control number " + i);
             }
         }
@@ -685,21 +779,37 @@ function moduleValueChanged(value)
         Remote[index - 1]["floatNumber"] = value.get();
     }
 
+    else if (name.startsWith("value"))
+        {
+            var valueIndex = parseInt(value.name.substring(5, value.getParent().name.length));
+            var index = valueIndex + value.getParent().getParent().getParent().getChild("Index").get() * value.getParent().getParent().getParent().getChild("controlsNumber").get();
+            ParameterFromString[value.getParent().getParent().getChild("parameter").get()](index - 1).set(value.get());
+        }
+
     else {
-        if (!stopSendingOSC && OSCSourceMessage[name]) {
+        if (!stopSendingOSC && OSCSourceMessage[name])
+        {
             var index = parseInt(value.getParent().name.substring(6, value.getParent().name.length));
-            if (index === 0) {
+            if (index === 0)
+            {
                 index = parseInt(value.getParent().getParent().name.substring(6, value.getParent().getParent().name.length));
             }
-            OSCSourceMessage[name](index, value);
-        } else if (!stopSendingOSC && OSCRoomMessage[name]) {
+            if (index != stopSendForSource + 1)
+            {
+                OSCSourceMessage[name](index, value);
+            }
+        }
+        else if (!stopSendingOSC && OSCRoomMessage[name])
+        {
             var index = parseInt(value.getParent().name.substring(4, value.getParent().name.length));
-            if (index === 0) {
+            if (index === 0)
+            {
                 index = parseInt(value.getParent().getParent().name.substring(4, value.getParent().getParent().name.length));
-                if (index === 0) {
+                if (index === 0)
+                {
                     index = parseInt(value.getParent().getParent().getParent().name.substring(4, value.getParent().getParent().name.length));
-                    }
                 }
+            }
             OSCRoomMessage[name](index, value);
         }
     }
@@ -772,6 +882,7 @@ function oscSourceEvent(address, args)
         var source = Sources[i]['container'];
     }
 
+    stopSendForSource = i;
     if (address[3]==='gain')
 
     {
@@ -1257,6 +1368,8 @@ function oscSourceEvent(address, args)
         }
     }
 
+    stopSendForSource = -1;
+
     for (var k = 1; k < Remote.length + 1; k++)
     {
         if (Math.floor(i/ Remote[k-1]["controlsNumber"]) == Remote[k-1]["index"])
@@ -1267,6 +1380,7 @@ function oscSourceEvent(address, args)
                 if (cont.getChild("Parameter").get() === controlName)
                 {
                     cont.getChild("Target" + (i % Remote[k-1]["controlsNumber"] + 1)).getTarget().set(args[0] * 127);
+                    cont.getChild("Values").getChild("Value" + (i % Remote[k-1]["controlsNumber"] + 1)).set(args[0]);
                 }
             }
             for (var j = 1; j < Remote[k - 1]['floatNumber'] + 1; j++)
@@ -1275,6 +1389,7 @@ function oscSourceEvent(address, args)
                 if (cont.getChild("Parameter").get() === controlName)
                 {
                     cont.getChild("Target" + (i % Remote[k-1]["controlsNumber"] + 1)).getTarget().set(args[0] * 127);
+                    cont.getChild("Values").getChild("Value" + (i % Remote[k-1]["controlsNumber"] + 1)).set(args[0]);
                 }
             }
         }
