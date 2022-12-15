@@ -667,7 +667,14 @@ function moduleValueChanged(value)
     }
     else if (name === 'numberOfRemotes')
     {
-
+        if (value.get() > Remote.length)
+        {
+            addRemote(value.get());
+        }
+        else if (value.get() < Remote.length)
+        {
+            deleteRemote(value.get() + 1);
+        }
     }
     else if (name === 'index')
     {
@@ -2071,6 +2078,25 @@ function createRoomContainer()
   local.scripts.setCollapsed(true);
 }
 
+function addRemote(index)
+{
+    // script.log("Add remote: " + index);
+    RemoteContainer = RemotesContainer.addContainer("Remote" + index);
+    Remote.push({"index": 0, "container": RemoteContainer, 'controlsNumber': 8, 'onOffNumber': 0, 'floatNumber':0});
+    indexNumber = RemoteContainer.addIntParameter("Index", "index", 0, 0, 64);
+    controlsNumber = RemoteContainer.addIntParameter("Controls number", "controls number", 8 ,1, 50);
+    onOffNumber = RemoteContainer.addIntParameter("On Off Number", "on off number", 0, 0, 50);
+    floatNumber = RemoteContainer.addIntParameter("Float Number", "float number", 0, 0, 50);
+}
+
+function deleteRemote(index)
+{
+    // script.log("Removing remote: " + index);
+    RemotesContainer.removeContainer("Remote" + index);
+    // Remote.remove(index - 1);
+    Remote.splice(-1);
+}
+
 function createRemoteContainer()
 {
     // Add the Remote container
@@ -2079,12 +2105,7 @@ function createRemoteContainer()
     var numberOfRemotes = RemotesContainer.addIntParameter("number of  remotes", "number of remotes", 1, 1, 50);
     for (var i = 1; i < numberOfRemotes.get() + 1; i++)
     {
-        RemoteContainer = RemotesContainer.addContainer("Remote " + i);
-        Remote.push({"index": 0, "container": RemoteContainer, 'controlsNumber': 8, 'onOffNumber': 0, 'floatNumber':0});
-        indexNumber = RemoteContainer.addIntParameter("Index", "index", 0, 0, 64);
-        controlsNumber = RemoteContainer.addIntParameter("Controls number", "controls number", 8 ,1, 50);
-        onOffNumber = RemoteContainer.addIntParameter("On Off Number", "on off number", 0, 0, 50);
-        floatNumber = RemoteContainer.addIntParameter("Float Number", "float number", 0, 0, 50);
+        addRemote(i);
     }
 }
 
