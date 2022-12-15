@@ -676,6 +676,16 @@ function moduleValueChanged(value)
             deleteRemote(value.get() + 1);
         }
     }
+
+    else if (name === 'masterIndex')
+    {
+
+        for (var i = 0; i < Remote.length; i++)
+        {
+            // Remote[i]['index'] = parseInt(value.get());
+            Remote[i]['container'].getChild("Index").set(value.get());
+        }
+    }
     else if (name === 'index')
     {
         var remoteIndex = parseInt(value.getParent().name.substring(6, value.getParent().name.length));
@@ -2093,7 +2103,6 @@ function deleteRemote(index)
 {
     // script.log("Removing remote: " + index);
     RemotesContainer.removeContainer("Remote" + index);
-    // Remote.remove(index - 1);
     Remote.splice(-1);
 }
 
@@ -2102,7 +2111,8 @@ function createRemoteContainer()
     // Add the Remote container
     RemotesContainer = local.values.addContainer("Remotes");
 
-    var numberOfRemotes = RemotesContainer.addIntParameter("number of  remotes", "number of remotes", 1, 1, 50);
+    var numberOfRemotes = RemotesContainer.addIntParameter("number of  remotes", "number of remotes", 1, 1, 10);
+    var masterIndex = RemotesContainer.addIntParameter("Master index", "master index", 0, 0, 128);
     for (var i = 1; i < numberOfRemotes.get() + 1; i++)
     {
         addRemote(i);
