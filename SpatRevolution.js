@@ -240,7 +240,7 @@ var RangeForParameter = {
     'roomPresence': [0.0, 50.0],
     'runningReverberance': [0.0, 50.0],
     'envelopment': [0.0, 50.0],
-    'brillance': [0.0, 60.0],
+    'brilliance': [0.0, 60.0],
     'warmth': [0, 60.0],
     'yaw': [-180, 180.0],
     'pitch': [-90, 90.0],
@@ -824,8 +824,7 @@ function moduleValueChanged(value)
         if (value.get() > Remote[index - 1]["onOffNumber"])
         {
             var onOff = value.getParent().addContainer("OnOff" + value.get());
-            //value.getParent().addStringParameter("onOff" + value.get(), "onOff" + value.get(), "onOff" + value.get());
-            onOff.addEnumParameter("Parameter", "parameter", "Reverb on", "reverbEnable", "Early On", "earlyEnable", "Cluster On", "clusterEnable");
+            onOff.addEnumParameter("Parameter", "parameter", "Mute", "mute", "Solo", "solo", "Reverb on", "reverbEnable", "Early On", "earlyEnable", "Cluster On", "clusterEnable", "Doppler", "doppler", "Air Absorption", "airAbsorption", "XY Coordinates mode", "xyCoordinatesMode", "Z Coordinates mode", "zCoordinatesMode", "Drop log", "dropLog", );
             var valContainer = onOff.addContainer("Values");
             for (var i = 1; i < value.getParent().controlsNumber.get() + 1; i++)
             {
@@ -846,7 +845,7 @@ function moduleValueChanged(value)
         if (value.get() > Remote[index - 1]["floatNumber"])
         {
             var float = value.getParent().addContainer("Float" + value.get());
-            float.addEnumParameter("Parameter", "Parameter controlled", "Azimuth", "azimuth", "Elevation", "elevation", "Distance", "distance", "Gain", "gain");
+            float.addEnumParameter("Parameter", "Parameter controlled", "Azimuth", "azimuth", "Elevation", "elevation", "Distance", "distance", "Gain", "gain", "Lfe", "lfe", "Lfe2", "lfe2", "Lfe3", "lfe3", "Lfe4", "lfe4", "Presence", "presence", "Room presence", "roomPresence", "Running Reverberance", "runningReverberance", "Envelopment", "envelopment", "Brilliance", "brilliance", "Warmth", "warmth", "Yaw", "yaw", "Pitch", "pitch", "Aperture", "aperture", "Scale", "scale", "Spread", "spread", "Knn", "knn", "Early width", "earlyWidth", "Pan Rev", "panRev", "Drop factor", "dropFactor", "Rotation X", "rotX", "Rotation Y", "rotY", "Rotation Z", "rotZ", "RoomGain 1", "roomGain1", "RoomGain 2", "roomGain2", "RoomGain 3", "roomGain3", "RoomGain 4", "roomGain4", "RoomGain 5", "roomGain5", "RoomGain 6", "roomGain6", "RoomGain 7", "roomGain7", "RoomGain 8", "roomGain8", "RoomGain 9", "roomGain9", "RoomGain 10", "roomGain10");
             var valContainer = float.addContainer("Values");
             for (var i = 1; i < value.getParent().controlsNumber.get() + 1; i++)
             {
