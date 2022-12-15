@@ -610,7 +610,8 @@ function update(updateRate)
             for (var l = 1; l < Remote[remoteIndex - 1]["controlsNumber"] + 1; l++)
             {
                 var target = floatCont.getChild("Target" + l).getTarget();
-                if (target && target.get()*127 != floatCont.getChild("Values").getChild("Value" + l).get())
+
+                if (target && target.get() != parseInt(floatCont.getChild("Values").getChild("Value" + l).get()*127))
                 {
                     floatCont.getChild("Values").getChild("Value" + l).set(target.get()/127);
                 }
