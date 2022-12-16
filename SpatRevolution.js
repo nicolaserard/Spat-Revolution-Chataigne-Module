@@ -63,15 +63,27 @@ var ParameterFromString = {
     },
     'azimuth': function(index)
     {
-        return Sources[index]['container'].getChild('position');
+        return Sources[index]['container'].getChild('positionAED');
     },
     'elevation': function(index)
     {
-        return Sources[index]['container'].getChild('position');
+        return Sources[index]['container'].getChild('positionAED');
     },
     'distance': function(index)
     {
-        return Sources[index]['container'].getChild('position');
+        return Sources[index]['container'].getChild('positionAED');
+    },
+    'positionX': function(index)
+    {
+        return Sources[index]['container'].getChild('positionXYZ');
+    },
+    'positionY': function(index)
+    {
+        return Sources[index]['container'].getChild('positionXYZ');
+    },
+    'positionZ': function(index)
+    {
+        return Sources[index]['container'].getChild('positionXYZ');
     },
     'reverbEnable': function(index)
     {
@@ -236,6 +248,9 @@ var RangeForParameter = {
     'azimuth': [-180.0, 180.0],
     'elevation': [-90.0, 90.0],
     'distance': [0, 100.0],
+    'positionX': [-100.0, 100.0],
+    'positionY': [-100.0, 100.0],
+    'positionZ': [-100.0, 100.0],
     'presence': [0, 120.0],
     'roomPresence': [0.0, 50.0],
     'runningReverberance': [0.0, 50.0],
@@ -291,18 +306,11 @@ var OSCSourceMessage = {
     'lfe4': function (index, value) {
         local.send("/source/" + index + "/lfe4", value.get());
     },
-    'position': function (index, value) {
-        if (Cartesian === true) {
-            local.send("/source/" + index + "/aed", CartesianToPolar(value.get()));
-        } else {
+    'positionAED': function (index, value) {
             local.send("/source/" + index + "/aed", value.get());
-
-        }
     },
-    'cartesian': function (index, value) {
-        stopSendingOSC = true;
-        Cartesian = value.get() === 1 && Cartesian === false;
-        stopSendingOSC = true;
+    'positionXYZ': function (index, value) {
+            local.send("/source/" + index + "/aed", CartesianToPolar(value.get()));
     },
     'reverbEnable': function (index, value) {
         local.send("/source/" + index + "/reverb/enable", value.get());
@@ -549,7 +557,6 @@ var perceptualFactorRoomContainer = null;
 var roomResponseRoomContainer = null;
 var reverbOptionsRoomContainer = null;
 var reverbCrossoverRoomContainer = null;
-var Cartesian = false; // define the mode of position for all sources. Cartesian when true, Polar when false.
 var stopSendingOSC = false;
 var stereo = ['false', 'false', 'false', 'false', 'false', 'false', 'false', 'false', 'false', 'true', 'true', 'true', 'true', 'true', 'false', 'true', 'true', 'true', 'true', 'false', 'true'];
 var transformStereoToMono = false;
@@ -573,7 +580,7 @@ function init()
     // Add Setup container
 
     SetupContainer = local.values.addContainer("Setup", "Setup value");
-    CartesianOrPolar = SetupContainer.addBoolParameter("Cartesian", "Polar or cartesian", false);
+    distanceMax = SetupContainer.addFloatParameter("Distance Max", "Distance maximum of the position XYZ and distance for AED, in meters", 100.0, 1.0, 100.0);
 
     createSourceContainer();
     createRoomContainer();
@@ -644,28 +651,7 @@ function moduleValueChanged(value)
   var name = value.name;
   if (value.isParameter())
   {
-    if (name === 'cartesian')
-    {
-      stopSendingOSC = true;
-      if (value.get() === 1 && Cartesian === false)
-      {
-        Cartesian = true;
-        for (var i = 0; i < Sources.length; i++)
-        {
-          Sources[i]['container'].position.set(Sources[i]['positionXYZ']);
-        }
-      }
-      else if (value.get() === 0 && Cartesian === true)
-      {
-        Cartesian = false;
-        for (var i = 0; i < Sources.length; i++)
-        {
-          Sources[i]['container'].position.set(Sources[i]['positionAED']);
-        }
-      }
-      stopSendingOSC = false;
-    }
-    else if (name === 'numberOfRemotes')
+    if (name === 'numberOfRemotes')
     {
         if (value.get() > Remote.length)
         {
@@ -685,6 +671,14 @@ function moduleValueChanged(value)
             // Remote[i]['index'] = parseInt(value.get());
             Remote[i]['container'].getChild("Index").set(value.get());
         }
+    }
+    else if (name === 'distanceMax')
+    {
+        var val = value.get();
+        RangeForParameter['positionX'] = [- val, val];
+        RangeForParameter['positionY'] = [- val, val];
+        RangeForParameter['positionZ'] = [- val, val];
+        RangeForParameter['distance'] = [- val, val];
     }
     else if (name === 'index')
     {
@@ -746,15 +740,15 @@ function moduleValueChanged(value)
         {
             var ind = Remote[remoteIndex-  1]["index"] * Remote[remoteIndex - 1]['controlsNumber'] + l - 1;
             var val = ParameterFromString[value.get()](ind).get();
-            if (value.get() === 'rotx' | value.get() === 'azimuth')
+            if (value.get() === 'rotx' | value.get() === 'azimuth' | value.get() === 'positionX')
             {
                 val = val[0];
             }
-            else if (value.get() === 'roty' | value.get() === 'elevation')
+            else if (value.get() === 'roty' | value.get() === 'elevation' | value.get() === 'positionY')
             {
                 val = val[1];
             }
-            else if (value.get() === 'rotz' | value.get() === 'distance')
+            else if (value.get() === 'rotz' | value.get() === 'distance' | value.get() === 'positionZ')
             {
                 val = val[2];
             }
@@ -845,7 +839,7 @@ function moduleValueChanged(value)
         if (value.get() > Remote[index - 1]["floatNumber"])
         {
             var float = value.getParent().addContainer("Float" + value.get());
-            float.addEnumParameter("Parameter", "Parameter controlled", "Azimuth", "azimuth", "Elevation", "elevation", "Distance", "distance", "Gain", "gain", "Lfe", "lfe", "Lfe2", "lfe2", "Lfe3", "lfe3", "Lfe4", "lfe4", "Presence", "presence", "Room presence", "roomPresence", "Running Reverberance", "runningReverberance", "Envelopment", "envelopment", "Brilliance", "brilliance", "Warmth", "warmth", "Yaw", "yaw", "Pitch", "pitch", "Aperture", "aperture", "Scale", "scale", "Spread", "spread", "Knn", "knn", "Early width", "earlyWidth", "Pan Rev", "panRev", "Drop factor", "dropFactor", "Rotation X", "rotX", "Rotation Y", "rotY", "Rotation Z", "rotZ", "RoomGain 1", "roomGain1", "RoomGain 2", "roomGain2", "RoomGain 3", "roomGain3", "RoomGain 4", "roomGain4", "RoomGain 5", "roomGain5", "RoomGain 6", "roomGain6", "RoomGain 7", "roomGain7", "RoomGain 8", "roomGain8", "RoomGain 9", "roomGain9", "RoomGain 10", "roomGain10");
+            float.addEnumParameter("Parameter", "Parameter controlled", "Azimuth", "azimuth", "Elevation", "elevation", "Distance", "distance", "Position X", "positionX", "Position Y", "positionY", "Position Z", "positionZ", "Gain", "gain", "Lfe", "lfe", "Lfe2", "lfe2", "Lfe3", "lfe3", "Lfe4", "lfe4", "Presence", "presence", "Room presence", "roomPresence", "Running Reverberance", "runningReverberance", "Envelopment", "envelopment", "Brilliance", "brilliance", "Warmth", "warmth", "Yaw", "yaw", "Pitch", "pitch", "Aperture", "aperture", "Scale", "scale", "Spread", "spread", "Knn", "knn", "Early width", "earlyWidth", "Pan Rev", "panRev", "Drop factor", "dropFactor", "Rotation X", "rotX", "Rotation Y", "rotY", "Rotation Z", "rotZ", "RoomGain 1", "roomGain1", "RoomGain 2", "roomGain2", "RoomGain 3", "roomGain3", "RoomGain 4", "roomGain4", "RoomGain 5", "roomGain5", "RoomGain 6", "roomGain6", "RoomGain 7", "roomGain7", "RoomGain 8", "roomGain8", "RoomGain 9", "roomGain9", "RoomGain 10", "roomGain10");
             var valContainer = float.addContainer("Values");
             for (var i = 1; i < value.getParent().controlsNumber.get() + 1; i++)
             {
@@ -867,15 +861,15 @@ function moduleValueChanged(value)
             var index = valueIndex + value.getParent().getParent().getParent().getChild("Index").get() * value.getParent().getParent().getParent().getChild("controlsNumber").get();
             var param = ParameterFromString[value.getParent().getParent().getChild("parameter").get()](index - 1);
             var val = value.get() * (RangeForParameter[value.getParent().getParent().getChild("parameter").get()][1] - RangeForParameter[value.getParent().getParent().getChild("parameter").get()][0]) + RangeForParameter[value.getParent().getParent().getChild("parameter").get()][0];
-            if (value.getParent().getParent().getChild("parameter").get() === "azimuth" | value.getParent().getParent().getChild("parameter").get() === "rotx")
+            if (value.getParent().getParent().getChild("parameter").get() === "azimuth" | value.getParent().getParent().getChild("parameter").get() === "positionX" | value.getParent().getParent().getChild("parameter").get() === "rotx")
             {
                 param.set(val, param.get()[1], param.get()[2]);
             }
-            else if (value.getParent().getParent().getChild("parameter").get() === "elevation" | value.getParent().getParent().getChild("parameter").get() === "roty")
+            else if (value.getParent().getParent().getChild("parameter").get() === "elevation" | value.getParent().getParent().getChild("parameter").get() === "positionY" | value.getParent().getParent().getChild("parameter").get() === "roty")
             {
                 param.set(param.get()[0], val, param.get()[2]);
             }
-            else if (value.getParent().getParent().getChild("parameter").get() === "distance" | value.getParent().getParent().getChild("parameter").get() === "rotz")
+            else if (value.getParent().getParent().getChild("parameter").get() === "distance" | value.getParent().getParent().getChild("parameter").get() === "positionZ" | value.getParent().getParent().getChild("parameter").get() === "rotz")
             {
                 param.set(param.get()[0], param.get()[1], val);
             }
@@ -883,6 +877,18 @@ function moduleValueChanged(value)
             {
                 param.set(val);
             }
+
+            stopSendingOSC = true;
+            if (value.getParent().getParent().getChild("parameter").get() === "azimuth" | value.getParent().getParent().getChild("parameter").get() === "elevation" | value.getParent().getParent().getChild("parameter").get() === "distance")
+            {
+
+                param.getParent().getChild("positionXYZ").set(CartesianToPolar(param.get()));
+            }
+            else if (value.getParent().getParent().getChild("parameter").get() === "positionX" | value.getParent().getParent().getChild("parameter").get() === "positionY" | value.getParent().getParent().getChild("parameter").get() === "positionZ")
+            {
+                param.getParent().getChild("positionAED").set(PolarToCartesian(param.get()));
+            }
+            stopSendingOSC = false;
         }
 
     else {
@@ -1043,6 +1049,7 @@ function oscSourceEvent(address, args)
     {
         if (typeof(args[0]) == 'number' && typeof(args[1]) == 'number' && typeof(args[2]) == 'number')
         {
+            script.log("Update AED");
           Sources[i]['positionAED'] = args;
           Sources[i]['positionXYZ'] = PolarToCartesian(args);
           controlName = 'position';
@@ -1113,18 +1120,11 @@ function oscSourceEvent(address, args)
                   }
               }
           }
-
-
           stopSendingOSC = true;
-          if (Cartesian === true)
-          {
-            source.position.set(Sources[i]['positionXYZ']);
-          }
-          else
-          {
-            source.position.set(Sources[i]['positionAED']);
-          }
+          source.positionXYZ.set(Sources[i]['positionXYZ']);
+          source.positionAED.set(Sources[i]['positionAED']);
           stopSendingOSC = false;
+
         }
     }
     else if (address[3]==='xyz')
@@ -1135,15 +1135,9 @@ function oscSourceEvent(address, args)
           Sources[i]['positionXYZ'] = args;
           stopSendingOSC = true;
           controlName = 'position';
-          if (Cartesian === true)
-          {
-            source.position.set(Sources[i]['positionXYZ']);
-          }
-          else
-          {
-            source.position.set(Sources[i]['positionAED']);
+          source.positionXYZ.set(Sources[i]['positionXYZ']);
+          source.positionAED.set(Sources[i]['positionAED']);
 
-          }
           stopSendingOSC = false;
         }
     }
@@ -1490,17 +1484,26 @@ function oscSourceEvent(address, args)
             for (var j = 1; j < Remote[k - 1]['floatNumber'] + 1; j++)
             {
                 var cont = Remote[k - 1]['container'].getChild("float" + j);
-                if (cont.getChild("Parameter").get() === controlName | ((cont.getChild("Parameter").get() === 'azimuth' | cont.getChild("Parameter").get() === 'elevation' | cont.getChild("Parameter").get() === 'distance') && controlName === 'position'))
+                if (cont.getChild("Parameter").get() === controlName | ((cont.getChild("Parameter").get() === 'azimuth' | cont.getChild("Parameter").get() === 'elevation' | cont.getChild("Parameter").get() === 'distance') && controlName === 'position')| ((cont.getChild("Parameter").get() === 'positionX' | cont.getChild("Parameter").get() === 'positionY' | cont.getChild("Parameter").get() === 'positionZ') && controlName === 'position'))
                 {
                     var arg = args[0];
+                    if (cont.getChild("Parameter").get() === "positionY")
+                    {
+                        arg = source.getChild("positionXYZ").get()[1];
+                    }
+                    else if (cont.getChild("Parameter").get() === "positionZ")
+                    {
+                        arg = source.getChild("positionXYZ").get()[2];
+                    }
                     if (cont.getChild("Parameter").get() === "elevation")
                     {
-                        arg = args[1];
+                        arg = source.getChild("positionAED").get()[1];
                     }
                     else if (cont.getChild("Parameter").get() === "distance")
                     {
-                        arg = args[2];
+                        arg = source.getChild("positionAED").get()[2];
                     }
+
                     var val = (arg - RangeForParameter[cont.getChild("Parameter").get()][0])/ (RangeForParameter[cont.getChild("Parameter").get()][1] - RangeForParameter[cont.getChild("Parameter").get()][0]);
                     var target = cont.getChild("Target" + (i % Remote[k-1]["controlsNumber"] + 1)).getTarget();
                     if (target)
@@ -1850,8 +1853,11 @@ function createSourceContainer()
     var lfe4 = SourceContainer.addFloatParameter("LFE 4", "LFE level", -144.5, -144.5, 24);
     lfe4.setAttribute("readonly", true);
 
-    var position = SourceContainer.addPoint3DParameter("Position", "Position", [0.0, 0.0, 2.0]);
-    position.setAttribute("readonly", true);
+    var positionAED = SourceContainer.addPoint3DParameter("Position AED", "PositionAED", [0.0, 0.0, 2.0]);
+    positionAED.setAttribute("readonly", true);
+
+    var positionXYZ = SourceContainer.addPoint3DParameter("Position XYZ", "Position XYZ", [0.0, 2.0, 0.0]);
+    positionXYZ.setAttribute("readonly", true);
 
     reverbSourceContainer = SourceContainer.addContainer("Reverb");
     var reverbEnable = reverbSourceContainer.addBoolParameter("Reverb Enable", "Reverb Enable", 1);
@@ -2125,30 +2131,30 @@ function createRemoteContainer()
 
 function CartesianToPolar(value)
 {
-    var positionAED = [0,0,0];
-    if (value[0] !==0 || value[1] !== 0 || value[2] !==0 )
+    var positionAED = [0.0, 0.0, 0.0];
+    if (value[0] != 0.0|| value[1] != 0.0 || value[2] != 0.0)
     {
-        positionAED[1] = -180 * Math.acos(z/Math.sqrt(Math.pow(value[0],2) + Math.pow(value[1],2) + Math.pow(value[2],2))) / Math.PI + 90;
         positionAED[2] = Math.sqrt(Math.pow(value[0],2) + Math.pow(value[1],2) + Math.pow(value[2],2));
+        positionAED[1] = - 180 * Math.acos(value[2]/positionAED[2]) / Math.PI + 90;
     }
     else
     {
-        positionAED[1] = 0;
-        positionAED[2] = 0;
+        positionAED[1] = 0.0;
+        positionAED[2] = 0.0;
     }
 
     if(value[0]===0 && value[1]===0)
     {
-        positionAED[0] = 0;
+        positionAED[0] = 0.0;
     }
     else if (value[0] === 0 && value[1] > 0)
-    {positionAED[0] = 0;}
+    {positionAED[0] = 0.0;}
     else if(value[0] === 0 && value[1] < 0)
-    {positionAED[0] = -180;}
+    {positionAED[0] = -180.0;}
     else if(value[1] === 0 && value[0] > 0)
-    {positionAED[0] = 90;}
+    {positionAED[0] = 90.0;}
     else if(value[1] === 0 && value[0] < 0)
-    {positionAED[0] = -90;}
+    {positionAED[0] = -90.0;}
     else if (value[0] > 0 && value[1] !== 0)
     {positionAED[0] = (-180 * Math.atan(value[1]/value[0]) / Math.PI) + 90;}
     else if(value[0] < 0 && value[1] !== 0)

@@ -35,10 +35,13 @@
    {
      "type":"Container",
 
-     "Cartesian":
+     "Distance Max":
      {
-       "type":"Boolean",
-       "description":"Define if cartesian or polar data are displayed\n"
+       "type":"Float",
+       "description": "Distance maximum of the position XYZ and distance for AED, in meters.\n",
+       "min": 10.0,
+       "max": 100.0,
+       "default": 100.0
       }
 
  },
@@ -89,7 +92,31 @@
          "min": -144.5,
          "max": 12.0
        },
-       "Position": {
+       "Position AED": {
+         "type": "Point3D",
+         "min": [
+           -180,
+           -90,
+           0
+         ],
+         "max": [
+           180,
+           90,
+           100
+         ]
+       }, "Position AED": {
+         "type": "Point3D",
+         "min": [
+           -180,
+           -90,
+           0
+         ],
+         "max": [
+           180,
+           90,
+           100
+         ]
+       }, "Position XYZ": {
          "type": "Point3D",
          "min": [
            -100,
@@ -366,7 +393,19 @@
          "min": -144.5,
          "max": 12.0
        },
-       "Position": {
+       "Position AED": {
+         "type": "Point3D",
+         "min": [
+           -180,
+           -90,
+           0
+         ],
+         "max": [
+           180,
+           90,
+           100
+         ]
+       }, "Position XYZ": {
          "type": "Point3D",
          "min": [
            -100,
@@ -643,7 +682,19 @@
          "min": -144.5,
          "max": 12.0
        },
-       "Position": {
+       "Position AED": {
+         "type": "Point3D",
+         "min": [
+           -180,
+           -90,
+           0
+         ],
+         "max": [
+           180,
+           90,
+           100
+         ]
+       }, "Position XYZ": {
          "type": "Point3D",
          "min": [
            -100,
@@ -920,7 +971,19 @@
          "min": -144.5,
          "max": 12.0
        },
-       "Position": {
+       "Position AED": {
+         "type": "Point3D",
+         "min": [
+           -180,
+           -90,
+           0
+         ],
+         "max": [
+           180,
+           90,
+           100
+         ]
+       }, "Position XYZ": {
          "type": "Point3D",
          "min": [
            -100,
@@ -1197,7 +1260,19 @@
          "min": -144.5,
          "max": 12.0
        },
-       "Position": {
+       "Position AED": {
+         "type": "Point3D",
+         "min": [
+           -180,
+           -90,
+           0
+         ],
+         "max": [
+           180,
+           90,
+           100
+         ]
+       }, "Position XYZ": {
          "type": "Point3D",
          "min": [
            -100,
@@ -1474,7 +1549,19 @@
          "min": -144.5,
          "max": 12.0
        },
-       "Position": {
+       "Position AED": {
+         "type": "Point3D",
+         "min": [
+           -180,
+           -90,
+           0
+         ],
+         "max": [
+           180,
+           90,
+           100
+         ]
+       }, "Position XYZ": {
          "type": "Point3D",
          "min": [
            -100,
@@ -1751,7 +1838,19 @@
          "min": -144.5,
          "max": 12.0
        },
-       "Position": {
+       "Position AED": {
+         "type": "Point3D",
+         "min": [
+           -180,
+           -90,
+           0
+         ],
+         "max": [
+           180,
+           90,
+           100
+         ]
+       }, "Position XYZ": {
          "type": "Point3D",
          "min": [
            -100,
@@ -2028,7 +2127,19 @@
          "min": -144.5,
          "max": 12.0
        },
-       "Position": {
+       "Position AED": {
+         "type": "Point3D",
+         "min": [
+           -180,
+           -90,
+           0
+         ],
+         "max": [
+           180,
+           90,
+           100
+         ]
+       }, "Position XYZ": {
          "type": "Point3D",
          "min": [
            -100,
@@ -2305,7 +2416,19 @@
          "min": -144.5,
          "max": 12.0
        },
-       "Position": {
+       "Position AED": {
+         "type": "Point3D",
+         "min": [
+           -180,
+           -90,
+           0
+         ],
+         "max": [
+           180,
+           90,
+           100
+         ]
+       }, "Position XYZ": {
          "type": "Point3D",
          "min": [
            -100,
@@ -2582,7 +2705,19 @@
          "min": -144.5,
          "max": 12.0
        },
-       "Position": {
+       "Position AED": {
+         "type": "Point3D",
+         "min": [
+           -180,
+           -90,
+           0
+         ],
+         "max": [
+           180,
+           90,
+           100
+         ]
+       }, "Position XYZ": {
          "type": "Point3D",
          "min": [
            -100,
@@ -2859,7 +2994,19 @@
          "min": -144.5,
          "max": 12.0
        },
-       "Position": {
+       "Position AED": {
+         "type": "Point3D",
+         "min": [
+           -180,
+           -90,
+           0
+         ],
+         "max": [
+           180,
+           90,
+           100
+         ]
+       }, "Position XYZ": {
          "type": "Point3D",
          "min": [
            -100,
@@ -3136,7 +3283,19 @@
          "min": -144.5,
          "max": 12.0
        },
-       "Position": {
+       "Position AED": {
+         "type": "Point3D",
+         "min": [
+           -180,
+           -90,
+           0
+         ],
+         "max": [
+           180,
+           90,
+           100
+         ]
+       }, "Position XYZ": {
          "type": "Point3D",
          "min": [
            -100,
@@ -3413,7 +3572,19 @@
          "min": -144.5,
          "max": 12.0
        },
-       "Position": {
+       "Position AED": {
+         "type": "Point3D",
+         "min": [
+           -180,
+           -90,
+           0
+         ],
+         "max": [
+           180,
+           90,
+           100
+         ]
+       }, "Position XYZ": {
          "type": "Point3D",
          "min": [
            -100,
@@ -3690,7 +3861,19 @@
          "min": -144.5,
          "max": 12.0
        },
-       "Position": {
+       "Position AED": {
+         "type": "Point3D",
+         "min": [
+           -180,
+           -90,
+           0
+         ],
+         "max": [
+           180,
+           90,
+           100
+         ]
+       }, "Position XYZ": {
          "type": "Point3D",
          "min": [
            -100,
@@ -3967,7 +4150,19 @@
          "min": -144.5,
          "max": 12.0
        },
-       "Position": {
+       "Position AED": {
+         "type": "Point3D",
+         "min": [
+           -180,
+           -90,
+           0
+         ],
+         "max": [
+           180,
+           90,
+           100
+         ]
+       }, "Position XYZ": {
          "type": "Point3D",
          "min": [
            -100,
@@ -4244,7 +4439,19 @@
          "min": -144.5,
          "max": 12.0
        },
-       "Position": {
+       "Position AED": {
+         "type": "Point3D",
+         "min": [
+           -180,
+           -90,
+           0
+         ],
+         "max": [
+           180,
+           90,
+           100
+         ]
+       }, "Position XYZ": {
          "type": "Point3D",
          "min": [
            -100,
@@ -4521,7 +4728,19 @@
          "min": -144.5,
          "max": 12.0
        },
-       "Position": {
+       "Position AED": {
+         "type": "Point3D",
+         "min": [
+           -180,
+           -90,
+           0
+         ],
+         "max": [
+           180,
+           90,
+           100
+         ]
+       }, "Position XYZ": {
          "type": "Point3D",
          "min": [
            -100,
@@ -4798,7 +5017,19 @@
          "min": -144.5,
          "max": 12.0
        },
-       "Position": {
+       "Position AED": {
+         "type": "Point3D",
+         "min": [
+           -180,
+           -90,
+           0
+         ],
+         "max": [
+           180,
+           90,
+           100
+         ]
+       }, "Position XYZ": {
          "type": "Point3D",
          "min": [
            -100,
@@ -5075,7 +5306,19 @@
          "min": -144.5,
          "max": 12.0
        },
-       "Position": {
+       "Position AED": {
+         "type": "Point3D",
+         "min": [
+           -180,
+           -90,
+           0
+         ],
+         "max": [
+           180,
+           90,
+           100
+         ]
+       }, "Position XYZ": {
          "type": "Point3D",
          "min": [
            -100,
@@ -5352,7 +5595,19 @@
          "min": -144.5,
          "max": 12.0
        },
-       "Position": {
+       "Position AED": {
+         "type": "Point3D",
+         "min": [
+           -180,
+           -90,
+           0
+         ],
+         "max": [
+           180,
+           90,
+           100
+         ]
+       }, "Position XYZ": {
          "type": "Point3D",
          "min": [
            -100,
@@ -5629,7 +5884,19 @@
          "min": -144.5,
          "max": 12.0
        },
-       "Position": {
+       "Position AED": {
+         "type": "Point3D",
+         "min": [
+           -180,
+           -90,
+           0
+         ],
+         "max": [
+           180,
+           90,
+           100
+         ]
+       }, "Position XYZ": {
          "type": "Point3D",
          "min": [
            -100,
@@ -5906,7 +6173,19 @@
          "min": -144.5,
          "max": 12.0
        },
-       "Position": {
+       "Position AED": {
+         "type": "Point3D",
+         "min": [
+           -180,
+           -90,
+           0
+         ],
+         "max": [
+           180,
+           90,
+           100
+         ]
+       }, "Position XYZ": {
          "type": "Point3D",
          "min": [
            -100,
@@ -6183,7 +6462,19 @@
          "min": -144.5,
          "max": 12.0
        },
-       "Position": {
+       "Position AED": {
+         "type": "Point3D",
+         "min": [
+           -180,
+           -90,
+           0
+         ],
+         "max": [
+           180,
+           90,
+           100
+         ]
+       }, "Position XYZ": {
          "type": "Point3D",
          "min": [
            -100,
@@ -6460,7 +6751,19 @@
          "min": -144.5,
          "max": 12.0
        },
-       "Position": {
+       "Position AED": {
+         "type": "Point3D",
+         "min": [
+           -180,
+           -90,
+           0
+         ],
+         "max": [
+           180,
+           90,
+           100
+         ]
+       }, "Position XYZ": {
          "type": "Point3D",
          "min": [
            -100,
@@ -6737,7 +7040,19 @@
          "min": -144.5,
          "max": 12.0
        },
-       "Position": {
+       "Position AED": {
+         "type": "Point3D",
+         "min": [
+           -180,
+           -90,
+           0
+         ],
+         "max": [
+           180,
+           90,
+           100
+         ]
+       }, "Position XYZ": {
          "type": "Point3D",
          "min": [
            -100,
@@ -7014,7 +7329,19 @@
          "min": -144.5,
          "max": 12.0
        },
-       "Position": {
+       "Position AED": {
+         "type": "Point3D",
+         "min": [
+           -180,
+           -90,
+           0
+         ],
+         "max": [
+           180,
+           90,
+           100
+         ]
+       }, "Position XYZ": {
          "type": "Point3D",
          "min": [
            -100,
@@ -7291,7 +7618,19 @@
          "min": -144.5,
          "max": 12.0
        },
-       "Position": {
+       "Position AED": {
+         "type": "Point3D",
+         "min": [
+           -180,
+           -90,
+           0
+         ],
+         "max": [
+           180,
+           90,
+           100
+         ]
+       }, "Position XYZ": {
          "type": "Point3D",
          "min": [
            -100,
@@ -7568,7 +7907,19 @@
          "min": -144.5,
          "max": 12.0
        },
-       "Position": {
+       "Position AED": {
+         "type": "Point3D",
+         "min": [
+           -180,
+           -90,
+           0
+         ],
+         "max": [
+           180,
+           90,
+           100
+         ]
+       }, "Position XYZ": {
          "type": "Point3D",
          "min": [
            -100,
@@ -7845,7 +8196,19 @@
          "min": -144.5,
          "max": 12.0
        },
-       "Position": {
+       "Position AED": {
+         "type": "Point3D",
+         "min": [
+           -180,
+           -90,
+           0
+         ],
+         "max": [
+           180,
+           90,
+           100
+         ]
+       }, "Position XYZ": {
          "type": "Point3D",
          "min": [
            -100,
@@ -8122,7 +8485,19 @@
          "min": -144.5,
          "max": 12.0
        },
-       "Position": {
+       "Position AED": {
+         "type": "Point3D",
+         "min": [
+           -180,
+           -90,
+           0
+         ],
+         "max": [
+           180,
+           90,
+           100
+         ]
+       }, "Position XYZ": {
          "type": "Point3D",
          "min": [
            -100,
@@ -8399,7 +8774,19 @@
          "min": -144.5,
          "max": 12.0
        },
-       "Position": {
+       "Position AED": {
+         "type": "Point3D",
+         "min": [
+           -180,
+           -90,
+           0
+         ],
+         "max": [
+           180,
+           90,
+           100
+         ]
+       }, "Position XYZ": {
          "type": "Point3D",
          "min": [
            -100,
@@ -8676,7 +9063,19 @@
          "min": -144.5,
          "max": 12.0
        },
-       "Position": {
+       "Position AED": {
+         "type": "Point3D",
+         "min": [
+           -180,
+           -90,
+           0
+         ],
+         "max": [
+           180,
+           90,
+           100
+         ]
+       }, "Position XYZ": {
          "type": "Point3D",
          "min": [
            -100,
@@ -8953,7 +9352,19 @@
          "min": -144.5,
          "max": 12.0
        },
-       "Position": {
+       "Position AED": {
+         "type": "Point3D",
+         "min": [
+           -180,
+           -90,
+           0
+         ],
+         "max": [
+           180,
+           90,
+           100
+         ]
+       }, "Position XYZ": {
          "type": "Point3D",
          "min": [
            -100,
@@ -9230,7 +9641,19 @@
          "min": -144.5,
          "max": 12.0
        },
-       "Position": {
+       "Position AED": {
+         "type": "Point3D",
+         "min": [
+           -180,
+           -90,
+           0
+         ],
+         "max": [
+           180,
+           90,
+           100
+         ]
+       }, "Position XYZ": {
          "type": "Point3D",
          "min": [
            -100,
@@ -9507,7 +9930,19 @@
          "min": -144.5,
          "max": 12.0
        },
-       "Position": {
+       "Position AED": {
+         "type": "Point3D",
+         "min": [
+           -180,
+           -90,
+           0
+         ],
+         "max": [
+           180,
+           90,
+           100
+         ]
+       }, "Position XYZ": {
          "type": "Point3D",
          "min": [
            -100,
@@ -9784,7 +10219,19 @@
          "min": -144.5,
          "max": 12.0
        },
-       "Position": {
+       "Position AED": {
+         "type": "Point3D",
+         "min": [
+           -180,
+           -90,
+           0
+         ],
+         "max": [
+           180,
+           90,
+           100
+         ]
+       }, "Position XYZ": {
          "type": "Point3D",
          "min": [
            -100,
@@ -10061,7 +10508,19 @@
          "min": -144.5,
          "max": 12.0
        },
-       "Position": {
+       "Position AED": {
+         "type": "Point3D",
+         "min": [
+           -180,
+           -90,
+           0
+         ],
+         "max": [
+           180,
+           90,
+           100
+         ]
+       }, "Position XYZ": {
          "type": "Point3D",
          "min": [
            -100,
@@ -10338,7 +10797,19 @@
          "min": -144.5,
          "max": 12.0
        },
-       "Position": {
+       "Position AED": {
+         "type": "Point3D",
+         "min": [
+           -180,
+           -90,
+           0
+         ],
+         "max": [
+           180,
+           90,
+           100
+         ]
+       }, "Position XYZ": {
          "type": "Point3D",
          "min": [
            -100,
@@ -10615,7 +11086,19 @@
          "min": -144.5,
          "max": 12.0
        },
-       "Position": {
+       "Position AED": {
+         "type": "Point3D",
+         "min": [
+           -180,
+           -90,
+           0
+         ],
+         "max": [
+           180,
+           90,
+           100
+         ]
+       }, "Position XYZ": {
          "type": "Point3D",
          "min": [
            -100,
@@ -10892,7 +11375,19 @@
          "min": -144.5,
          "max": 12.0
        },
-       "Position": {
+       "Position AED": {
+         "type": "Point3D",
+         "min": [
+           -180,
+           -90,
+           0
+         ],
+         "max": [
+           180,
+           90,
+           100
+         ]
+       }, "Position XYZ": {
          "type": "Point3D",
          "min": [
            -100,
@@ -11169,7 +11664,19 @@
          "min": -144.5,
          "max": 12.0
        },
-       "Position": {
+       "Position AED": {
+         "type": "Point3D",
+         "min": [
+           -180,
+           -90,
+           0
+         ],
+         "max": [
+           180,
+           90,
+           100
+         ]
+       }, "Position XYZ": {
          "type": "Point3D",
          "min": [
            -100,
@@ -11446,7 +11953,19 @@
          "min": -144.5,
          "max": 12.0
        },
-       "Position": {
+       "Position AED": {
+         "type": "Point3D",
+         "min": [
+           -180,
+           -90,
+           0
+         ],
+         "max": [
+           180,
+           90,
+           100
+         ]
+       }, "Position XYZ": {
          "type": "Point3D",
          "min": [
            -100,
@@ -11723,7 +12242,19 @@
          "min": -144.5,
          "max": 12.0
        },
-       "Position": {
+       "Position AED": {
+         "type": "Point3D",
+         "min": [
+           -180,
+           -90,
+           0
+         ],
+         "max": [
+           180,
+           90,
+           100
+         ]
+       }, "Position XYZ": {
          "type": "Point3D",
          "min": [
            -100,
@@ -12000,7 +12531,19 @@
          "min": -144.5,
          "max": 12.0
        },
-       "Position": {
+       "Position AED": {
+         "type": "Point3D",
+         "min": [
+           -180,
+           -90,
+           0
+         ],
+         "max": [
+           180,
+           90,
+           100
+         ]
+       }, "Position XYZ": {
          "type": "Point3D",
          "min": [
            -100,
@@ -12277,7 +12820,19 @@
          "min": -144.5,
          "max": 12.0
        },
-       "Position": {
+       "Position AED": {
+         "type": "Point3D",
+         "min": [
+           -180,
+           -90,
+           0
+         ],
+         "max": [
+           180,
+           90,
+           100
+         ]
+       }, "Position XYZ": {
          "type": "Point3D",
          "min": [
            -100,
@@ -12554,7 +13109,19 @@
          "min": -144.5,
          "max": 12.0
        },
-       "Position": {
+       "Position AED": {
+         "type": "Point3D",
+         "min": [
+           -180,
+           -90,
+           0
+         ],
+         "max": [
+           180,
+           90,
+           100
+         ]
+       }, "Position XYZ": {
          "type": "Point3D",
          "min": [
            -100,
@@ -12831,7 +13398,19 @@
          "min": -144.5,
          "max": 12.0
        },
-       "Position": {
+       "Position AED": {
+         "type": "Point3D",
+         "min": [
+           -180,
+           -90,
+           0
+         ],
+         "max": [
+           180,
+           90,
+           100
+         ]
+       }, "Position XYZ": {
          "type": "Point3D",
          "min": [
            -100,
@@ -13108,7 +13687,19 @@
          "min": -144.5,
          "max": 12.0
        },
-       "Position": {
+       "Position AED": {
+         "type": "Point3D",
+         "min": [
+           -180,
+           -90,
+           0
+         ],
+         "max": [
+           180,
+           90,
+           100
+         ]
+       }, "Position XYZ": {
          "type": "Point3D",
          "min": [
            -100,
@@ -13385,7 +13976,19 @@
          "min": -144.5,
          "max": 12.0
        },
-       "Position": {
+       "Position AED": {
+         "type": "Point3D",
+         "min": [
+           -180,
+           -90,
+           0
+         ],
+         "max": [
+           180,
+           90,
+           100
+         ]
+       }, "Position XYZ": {
          "type": "Point3D",
          "min": [
            -100,
@@ -13662,7 +14265,19 @@
          "min": -144.5,
          "max": 12.0
        },
-       "Position": {
+       "Position AED": {
+         "type": "Point3D",
+         "min": [
+           -180,
+           -90,
+           0
+         ],
+         "max": [
+           180,
+           90,
+           100
+         ]
+       }, "Position XYZ": {
          "type": "Point3D",
          "min": [
            -100,
@@ -13939,7 +14554,19 @@
          "min": -144.5,
          "max": 12.0
        },
-       "Position": {
+       "Position AED": {
+         "type": "Point3D",
+         "min": [
+           -180,
+           -90,
+           0
+         ],
+         "max": [
+           180,
+           90,
+           100
+         ]
+       }, "Position XYZ": {
          "type": "Point3D",
          "min": [
            -100,
@@ -14216,7 +14843,19 @@
          "min": -144.5,
          "max": 12.0
        },
-       "Position": {
+       "Position AED": {
+         "type": "Point3D",
+         "min": [
+           -180,
+           -90,
+           0
+         ],
+         "max": [
+           180,
+           90,
+           100
+         ]
+       }, "Position XYZ": {
          "type": "Point3D",
          "min": [
            -100,
@@ -14493,7 +15132,19 @@
          "min": -144.5,
          "max": 12.0
        },
-       "Position": {
+       "Position AED": {
+         "type": "Point3D",
+         "min": [
+           -180,
+           -90,
+           0
+         ],
+         "max": [
+           180,
+           90,
+           100
+         ]
+       }, "Position XYZ": {
          "type": "Point3D",
          "min": [
            -100,
@@ -14770,7 +15421,19 @@
          "min": -144.5,
          "max": 12.0
        },
-       "Position": {
+       "Position AED": {
+         "type": "Point3D",
+         "min": [
+           -180,
+           -90,
+           0
+         ],
+         "max": [
+           180,
+           90,
+           100
+         ]
+       }, "Position XYZ": {
          "type": "Point3D",
          "min": [
            -100,
@@ -15047,7 +15710,19 @@
          "min": -144.5,
          "max": 12.0
        },
-       "Position": {
+       "Position AED": {
+         "type": "Point3D",
+         "min": [
+           -180,
+           -90,
+           0
+         ],
+         "max": [
+           180,
+           90,
+           100
+         ]
+       }, "Position XYZ": {
          "type": "Point3D",
          "min": [
            -100,
@@ -15324,7 +15999,19 @@
          "min": -144.5,
          "max": 12.0
        },
-       "Position": {
+       "Position AED": {
+         "type": "Point3D",
+         "min": [
+           -180,
+           -90,
+           0
+         ],
+         "max": [
+           180,
+           90,
+           100
+         ]
+       }, "Position XYZ": {
          "type": "Point3D",
          "min": [
            -100,
@@ -15601,7 +16288,19 @@
          "min": -144.5,
          "max": 12.0
        },
-       "Position": {
+       "Position AED": {
+         "type": "Point3D",
+         "min": [
+           -180,
+           -90,
+           0
+         ],
+         "max": [
+           180,
+           90,
+           100
+         ]
+       }, "Position XYZ": {
          "type": "Point3D",
          "min": [
            -100,
@@ -15878,7 +16577,19 @@
          "min": -144.5,
          "max": 12.0
        },
-       "Position": {
+       "Position AED": {
+         "type": "Point3D",
+         "min": [
+           -180,
+           -90,
+           0
+         ],
+         "max": [
+           180,
+           90,
+           100
+         ]
+       }, "Position XYZ": {
          "type": "Point3D",
          "min": [
            -100,
@@ -16155,7 +16866,19 @@
          "min": -144.5,
          "max": 12.0
        },
-       "Position": {
+       "Position AED": {
+         "type": "Point3D",
+         "min": [
+           -180,
+           -90,
+           0
+         ],
+         "max": [
+           180,
+           90,
+           100
+         ]
+       }, "Position XYZ": {
          "type": "Point3D",
          "min": [
            -100,
@@ -16432,7 +17155,19 @@
          "min": -144.5,
          "max": 12.0
        },
-       "Position": {
+       "Position AED": {
+         "type": "Point3D",
+         "min": [
+           -180,
+           -90,
+           0
+         ],
+         "max": [
+           180,
+           90,
+           100
+         ]
+       }, "Position XYZ": {
          "type": "Point3D",
          "min": [
            -100,
@@ -16709,7 +17444,19 @@
          "min": -144.5,
          "max": 12.0
        },
-       "Position": {
+       "Position AED": {
+         "type": "Point3D",
+         "min": [
+           -180,
+           -90,
+           0
+         ],
+         "max": [
+           180,
+           90,
+           100
+         ]
+       }, "Position XYZ": {
          "type": "Point3D",
          "min": [
            -100,
@@ -16986,7 +17733,19 @@
          "min": -144.5,
          "max": 12.0
        },
-       "Position": {
+       "Position AED": {
+         "type": "Point3D",
+         "min": [
+           -180,
+           -90,
+           0
+         ],
+         "max": [
+           180,
+           90,
+           100
+         ]
+       }, "Position XYZ": {
          "type": "Point3D",
          "min": [
            -100,
@@ -17263,7 +18022,19 @@
          "min": -144.5,
          "max": 12.0
        },
-       "Position": {
+       "Position AED": {
+         "type": "Point3D",
+         "min": [
+           -180,
+           -90,
+           0
+         ],
+         "max": [
+           180,
+           90,
+           100
+         ]
+       }, "Position XYZ": {
          "type": "Point3D",
          "min": [
            -100,
@@ -17540,7 +18311,19 @@
          "min": -144.5,
          "max": 12.0
        },
-       "Position": {
+       "Position AED": {
+         "type": "Point3D",
+         "min": [
+           -180,
+           -90,
+           0
+         ],
+         "max": [
+           180,
+           90,
+           100
+         ]
+       }, "Position XYZ": {
          "type": "Point3D",
          "min": [
            -100,
