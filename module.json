@@ -44,7 +44,7 @@
        "default": 100.0
       }
 
- },
+  },
    "Sources container":
    {
      "type": "Container",
@@ -20491,6 +20491,526 @@
        }
      }
 
+   },
+   "Remotes":
+   {"type": "Container",
+     "number of remotes":  {"type":  "Int", "description": "Number of remotes\n", "min": 1, "max": 64},
+     "Master index":  {"type":  "Int", "description": "Control the index of all the remotes\n", "min":  0, "max":  128},
+     "Remote1":
+     {
+       "type": "Container",
+       "collapsed": true,
+       "Index": {"type":  "Int", "description":  "Index of the sources", "min":  0, "max":  128},
+       "Controls number": {"type":  "Int", "description":  "Number of controllables", "min": 1, "max": 24},
+       "On Off Number": {"type":  "Int", "description":  "Number of on off", "min": 0, "max": 8},
+       "Float Number": {"type":  "Int", "description":  "Number of floats", "min": 0, "max":  8},
+       "OnOff1":
+       {
+         "type": "Container",
+         "collapsed": true,
+         "Parameter": {"type":  "Enum", "options":  {"Mute": "mute", "Solo": "solo", "Reverb on": "reverbEnable", "Early On": "earlyEnable", "Cluster On": "clusterEnable", "Doppler": "doppler", "Air Absorption": "airAbsorption", "XY Coordinates mode": "xyCoordinatesMode", "Z Coordinates mode": "zCoordinatesMode", "Drop log": "dropLog"}},
+         "Target1": {"type":  "Target"},
+         "Target2": {"type":  "Target"},
+         "Target3": {"type":  "Target"},
+         "Target4": {"type":  "Target"},
+         "Target5": {"type":  "Target"},
+         "Target6": {"type":  "Target"},
+         "Target7": {"type":  "Target"},
+         "Target8": {"type":  "Target"},
+         "Values":
+         {
+           "type": "Container",
+           "Value1": {"type":  "Bool", "description": "Value1"},
+           "Value2": {"type":  "Bool", "description": "Value2"},
+           "Value3": {"type":  "Bool", "description": "Value3"},
+           "Value4": {"type":  "Bool", "description": "Value4"},
+           "Value5": {"type":  "Bool", "description": "Value5"},
+           "Value6": {"type":  "Bool", "description": "Value6"},
+           "Value7": {"type":  "Bool", "description": "Value7"},
+           "Value8": {"type":  "Bool", "description": "Value8"}
+         }
+       },
+       "OnOff2":
+       {
+         "type": "Container",
+         "collapsed": true,
+         "Parameter": {"type":  "Enum", "options":  {"Mute": "mute", "Solo": "solo", "Reverb on": "reverbEnable", "Early On": "earlyEnable", "Cluster On": "clusterEnable", "Doppler": "doppler", "Air Absorption": "airAbsorption", "XY Coordinates mode": "xyCoordinatesMode", "Z Coordinates mode": "zCoordinatesMode", "Drop log": "dropLog"}},
+         "Target1": {"type":  "Target"},
+         "Target2": {"type":  "Target"},
+         "Target3": {"type":  "Target"},
+         "Target4": {"type":  "Target"},
+         "Target5": {"type":  "Target"},
+         "Target6": {"type":  "Target"},
+         "Target7": {"type":  "Target"},
+         "Target8": {"type":  "Target"},
+         "Values":
+         {
+           "type": "Container",
+           "Value1": {"type":  "Bool", "description": "Value1"},
+           "Value2": {"type":  "Bool", "description": "Value2"},
+           "Value3": {"type":  "Bool", "description": "Value3"},
+           "Value4": {"type":  "Bool", "description": "Value4"},
+           "Value5": {"type":  "Bool", "description": "Value5"},
+           "Value6": {"type":  "Bool", "description": "Value6"},
+           "Value7": {"type":  "Bool", "description": "Value7"},
+           "Value8": {"type":  "Bool", "description": "Value8"}
+         }
+       },
+       "OnOff3":
+       {
+         "type": "Container",
+         "collapsed": true,
+         "Parameter": {"type":  "Enum", "options":  {"Mute": "mute", "Solo": "solo", "Reverb on": "reverbEnable", "Early On": "earlyEnable", "Cluster On": "clusterEnable", "Doppler": "doppler", "Air Absorption": "airAbsorption", "XY Coordinates mode": "xyCoordinatesMode", "Z Coordinates mode": "zCoordinatesMode", "Drop log": "dropLog"}},
+         "Target1": {"type":  "Target"},
+         "Target2": {"type":  "Target"},
+         "Target3": {"type":  "Target"},
+         "Target4": {"type":  "Target"},
+         "Target5": {"type":  "Target"},
+         "Target6": {"type":  "Target"},
+         "Target7": {"type":  "Target"},
+         "Target8": {"type":  "Target"},
+         "Values":
+         {
+           "type": "Container",
+           "Value1": {"type":  "Bool", "description": "Value1"},
+           "Value2": {"type":  "Bool", "description": "Value2"},
+           "Value3": {"type":  "Bool", "description": "Value3"},
+           "Value4": {"type":  "Bool", "description": "Value4"},
+           "Value5": {"type":  "Bool", "description": "Value5"},
+           "Value6": {"type":  "Bool", "description": "Value6"},
+           "Value7": {"type":  "Bool", "description": "Value7"},
+           "Value8": {"type":  "Bool", "description": "Value8"}
+         }
+       },
+       "OnOff4":
+       {
+         "type": "Container",
+         "collapsed": true,
+         "Parameter": {"type":  "Enum", "options":  {"Mute": "mute", "Solo": "solo", "Reverb on": "reverbEnable", "Early On": "earlyEnable", "Cluster On": "clusterEnable", "Doppler": "doppler", "Air Absorption": "airAbsorption", "XY Coordinates mode": "xyCoordinatesMode", "Z Coordinates mode": "zCoordinatesMode", "Drop log": "dropLog"}},
+         "Target1": {"type":  "Target"},
+         "Target2": {"type":  "Target"},
+         "Target3": {"type":  "Target"},
+         "Target4": {"type":  "Target"},
+         "Target5": {"type":  "Target"},
+         "Target6": {"type":  "Target"},
+         "Target7": {"type":  "Target"},
+         "Target8": {"type":  "Target"},
+         "Values":
+         {
+           "type": "Container",
+           "Value1": {"type":  "Bool", "description": "Value1"},
+           "Value2": {"type":  "Bool", "description": "Value2"},
+           "Value3": {"type":  "Bool", "description": "Value3"},
+           "Value4": {"type":  "Bool", "description": "Value4"},
+           "Value5": {"type":  "Bool", "description": "Value5"},
+           "Value6": {"type":  "Bool", "description": "Value6"},
+           "Value7": {"type":  "Bool", "description": "Value7"},
+           "Value8": {"type":  "Bool", "description": "Value8"}
+         }
+       },
+       "OnOff5":
+       {
+         "type": "Container",
+         "collapsed": true,
+         "Parameter": {"type":  "Enum", "options":  {"Mute": "mute", "Solo": "solo", "Reverb on": "reverbEnable", "Early On": "earlyEnable", "Cluster On": "clusterEnable", "Doppler": "doppler", "Air Absorption": "airAbsorption", "XY Coordinates mode": "xyCoordinatesMode", "Z Coordinates mode": "zCoordinatesMode", "Drop log": "dropLog"}},
+         "Target1": {"type":  "Target"},
+         "Target2": {"type":  "Target"},
+         "Target3": {"type":  "Target"},
+         "Target4": {"type":  "Target"},
+         "Target5": {"type":  "Target"},
+         "Target6": {"type":  "Target"},
+         "Target7": {"type":  "Target"},
+         "Target8": {"type":  "Target"},
+         "Values":
+         {
+           "type": "Container",
+           "Value1": {"type":  "Bool", "description": "Value1"},
+           "Value2": {"type":  "Bool", "description": "Value2"},
+           "Value3": {"type":  "Bool", "description": "Value3"},
+           "Value4": {"type":  "Bool", "description": "Value4"},
+           "Value5": {"type":  "Bool", "description": "Value5"},
+           "Value6": {"type":  "Bool", "description": "Value6"},
+           "Value7": {"type":  "Bool", "description": "Value7"},
+           "Value8": {"type":  "Bool", "description": "Value8"}
+         }
+       },
+       "OnOff6":
+       {
+         "type": "Container",
+         "collapsed": true,
+         "Parameter": {"type":  "Enum", "options":  {"Mute": "mute", "Solo": "solo", "Reverb on": "reverbEnable", "Early On": "earlyEnable", "Cluster On": "clusterEnable", "Doppler": "doppler", "Air Absorption": "airAbsorption", "XY Coordinates mode": "xyCoordinatesMode", "Z Coordinates mode": "zCoordinatesMode", "Drop log": "dropLog"}},
+         "Target1": {"type":  "Target"},
+         "Target2": {"type":  "Target"},
+         "Target3": {"type":  "Target"},
+         "Target4": {"type":  "Target"},
+         "Target5": {"type":  "Target"},
+         "Target6": {"type":  "Target"},
+         "Target7": {"type":  "Target"},
+         "Target8": {"type":  "Target"},
+         "Values":
+         {
+           "type": "Container",
+           "Value1": {"type":  "Bool", "description": "Value1"},
+           "Value2": {"type":  "Bool", "description": "Value2"},
+           "Value3": {"type":  "Bool", "description": "Value3"},
+           "Value4": {"type":  "Bool", "description": "Value4"},
+           "Value5": {"type":  "Bool", "description": "Value5"},
+           "Value6": {"type":  "Bool", "description": "Value6"},
+           "Value7": {"type":  "Bool", "description": "Value7"},
+           "Value8": {"type":  "Bool", "description": "Value8"}
+         }
+       },
+       "OnOff7":
+       {
+         "type": "Container",
+         "collapsed": true,
+         "Parameter": {"type":  "Enum", "options":  {"Mute": "mute", "Solo": "solo", "Reverb on": "reverbEnable", "Early On": "earlyEnable", "Cluster On": "clusterEnable", "Doppler": "doppler", "Air Absorption": "airAbsorption", "XY Coordinates mode": "xyCoordinatesMode", "Z Coordinates mode": "zCoordinatesMode", "Drop log": "dropLog"}},
+         "Target1": {"type":  "Target"},
+         "Target2": {"type":  "Target"},
+         "Target3": {"type":  "Target"},
+         "Target4": {"type":  "Target"},
+         "Target5": {"type":  "Target"},
+         "Target6": {"type":  "Target"},
+         "Target7": {"type":  "Target"},
+         "Target8": {"type":  "Target"},
+         "Values":
+         {
+           "type": "Container",
+           "Value1": {"type":  "Bool", "description": "Value1"},
+           "Value2": {"type":  "Bool", "description": "Value2"},
+           "Value3": {"type":  "Bool", "description": "Value3"},
+           "Value4": {"type":  "Bool", "description": "Value4"},
+           "Value5": {"type":  "Bool", "description": "Value5"},
+           "Value6": {"type":  "Bool", "description": "Value6"},
+           "Value7": {"type":  "Bool", "description": "Value7"},
+           "Value8": {"type":  "Bool", "description": "Value8"}
+         }
+       },
+       "OnOff8":
+       {
+         "type": "Container",
+         "collapsed": true,
+         "Parameter": {"type":  "Enum", "options":  {"Mute": "mute", "Solo": "solo", "Reverb on": "reverbEnable", "Early On": "earlyEnable", "Cluster On": "clusterEnable", "Doppler": "doppler", "Air Absorption": "airAbsorption", "XY Coordinates mode": "xyCoordinatesMode", "Z Coordinates mode": "zCoordinatesMode", "Drop log": "dropLog"}},
+         "Target1": {"type":  "Target"},
+         "Target2": {"type":  "Target"},
+         "Target3": {"type":  "Target"},
+         "Target4": {"type":  "Target"},
+         "Target5": {"type":  "Target"},
+         "Target6": {"type":  "Target"},
+         "Target7": {"type":  "Target"},
+         "Target8": {"type":  "Target"},
+         "Values":
+         {
+           "type": "Container",
+           "Value1": {"type":  "Bool", "description": "Value1"},
+           "Value2": {"type":  "Bool", "description": "Value2"},
+           "Value3": {"type":  "Bool", "description": "Value3"},
+           "Value4": {"type":  "Bool", "description": "Value4"},
+           "Value5": {"type":  "Bool", "description": "Value5"},
+           "Value6": {"type":  "Bool", "description": "Value6"},
+           "Value7": {"type":  "Bool", "description": "Value7"},
+           "Value8": {"type":  "Bool", "description": "Value8"}
+         }
+       },
+       "Float1":
+       {
+         "type": "Container",
+         "collapsed": true,
+         "Parameter": {"type":  "Enum", "options": {"Azimuth": "azimuth", "Elevation": "elevation", "Distance": "distance", "Position X": "positionX", "Position Y": "positionY", "Position Z": "positionZ", "Gain": "gain", "Lfe": "lfe", "Lfe2": "lfe2", "Lfe3": "lfe3", "Lfe4": "lfe4", "Presence": "presence", "Room presence": "roomPresence", "Running Reverberance": "runningReverberance", "Envelopment": "envelopment", "Brilliance": "brilliance", "Warmth": "warmth", "Yaw": "yaw", "Pitch": "pitch", "Aperture": "aperture", "Scale": "scale", "Spread": "spread", "Knn": "knn", "Early width": "earlyWidth", "Pan Rev": "panRev", "Drop factor": "dropFactor", "Rotation X": "rotX", "Rotation Y": "rotY", "Rotation Z": "rotZ", "RoomGain 1": "roomGain1", "RoomGain 2": "roomGain2", "RoomGain 3": "roomGain3", "RoomGain 4": "roomGain4", "RoomGain 5": "roomGain5", "RoomGain 6": "roomGain6", "RoomGain 7": "roomGain7", "RoomGain 8": "roomGain8", "RoomGain 9": "roomGain9", "RoomGain 10": "roomGain10"}},
+         "Values":
+         {
+           "type": "Container",
+           "Value1": {"type":  "Float", "description": "Value1", "min":  0.0, "max":  1.0},
+           "Value2": {"type":  "Float", "description": "Value2", "min":  0.0, "max":  1.0},
+           "Value3": {"type":  "Float", "description": "Value3", "min":  0.0, "max":  1.0},
+           "Value4": {"type":  "Float", "description": "Value4", "min":  0.0, "max":  1.0},
+           "Value5": {"type":  "Float", "description": "Value5", "min":  0.0, "max":  1.0},
+           "Value6": {"type":  "Float", "description": "Value6", "min":  0.0, "max":  1.0},
+           "Value7": {"type":  "Float", "description": "Value7", "min":  0.0, "max":  1.0},
+           "Value8": {"type":  "Float", "description": "Value8", "min":  0.0, "max":  1.0}
+         }
+       },
+       "Float2":
+       {
+         "type": "Container",
+         "collapsed": true,
+         "Parameter": {"type":  "Enum", "options": {"Azimuth": "azimuth", "Elevation": "elevation", "Distance": "distance", "Position X": "positionX", "Position Y": "positionY", "Position Z": "positionZ", "Gain": "gain", "Lfe": "lfe", "Lfe2": "lfe2", "Lfe3": "lfe3", "Lfe4": "lfe4", "Presence": "presence", "Room presence": "roomPresence", "Running Reverberance": "runningReverberance", "Envelopment": "envelopment", "Brilliance": "brilliance", "Warmth": "warmth", "Yaw": "yaw", "Pitch": "pitch", "Aperture": "aperture", "Scale": "scale", "Spread": "spread", "Knn": "knn", "Early width": "earlyWidth", "Pan Rev": "panRev", "Drop factor": "dropFactor", "Rotation X": "rotX", "Rotation Y": "rotY", "Rotation Z": "rotZ", "RoomGain 1": "roomGain1", "RoomGain 2": "roomGain2", "RoomGain 3": "roomGain3", "RoomGain 4": "roomGain4", "RoomGain 5": "roomGain5", "RoomGain 6": "roomGain6", "RoomGain 7": "roomGain7", "RoomGain 8": "roomGain8", "RoomGain 9": "roomGain9", "RoomGain 10": "roomGain10"}},
+         "Target1": {"type":  "Target"},
+         "Target2": {"type":  "Target"},
+         "Target3": {"type":  "Target"},
+         "Target4": {"type":  "Target"},
+         "Target5": {"type":  "Target"},
+         "Target6": {"type":  "Target"},
+         "Target7": {"type":  "Target"},
+         "Target8": {"type":  "Target"},
+         "Values":
+         {
+           "type": "Container",
+           "Value1": {"type":  "Float", "description": "Value1", "min":  0.0, "max":  1.0},
+           "Value2": {"type":  "Float", "description": "Value2", "min":  0.0, "max":  1.0},
+           "Value3": {"type":  "Float", "description": "Value3", "min":  0.0, "max":  1.0},
+           "Value4": {"type":  "Float", "description": "Value4", "min":  0.0, "max":  1.0},
+           "Value5": {"type":  "Float", "description": "Value5", "min":  0.0, "max":  1.0},
+           "Value6": {"type":  "Float", "description": "Value6", "min":  0.0, "max":  1.0},
+           "Value7": {"type":  "Float", "description": "Value7", "min":  0.0, "max":  1.0},
+           "Value8": {"type":  "Float", "description": "Value8", "min":  0.0, "max":  1.0}
+         }
+       },
+       "Float3":
+       {
+         "type": "Container",
+         "collapsed": true,
+         "Parameter": {"type":  "Enum", "options": {"Azimuth": "azimuth", "Elevation": "elevation", "Distance": "distance", "Position X": "positionX", "Position Y": "positionY", "Position Z": "positionZ", "Gain": "gain", "Lfe": "lfe", "Lfe2": "lfe2", "Lfe3": "lfe3", "Lfe4": "lfe4", "Presence": "presence", "Room presence": "roomPresence", "Running Reverberance": "runningReverberance", "Envelopment": "envelopment", "Brilliance": "brilliance", "Warmth": "warmth", "Yaw": "yaw", "Pitch": "pitch", "Aperture": "aperture", "Scale": "scale", "Spread": "spread", "Knn": "knn", "Early width": "earlyWidth", "Pan Rev": "panRev", "Drop factor": "dropFactor", "Rotation X": "rotX", "Rotation Y": "rotY", "Rotation Z": "rotZ", "RoomGain 1": "roomGain1", "RoomGain 2": "roomGain2", "RoomGain 3": "roomGain3", "RoomGain 4": "roomGain4", "RoomGain 5": "roomGain5", "RoomGain 6": "roomGain6", "RoomGain 7": "roomGain7", "RoomGain 8": "roomGain8", "RoomGain 9": "roomGain9", "RoomGain 10": "roomGain10"}},
+         "Target1": {"type":  "Target"},
+         "Target2": {"type":  "Target"},
+         "Target3": {"type":  "Target"},
+         "Target4": {"type":  "Target"},
+         "Target5": {"type":  "Target"},
+         "Target6": {"type":  "Target"},
+         "Target7": {"type":  "Target"},
+         "Target8": {"type":  "Target"},
+         "Values":
+         {
+           "type": "Container",
+           "Value1": {"type":  "Float", "description": "Value1", "min":  0.0, "max":  1.0},
+           "Value2": {"type":  "Float", "description": "Value2", "min":  0.0, "max":  1.0},
+           "Value3": {"type":  "Float", "description": "Value3", "min":  0.0, "max":  1.0},
+           "Value4": {"type":  "Float", "description": "Value4", "min":  0.0, "max":  1.0},
+           "Value5": {"type":  "Float", "description": "Value5", "min":  0.0, "max":  1.0},
+           "Value6": {"type":  "Float", "description": "Value6", "min":  0.0, "max":  1.0},
+           "Value7": {"type":  "Float", "description": "Value7", "min":  0.0, "max":  1.0},
+           "Value8": {"type":  "Float", "description": "Value8", "min":  0.0, "max":  1.0}
+         }
+       },
+       "Float4":
+       {
+         "type": "Container",
+         "collapsed": true,
+         "Parameter": {
+           "type": "Enum",
+           "options": {
+             "Azimuth": "azimuth",
+             "Elevation": "elevation",
+             "Distance": "distance",
+             "Position X": "positionX",
+             "Position Y": "positionY",
+             "Position Z": "positionZ",
+             "Gain": "gain",
+             "Lfe": "lfe",
+             "Lfe2": "lfe2",
+             "Lfe3": "lfe3",
+             "Lfe4": "lfe4",
+             "Presence": "presence",
+             "Room presence": "roomPresence",
+             "Running Reverberance": "runningReverberance",
+             "Envelopment": "envelopment",
+             "Brilliance": "brilliance",
+             "Warmth": "warmth",
+             "Yaw": "yaw",
+             "Pitch": "pitch",
+             "Aperture": "aperture",
+             "Scale": "scale",
+             "Spread": "spread",
+             "Knn": "knn",
+             "Early width": "earlyWidth",
+             "Pan Rev": "panRev",
+             "Drop factor": "dropFactor",
+             "Rotation X": "rotX",
+             "Rotation Y": "rotY",
+             "Rotation Z": "rotZ",
+             "RoomGain 1": "roomGain1",
+             "RoomGain 2": "roomGain2",
+             "RoomGain 3": "roomGain3",
+             "RoomGain 4": "roomGain4",
+             "RoomGain 5": "roomGain5",
+             "RoomGain 6": "roomGain6",
+             "RoomGain 7": "roomGain7",
+             "RoomGain 8": "roomGain8",
+             "RoomGain 9": "roomGain9",
+             "RoomGain 10": "roomGain10"
+           }
+         },
+         "Target1": {
+           "type": "Target"
+         },
+         "Target2": {
+           "type": "Target"
+         },
+         "Target3": {
+           "type": "Target"
+         },
+         "Target4": {
+           "type": "Target"
+         },
+         "Target5": {
+           "type": "Target"
+         },
+         "Target6": {
+           "type": "Target"
+         },
+         "Target7": {
+           "type": "Target"
+         },
+         "Target8": {
+           "type": "Target"
+         },
+         "Values": {
+           "type": "Container",
+           "Value1": {
+             "type": "Float",
+             "description": "Value1",
+             "min": 0.0,
+             "max": 1.0
+           },
+           "Value2": {
+             "type": "Float",
+             "description": "Value2",
+             "min": 0.0,
+             "max": 1.0
+           },
+           "Value3": {
+             "type": "Float",
+             "description": "Value3",
+             "min": 0.0,
+             "max": 1.0
+           },
+           "Value4": {
+             "type": "Float",
+             "description": "Value4",
+             "min": 0.0,
+             "max": 1.0
+           },
+           "Value5": {
+             "type": "Float",
+             "description": "Value5",
+             "min": 0.0,
+             "max": 1.0
+           },
+           "Value6": {
+             "type": "Float",
+             "description": "Value6",
+             "min": 0.0,
+             "max": 1.0
+           },
+           "Value7": {
+             "type": "Float",
+             "description": "Value7",
+             "min": 0.0,
+             "max": 1.0
+           },
+           "Value8": {
+             "type": "Float",
+             "description": "Value8",
+             "min": 0.0,
+             "max": 1.0
+           }
+         }
+       },
+       "Float5":
+       {
+         "type": "Container",
+         "collapsed": true,
+         "Parameter": {"type":  "Enum", "options": {"Azimuth": "azimuth", "Elevation": "elevation", "Distance": "distance", "Position X": "positionX", "Position Y": "positionY", "Position Z": "positionZ", "Gain": "gain", "Lfe": "lfe", "Lfe2": "lfe2", "Lfe3": "lfe3", "Lfe4": "lfe4", "Presence": "presence", "Room presence": "roomPresence", "Running Reverberance": "runningReverberance", "Envelopment": "envelopment", "Brilliance": "brilliance", "Warmth": "warmth", "Yaw": "yaw", "Pitch": "pitch", "Aperture": "aperture", "Scale": "scale", "Spread": "spread", "Knn": "knn", "Early width": "earlyWidth", "Pan Rev": "panRev", "Drop factor": "dropFactor", "Rotation X": "rotX", "Rotation Y": "rotY", "Rotation Z": "rotZ", "RoomGain 1": "roomGain1", "RoomGain 2": "roomGain2", "RoomGain 3": "roomGain3", "RoomGain 4": "roomGain4", "RoomGain 5": "roomGain5", "RoomGain 6": "roomGain6", "RoomGain 7": "roomGain7", "RoomGain 8": "roomGain8", "RoomGain 9": "roomGain9", "RoomGain 10": "roomGain10"}},
+         "Target1": {"type":  "Target"},
+         "Target2": {"type":  "Target"},
+         "Target3": {"type":  "Target"},
+         "Target4": {"type":  "Target"},
+         "Target5": {"type":  "Target"},
+         "Target6": {"type":  "Target"},
+         "Target7": {"type":  "Target"},
+         "Target8": {"type":  "Target"},
+         "Values":
+         {
+           "type": "Container",
+           "Value1": {"type":  "Float", "description": "Value1", "min":  0.0, "max":  1.0},
+           "Value2": {"type":  "Float", "description": "Value2", "min":  0.0, "max":  1.0},
+           "Value3": {"type":  "Float", "description": "Value3", "min":  0.0, "max":  1.0},
+           "Value4": {"type":  "Float", "description": "Value4", "min":  0.0, "max":  1.0},
+           "Value5": {"type":  "Float", "description": "Value5", "min":  0.0, "max":  1.0},
+           "Value6": {"type":  "Float", "description": "Value6", "min":  0.0, "max":  1.0},
+           "Value7": {"type":  "Float", "description": "Value7", "min":  0.0, "max":  1.0},
+           "Value8": {"type":  "Float", "description": "Value8", "min":  0.0, "max":  1.0}
+         }
+       },
+       "Float6":
+       {
+         "type": "Container",
+         "collapsed": true,
+         "Parameter": {"type":  "Enum", "options": {"Azimuth": "azimuth", "Elevation": "elevation", "Distance": "distance", "Position X": "positionX", "Position Y": "positionY", "Position Z": "positionZ", "Gain": "gain", "Lfe": "lfe", "Lfe2": "lfe2", "Lfe3": "lfe3", "Lfe4": "lfe4", "Presence": "presence", "Room presence": "roomPresence", "Running Reverberance": "runningReverberance", "Envelopment": "envelopment", "Brilliance": "brilliance", "Warmth": "warmth", "Yaw": "yaw", "Pitch": "pitch", "Aperture": "aperture", "Scale": "scale", "Spread": "spread", "Knn": "knn", "Early width": "earlyWidth", "Pan Rev": "panRev", "Drop factor": "dropFactor", "Rotation X": "rotX", "Rotation Y": "rotY", "Rotation Z": "rotZ", "RoomGain 1": "roomGain1", "RoomGain 2": "roomGain2", "RoomGain 3": "roomGain3", "RoomGain 4": "roomGain4", "RoomGain 5": "roomGain5", "RoomGain 6": "roomGain6", "RoomGain 7": "roomGain7", "RoomGain 8": "roomGain8", "RoomGain 9": "roomGain9", "RoomGain 10": "roomGain10"}},
+         "Target1": {"type":  "Target"},
+         "Target2": {"type":  "Target"},
+         "Target3": {"type":  "Target"},
+         "Target4": {"type":  "Target"},
+         "Target5": {"type":  "Target"},
+         "Target6": {"type":  "Target"},
+         "Target7": {"type":  "Target"},
+         "Target8": {"type":  "Target"},
+         "Values":
+         {
+           "type": "Container",
+           "Value1": {"type":  "Float", "description": "Value1", "min":  0.0, "max":  1.0},
+           "Value2": {"type":  "Float", "description": "Value2", "min":  0.0, "max":  1.0},
+           "Value3": {"type":  "Float", "description": "Value3", "min":  0.0, "max":  1.0},
+           "Value4": {"type":  "Float", "description": "Value4", "min":  0.0, "max":  1.0},
+           "Value5": {"type":  "Float", "description": "Value5", "min":  0.0, "max":  1.0},
+           "Value6": {"type":  "Float", "description": "Value6", "min":  0.0, "max":  1.0},
+           "Value7": {"type":  "Float", "description": "Value7", "min":  0.0, "max":  1.0},
+           "Value8": {"type":  "Float", "description": "Value8", "min":  0.0, "max":  1.0}
+         }
+       },
+       "Float7":
+       {
+         "type": "Container",
+         "collapsed": true,
+         "Parameter": {"type":  "Enum", "options": {"Azimuth": "azimuth", "Elevation": "elevation", "Distance": "distance", "Position X": "positionX", "Position Y": "positionY", "Position Z": "positionZ", "Gain": "gain", "Lfe": "lfe", "Lfe2": "lfe2", "Lfe3": "lfe3", "Lfe4": "lfe4", "Presence": "presence", "Room presence": "roomPresence", "Running Reverberance": "runningReverberance", "Envelopment": "envelopment", "Brilliance": "brilliance", "Warmth": "warmth", "Yaw": "yaw", "Pitch": "pitch", "Aperture": "aperture", "Scale": "scale", "Spread": "spread", "Knn": "knn", "Early width": "earlyWidth", "Pan Rev": "panRev", "Drop factor": "dropFactor", "Rotation X": "rotX", "Rotation Y": "rotY", "Rotation Z": "rotZ", "RoomGain 1": "roomGain1", "RoomGain 2": "roomGain2", "RoomGain 3": "roomGain3", "RoomGain 4": "roomGain4", "RoomGain 5": "roomGain5", "RoomGain 6": "roomGain6", "RoomGain 7": "roomGain7", "RoomGain 8": "roomGain8", "RoomGain 9": "roomGain9", "RoomGain 10": "roomGain10"}},
+         "Target1": {"type":  "Target"},
+         "Target2": {"type":  "Target"},
+         "Target3": {"type":  "Target"},
+         "Target4": {"type":  "Target"},
+         "Target5": {"type":  "Target"},
+         "Target6": {"type":  "Target"},
+         "Target7": {"type":  "Target"},
+         "Target8": {"type":  "Target"},
+         "Values":
+         {
+           "type": "Container",
+           "Value1": {"type":  "Float", "description": "Value1", "min":  0.0, "max":  1.0},
+           "Value2": {"type":  "Float", "description": "Value2", "min":  0.0, "max":  1.0},
+           "Value3": {"type":  "Float", "description": "Value3", "min":  0.0, "max":  1.0},
+           "Value4": {"type":  "Float", "description": "Value4", "min":  0.0, "max":  1.0},
+           "Value5": {"type":  "Float", "description": "Value5", "min":  0.0, "max":  1.0},
+           "Value6": {"type":  "Float", "description": "Value6", "min":  0.0, "max":  1.0},
+           "Value7": {"type":  "Float", "description": "Value7", "min":  0.0, "max":  1.0},
+           "Value8": {"type":  "Float", "description": "Value8", "min":  0.0, "max":  1.0}
+         }
+       },
+       "Float8":
+       {
+         "type": "Container",
+         "collapsed": true,
+         "Parameter": {"type":  "Enum", "options": {"Azimuth": "azimuth", "Elevation": "elevation", "Distance": "distance", "Position X": "positionX", "Position Y": "positionY", "Position Z": "positionZ", "Gain": "gain", "Lfe": "lfe", "Lfe2": "lfe2", "Lfe3": "lfe3", "Lfe4": "lfe4", "Presence": "presence", "Room presence": "roomPresence", "Running Reverberance": "runningReverberance", "Envelopment": "envelopment", "Brilliance": "brilliance", "Warmth": "warmth", "Yaw": "yaw", "Pitch": "pitch", "Aperture": "aperture", "Scale": "scale", "Spread": "spread", "Knn": "knn", "Early width": "earlyWidth", "Pan Rev": "panRev", "Drop factor": "dropFactor", "Rotation X": "rotX", "Rotation Y": "rotY", "Rotation Z": "rotZ", "RoomGain 1": "roomGain1", "RoomGain 2": "roomGain2", "RoomGain 3": "roomGain3", "RoomGain 4": "roomGain4", "RoomGain 5": "roomGain5", "RoomGain 6": "roomGain6", "RoomGain 7": "roomGain7", "RoomGain 8": "roomGain8", "RoomGain 9": "roomGain9", "RoomGain 10": "roomGain10"}},
+         "Target1": {"type":  "Target"},
+         "Target2": {"type":  "Target"},
+         "Target3": {"type":  "Target"},
+         "Target4": {"type":  "Target"},
+         "Target5": {"type":  "Target"},
+         "Target6": {"type":  "Target"},
+         "Target7": {"type":  "Target"},
+         "Target8": {"type":  "Target"},
+         "Values":
+         {
+           "type": "Container",
+           "Value1": {"type":  "Float", "description": "Value1", "min":  0.0, "max":  1.0},
+           "Value2": {"type":  "Float", "description": "Value2", "min":  0.0, "max":  1.0},
+           "Value3": {"type":  "Float", "description": "Value3", "min":  0.0, "max":  1.0},
+           "Value4": {"type":  "Float", "description": "Value4", "min":  0.0, "max":  1.0},
+           "Value5": {"type":  "Float", "description": "Value5", "min":  0.0, "max":  1.0},
+           "Value6": {"type":  "Float", "description": "Value6", "min":  0.0, "max":  1.0},
+           "Value7": {"type":  "Float", "description": "Value7", "min":  0.0, "max":  1.0},
+           "Value8": {"type":  "Float", "description": "Value8", "min":  0.0, "max":  1.0}
+         }
+       }
+     }
    }
    },
 
