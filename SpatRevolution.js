@@ -75,15 +75,15 @@ var ParameterFromString = {
     },
     'positionX': function(index)
     {
-        return Sources[index].positionXYZ;
+        return Sources[index].positionAED;
     },
     'positionY': function(index)
     {
-        return Sources[index].positionXYZ;
+        return Sources[index].positionAED;
     },
     'positionZ': function(index)
     {
-        return Sources[index].positionXYZ;
+        return Sources[index].positionAED;
     },
     'reverbEnable': function(index)
     {
@@ -197,6 +197,10 @@ var ParameterFromString = {
     {
         return Sources[index].rotationXYZ;
     },
+    'omniGain': function(index)
+    {
+        return Sources[index].omniGain;
+    },
     'roomGain1': function(index)
     {
         return Sources[index].roomGain1;
@@ -252,7 +256,7 @@ var RangeForParameter = {
     'positionY': [-100.0, 100.0],
     'positionZ': [-100.0, 100.0],
     'presence': [0, 120.0],
-    'roomPresence': [0.0, 50.0],
+    'roomPresence': [0.0, 120.0],
     'runningReverberance': [0.0, 50.0],
     'envelopment': [0.0, 50.0],
     'brilliance': [0.0, 60.0],
@@ -270,6 +274,7 @@ var RangeForParameter = {
     'rotx': [-180, 180.0],
     'roty': [-180, 180.0],
     'rotz': [-180, 180.0],
+    'omniGain': [-144.5, 24.0],
     'roomGain1': [-144.5, 24.0],
     'roomGain2': [-144.5, 24.0],
     'roomGain3': [-144.5, 24.0],
@@ -308,9 +313,9 @@ var OSCSourceMessage = {
     'positionAED': function (index, value) {
         local.send("/source/" + index + "/aed", value.get());
     },
-    'positionXYZ': function (index, value) {
-        local.send("/source/" + index + "/aed", CartesianToPolar(value.get()));
-    },
+    // 'positionXYZ': function (index, value) {
+    //     local.send("/source/" + index + "/aed", CartesianToPolar(value.get()));
+    // },
     'reverbEnable': function (index, value) {
         local.send("/source/" + index + "/reverb/enable", value.get());
     },
@@ -391,6 +396,9 @@ var OSCSourceMessage = {
     },
     'rotationXYZ': function (index, value) {
         local.send("/source/" + index + "/rotation", value.get());
+    },
+    'omniGain': function (index, value) {
+        local.send("/source/" + index + "/omni/G0", value.get());
     },
     'roomGain1': function (index, value) {
         local.send("/source/" + index + "/rg1", value.get());
@@ -546,12 +554,8 @@ var OSCRoomMessage = {
 var Sources = [];// array of all sources parameters.
 var Rooms = []; // array of all rooms parameters
 var Remote = [];
-var roomReverbContainer = null;
-var perceptualFactorRoomContainer = null;
-var roomResponseRoomContainer = null;
-var reverbOptionsRoomContainer = null;
-var reverbCrossoverRoomContainer = null;
 var stopSendingOSC = false;
+var stopUpdateForSource = -1;
 var stereo = ['false', 'false', 'false', 'false', 'false', 'false', 'false', 'false', 'false', 'true', 'true', 'true', 'true', 'true', 'false', 'true', 'true', 'true', 'true', 'false', 'true'];
 var transformStereoToMono = false;
 var normalizedRange = [-10, 10, -10, 10, -10, 10];
@@ -595,10 +599,11 @@ function update(updateRate)
         {
             for (var l = 0; l < Remote[remoteIndex].controlsNumber.get(); l++)
             {
-                var target = Remote[remoteIndex].onOff[j]['values'][l]["target"].getTarget();
-                if (target && target.get()*127 != Remote[remoteIndex].onOff[j]['values'][l]["value"].get())
-                {
-                    Remote[remoteIndex].onOff[j]['values'][l]["value"].set(target.get()/127);
+                if (Remote[remoteIndex].onOff[j]['values'][l]["target"]) {
+                    var target = Remote[remoteIndex].onOff[j]['values'][l]["target"].getTarget();
+                    if (target && target.get() * 127 !=parseInt(Remote[remoteIndex].float[j]['values'][l]["value"].get() * 127)) {
+                        Remote[remoteIndex].onOff[j]['values'][l]["value"].set(target.get() / 127);
+                    }
                 }
             }
         }
@@ -607,11 +612,12 @@ function update(updateRate)
         {
             for (var l = 0; l < Remote[remoteIndex].controlsNumber.get(); l++)
             {
-                var target = Remote[remoteIndex].float[j]['values'][l]["target"].getTarget();
-
-                if (target && target.get() != parseInt(Remote[remoteIndex].float[j]['values'][l]["value"].get()*127))
-                {
-                    Remote[remoteIndex].float[j]['values'][l]["value"].set(target.get()/127);
+                if (Remote[remoteIndex].float[j]['values'][l]["target"]) {
+                    var target = Remote[remoteIndex].float[j]['values'][l]["target"].getTarget();
+                    // script.log(target.name);
+                    if (target && target.get() != parseInt(Remote[remoteIndex].float[j]['values'][l]["value"].get() * 127)) {
+                        Remote[remoteIndex].float[j]['values'][l]["value"].set(target.get() / 127);
+                    }
                 }
             }
         }
@@ -665,64 +671,78 @@ function moduleValueChanged(value)
         else if (name === 'distanceMax')
         {
             var val = value.get();
-            RangeForParameter['positionX'] = [- val, val];
-            RangeForParameter['positionY'] = [- val, val];
-            RangeForParameter['positionZ'] = [- val, val];
-            RangeForParameter['distance'] = [- val, val];
+            RangeForParameter['positionX'] = [-1 * val, val];
+            RangeForParameter['positionY'] = [-1 * val, val];
+            RangeForParameter['positionZ'] = [-1 * val, val];
+            RangeForParameter['distance'] = [-1 * val, val];
         }
         else if (name === 'index')
         {
             var remoteIndex = parseInt(value.getParent().name.substring(6, value.getParent().name.length)) - 1;
 
             // onOff
-            for (var j = 1; j < Remote[remoteIndex].onOffNumber.get() + 1; j++)
+            for (var j = 0; j < Remote[remoteIndex].onOffNumber.get(); j++)
             {
-                var onOffCont = Remote[remoteIndex].onOff[j-1]['container'];
-                for (var l = 1; l < Remote[remoteIndex].controlsNumber.get() + 1; l++)
+                // var onOffCont = Remote[remoteIndex].onOff[j]['container'];
+                for (var l = 0; l < Remote[remoteIndex].controlsNumber.get() ; l++)
                 {
-                    var val = ParameterFromString[Remote[remoteIndex].onOff[j-1]['parameter'].get()](value.get()*Remote[remoteIndex].controlsNumber.get() + l - 1).get();
-                    var target = Remote[remoteIndex].onOff[j-1]["values"][l-1]["target"].getTarget();
+                    var val = ParameterFromString[Remote[remoteIndex].onOff[j].parameterControlled.get()](value.get()*Remote[remoteIndex].controlsNumber.get() + l).get();
+                    var target = Remote[remoteIndex].onOff[j]["values"][l]["target"].getTarget();
                     if (target)
                     {
                         target.set(val*127);
                     }
-                    onOffCont.getChild("Values").getChild("Value" + l).set(val);
+                    // onOffCont.getChild("Values").getChild("Value" + l + 1).set(val);
+                    Remote[remoteIndex].onOff[j]["values"][l]["value"].set(val);
+
                 }
             }
 
             //float
-            for (var j = 1; j < Remote[remoteIndex].floatNumber.get() + 1; j++)
+            for (var j = 0; j < Remote[remoteIndex].floatNumber.get(); j++)
             {
-                for (var l = 1; l < Remote[remoteIndex].controlsNumber.get()+ 1; l++)
+                for (var l = 0; l < Remote[remoteIndex].controlsNumber.get(); l++)
                 {
-                    var val = ParameterFromString[Remote[remoteIndex].float[j-1]['parameter'].get()](value.get() * Remote[remoteIndex].controlsNumber.get() + l - 1).get();
-                    if (Remote[remoteIndex].float[j-1]['parameter'].get() === "azimuth" | Remote[remoteIndex].float[j-1]['parameter'].get() === 'positionX')
+                    var val = ParameterFromString[Remote[remoteIndex].float[j].parameterControlled.get()](value.get() * Remote[remoteIndex].controlsNumber.get() + l).get();
+                    if (Remote[remoteIndex].float[j].parameterControlled.get() === "azimuth")
                     {
                         val = val[0];
                     }
-                    else if (Remote[remoteIndex].float[j-1]['parameter'].get() === "elevation" | Remote[remoteIndex].float[j-1]['parameter'].get() === 'positionY')
+                    else if (Remote[remoteIndex].float[j].parameterControlled.get() === "elevation")
                     {
                         val = val[1];
                     }
-                    else if (Remote[remoteIndex].float[j-1]['parameter'].get() === 'distance' | Remote[remoteIndex].float[j-1]['parameter'].get() === 'positionZ')
+                    else if (Remote[remoteIndex].float[j].parameterControlled.get() === 'distance')
                     {
                         val = val[2];
                     }
+                    else if (Remote[remoteIndex].float[j].parameterControlled.get() === 'positionX')
+                    {
+                        val = PolarToCartesian(val)[0];
+                    }
+                    else if (Remote[remoteIndex].float[j].parameterControlled.get() === 'positionY')
+                    {
+                        val = PolarToCartesian(val)[1];
+                    }
+                    else if (Remote[remoteIndex].float[j].parameterControlled.get() === 'positionZ')
+                    {
+                        val = PolarToCartesian(val)[2];
+                    }
 
-                    var target = Remote[remoteIndex].float[j-1]["values"][l-1]["target"].getTarget();
+                    var target = Remote[remoteIndex].float[j]["values"][l]["target"].getTarget();
                     if (target)
                     {
-                        target.set((val - RangeForParameter[Remote[remoteIndex].float[j-1]['parameter'].get()][0]) / (RangeForParameter[Remote[remoteIndex].float[j-1]['parameter'].get()][1] - RangeForParameter[Remote[remoteIndex].float[j-1]['parameter'].get()][0]) * 127);
+                        target.set((val - RangeForParameter[Remote[remoteIndex].float[j].parameterControlled.get()][0]) / (RangeForParameter[Remote[remoteIndex].float[j].parameterControlled.get()][1] - RangeForParameter[Remote[remoteIndex].float[j].parameterControlled.get()][0]) * 127);
                     }
-                    Remote[remoteIndex].onOff[j-1]["values"][l-1]["value"].set((val - RangeForParameter[Remote[remoteIndex].float[j-1]['parameter'].get()][0]) / (RangeForParameter[Remote[remoteIndex].float[j-1]['parameter'].get()][1] - RangeForParameter[Remote[remoteIndex].float[j-1]['parameter'].get()][0]));
+                    Remote[remoteIndex].float[j]["values"][l]["value"].set((val - RangeForParameter[Remote[remoteIndex].float[j].parameterControlled.get()][0]) / (RangeForParameter[Remote[remoteIndex].float[j].parameterControlled.get()][1] - RangeForParameter[Remote[remoteIndex].float[j].parameterControlled.get()][0]));
                 }
             }
 
         }
-        else if (name === 'parameter')
+        else if (name === 'parameterControlled')
         {
             var remoteIndex = parseInt(value.getParent().getParent().name.substring(6, value.getParent().getParent().name.length)) - 1;
-            Remote[remoteIndex]['parameter'] = value.get();
+            Remote[remoteIndex].parameterControlled = value.get();
             var cont = value.getParent();
             for (var l = 0; l < Remote[remoteIndex].controlsNumber.get() ; l++)
             {
@@ -833,19 +853,39 @@ function moduleValueChanged(value)
         {
             var valueIndex = parseInt(value.name.substring(5, value.getParent().name.length));
             var index = valueIndex + value.getParent().getParent().getParent().getChild("Index").get() * value.getParent().getParent().getParent().getChild("controlsNumber").get();
-            var param = ParameterFromString[value.getParent().getParent().getChild("parameter").get()](index - 1);
-            var val = value.get() * (RangeForParameter[value.getParent().getParent().getChild("parameter").get()][1] - RangeForParameter[value.getParent().getParent().getChild("parameter").get()][0]) + RangeForParameter[value.getParent().getParent().getChild("parameter").get()][0];
-            if (value.getParent().getParent().getChild("parameter").get() === "azimuth" | value.getParent().getParent().getChild("parameter").get() === "positionX" | value.getParent().getParent().getChild("parameter").get() === "rotx")
+            if (index == stopUpdateForSource)
+            {
+                return;
+            }
+            var param = ParameterFromString[value.getParent().getParent().parameterControlled.get()](index - 1);
+            var val = value.get() * (RangeForParameter[value.getParent().getParent().parameterControlled.get()][1] - RangeForParameter[value.getParent().getParent().parameterControlled.get()][0]) + RangeForParameter[value.getParent().getParent().parameterControlled.get()][0];
+            if (value.getParent().getParent().parameterControlled.get() === "azimuth" | value.getParent().getParent().parameterControlled.get() === "rotx")
             {
                 param.set(val, param.get()[1], param.get()[2]);
             }
-            else if (value.getParent().getParent().getChild("parameter").get() === "elevation" | value.getParent().getParent().getChild("parameter").get() === "positionY" | value.getParent().getParent().getChild("parameter").get() === "roty")
+            else if (value.getParent().getParent().parameterControlled.get() === "elevation" | value.getParent().getParent().parameterControlled.get() === "roty")
             {
                 param.set(param.get()[0], val, param.get()[2]);
             }
-            else if (value.getParent().getParent().getChild("parameter").get() === "distance" | value.getParent().getParent().getChild("parameter").get() === "positionZ" | value.getParent().getParent().getChild("parameter").get() === "rotz")
+            else if (value.getParent().getParent().parameterControlled.get() === "distance" | value.getParent().getParent().parameterControlled.get() === "rotz")
             {
                 param.set(param.get()[0], param.get()[1], val);
+            }
+            else if (value.getParent().getParent().parameterControlled.get() === "positionX")
+            {
+                var cartesian = PolarToCartesian(param.get());
+                param.set(CartesianToPolar([val, cartesian[1], cartesian[2]]));
+
+            }
+            else if (value.getParent().getParent().parameterControlled.get() === "positionY")
+            {
+                var cartesian = PolarToCartesian(param.get());
+                param.set(CartesianToPolar([cartesian[0], val, cartesian[2]]));
+            }
+            else if (value.getParent().getParent().parameterControlled.get() === "positionZ")
+            {
+                var cartesian = PolarToCartesian(param.get());
+                param.set(CartesianToPolar([cartesian[0], cartesian[1], val]));
             }
             else
             {
@@ -853,16 +893,20 @@ function moduleValueChanged(value)
             }
 
             stopSendingOSC = true;
-            if (value.getParent().getParent().getChild("parameter").get() === "azimuth" | value.getParent().getParent().getChild("parameter").get() === "elevation" | value.getParent().getParent().getChild("parameter").get() === "distance")
+            stopUpdateForSource = index;
+            if (value.getParent().getParent().parameterControlled.get() === "azimuth" | value.getParent().getParent().parameterControlled.get() === "elevation" | value.getParent().getParent().parameterControlled.get() === "distance")
             {
-
-                param.getParent().getChild("positionXYZ").set(CartesianToPolar(param.get()));
+            //
+            //     // param.getParent().getChild("positionXYZ").set(PolarToCartesian(param.get()));
+                updateRemote("azimuth" , param.getParent().getChild("positionAED").get(), index);
             }
-            else if (value.getParent().getParent().getChild("parameter").get() === "positionX" | value.getParent().getParent().getChild("parameter").get() === "positionY" | value.getParent().getParent().getChild("parameter").get() === "positionZ")
+            else if (value.getParent().getParent().parameterControlled.get() === "positionX" | value.getParent().getParent().parameterControlled.get() === "positionY" | value.getParent().getParent().parameterControlled.get() === "positionZ")
             {
-                param.getParent().getChild("positionAED").set(PolarToCartesian(param.get()));
+            //     param.getParent().getChild("positionAED").set(CartesianToPolar(param.get()));
+                updateRemote("positionX", param.getParent().getChild("positionAED").get(), index);
             }
             stopSendingOSC = false;
+            stopUpdateForSource = -1;
         }
 
         else {
@@ -1031,7 +1075,7 @@ function oscSourceEvent(address, args)
             // Careful: could be broken by the refactoring
             {
                 var index = 1;
-                script.log("Index:" + i);
+                // script.log("Index:" + i);
                 var a = 0;
                 if (stereo.length > parseInt(i))
                 {
@@ -1096,9 +1140,8 @@ function oscSourceEvent(address, args)
             }
             stopSendingOSC = true;
             source.positionAED.set(args);//Sources[i]['positionAED']);
-            source.positionXYZ.set(PolarToCartesian(args));//Sources[i]['positionXYZ']);
+            // source.positionXYZ.set(PolarToCartesian(args));//Sources[i]['positionXYZ']);
             stopSendingOSC = false;
-
         }
     }
     else if (address[3]==='xyz')
@@ -1107,8 +1150,9 @@ function oscSourceEvent(address, args)
         {
             stopSendingOSC = true;
             controlName = 'position';
-            source.positionXYZ.set(args);//Sources[i]['positionXYZ']);
-            source.positionAED.set(CarteisanToPolar(args));//Sources[i]['positionAED']);
+            // source.positionXYZ.set(args);//Sources[i]['positionXYZ']);
+            args = CartesianToPolar(args);
+            source.positionAED.set(args);//Sources[i]['positionAED']);
             stopSendingOSC = false;
         }
     }
@@ -1361,6 +1405,17 @@ function oscSourceEvent(address, args)
             controlName = 'roomGain1';
         }
     }
+    else if (address[3]==='omni')
+    {
+        if (address[4] ==='G0')
+        {
+            if (typeof(args[0]) == 'number')
+            {
+                source.omniGain.set(args[0]);
+                controlName = 'omniGain';
+            }
+        }
+    }
     else if (address[3]==='rg2')
     {
         if (typeof(args[0]) == 'number')
@@ -1435,60 +1490,7 @@ function oscSourceEvent(address, args)
 
     stopSendForSource = -1;
 
-    for (var k = 0; k < Remote.length; k++)
-    {
-        if (Math.floor(i/ Remote[k].controlsNumber.get()) == Remote[k].indexNumber.get())
-        {
-            for (var j = 0; j < Remote[k].onOffNumber.get(); j++)
-            {
-                var cont = Remote[k].onOff[j];
-                if (Remote[k].onOff[j]['parameter'].get() === controlName)// | (cont.getChild("Parameter").get() === 'azimuth' | cont.getChild("Parameter").get() === 'elevation' | cont.getChild("Parameter").get() === 'elevation') && controlName === 'position')
-                {
-                    var target = Remote[k].onOff[j]['values'][i % Remote[k].controlsNumber.get()]['target'].getTarget();
-                    if (target)
-                    {
-                        target.set(args[0] * 127);
-                    }
-                    Remote[k].onOff[j]['values'][i % Remote[k].controlsNumber.get()]['value'].set(args[0]);
-                }
-            }
-            for (var j = 0; j < Remote[k].floatNumber.get(); j++)
-            {
-                var cont = Remote[k].float[j];
-                if (Remote[k].float[j]['parameter'].get() === controlName | ((Remote[k].float[j]['parameter'].get() === 'azimuth' | Remote[k].float[j]['parameter'].get() === 'elevation' | Remote[k].float[j]['parameter'].get() === 'distance') && controlName === 'position')| ((Remote[k].float[j]['parameter'].get() === 'positionX' | Remote[k].float[j]['parameter'].get() === 'positionY' | Remote[k].float[j]['parameter'].get() === 'positionZ') && controlName === 'position'))
-                {
-                    var arg = args[0];
-                    if (Remote[k].float[j]['parameter'].get() === "positionY")
-                    {
-                        arg = source.positionXYZ.get()[1];
-                    }
-                    else if (Remote[k].float[j]['parameter'].get() === "positionZ")
-                    {
-                        arg = source.positionXYZ.get()[2];
-                    }
-                    else if (Remote[k].float[j]['parameter'].get() === "elevation")
-                    {
-                        arg = source.positionAED.get()[1];
-                    }
-                    else if (Remote[k].float[j]['parameter'].get() === "distance")
-                    {
-                        arg = source.positionAED.get()[2];
-                    }
-
-                    var val = (arg - RangeForParameter[Remote[k].float[j]['parameter'].get()][0])/ (RangeForParameter[Remote[k].float[j]['parameter'].get()][1] - RangeForParameter[Remote[k].float[j]['parameter'].get()][0]);
-                    script.log("Values: " + val);
-                    var target = Remote[k].float[j]['values'][i % Remote[k].controlsNumber.get()]['target'].getTarget();
-                    script.log("Target: " + target);
-                    if (target)
-                    {
-                        target.set(val * 127);
-                    }
-                    Remote[k].float[j]['values'][i % Remote[k].controlsNumber.get()]['target'].set(args[0]);
-                }
-            }
-        }
-
-    }
+    updateRemote(controlName, args, i + 1);
 
 }
 
@@ -1511,6 +1513,8 @@ function oscRoomEvent(address, args)
     {
         var room = Rooms[i]['container'];
     }
+
+    return;
 
     if (address[3]==='name')
     {
@@ -1828,8 +1832,8 @@ function createSourceContainer()
         Sources[i].positionAED = Sources[i].SourceContainer.addPoint3DParameter("Position AED", "PositionAED", [0.0, 0.0, 2.0]);
         Sources[i].positionAED.setAttribute("readonly", true);
 
-        Sources[i].positionXYZ = Sources[i].SourceContainer.addPoint3DParameter("Position XYZ", "Position XYZ", [0.0, 2.0, 0.0]);
-        Sources[i].positionXYZ.setAttribute("readonly", true);
+        // Sources[i].positionXYZ = Sources[i].SourceContainer.addPoint3DParameter("Position XYZ", "Position XYZ", [0.0, 2.0, 0.0]);
+        // Sources[i].positionXYZ.setAttribute("readonly", true);
 
         Sources[i].reverbSourceContainer = Sources[i].SourceContainer.addContainer("Reverb");
         Sources[i].reverbEnable = Sources[i].reverbSourceContainer.addBoolParameter("Reverb Enable", "Reverb Enable", 1);
@@ -1915,6 +1919,10 @@ function createSourceContainer()
         Sources[i].radius = Sources[i].optionsSourceContainer.addFloatParameter("Radius", "Radius", 1.0, 0.001, 100.0);
         Sources[i].radius.setAttribute("readonly", true);
 
+        Sources[i].OmniSourceContainer = Sources[i].SourceContainer.addContainer("Omni");
+        Sources[i].omniGain = Sources[i].OmniSourceContainer.addFloatParameter("Omni Gain", "Omni Gain", 0, -144.5, 24);
+        Sources[i].omniGain.setAttribute("readonly", true);
+
         Sources[i].roomGainsSourceContainer = Sources[i].SourceContainer.addContainer("Room Gains");
         Sources[i].roomGain1 = Sources[i].roomGainsSourceContainer.addFloatParameter("Room Gain 1", "Room Gain 1", 0, -144.5, 24);
         Sources[i].roomGain1.setAttribute("readonly", true);
@@ -1962,105 +1970,106 @@ function createRoomContainer()
     // Add the Room container
     RoomsContainer = local.values.addContainer("Rooms container");
 
-    for (var i = 1; i < 11; i++) {
-        RoomContainer = RoomsContainer.addContainer("Room " + i);
+    for (var i = 0; i < 10; i++) {
+        var index = i+1;
         Rooms.push({
-            "index": i,
-            "container": RoomContainer
+            "index": index
         });
 
-        var roomName = RoomContainer.addStringParameter("Room Name", "Room name", "Room name");
-        roomName.setAttribute("readonly", true);
+        Rooms[i].RoomContainer = RoomsContainer.addContainer("Room " + i);
 
-        var gainRoom = RoomContainer.addFloatParameter("Gain Room", "Matrix input level", 0, -144.5, 24);
-        gainRoom.setAttribute("readonly", true);
+        Rooms[i].roomName = Rooms[i].RoomContainer.addStringParameter("Room Name", "Room name", "Room name");
+        Rooms[i].roomName.setAttribute("readonly", true);
 
-        var muteRoom = RoomContainer.addBoolParameter("Mute Room", "Mute", 0);
-        muteRoom.setAttribute("readonly", true);
+        Rooms[i].gainRoom = Rooms[i].RoomContainer.addFloatParameter("Gain Room", "Matrix input level", 0, -144.5, 24);
+        Rooms[i].gainRoom.setAttribute("readonly", true);
 
-        var listenerPosition = RoomContainer.addPoint3DParameter("Listener Position", "Listener Position", [0.0, 0.0, 0.0]);
-        listenerPosition.setAttribute("readonly", true);
+        Rooms[i].muteRoom = Rooms[i].RoomContainer.addBoolParameter("Mute Room", "Mute", 0);
+        Rooms[i].muteRoom.setAttribute("readonly", true);
 
-        var listenerOrientation = RoomContainer.addPoint3DParameter("Listener Orientation", "Listener Orientation", [0.0, 0.0, 0.0]);
-        listenerOrientation.setAttribute("readonly", true);
+        Rooms[i].listenerPosition = Rooms[i].RoomContainer.addPoint3DParameter("Listener Position", "Listener Position", [0.0, 0.0, 0.0]);
+        Rooms[i].listenerPosition.setAttribute("readonly", true);
 
-        roomReverbContainer = RoomContainer.addContainer("Reverb");
-        var reverbDensity = roomReverbContainer.addBoolParameter("Reverb Density", "Reverb Density", 1);
-        reverbDensity.setAttribute("readonly", true);
+        Rooms[i].listenerOrientation = Rooms[i].RoomContainer.addPoint3DParameter("Listener Orientation", "Listener Orientation", [0.0, 0.0, 0.0]);
+        Rooms[i].listenerOrientation.setAttribute("readonly", true);
 
-        var reverbEnableRoom = roomReverbContainer.addBoolParameter("Reverb Enable Room", "Reverb Enable", 1);
-        reverbEnableRoom.setAttribute("readonly", true);
+        Rooms[i].roomReverbContainer = Rooms[i].RoomContainer.addContainer("Reverb");
+        Rooms[i].reverbDensity = Rooms[i].roomReverbContainer.addBoolParameter("Reverb Density", "Reverb Density", 1);
+        Rooms[i].reverbDensity.setAttribute("readonly", true);
 
-        var roomSize = roomReverbContainer.addFloatParameter("Room Size", "Room Size", 2500, 10, 15000);
-        roomSize.setAttribute("readonly", true);
+        Rooms[i].reverbEnableRoom = Rooms[i].roomReverbContainer.addBoolParameter("Reverb Enable Room", "Reverb Enable", 1);
+        Rooms[i].reverbEnableRoom.setAttribute("readonly", true);
 
-        var reverbStart = roomReverbContainer.addFloatParameter("Reverb Start", "Reverb Start", 80.0, 8.0, 500.0);
-        reverbStart.setAttribute("readonly", true);
+        Rooms[i].roomSize = Rooms[i].roomReverbContainer.addFloatParameter("Room Size", "Room Size", 2500, 10, 15000);
+        Rooms[i].roomSize.setAttribute("readonly", true);
 
-        var reverbGain = roomReverbContainer.addFloatParameter("Reverb Gain", "Reverb Gain", 0, -24.0, 24.0);
-        reverbGain.setAttribute("readonly", true);
+        Rooms[i].reverbStart = Rooms[i].roomReverbContainer.addFloatParameter("Reverb Start", "Reverb Start", 80.0, 8.0, 500.0);
+        Rooms[i].reverbStart.setAttribute("readonly", true);
 
-        var reverbFactor = roomReverbContainer.addFloatParameter("Reverb Factor", "Reverb Factor", 1.0, 0.10, 2.0);
-        reverbFactor.setAttribute("readonly", true);
+        Rooms[i].reverbGain = Rooms[i].roomReverbContainer.addFloatParameter("Reverb Gain", "Reverb Gain", 0, -24.0, 24.0);
+        Rooms[i].reverbGain.setAttribute("readonly", true);
 
-        perceptualFactorRoomContainer = roomReverbContainer.addContainer("Perceptual Factors");
-        var reverberance = perceptualFactorRoomContainer.addFloatParameter("Reverberance", "Reverberance", 65.0, 5.0, 100.0);
-        reverberance.setAttribute("readonly", true);
+        Rooms[i].reverbFactor = Rooms[i].roomReverbContainer.addFloatParameter("Reverb Factor", "Reverb Factor", 1.0, 0.10, 2.0);
+        Rooms[i].reverbFactor.setAttribute("readonly", true);
 
-        var heaviness = perceptualFactorRoomContainer.addFloatParameter("Heaviness", "Heaviness", 25.0, 5.0, 50.0);
-        heaviness.setAttribute("readonly", true);
+        Rooms[i].perceptualFactorRoomContainer = Rooms[i].roomReverbContainer.addContainer("Perceptual Factors");
+        Rooms[i].reverberance = Rooms[i].perceptualFactorRoomContainer.addFloatParameter("Reverberance", "Reverberance", 65.0, 5.0, 100.0);
+        Rooms[i].reverberance.setAttribute("readonly", true);
 
-        var liveness = perceptualFactorRoomContainer.addFloatParameter("Liveness", "Liveness", 35.0, 5.0, 50.0);
-        liveness.setAttribute("readonly", true);
+        Rooms[i].heaviness = Rooms[i].perceptualFactorRoomContainer.addFloatParameter("Heaviness", "Heaviness", 25.0, 5.0, 50.0);
+        Rooms[i].heaviness.setAttribute("readonly", true);
 
-        roomResponseRoomContainer = roomReverbContainer.addContainer("Room Response");
-        var earlyMin = roomResponseRoomContainer.addFloatParameter("Early Min", "Early Min", 24.2, 1.0, 120.0);
-        earlyMin.setAttribute("readonly", true);
+        Rooms[i].liveness = Rooms[i].perceptualFactorRoomContainer.addFloatParameter("Liveness", "Liveness", 35.0, 5.0, 50.0);
+        Rooms[i].liveness.setAttribute("readonly", true);
 
-        var earlyMax = roomResponseRoomContainer.addFloatParameter("Early Max", "Early Max", 40.0, 1.0, 120.0);
-        earlyMax.setAttribute("readonly", true);
+        Rooms[i].roomResponseRoomContainer = Rooms[i].roomReverbContainer.addContainer("Room Response");
+        Rooms[i].earlyMin = Rooms[i].roomResponseRoomContainer.addFloatParameter("Early Min", "Early Min", 24.2, 1.0, 120.0);
+        Rooms[i].earlyMin.setAttribute("readonly", true);
 
-        var earlyDist = roomResponseRoomContainer.addFloatParameter("Early Dist", "Early Dist", 0.5, 0.1, 0.9);
-        earlyDist.setAttribute("readonly", true);
+        Rooms[i].earlyMax = Rooms[i].roomResponseRoomContainer.addFloatParameter("Early Max", "Early Max", 40.0, 1.0, 120.0);
+        Rooms[i].earlyMax.setAttribute("readonly", true);
 
-        var earlyShape = roomResponseRoomContainer.addFloatParameter("Early Shape", "Early Shape", 0.5, 0.1, 0.9);
-        earlyShape.setAttribute("readonly", true);
+        Rooms[i].earlyDist = Rooms[i].roomResponseRoomContainer.addFloatParameter("Early Dist", "Early Dist", 0.5, 0.1, 0.9);
+        Rooms[i].earlyDist.setAttribute("readonly", true);
 
-        var clusterMin = roomResponseRoomContainer.addFloatParameter("Cluster Min", "Cluster Min", 36.0, 1.0, 300.0);
-        clusterMin.setAttribute("readonly", true);
+        Rooms[i].earlyShape = Rooms[i].roomResponseRoomContainer.addFloatParameter("Early Shape", "Early Shape", 0.5, 0.1, 0.9);
+        Rooms[i].earlyShape.setAttribute("readonly", true);
 
-        var clusterMax = roomResponseRoomContainer.addFloatParameter("Cluster Max", "Cluster Max", 90.0, 1.0, 300.0);
-        clusterMax.setAttribute("readonly", true);
+        Rooms[i].clusterMin = Rooms[i].roomResponseRoomContainer.addFloatParameter("Cluster Min", "Cluster Min", 36.0, 1.0, 300.0);
+        Rooms[i].clusterMin.setAttribute("readonly", true);
 
-        var clusterDist = roomResponseRoomContainer.addFloatParameter("Cluster Dist", "Cluster Dist", 0.5, 0.1, 0.9);
-        clusterDist.setAttribute("readonly", true);
+        Rooms[i].clusterMax = Rooms[i].roomResponseRoomContainer.addFloatParameter("Cluster Max", "Cluster Max", 90.0, 1.0, 300.0);
+        Rooms[i].clusterMax.setAttribute("readonly", true);
 
-        reverbOptionsRoomContainer = roomReverbContainer.addContainer("Options");
-        var reverbInfinite = reverbOptionsRoomContainer.addBoolParameter("Reverb Infinite", "Reverb Infinite", 0);
-        reverbInfinite.setAttribute("readonly", true);
+        Rooms[i].clusterDist = Rooms[i].roomResponseRoomContainer.addFloatParameter("Cluster Dist", "Cluster Dist", 0.5, 0.1, 0.9);
+        Rooms[i].clusterDist.setAttribute("readonly", true);
 
-        var airEnable = reverbOptionsRoomContainer.addBoolParameter("Air Enable", "Air Enable", 1);
-        airEnable.setAttribute("readonly", true);
+        Rooms[i].reverbOptionsRoomContainer = Rooms[i].roomReverbContainer.addContainer("Options");
+        Rooms[i].reverbInfinite = Rooms[i].reverbOptionsRoomContainer.addBoolParameter("Reverb Infinite", "Reverb Infinite", 0);
+        Rooms[i].reverbInfinite.setAttribute("readonly", true);
 
-        var airFreq = reverbOptionsRoomContainer.addFloatParameter("Air Freq", "Air absorption Frequency", 10000, 20, 20000);
-        airFreq.setAttribute("readonly", true);
+        Rooms[i].airEnable = Rooms[i].reverbOptionsRoomContainer.addBoolParameter("Air Enable", "Air Enable", 1);
+        Rooms[i].airEnable.setAttribute("readonly", true);
 
-        var modalDensity = reverbOptionsRoomContainer.addFloatParameter("Modal Density", "Modal Density", 1.0, 0.2, 2.0);
-        modalDensity.setAttribute("readonly", true);
+        Rooms[i].airFreq = Rooms[i].reverbOptionsRoomContainer.addFloatParameter("Air Freq", "Air absorption Frequency", 10000, 20, 20000);
+        Rooms[i].airFreq.setAttribute("readonly", true);
 
-        reverbCrossoverRoomContainer = roomReverbContainer.addContainer("Crossover");
-        var frequencyLow = reverbCrossoverRoomContainer.addFloatParameter("Frequency Low", "Frequency Low", 177.0, 20.0, 20000.0);
-        frequencyLow.setAttribute("readonly", true);
+        Rooms[i].modalDensity = Rooms[i].reverbOptionsRoomContainer.addFloatParameter("Modal Density", "Modal Density", 1.0, 0.2, 2.0);
+        Rooms[i].modalDensity.setAttribute("readonly", true);
 
-        var frequencyHigh = reverbCrossoverRoomContainer.addFloatParameter("Frequency High", "Frequency High", 5657.0, 20.0, 20000.0);
-        frequencyHigh.setAttribute("readonly", true);
+        Rooms[i].reverbCrossoverRoomContainer = Rooms[i].roomReverbContainer.addContainer("Crossover");
+        Rooms[i].frequencyLow = Rooms[i].reverbCrossoverRoomContainer.addFloatParameter("Frequency Low", "Frequency Low", 177.0, 20.0, 20000.0);
+        Rooms[i].frequencyLow.setAttribute("readonly", true);
 
-        roomReverbContainer.setCollapsed(true);
-        perceptualFactorRoomContainer.setCollapsed(true);
-        roomResponseRoomContainer.setCollapsed(true);
-        reverbOptionsRoomContainer.setCollapsed(true);
-        reverbCrossoverRoomContainer.setCollapsed(true);
-        RoomContainer.setCollapsed(true);
+        Rooms[i].frequencyHigh = Rooms[i].reverbCrossoverRoomContainer.addFloatParameter("Frequency High", "Frequency High", 5657.0, 20.0, 20000.0);
+        Rooms[i].frequencyHigh.setAttribute("readonly", true);
+
+        Rooms[i].roomReverbContainer.setCollapsed(true);
+        Rooms[i].perceptualFactorRoomContainer.setCollapsed(true);
+        Rooms[i].roomResponseRoomContainer.setCollapsed(true);
+        Rooms[i].reverbOptionsRoomContainer.setCollapsed(true);
+        Rooms[i].reverbCrossoverRoomContainer.setCollapsed(true);
+        Rooms[i].RoomContainer.setCollapsed(true);
     }
     local.scripts.setCollapsed(true);
 }
@@ -2069,7 +2078,7 @@ function addOnOff(remoteIndex, index)
 {
     Remote[remoteIndex].onOff[index - 1] = {'values': []};
     Remote[remoteIndex].onOff[index - 1]['container'] = Remote[remoteIndex].RemoteContainer.addContainer("OnOff" + index);
-    Remote[remoteIndex].onOff[index - 1]['parameter'] = Remote[remoteIndex].onOff[index - 1]['container'].addEnumParameter("Parameter", "parameter", "Mute", "mute", "Solo", "solo", "Reverb on", "reverbEnable", "Early On", "earlyEnable", "Cluster On", "clusterEnable", "Doppler", "doppler", "Air Absorption", "airAbsorption", "XY Coordinates mode", "xyCoordinatesMode", "Z Coordinates mode", "zCoordinatesMode", "Drop log", "dropLog");
+    Remote[remoteIndex].onOff[index - 1]['parameterControlled'] = Remote[remoteIndex].onOff[index - 1]['container'].addEnumParameter("Parameter", "parameter", "Mute", "mute", "Solo", "solo", "Reverb on", "reverbEnable", "Early On", "earlyEnable", "Cluster On", "clusterEnable", "Doppler", "doppler", "Air Absorption", "airAbsorption", "XY Coordinates mode", "xyCoordinatesMode", "Z Coordinates mode", "zCoordinatesMode", "Drop log", "dropLog");
     var valContainer = Remote[remoteIndex].onOff[index - 1]['container'].addContainer("Values");
     for (var i = 1; i < Remote[remoteIndex].controlsNumber.get() + 1; i++)
     {
@@ -2083,7 +2092,7 @@ function addFloatNumber(remoteIndex, index)
 {
     Remote[remoteIndex].float[index - 1] = {'values': []};
     Remote[remoteIndex].float[index - 1]['container'] = Remote[remoteIndex].RemoteContainer.addContainer("Float" + index);
-    Remote[remoteIndex].float[index - 1]['parameter'] = Remote[remoteIndex].float[index - 1]['container'].addEnumParameter("Parameter", "Parameter controlled", "Azimuth", "azimuth", "Elevation", "elevation", "Distance", "distance", "Position X", "positionX", "Position Y", "positionY", "Position Z", "positionZ", "Gain", "gain", "Lfe", "lfe", "Lfe2", "lfe2", "Lfe3", "lfe3", "Lfe4", "lfe4", "Presence", "presence", "Room presence", "roomPresence", "Running Reverberance", "runningReverberance", "Envelopment", "envelopment", "Brilliance", "brilliance", "Warmth", "warmth", "Yaw", "yaw", "Pitch", "pitch", "Aperture", "aperture", "Scale", "scale", "Spread", "spread", "Knn", "knn", "Early width", "earlyWidth", "Pan Rev", "panRev", "Drop factor", "dropFactor", "Rotation X", "rotX", "Rotation Y", "rotY", "Rotation Z", "rotZ", "RoomGain 1", "roomGain1", "RoomGain 2", "roomGain2", "RoomGain 3", "roomGain3", "RoomGain 4", "roomGain4", "RoomGain 5", "roomGain5", "RoomGain 6", "roomGain6", "RoomGain 7", "roomGain7", "RoomGain 8", "roomGain8", "RoomGain 9", "roomGain9", "RoomGain 10", "roomGain10");
+    Remote[remoteIndex].float[index - 1]['parameterControlled'] = Remote[remoteIndex].float[index - 1]['container'].addEnumParameter("Parameter controlled", "parameterControlled", "Azimuth", "azimuth", "Elevation", "elevation", "Distance", "distance", "Position X", "positionX", "Position Y", "positionY", "Position Z", "positionZ", "Gain", "gain", "Lfe", "lfe", "Lfe2", "lfe2", "Lfe3", "lfe3", "Lfe4", "lfe4", "Presence", "presence", "Room presence", "roomPresence", "Running Reverberance", "runningReverberance", "Envelopment", "envelopment", "Brilliance", "brilliance", "Warmth", "warmth", "Yaw", "yaw", "Pitch", "pitch", "Aperture", "aperture", "Scale", "scale", "Spread", "spread", "Knn", "knn", "Early width", "earlyWidth", "Pan Rev", "panRev", "Drop factor", "dropFactor", "Rotation X", "rotX", "Rotation Y", "rotY", "Rotation Z", "rotZ", "Omni Gain", "omniGain", "RoomGain 1", "roomGain1", "RoomGain 2", "roomGain2", "RoomGain 3", "roomGain3", "RoomGain 4", "roomGain4", "RoomGain 5", "roomGain5", "RoomGain 6", "roomGain6", "RoomGain 7", "roomGain7", "RoomGain 8", "roomGain8", "RoomGain 9", "roomGain9", "RoomGain 10", "roomGain10");
     var valContainer = Remote[remoteIndex].float[index - 1]['container'].addContainer("Values");
     for (var i = 1; i < Remote[remoteIndex].controlsNumber.get() + 1; i++)
     {
@@ -2095,17 +2104,24 @@ function addFloatNumber(remoteIndex, index)
 function addRemote(index)
 {   var i = index - 1;
     // script.log("Add remote: " + index);
-    Remote.push({"index": 0, 'numberOfControls': 8, "numberOfOnOff":1, "numberOfFloat":1});//, "container": RemoteContainer, 'controlsNumber': 8, 'onOffNumber': 8, 'floatNumber':8});
+    Remote.push({"index": 0, 'numberOfControls': 4, "numberOfOnOff":0, "numberOfFloat":2});//, "container": RemoteContainer, 'controlsNumber': 8, 'onOffNumber': 8, 'floatNumber':8});
     Remote[i].RemoteContainer = RemotesContainer.addContainer("Remote" + index);
     Remote[i].indexNumber = Remote[i].RemoteContainer.addIntParameter("Index", "index", 0, 0, 64);
-    Remote[i].controlsNumber = Remote[i].RemoteContainer.addIntParameter("Controls number", "controls number", 8 ,1, 50);
-    Remote[i].onOffNumber = Remote[i].RemoteContainer.addIntParameter("On Off Number", "on off number", 1, 0, 50);
+    Remote[i].controlsNumber = Remote[i].RemoteContainer.addIntParameter("Controls number", "controls number", 1 ,1, 50);
+    Remote[i].onOffNumber = Remote[i].RemoteContainer.addIntParameter("On Off Number", "on off number", 0, 0, 50);
     Remote[i].onOff = [];
 
-    addOnOff(i, 1);
-    Remote[i].floatNumber = Remote[i].RemoteContainer.addIntParameter("Float Number", "float number", 1, 0, 50);
+    // addOnOff(i, 1);
+    Remote[i].floatNumber = Remote[i].RemoteContainer.addIntParameter("Float Number", "float number", 8, 0, 50);
     Remote[i].float = [];
     addFloatNumber(i, 1);
+    addFloatNumber(i, 2);
+    addFloatNumber(i, 3);
+    addFloatNumber(i, 4);
+    addFloatNumber(i, 5);
+    addFloatNumber(i, 6);
+    addFloatNumber(i, 7);
+    addFloatNumber(i, 8);
 }
 
 function deleteRemote(index)
@@ -2120,7 +2136,7 @@ function createRemoteContainer()
     // Add the Remote container
     RemotesContainer = local.values.addContainer("Remotes");
 
-    var numberOfRemotes = RemotesContainer.addIntParameter("number of  remotes", "number of remotes", 0, 1, 64);
+    var numberOfRemotes = RemotesContainer.addIntParameter("number of  remotes", "number of remotes", 1, 0, 64);
     var masterIndex = RemotesContainer.addIntParameter("Master index", "master index", 0, 0, 128);
     for (var i = 1; i < numberOfRemotes.get() + 1; i++)
     {
@@ -2129,6 +2145,58 @@ function createRemoteContainer()
     // addRemote(1);
 }
 
+function updateRemote(controlName, args, sourceIndex)
+{
+    // script.log("updateRemote");
+    for (var k = 0; k < Remote.length; k++) {
+        if (Math.floor(sourceIndex / Remote[k].controlsNumber.get()) == Remote[k].indexNumber.get()) {
+            script.log("updateRemote index: " + sourceIndex);
+            for (var j = 0; j < Remote[k].onOffNumber.get(); j++) {
+                var cont = Remote[k].onOff[j];
+                if (Remote[k].onOff[j].parameterControlled.get() === controlName)// | (cont.getChild("Parameter").get() === 'azimuth' | cont.getChild("Parameter").get() === 'elevation' | cont.getChild("Parameter").get() === 'elevation') && controlName === 'position')
+                {
+                    var target = Remote[k].onOff[j]['values'][sourceIndex % Remote[k].controlsNumber.get() - 1]['target'].getTarget();
+                    if (target) {
+                        target.set(args[0] * 127);
+                    }
+                    Remote[k].onOff[j]['values'][sourceIndex % Remote[k].controlsNumber.get() - 1]['value'].set(args[0]);
+                }
+            }
+            for (var j = 0; j < Remote[k].floatNumber.get(); j++) {
+                // var cont = Remote[k].float[j];
+                // script.log(Remote[k].float[j]['parameterControlled'].get());
+                if (Remote[k].float[j].parameterControlled.get() === controlName | ((Remote[k].float[j].parameterControlled.get() === 'azimuth' | Remote[k].float[j].parameterControlled.get() === 'elevation' | Remote[k].float[j].parameterControlled.get() === 'distance') && controlName === 'position') | ((Remote[k].float[j].parameterControlled.get() === 'positionX' | Remote[k].float[j].parameterControlled.get() === 'positionY' | Remote[k].float[j].parameterControlled.get() === 'positionZ') && controlName === 'position') | ((controlName === 'azimuth' | controlName ===  'elevation' | controlName === 'distance')  && (Remote[k].float[j].parameterControlled.get() === 'positionX' | Remote[k].float[j].parameterControlled.get() === 'positionY' | Remote[k].float[j].parameterControlled.get() === 'positionZ')) | ((controlName === 'positionX' | controlName === 'positionY' | controlName === 'positionZ')  && (Remote[k].float[j].parameterControlled.get() === 'azimuth' | Remote[k].float[j].parameterControlled.get() === 'elevation' | Remote[k].float[j].parameterControlled.get() === 'distance'))) {
+                    var arg = args[0];
+                    if (Remote[k].float[j].parameterControlled.get() === "positionX") {
+                        // script.log("position AED; "+ Sources[sourceIndex - 1].positionAED.get()[0] +Sources[sourceIndex - 1].positionAED.get()[1] +Sources[sourceIndex - 1].positionAED.get()[2]  + "position XYZ: " + PolarToCartesian(Sources[sourceIndex - 1].positionAED.get())[0]+ PolarToCartesian(Sources[sourceIndex - 1].positionAED.get())[1]+ PolarToCartesian(Sources[sourceIndex - 1].positionAED.get()[2]));
+                        arg = PolarToCartesian(Sources[sourceIndex - 1].positionAED.get())[0];
+                    } else if (Remote[k].float[j].parameterControlled.get() === "positionY") {
+                        arg = PolarToCartesian(Sources[sourceIndex - 1].positionAED.get())[1];
+                    } else if (Remote[k].float[j].parameterControlled.get() === "positionZ") {
+                        arg = PolarToCartesian(Sources[sourceIndex - 1].positionAED.get())[2];
+                    } else if (Remote[k].float[j].parameterControlled.get() === "elevation") {
+                        arg = Sources[sourceIndex - 1].positionAED.get()[1];
+                    } else if (Remote[k].float[j].parameterControlled.get() === "distance") {
+                        arg = Sources[sourceIndex - 1].positionAED.get()[2];
+                    }
+
+                    var val = (arg - RangeForParameter[Remote[k].float[j].parameterControlled.get()][0]) / (RangeForParameter[Remote[k].float[j].parameterControlled.get()][1] - RangeForParameter[Remote[k].float[j].parameterControlled.get()][0]);
+                    if (Remote[k].float[j]['values'][sourceIndex % Remote[k].controlsNumber.get() - 1]["target"])
+
+                    {
+                        var target = Remote[k].float[j]['values'][sourceIndex % Remote[k].controlsNumber.get() - 1]['target'].getTarget();
+                        if (target) {
+                            target.set(val * 127);
+                        }
+                        Remote[k].float[j]['values'][sourceIndex % Remote[k].controlsNumber.get() - 1]['value'].set(val);
+                    }
+                }
+            }
+        }
+    }
+}
+
+
 /**
  * Cartesian to Polar function
  * @param {float} value
@@ -2136,8 +2204,9 @@ function createRemoteContainer()
 
 function CartesianToPolar(value)
 {
+    script.log("CartesianToPolar, value: X=" + value[0], ", Y=" + value[1]);
     var positionAED = [0.0, 0.0, 0.0];
-    if (value[0] != 0.0|| value[1] != 0.0 || value[2] != 0.0)
+    if (value[0] != 0.0 || value[1] != 0.0 || value[2] != 0.0)
     {
         positionAED[2] = Math.sqrt(Math.pow(value[0],2) + Math.pow(value[1],2) + Math.pow(value[2],2));
         positionAED[1] = - 180 * Math.acos(value[2]/positionAED[2]) / Math.PI + 90;
@@ -2148,22 +2217,24 @@ function CartesianToPolar(value)
         positionAED[2] = 0.0;
     }
 
-    if(value[0]===0 && value[1]===0)
+    if(value[0]===0.0 && value[1]===0.0)
     {
         positionAED[0] = 0.0;
     }
-    else if (value[0] === 0 && value[1] > 0)
+    else if (value[0] === 0.0 && value[1] > 0.0)
     {positionAED[0] = 0.0;}
-    else if(value[0] === 0 && value[1] < 0)
+    else if(value[0] === 0.0 && value[1] < 0.0)
     {positionAED[0] = -180.0;}
-    else if(value[1] === 0 && value[0] > 0)
+    else if(value[1] === 0.0 && value[0] > 0.0)
     {positionAED[0] = 90.0;}
-    else if(value[1] === 0 && value[0] < 0)
+    else if(value[1] === 0 && value[0] < 0.0)
     {positionAED[0] = -90.0;}
-    else if (value[0] > 0 && value[1] !== 0)
+    else if (value[0] > 0.0 && value[1] !== 0.0)
     {positionAED[0] = (-180 * Math.atan(value[1]/value[0]) / Math.PI) + 90;}
-    else if(value[0] < 0 && value[1] !== 0)
+    else if(value[0] < 0.0 && value[1] !== 0.0)
     {positionAED[0] = (-180 * Math.atan(value[1]/value[0]) / Math.PI) - 90;}
+
+    script.log("CartesianToPolar, value: A:" + positionAED[0], ", D=" + positionAED[2]);
 
     return positionAED;
 }
