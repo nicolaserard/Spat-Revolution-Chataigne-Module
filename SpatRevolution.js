@@ -683,7 +683,6 @@ function moduleValueChanged(value)
             // onOff
             for (var j = 0; j < Remote[remoteIndex].onOffNumber.get(); j++)
             {
-                // var onOffCont = Remote[remoteIndex].onOff[j]['container'];
                 for (var l = 0; l < Remote[remoteIndex].controlsNumber.get() ; l++)
                 {
                     var val = ParameterFromString[Remote[remoteIndex].onOff[j].parameterControlled.get()](value.get()*Remote[remoteIndex].controlsNumber.get() + l).get();
@@ -692,7 +691,6 @@ function moduleValueChanged(value)
                     {
                         target.set(val*127);
                     }
-                    // onOffCont.getChild("Values").getChild("Value" + l + 1).set(val);
                     Remote[remoteIndex].onOff[j]["values"][l]["value"].set(val);
 
                 }
@@ -896,13 +894,10 @@ function moduleValueChanged(value)
             stopUpdateForSource = index;
             if (value.getParent().getParent().parameterControlled.get() === "azimuth" | value.getParent().getParent().parameterControlled.get() === "elevation" | value.getParent().getParent().parameterControlled.get() === "distance")
             {
-            //
-            //     // param.getParent().getChild("positionXYZ").set(PolarToCartesian(param.get()));
                 updateRemote("azimuth" , param.getParent().getChild("positionAED").get(), index);
             }
             else if (value.getParent().getParent().parameterControlled.get() === "positionX" | value.getParent().getParent().parameterControlled.get() === "positionY" | value.getParent().getParent().parameterControlled.get() === "positionZ")
             {
-            //     param.getParent().getChild("positionAED").set(CartesianToPolar(param.get()));
                 updateRemote("positionX", param.getParent().getChild("positionAED").get(), index);
             }
             stopSendingOSC = false;
@@ -2152,8 +2147,7 @@ function updateRemote(controlName, args, sourceIndex)
         if (Math.floor(sourceIndex / Remote[k].controlsNumber.get()) == Remote[k].indexNumber.get()) {
             script.log("updateRemote index: " + sourceIndex);
             for (var j = 0; j < Remote[k].onOffNumber.get(); j++) {
-                var cont = Remote[k].onOff[j];
-                if (Remote[k].onOff[j].parameterControlled.get() === controlName)// | (cont.getChild("Parameter").get() === 'azimuth' | cont.getChild("Parameter").get() === 'elevation' | cont.getChild("Parameter").get() === 'elevation') && controlName === 'position')
+                if (Remote[k].onOff[j].parameterControlled.get() === controlName)
                 {
                     var target = Remote[k].onOff[j]['values'][sourceIndex % Remote[k].controlsNumber.get() - 1]['target'].getTarget();
                     if (target) {
@@ -2163,7 +2157,6 @@ function updateRemote(controlName, args, sourceIndex)
                 }
             }
             for (var j = 0; j < Remote[k].floatNumber.get(); j++) {
-                // var cont = Remote[k].float[j];
                 // script.log(Remote[k].float[j]['parameterControlled'].get());
                 if (Remote[k].float[j].parameterControlled.get() === controlName | ((Remote[k].float[j].parameterControlled.get() === 'azimuth' | Remote[k].float[j].parameterControlled.get() === 'elevation' | Remote[k].float[j].parameterControlled.get() === 'distance') && controlName === 'position') | ((Remote[k].float[j].parameterControlled.get() === 'positionX' | Remote[k].float[j].parameterControlled.get() === 'positionY' | Remote[k].float[j].parameterControlled.get() === 'positionZ') && controlName === 'position') | ((controlName === 'azimuth' | controlName ===  'elevation' | controlName === 'distance')  && (Remote[k].float[j].parameterControlled.get() === 'positionX' | Remote[k].float[j].parameterControlled.get() === 'positionY' | Remote[k].float[j].parameterControlled.get() === 'positionZ')) | ((controlName === 'positionX' | controlName === 'positionY' | controlName === 'positionZ')  && (Remote[k].float[j].parameterControlled.get() === 'azimuth' | Remote[k].float[j].parameterControlled.get() === 'elevation' | Remote[k].float[j].parameterControlled.get() === 'distance'))) {
                     var arg = args[0];
@@ -2182,7 +2175,6 @@ function updateRemote(controlName, args, sourceIndex)
 
                     var val = (arg - RangeForParameter[Remote[k].float[j].parameterControlled.get()][0]) / (RangeForParameter[Remote[k].float[j].parameterControlled.get()][1] - RangeForParameter[Remote[k].float[j].parameterControlled.get()][0]);
                     if (Remote[k].float[j]['values'][sourceIndex % Remote[k].controlsNumber.get() - 1]["target"])
-
                     {
                         var target = Remote[k].float[j]['values'][sourceIndex % Remote[k].controlsNumber.get() - 1]['target'].getTarget();
                         if (target) {
