@@ -1485,7 +1485,7 @@ function oscSourceEvent(address, args)
 
     stopSendForSource = -1;
 
-    updateRemote(controlName, args, i + 1);
+    updateRemote(controlName, args, i);
 
 }
 
@@ -2142,18 +2142,17 @@ function createRemoteContainer()
 
 function updateRemote(controlName, args, sourceIndex)
 {
-    // script.log("updateRemote");
     for (var k = 0; k < Remote.length; k++) {
         if (Math.floor(sourceIndex / Remote[k].controlsNumber.get()) == Remote[k].indexNumber.get()) {
             script.log("updateRemote index: " + sourceIndex);
             for (var j = 0; j < Remote[k].onOffNumber.get(); j++) {
                 if (Remote[k].onOff[j].parameterControlled.get() === controlName)
                 {
-                    var target = Remote[k].onOff[j]['values'][sourceIndex % Remote[k].controlsNumber.get() - 1]['target'].getTarget();
+                    var target = Remote[k].onOff[j]['values'][sourceIndex % Remote[k].controlsNumber.get()]['target'].getTarget();
                     if (target) {
                         target.set(args[0] * 127);
                     }
-                    Remote[k].onOff[j]['values'][sourceIndex % Remote[k].controlsNumber.get() - 1]['value'].set(args[0]);
+                    Remote[k].onOff[j]['values'][sourceIndex % Remote[k].controlsNumber.get()]['value'].set(args[0]);
                 }
             }
             for (var j = 0; j < Remote[k].floatNumber.get(); j++) {
@@ -2162,25 +2161,25 @@ function updateRemote(controlName, args, sourceIndex)
                     var arg = args[0];
                     if (Remote[k].float[j].parameterControlled.get() === "positionX") {
                         // script.log("position AED; "+ Sources[sourceIndex - 1].positionAED.get()[0] +Sources[sourceIndex - 1].positionAED.get()[1] +Sources[sourceIndex - 1].positionAED.get()[2]  + "position XYZ: " + PolarToCartesian(Sources[sourceIndex - 1].positionAED.get())[0]+ PolarToCartesian(Sources[sourceIndex - 1].positionAED.get())[1]+ PolarToCartesian(Sources[sourceIndex - 1].positionAED.get()[2]));
-                        arg = PolarToCartesian(Sources[sourceIndex - 1].positionAED.get())[0];
+                        arg = PolarToCartesian(Sources[sourceIndex].positionAED.get())[0];
                     } else if (Remote[k].float[j].parameterControlled.get() === "positionY") {
-                        arg = PolarToCartesian(Sources[sourceIndex - 1].positionAED.get())[1];
+                        arg = PolarToCartesian(Sources[sourceIndex].positionAED.get())[1];
                     } else if (Remote[k].float[j].parameterControlled.get() === "positionZ") {
-                        arg = PolarToCartesian(Sources[sourceIndex - 1].positionAED.get())[2];
+                        arg = PolarToCartesian(Sources[sourceIndex].positionAED.get())[2];
                     } else if (Remote[k].float[j].parameterControlled.get() === "elevation") {
-                        arg = Sources[sourceIndex - 1].positionAED.get()[1];
+                        arg = Sources[sourceIndex].positionAED.get()[1];
                     } else if (Remote[k].float[j].parameterControlled.get() === "distance") {
-                        arg = Sources[sourceIndex - 1].positionAED.get()[2];
+                        arg = Sources[sourceIndex].positionAED.get()[2];
                     }
 
                     var val = (arg - RangeForParameter[Remote[k].float[j].parameterControlled.get()][0]) / (RangeForParameter[Remote[k].float[j].parameterControlled.get()][1] - RangeForParameter[Remote[k].float[j].parameterControlled.get()][0]);
-                    if (Remote[k].float[j]['values'][sourceIndex % Remote[k].controlsNumber.get() - 1]["target"])
+                    if (Remote[k].float[j]['values'][sourceIndex % Remote[k].controlsNumber.get()]["target"])
                     {
-                        var target = Remote[k].float[j]['values'][sourceIndex % Remote[k].controlsNumber.get() - 1]['target'].getTarget();
+                        var target = Remote[k].float[j]['values'][sourceIndex % Remote[k].controlsNumber.get()]['target'].getTarget();
                         if (target) {
                             target.set(val * 127);
                         }
-                        Remote[k].float[j]['values'][sourceIndex % Remote[k].controlsNumber.get() - 1]['value'].set(val);
+                        Remote[k].float[j]['values'][sourceIndex % Remote[k].controlsNumber.get()]['value'].set(val);
                     }
                 }
             }
