@@ -821,30 +821,30 @@ function moduleValueChanged(value)
         else if (name === 'onOffNumber')
         {
             var index = parseInt(value.getParent().name.substring(6, value.getParent().name.length));
-            if (value.get() > Remote[index - 1]["numberOfOnOff"])
+            if (value.get() > Remote[index - 1]["numberOfButtonControllable"])
             {
-                addOnOff(index - 1, value.get());
+                addButtonControllable(index - 1, value.get());
             }
-            else if (value.get() < Remote[index - 1]["numberOfOnOff"])
+            else if (value.get() < Remote[index - 1]["numberOfButtonControllable"])
             {
                 i = value.get() + 1;
                 value.getParent().removeContainer("OnOff" + i);
             }
-            Remote[index-1]["numberOfOnOff"] = value.get();
+            Remote[index-1]["numberOfButtonControllable"] = value.get();
         }
         else if (name === 'floatNumber')
         {
             var index = parseInt(value.getParent().name.substring(6, value.getParent().name.length));
-            if (value.get() > Remote[index - 1]["numberOfFloat"])
+            if (value.get() > Remote[index - 1]["numberOfFloatControllable"])
             {
-                addFloatNumber(index - 1, value.get());
+                addFloatControllable(index - 1, value.get());
             }
-            else if (value.get() < Remote[index - 1]["numberOfFloat"])
+            else if (value.get() < Remote[index - 1]["numberOfFloatControllable"])
             {
                 i = value.get() + 1;
                 value.getParent().removeContainer("Float" + i);
             }
-            Remote[index-1]["numberOfFloat"] = value.get();
+            Remote[index-1]["numberOfFloatControllable"] = value.get();
         }
 
         else if (name.startsWith("value"))
@@ -968,7 +968,7 @@ function oscEvent(address, args)
 }
 
 /**
- * Called when an OSC message related to global is received
+ * Called when an OSC message related to a global parameter is received
  * Parse received values
  * @param {string} address
  * @param {array} args
@@ -976,11 +976,11 @@ function oscEvent(address, args)
 
 function oscGlobalEvent(address, args)
 {
-
+    // to be completed later
 }
 
 /**
- * Called when an OSC message related to source is received
+ * Called when an OSC message related to a source is received
  * Parse received values
  * @param {string} address
  * @param {array} args
@@ -991,6 +991,8 @@ function oscSourceEvent(address, args)
     var i = parseInt(address[2]) - 1;
     var controlName = 'None';
 
+    
+    // Validate the source index
     if (i +1 > Sources.length)
     {
         return false;
@@ -1062,12 +1064,10 @@ function oscSourceEvent(address, args)
     {
         if (typeof(args[0]) == 'number' && typeof(args[1]) == 'number' && typeof(args[2]) == 'number')
         {
-            // Sources[i]['positionAED'] = args;
-            // Sources[i]['positionXYZ'] = PolarToCartesian(args);
             controlName = 'position';
 
+            // special function to remap stereo object as mono ones.
             if(transformStereoToMono)
-            // Careful: could be broken by the refactoring
             {
                 var index = 1;
                 // script.log("Index:" + i);
@@ -1133,9 +1133,8 @@ function oscSourceEvent(address, args)
                     }
                 }
             }
-            stopSendingOSC = true;
-            source.positionAED.set(args);//Sources[i]['positionAED']);
-            // source.positionXYZ.set(PolarToCartesian(args));//Sources[i]['positionXYZ']);
+            stopSendingOSC = true; // to avoid return to SPAT. TODO: Check if useful.
+            source.positionAED.set(args);
             stopSendingOSC = false;
         }
     }
@@ -1143,11 +1142,9 @@ function oscSourceEvent(address, args)
     {
         if (typeof(args[0]) == 'number' && typeof(args[1]) == 'number' && typeof(args[2]) == 'number')
         {
-            stopSendingOSC = true;
+            stopSendingOSC = true; // to avoid return to SPAT. TODO: Check if useful.
             controlName = 'position';
-            // source.positionXYZ.set(args);//Sources[i]['positionXYZ']);
-            args = CartesianToPolar(args);
-            source.positionAED.set(args);//Sources[i]['positionAED']);
+            source.positionAED.set(CartesianToPolar(args));
             stopSendingOSC = false;
         }
     }
@@ -1485,6 +1482,7 @@ function oscSourceEvent(address, args)
 
     stopSendForSource = -1;
 
+    // update the different remote for the updated parameter
     updateRemote(controlName, args, i);
 
 }
@@ -1596,21 +1594,21 @@ function oscRoomEvent(address, args)
     {
         if (typeof(args[0]) == 'number')
         {
-            room.getChild("Reverb").roomSize.set(args[0]);
+            room.roomSize.set(args[0]);
         }
     }
     if (address[3]==='reverberance')
     {
         if (typeof(args[0]) == 'number')
         {
-            room.getChild("Reverb").getChild("PerceptualFactors").reverberance.set(args[0]);
+            room.reverberance.set(args[0]);
         }
     }
     if (address[3]==='heaviness')
     {
         if (typeof(args[0]) == 'number')
         {
-            room.getChild("Reverb").getChild("PerceptualFactors").heaviness.set(args[0]);
+            room.heaviness.set(args[0]);
 
         }
     }
@@ -1618,7 +1616,7 @@ function oscRoomEvent(address, args)
     {
         if (typeof(args[0]) == 'number')
         {
-            room.getChild("Reverb").getChild("PerceptualFactors").liveness.set(args[0]);
+            room.liveness.set(args[0]);
         }
     }
     if (address[3]==='reverb')
@@ -1627,28 +1625,28 @@ function oscRoomEvent(address, args)
         {
             if (typeof (args[0]) == 'number')
             {
-                room.getChild("Reverb").reverbDensity.set(args[0]);
+                room.reverbDensity.set(args[0]);
             }
         }
         if (address[4] === 'enable')
         {
             if (typeof (args[0]) == 'number')
             {
-                room.getChild("Reverb").reverbEnableRoom.set(args[0]);
+                room.reverbEnableRoom.set(args[0]);
             }
         }
         if (address[4] === 'start')
         {
             if (typeof (args[0]) == 'number')
             {
-                room.getChild("Reverb").reverbStart.set(args[0]);
+                room.reverbStart.set(args[0]);
             }
         }
         if (address[4] === 'gain')
         {
             if (typeof (args[0]) == 'number')
             {
-                room.getChild("Reverb").reverbGain.set(args[0]);
+                room.reverbGain.set(args[0]);
 
             }
         }
@@ -1656,14 +1654,14 @@ function oscRoomEvent(address, args)
         {
             if (typeof (args[0]) == 'number')
             {
-                room.getChild("Reverb").reverbFactor.set(args[0]);
+                room.reverbFactor.set(args[0]);
             }
         }
         if (address[4] === 'infinite')
         {
             if (typeof (args[0]) == 'number')
             {
-                room.getChild("Reverb").getChild("Options").reverbInfinite.set(args[0]);
+                room.reverbInfinite.set(args[0]);
 
             }
         }
@@ -1671,7 +1669,7 @@ function oscRoomEvent(address, args)
         {
             if (typeof (args[0]) == 'number')
             {
-                room.getChild("Reverb").getChild("Options").modalDensity.set(args[0]);
+                room.modalDensity.set(args[0]);
 
             }
         }
@@ -1679,7 +1677,7 @@ function oscRoomEvent(address, args)
         {
             if (typeof (args[0]) == 'number')
             {
-                room.getChild("Reverb").getChild("Crossover").frequencyLow.set(args[0]);
+                room.frequencyLow.set(args[0]);
 
             }
         }
@@ -1687,7 +1685,7 @@ function oscRoomEvent(address, args)
         {
             if (typeof (args[0]) == 'number')
             {
-                room.getChild("Reverb").getChild("Crossover").frequencyHigh.set(args[0]);
+                room.frequencyHigh.set(args[0]);
 
             }
         }
@@ -1698,45 +1696,45 @@ function oscRoomEvent(address, args)
         {
             if (typeof (args[0]) == 'number')
             {
-                room.getChild("Reverb").getChild("RoomResponse").earlyMin.set(args[0]);
+                room.earlyMin.set(args[0]);
             }
         }
         if (address[4] === 'max')
         {
             if (typeof (args[0]) == 'number')
             {
-                room.getChild("Reverb").getChild("RoomResponse").earlyMax.set(args[0]);
+                room.earlyMax.set(args[0]);
             }
         }
         if (address[4] === 'dist')
         {
             if (typeof (args[0]) == 'number')
             {
-                room.getChild("Reverb").getChild("RoomResponse").earlyDist.set(args[0]);
+                room.earlyDist.set(args[0]);
             }
         }
         if (address[4] === 'shape')
         {
             if (typeof (args[0]) == 'number')
             {
-                room.getChild("Reverb").getChild("RoomResponse").earlyShape.set(args[0]);
+                room.earlyShape.set(args[0]);
             }
         }
     }
     if (address[3]==='cluster') {
         if (address[4] === 'min') {
             if (typeof (args[0]) == 'number') {
-                room.getChild("Reverb").getChild("RoomResponse").clusterMin.set(args[0]);
+                room.clusterMin.set(args[0]);
             }
         }
         if (address[4] === 'max') {
             if (typeof (args[0]) == 'number') {
-                room.getChild("Reverb").getChild("RoomResponse").clusterMax.set(args[0]);
+                room.clusterMax.set(args[0]);
             }
         }
         if (address[4] === 'dist') {
             if (typeof (args[0]) == 'number') {
-                room.getChild("Reverb").getChild("RoomResponse").clusterDist.set(args[0]);
+                room.clusterDist.set(args[0]);
             }
         }
     }
@@ -1746,14 +1744,14 @@ function oscRoomEvent(address, args)
         {
             if (typeof (args[0]) == 'number')
             {
-                room.getChild("Reverb").getChild("Options").airEnable.set(args[0]);
+                room.airEnable.set(args[0]);
             }
         }
         if (address[4] === 'freq')
         {
             if (typeof (args[0]) == 'number')
             {
-                room.getChild("Reverb").getChild("Options").airFreq.set(args[0]);
+                room.airFreq.set(args[0]);
             }
         }
     }
@@ -1826,9 +1824,6 @@ function createSourceContainer()
 
         Sources[i].positionAED = Sources[i].SourceContainer.addPoint3DParameter("Position AED", "PositionAED", [0.0, 0.0, 2.0]);
         Sources[i].positionAED.setAttribute("readonly", true);
-
-        // Sources[i].positionXYZ = Sources[i].SourceContainer.addPoint3DParameter("Position XYZ", "Position XYZ", [0.0, 2.0, 0.0]);
-        // Sources[i].positionXYZ.setAttribute("readonly", true);
 
         Sources[i].reverbSourceContainer = Sources[i].SourceContainer.addContainer("Reverb");
         Sources[i].reverbEnable = Sources[i].reverbSourceContainer.addBoolParameter("Reverb Enable", "Reverb Enable", 1);
@@ -2069,7 +2064,12 @@ function createRoomContainer()
     local.scripts.setCollapsed(true);
 }
 
-function addOnOff(remoteIndex, index)
+/**
+ * Add a on/off button controllable on the remote number remoteIndex.
+ * @param {int} remoteIndex: remote Number
+ * @param {int} index: index of the button for the remote
+ */
+function addButtonControllable(remoteIndex, index)
 {
     Remote[remoteIndex].onOff[index - 1] = {'values': []};
     Remote[remoteIndex].onOff[index - 1]['container'] = Remote[remoteIndex].RemoteContainer.addContainer("OnOff" + index);
@@ -2083,7 +2083,12 @@ function addOnOff(remoteIndex, index)
 
 }
 
-function addFloatNumber(remoteIndex, index)
+/**
+ * Add a float controllable on the remote number remoteIndex.
+ * @param {int} remoteIndex: remote Number
+ * @param {int} index: index of the float for the remote
+ */
+function addFloatControllable(remoteIndex, index)
 {
     Remote[remoteIndex].float[index - 1] = {'values': []};
     Remote[remoteIndex].float[index - 1]['container'] = Remote[remoteIndex].RemoteContainer.addContainer("Float" + index);
@@ -2096,29 +2101,37 @@ function addFloatNumber(remoteIndex, index)
     }
 }
 
+/**
+ * Add a remote.
+ * @param {int} index: remote index
+ */
 function addRemote(index)
 {   var i = index - 1;
-    // script.log("Add remote: " + index);
-    Remote.push({"index": 0, 'numberOfControls': 4, "numberOfOnOff":0, "numberOfFloat":2});//, "container": RemoteContainer, 'controlsNumber': 8, 'onOffNumber': 8, 'floatNumber':8});
+    // TODO: check if reload is ok if numberOfControls and numberOfButtonControllable and Float are not similar to saved one
+    Remote.push({"index": 0, 'numberOfControls': 4, "numberOfButtonControllable":0, "numberOfFloatControllable":2});//, "container": RemoteContainer, 'controlsNumber': 8, 'onOffNumber': 8, 'floatNumber':8});
     Remote[i].RemoteContainer = RemotesContainer.addContainer("Remote" + index);
     Remote[i].indexNumber = Remote[i].RemoteContainer.addIntParameter("Index", "index", 0, 0, 64);
     Remote[i].controlsNumber = Remote[i].RemoteContainer.addIntParameter("Controls number", "controls number", 1 ,1, 50);
     Remote[i].onOffNumber = Remote[i].RemoteContainer.addIntParameter("On Off Number", "on off number", 0, 0, 50);
     Remote[i].onOff = [];
 
-    // addOnOff(i, 1);
+    // addButtonControllable(i, 1);
     Remote[i].floatNumber = Remote[i].RemoteContainer.addIntParameter("Float Number", "float number", 8, 0, 50);
     Remote[i].float = [];
-    addFloatNumber(i, 1);
-    addFloatNumber(i, 2);
-    addFloatNumber(i, 3);
-    addFloatNumber(i, 4);
-    addFloatNumber(i, 5);
-    addFloatNumber(i, 6);
-    addFloatNumber(i, 7);
-    addFloatNumber(i, 8);
+    addFloatControllable(i, 1);
+    addFloatControllable(i, 2);
+    addFloatControllable(i, 3);
+    addFloatControllable(i, 4);
+    addFloatControllable(i, 5);
+    addFloatControllable(i, 6);
+    addFloatControllable(i, 7);
+    addFloatControllable(i, 8);
 }
 
+/**
+ * Delete the remote according to his index.
+ * @param {int} index: remote index to delete
+ */
 function deleteRemote(index)
 {
     // script.log("Removing remote: " + index);
@@ -2126,6 +2139,9 @@ function deleteRemote(index)
     Remote.splice(-1);
 }
 
+/**
+ * Create the remote container
+ */
 function createRemoteContainer()
 {
     // Add the Remote container
@@ -2137,14 +2153,20 @@ function createRemoteContainer()
     {
         addRemote(i);
     }
-    // addRemote(1);
 }
+
+/**
+ * Update the remotes for the given parameter
+ * @param {string} controlName
+ * @param {object} args
+ * @param {int} sourceIndex
+ */
 
 function updateRemote(controlName, args, sourceIndex)
 {
     for (var k = 0; k < Remote.length; k++) {
         if (Math.floor(sourceIndex / Remote[k].controlsNumber.get()) == Remote[k].indexNumber.get()) {
-            script.log("updateRemote index: " + sourceIndex);
+            // script.log("updateRemote index: " + sourceIndex);
             for (var j = 0; j < Remote[k].onOffNumber.get(); j++) {
                 if (Remote[k].onOff[j].parameterControlled.get() === controlName)
                 {
