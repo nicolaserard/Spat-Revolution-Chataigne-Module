@@ -40,258 +40,258 @@ var RemoteRangeFromString = {
 };
 
 var ParameterFromString = {
-    'gain': function(index)
+    'sourcegain': function(index)
     {
         return Sources[index].gain;
     },
-    'lfe': function(index)
+    'sourcelfe': function(index)
     {
         return Sources[index].lfe;
     },
-    'lfe2': function(index)
+    'sourcelfe2': function(index)
     {
         return Sources[index].lfe2;
     },
-    'lfe3': function(index)
+    'sourcelfe3': function(index)
     {
         return Sources[index].lfe3;
     },
-    'lfe4': function(index)
+    'sourcelfe4': function(index)
     {
         return Sources[index].lfe4;
     },
-    'solo': function(index)
+    'sourcesolo': function(index)
     {
         return Sources[index].solo;
     },
-    'mute': function(index)
+    'sourcemute': function(index)
     {
         return Sources[index].mute;
     },
-    'azimuth': function(index)
+    'sourceazimuth': function(index)
     {
         return Sources[index].positionAED;
     },
-    'elevation': function(index)
+    'sourceelevation': function(index)
     {
         return Sources[index].positionAED;
     },
-    'distance': function(index)
+    'sourcedistance': function(index)
     {
         return Sources[index].positionAED;
     },
-    'positionX': function(index)
+    'sourcepositionX': function(index)
     {
         return Sources[index].positionAED;
     },
-    'positionY': function(index)
+    'sourcepositionY': function(index)
     {
         return Sources[index].positionAED;
     },
-    'positionZ': function(index)
+    'sourcepositionZ': function(index)
     {
         return Sources[index].positionAED;
     },
-    'reverbEnable': function(index)
+    'sourcereverbEnable': function(index)
     {
         return Sources[index].reverbEnable;
     },
-    'earlyEnable': function(index)
+    'sourceearlyEnable': function(index)
     {
         return Sources[index].earlyEnable;
     },
-    'clusterEnable': function(index)
+    'sourceclusterEnable': function(index)
     {
         return Sources[index].clusterEnable;
     },
-    'tailEnable': function(index)
+    'sourcetailEnable': function(index)
     {
         return Sources[index].tailEnable;
     },
-    'presence': function(index)
+    'sourcepresence': function(index)
     {
         return Sources[index].presence;
     },
-    'roomPresence': function(index)
+    'sourceroomPresence': function(index)
     {
         return Sources[index].roomPresence;
     },
-    'ruuningReverberance': function(index)
+    'sourcerunningReverberance': function(index)
     {
-        return Sources[index].ruuningReverberance;
+        return Sources[index].runningReverberance;
     },
-    'envelopment': function(index)
+    'sourceenvelopment': function(index)
     {
         return Sources[index].envelopment;
     },
-    'brilliance': function(index)
+    'sourcebrilliance': function(index)
     {
         return Sources[index].brilliance;
     },
-    'warmth': function(index)
+    'sourcewarmth': function(index)
     {
         return Sources[index].warmth;
     },
-    'yaw': function(index)
+    'sourceyaw': function(index)
     {
         return Sources[index].yaw;
     },
-    'pitch': function(index)
+    'sourcepitch': function(index)
     {
         return Sources[index].pitch;
     },
-    'aperture': function(index)
+    'sourceaperture': function(index)
     {
         return Sources[index].aperture;
     },
-    'scale': function(index)
+    'sourcescale': function(index)
     {
         return Sources[index].scale;
     },
-    'spread': function(index)
+    'sourcespread': function(index)
     {
         return Sources[index].spread;
     },
-    'knn': function(index)
+    'sourceknn': function(index)
     {
         return Sources[index].knn;
     },
-    'earlyWidth': function(index)
+    'sourceearlyWidth': function(index)
     {
         return Sources[index].earlyWidth;
     },
-    'panRev': function(index)
+    'sourcepanRev': function(index)
     {
         return Sources[index].panRev;
     },
-    'doppler': function(index)
+    'sourcedoppler': function(index)
     {
         return Sources[index].doppler;
     },
-    'radius': function(index)
+    'sourceradius': function(index)
     {
         return Sources[index].radius;
     },
-    'airAbsorption': function(index)
+    'sourceairAbsorption': function(index)
     {
         return Sources[index].airAbsorption;
     },
-    'xyCoordinatesMode': function(index)
+    'sourcexyCoordinatesMode': function(index)
     {
         return Sources[index].xyCoordinatesMode;
     },
-    'zCoordinatesMode': function(index)
+    'sourcezCoordinatesMode': function(index)
     {
         return Sources[index].zCoordinatesMode;
     },
-    'dropLog': function(index)
+    'sourcedropLog': function(index)
     {
         return Sources[index].dropLog;
     },
-    'dropFactor': function(index)
+    'sourcedropFactor': function(index)
     {
         return Sources[index].dropFactor;
     },
-    'rotx': function(index)
+    'sourcerotx': function(index)
     {
         return Sources[index].rotationXYZ;
     },
-    'roty': function(index)
+    'sourceroty': function(index)
     {
         return Sources[index].rotationXYZ;
     },
-    'rotz': function(index)
+    'sourcerotz': function(index)
     {
         return Sources[index].rotationXYZ;
     },
-    'omniGain': function(index)
+    'sourceomniGain': function(index)
     {
         return Sources[index].omniGain;
     },
-    'roomGain1': function(index)
+    'sourceroomGain1': function(index)
     {
         return Sources[index].roomGain1;
     },
-    'roomGain2': function(index)
+    'sourceroomGain2': function(index)
     {
         return Sources[index].roomGain2;
     },
-    'roomGain3': function(index)
+    'sourceroomGain3': function(index)
     {
         return Sources[index].roomGain3;
     },
-    'roomGain4': function(index)
+    'sourceroomGain4': function(index)
     {
         return Sources[index].roomGain4;
     },
-    'roomGain5': function(index)
+    'sourceroomGain5': function(index)
     {
         return Sources[index].roomGain5;
     },
-    'roomGain6': function(index)
+    'sourceroomGain6': function(index)
     {
         return Sources[index].roomGain6;
     },
-    'roomGain7': function(index)
+    'sourceroomGain7': function(index)
     {
         return Sources[index].roomGain7;
     },
-    'roomGain8': function(index)
+    'sourceroomGain8': function(index)
     {
         return Sources[index].roomGain8;
     },
-    'roomGain9': function(index)
+    'sourceroomGain9': function(index)
     {
         return Sources[index].roomGain9;
     },
-    'roomGain10': function(index)
+    'sourceroomGain10': function(index)
     {
         return Sources[index].roomGain10;
     }
 };
 
 var RangeForParameter = {
-    'gain': [-144.5, 24.0],
-    'lfe': [-144.5, 24.0],
-    'lfe2': [-144.5, 24.0],
-    'lfe3': [-144.5, 24.0],
-    'lfe4': [-144.5, 24.0],
-    'azimuth': [-180.0, 180.0],
-    'elevation': [-90.0, 90.0],
-    'distance': [0, 100.0],
-    'positionX': [-100.0, 100.0],
-    'positionY': [-100.0, 100.0],
-    'positionZ': [-100.0, 100.0],
-    'presence': [0, 120.0],
-    'roomPresence': [0.0, 120.0],
-    'runningReverberance': [0.0, 50.0],
-    'envelopment': [0.0, 50.0],
-    'brilliance': [0.0, 60.0],
-    'warmth': [0, 60.0],
-    'yaw': [-180, 180.0],
-    'pitch': [-90, 90.0],
-    'aperture': [10.0, 180.0],
-    'scale': [0.1, 100.0],
-    'spread': [0.0, 100.0],
-    'knn': [1, 100.0],
-    'earlyWidth': [1.0, 180.0],
-    'panRev': [0, 1.0],
-    'radius': [0.2, 100.0],
-    'dropFactor': [-10.0, 30.0],
-    'rotx': [-180, 180.0],
-    'roty': [-180, 180.0],
-    'rotz': [-180, 180.0],
-    'omniGain': [-144.5, 24.0],
-    'roomGain1': [-144.5, 24.0],
-    'roomGain2': [-144.5, 24.0],
-    'roomGain3': [-144.5, 24.0],
-    'roomGain4': [-144.5, 24.0],
-    'roomGain5': [-144.5, 24.0],
-    'roomGain6': [-144.5, 24.0],
-    'roomGain7': [-144.5, 24.0],
-    'roomGain8': [-144.5, 24.0],
-    'roomGain9': [-144.5, 24.0],
-    'roomGain10': [-144.5, 24.0]
+    'sourcegain': [-144.5, 24.0],
+    'sourcelfe': [-144.5, 24.0],
+    'sourcelfe2': [-144.5, 24.0],
+    'sourcelfe3': [-144.5, 24.0],
+    'sourcelfe4': [-144.5, 24.0],
+    'sourceazimuth': [-180.0, 180.0],
+    'sourceelevation': [-90.0, 90.0],
+    'sourcedistance': [0, 100.0],
+    'sourcepositionX': [-100.0, 100.0],
+    'sourcepositionY': [-100.0, 100.0],
+    'sourcepositionZ': [-100.0, 100.0],
+    'sourcepresence': [0, 120.0],
+    'sourceroomPresence': [0.0, 120.0],
+    'sourcerunningReverberance': [0.0, 50.0],
+    'sourceenvelopment': [0.0, 50.0],
+    'sourcebrilliance': [0.0, 60.0],
+    'sourcewarmth': [0, 60.0],
+    'sourceyaw': [-180, 180.0],
+    'sourcepitch': [-90, 90.0],
+    'sourceaperture': [10.0, 180.0],
+    'sourcescale': [0.1, 100.0],
+    'sourcespread': [0.0, 100.0],
+    'sourceknn': [1, 100.0],
+    'sourceearlyWidth': [1.0, 180.0],
+    'sourcepanRev': [0, 1.0],
+    'sourceradius': [0.2, 100.0],
+    'sourcedropFactor': [-10.0, 30.0],
+    'sourcerotx': [-180, 180.0],
+    'sourceroty': [-180, 180.0],
+    'sourcerotz': [-180, 180.0],
+    'sourceomniGain': [-144.5, 24.0],
+    'sourceroomGain1': [-144.5, 24.0],
+    'sourceroomGain2': [-144.5, 24.0],
+    'sourceroomGain3': [-144.5, 24.0],
+    'sourceroomGain4': [-144.5, 24.0],
+    'sourceroomGain5': [-144.5, 24.0],
+    'sourceroomGain6': [-144.5, 24.0],
+    'sourceroomGain7': [-144.5, 24.0],
+    'sourceroomGain8': [-144.5, 24.0],
+    'sourceroomGain9': [-144.5, 24.0],
+    'sourceroomGain10': [-144.5, 24.0]
 };
 
 /* OSCSourceMessage: array of all OSC Source Messages. Use to send OSC message when a value changed.*/
@@ -650,10 +650,10 @@ function moduleParameterChanged(param)
     else if (param.name === 'distanceMax')
     {
         var val = value.get();
-        RangeForParameter['positionX'] = [-1 * val, val];
-        RangeForParameter['positionY'] = [-1 * val, val];
-        RangeForParameter['positionZ'] = [-1 * val, val];
-        RangeForParameter['distance'] = [-1 * val, val];
+        RangeForParameter['sourcepositionX'] = [-1 * val, val];
+        RangeForParameter['sourcepositionY'] = [-1 * val, val];
+        RangeForParameter['sourcepositionZ'] = [-1 * val, val];
+        RangeForParameter['sourcedistance'] = [-1 * val, val];
     }
 }
 
@@ -713,27 +713,27 @@ function moduleValueChanged(value)
                 for (var l = 0; l < Remote[remoteIndex].controlsNumber.get(); l++)
                 {
                     var val = ParameterFromString[Remote[remoteIndex].float[floatIndex].parameterControlled.get()](value.get() * Remote[remoteIndex].controlsNumber.get() + l).get();
-                    if (Remote[remoteIndex].float[floatIndex].parameterControlled.get() === "azimuth")
+                    if (Remote[remoteIndex].float[floatIndex].parameterControlled.get() === "sourceazimuth")
                     {
                         val = val[0];
                     }
-                    else if (Remote[remoteIndex].float[floatIndex].parameterControlled.get() === "elevation")
+                    else if (Remote[remoteIndex].float[floatIndex].parameterControlled.get() === "sourceelevation")
                     {
                         val = val[1];
                     }
-                    else if (Remote[remoteIndex].float[floatIndex].parameterControlled.get() === 'distance')
+                    else if (Remote[remoteIndex].float[floatIndex].parameterControlled.get() === 'sourcedistance')
                     {
                         val = val[2];
                     }
-                    else if (Remote[remoteIndex].float[floatIndex].parameterControlled.get() === 'positionX')
+                    else if (Remote[remoteIndex].float[floatIndex].parameterControlled.get() === 'sourcepositionX')
                     {
                         val = PolarToCartesian(val)[0];
                     }
-                    else if (Remote[remoteIndex].float[floatIndex].parameterControlled.get() === 'positionY')
+                    else if (Remote[remoteIndex].float[floatIndex].parameterControlled.get() === 'sourcepositionY')
                     {
                         val = PolarToCartesian(val)[1];
                     }
-                    else if (Remote[remoteIndex].float[floatIndex].parameterControlled.get() === 'positionZ')
+                    else if (Remote[remoteIndex].float[floatIndex].parameterControlled.get() === 'sourcepositionZ')
                     {
                         val = PolarToCartesian(val)[2];
                     }
@@ -758,16 +758,17 @@ function moduleValueChanged(value)
             for (var l = 0; l < Remote[remoteIndex].controlsNumber.get() ; l++)
             {
                 var ind = Remote[remoteIndex].indexNumber.get() * Remote[remoteIndex].controlsNumber.get() + l;
+                script.log(value.get());
                 var val = ParameterFromString[value.get()](ind).get();
-                if (value.get() === 'rotx' | value.get() === 'azimuth' | value.get() === 'positionX')
+                if (value.get() === 'sourcerotx' | value.get() === 'sourceazimuth' | value.get() === 'sourcepositionX')
                 {
                     val = val[0];
                 }
-                else if (value.get() === 'roty' | value.get() === 'elevation' | value.get() === 'positionY')
+                else if (value.get() === 'sourceroty' | value.get() === 'sourceelevation' | value.get() === 'sourcepositionY')
                 {
                     val = val[1];
                 }
-                else if (value.get() === 'rotz' | value.get() === 'distance' | value.get() === 'positionZ')
+                else if (value.get() === 'sourcerotz' | value.get() === 'sourcedistance' | value.get() === 'sourcepositionZ')
                 {
                     val = val[2];
                 }
@@ -871,30 +872,30 @@ function moduleValueChanged(value)
             }
             var param = ParameterFromString[value.getParent().getParent().parameterControlled.get()](index - 1);
             var val = value.get() * (RangeForParameter[value.getParent().getParent().parameterControlled.get()][1] - RangeForParameter[value.getParent().getParent().parameterControlled.get()][0]) + RangeForParameter[value.getParent().getParent().parameterControlled.get()][0];
-            if (value.getParent().getParent().parameterControlled.get() === "azimuth" | value.getParent().getParent().parameterControlled.get() === "rotx")
+            if (value.getParent().getParent().parameterControlled.get() === "sourceazimuth" | value.getParent().getParent().parameterControlled.get() === "sourcerotx")
             {
                 param.set(val, param.get()[1], param.get()[2]);
             }
-            else if (value.getParent().getParent().parameterControlled.get() === "elevation" | value.getParent().getParent().parameterControlled.get() === "roty")
+            else if (value.getParent().getParent().parameterControlled.get() === "sourceelevation" | value.getParent().getParent().parameterControlled.get() === "sourceroty")
             {
                 param.set(param.get()[0], val, param.get()[2]);
             }
-            else if (value.getParent().getParent().parameterControlled.get() === "distance" | value.getParent().getParent().parameterControlled.get() === "rotz")
+            else if (value.getParent().getParent().parameterControlled.get() === "sourcedistance" | value.getParent().getParent().parameterControlled.get() === "sourcerotz")
             {
                 param.set(param.get()[0], param.get()[1], val);
             }
-            else if (value.getParent().getParent().parameterControlled.get() === "positionX")
+            else if (value.getParent().getParent().parameterControlled.get() === "sourcepositionX")
             {
                 var cartesian = PolarToCartesian(param.get());
                 param.set(CartesianToPolar([val, cartesian[1], cartesian[2]]));
 
             }
-            else if (value.getParent().getParent().parameterControlled.get() === "positionY")
+            else if (value.getParent().getParent().parameterControlled.get() === "sourcepositionY")
             {
                 var cartesian = PolarToCartesian(param.get());
                 param.set(CartesianToPolar([cartesian[0], val, cartesian[2]]));
             }
-            else if (value.getParent().getParent().parameterControlled.get() === "positionZ")
+            else if (value.getParent().getParent().parameterControlled.get() === "sourcepositionZ")
             {
                 var cartesian = PolarToCartesian(param.get());
                 param.set(CartesianToPolar([cartesian[0], cartesian[1], val]));
@@ -906,11 +907,11 @@ function moduleValueChanged(value)
 
             stopSendingOSC = true;
             stopUpdateForSource = index;
-            if (value.getParent().getParent().parameterControlled.get() === "azimuth" | value.getParent().getParent().parameterControlled.get() === "elevation" | value.getParent().getParent().parameterControlled.get() === "distance")
+            if (value.getParent().getParent().parameterControlled.get() === "sourceazimuth" | value.getParent().getParent().parameterControlled.get() === "sourceelevation" | value.getParent().getParent().parameterControlled.get() === "sourcedistance")
             {
                 updateRemote("azimuth" , param.getParent().getChild("positionAED").get(), index);
             }
-            else if (value.getParent().getParent().parameterControlled.get() === "positionX" | value.getParent().getParent().parameterControlled.get() === "positionY" | value.getParent().getParent().parameterControlled.get() === "positionZ")
+            else if (value.getParent().getParent().parameterControlled.get() === "sourcepositionX" | value.getParent().getParent().parameterControlled.get() === "sourcepositionY" | value.getParent().getParent().parameterControlled.get() === "sourcepositionZ")
             {
                 updateRemote("positionX", param.getParent().getChild("positionAED").get(), index);
             }
@@ -2087,7 +2088,7 @@ function addButtonControllable(remoteIndex, index)
 {
     Remote[remoteIndex].onOff[index - 1] = {'values': []};
     Remote[remoteIndex].onOff[index - 1]['container'] = Remote[remoteIndex].RemoteContainer.addContainer("OnOff" + index);
-    Remote[remoteIndex].onOff[index - 1]['parameterControlled'] = Remote[remoteIndex].onOff[index - 1]['container'].addEnumParameter("Parameter", "parameter", "Mute", "mute", "Solo", "solo", "Reverb on", "reverbEnable", "Early On", "earlyEnable", "Cluster On", "clusterEnable", "Doppler", "doppler", "Air Absorption", "airAbsorption", "XY Coordinates mode", "xyCoordinatesMode", "Z Coordinates mode", "zCoordinatesMode", "Drop log", "dropLog");
+    Remote[remoteIndex].onOff[index - 1]['parameterControlled'] = Remote[remoteIndex].onOff[index - 1]['container'].addEnumParameter("Parameter", "parameter", "Source: Mute", "sourcemute", "Source: Solo", "sourcesolo", "Source: Reverb on", "sourcereverbEnable", "Source: Early On", "sourceearlyEnable", "Source: Cluster On", "sourceclusterEnable", "Source: Doppler", "sourcedoppler", "Source: Air Absorption", "sourceairAbsorption", "Source: XY Coordinates mode", "sourcexyCoordinatesMode", "Source: Z Coordinates mode", "sourcezCoordinatesMode", "Source: Drop log", "sourcedropLog");
     var valContainer = Remote[remoteIndex].onOff[index - 1]['container'].addContainer("Values");
     for (var i = 1; i < Remote[remoteIndex].controlsNumber.get() + 1; i++)
     {
@@ -2107,7 +2108,7 @@ function addFloatControllable(remoteIndex, index)
 {
     Remote[remoteIndex].float[index - 1] = {'values': []};
     Remote[remoteIndex].float[index - 1]['container'] = Remote[remoteIndex].RemoteContainer.addContainer("Float" + index);
-    Remote[remoteIndex].float[index - 1]['parameterControlled'] = Remote[remoteIndex].float[index - 1]['container'].addEnumParameter("Parameter controlled", "parameterControlled", "Azimuth", "azimuth", "Elevation", "elevation", "Distance", "distance", "Position X", "positionX", "Position Y", "positionY", "Position Z", "positionZ", "Gain", "gain", "Lfe", "lfe", "Lfe2", "lfe2", "Lfe3", "lfe3", "Lfe4", "lfe4", "Presence", "presence", "Room presence", "roomPresence", "Running Reverberance", "runningReverberance", "Envelopment", "envelopment", "Brilliance", "brilliance", "Warmth", "warmth", "Yaw", "yaw", "Pitch", "pitch", "Aperture", "aperture", "Scale", "scale", "Spread", "spread", "Knn", "knn", "Early width", "earlyWidth", "Pan Rev", "panRev", "Drop factor", "dropFactor", "Rotation X", "rotX", "Rotation Y", "rotY", "Rotation Z", "rotZ", "Omni Gain", "omniGain", "RoomGain 1", "roomGain1", "RoomGain 2", "roomGain2", "RoomGain 3", "roomGain3", "RoomGain 4", "roomGain4", "RoomGain 5", "roomGain5", "RoomGain 6", "roomGain6", "RoomGain 7", "roomGain7", "RoomGain 8", "roomGain8", "RoomGain 9", "roomGain9", "RoomGain 10", "roomGain10");
+    Remote[remoteIndex].float[index - 1]['parameterControlled'] = Remote[remoteIndex].float[index - 1]['container'].addEnumParameter("Parameter controlled", "parameterControlled", "Source: Azimuth", "sourceazimuth", "Source: Elevation", "sourceelevation", "Source: Distance", "sourcedistance", "Source: Position X", "sourcepositionX", "Source: Position Y", "sourcepositionY", "Source: Position Z", "sourcepositionZ", "Source: Gain", "sourcegain", "Source: Lfe", "sourcelfe", "Source: Lfe2", "sourcelfe2", "Source: Lfe3", "sourcelfe3", "Source: Lfe4", "sourcelfe4", "Source: Presence", "sourcepresence", "Source: Room presence", "sourceroomPresence", "Source: Running Reverberance", "sourcerunningReverberance", "Source: Envelopment", "sourceenvelopment", "Source: Brilliance", "sourcebrilliance", "Source: Warmth", "sourcewarmth", "Source: Yaw", "sourceyaw", "Source: Pitch", "sourcepitch", "Source: Aperture", "sourceaperture", "Source: Scale", "sourcescale", "Source: Spread", "sourcespread", "Source: Knn", "sourceknn", "Source: Early width", "sourceearlyWidth", "Source: Pan Rev", "sourcepanRev", "Source: Drop factor", "sourcedropFactor", "Source: Rotation X", "sourcerotX", "Source: Rotation Y", "sourcerotY", "Source: Rotation Z", "sourcerotZ", "Source: Omni Gain", "sourceomniGain", "Source: RoomGain 1", "sourceroomGain1", "Source: RoomGain 2", "sourceroomGain2", "Source: RoomGain 3", "sourceroomGain3", "Source: RoomGain 4", "sourceroomGain4", "Source: RoomGain 5", "sourceroomGain5", "Source: RoomGain 6", "sourceroomGain6", "Source: RoomGain 7", "sourceroomGain7", "Source: RoomGain 8", "sourceroomGain8", "Source: RoomGain 9", "sourceroomGain9", "Source: RoomGain 10", "sourceroomGain10");
     var valContainer = Remote[remoteIndex].float[index - 1]['container'].addContainer("Values");
     for (var i = 1; i < Remote[remoteIndex].controlsNumber.get() + 1; i++)
     {
@@ -2205,18 +2206,18 @@ function updateRemote(controlName, args, sourceIndex)
             }
             for (var floatIndex = 0; floatIndex < Remote[remoteIndex].floatNumber.get(); floatIndex++) {
                 // script.log(Remote[remoteIndex].float[floatIndex]['parameterControlled'].get());
-                if (Remote[remoteIndex].float[floatIndex].parameterControlled.get() === controlName | ((Remote[remoteIndex].float[floatIndex].parameterControlled.get() === 'azimuth' | Remote[remoteIndex].float[floatIndex].parameterControlled.get() === 'elevation' | Remote[remoteIndex].float[floatIndex].parameterControlled.get() === 'distance') && controlName === 'position') | ((Remote[remoteIndex].float[floatIndex].parameterControlled.get() === 'positionX' | Remote[remoteIndex].float[floatIndex].parameterControlled.get() === 'positionY' | Remote[remoteIndex].float[floatIndex].parameterControlled.get() === 'positionZ') && controlName === 'position') | ((controlName === 'azimuth' | controlName ===  'elevation' | controlName === 'distance')  && (Remote[remoteIndex].float[floatIndex].parameterControlled.get() === 'positionX' | Remote[remoteIndex].float[floatIndex].parameterControlled.get() === 'positionY' | Remote[remoteIndex].float[floatIndex].parameterControlled.get() === 'positionZ')) | ((controlName === 'positionX' | controlName === 'positionY' | controlName === 'positionZ')  && (Remote[remoteIndex].float[floatIndex].parameterControlled.get() === 'azimuth' | Remote[remoteIndex].float[floatIndex].parameterControlled.get() === 'elevation' | Remote[remoteIndex].float[floatIndex].parameterControlled.get() === 'distance'))) {
+                if (Remote[remoteIndex].float[floatIndex].parameterControlled.get() === controlName | ((Remote[remoteIndex].float[floatIndex].parameterControlled.get() === 'sourceazimuth' | Remote[remoteIndex].float[floatIndex].parameterControlled.get() === 'sourceelevation' | Remote[remoteIndex].float[floatIndex].parameterControlled.get() === 'sourcedistance') && controlName === 'sourceposition') | ((Remote[remoteIndex].float[floatIndex].parameterControlled.get() === 'sourcepositionX' | Remote[remoteIndex].float[floatIndex].parameterControlled.get() === 'sourcepositionY' | Remote[remoteIndex].float[floatIndex].parameterControlled.get() === 'sourcepositionZ') && controlName === 'position') | ((controlName === 'sourceazimuth' | controlName ===  'sourceelevation' | controlName === 'sourcedistance')  && (Remote[remoteIndex].float[floatIndex].parameterControlled.get() === 'sourcepositionX' | Remote[remoteIndex].float[floatIndex].parameterControlled.get() === 'sourcepositionY' | Remote[remoteIndex].float[floatIndex].parameterControlled.get() === 'sourcepositionZ')) | ((controlName === 'sourcepositionX' | controlName === 'sourcepositionY' | controlName === 'sourcepositionZ')  && (Remote[remoteIndex].float[floatIndex].parameterControlled.get() === 'sourceazimuth' | Remote[remoteIndex].float[floatIndex].parameterControlled.get() === 'sourceelevation' | Remote[remoteIndex].float[floatIndex].parameterControlled.get() === 'sourcedistance'))) {
                     var arg = args[0];
-                    if (Remote[remoteIndex].float[floatIndex].parameterControlled.get() === "positionX") {
+                    if (Remote[remoteIndex].float[floatIndex].parameterControlled.get() === "sourcepositionX") {
                         // script.log("position AED; "+ Sources[sourceIndex - 1].positionAED.get()[0] +Sources[sourceIndex - 1].positionAED.get()[1] +Sources[sourceIndex - 1].positionAED.get()[2]  + "position XYZ: " + PolarToCartesian(Sources[sourceIndex - 1].positionAED.get())[0]+ PolarToCartesian(Sources[sourceIndex - 1].positionAED.get())[1]+ PolarToCartesian(Sources[sourceIndex - 1].positionAED.get()[2]));
                         arg = PolarToCartesian(Sources[sourceIndex].positionAED.get())[0];
-                    } else if (Remote[remoteIndex].float[floatIndex].parameterControlled.get() === "positionY") {
+                    } else if (Remote[remoteIndex].float[floatIndex].parameterControlled.get() === "sourcepositionY") {
                         arg = PolarToCartesian(Sources[sourceIndex].positionAED.get())[1];
-                    } else if (Remote[remoteIndex].float[floatIndex].parameterControlled.get() === "positionZ") {
+                    } else if (Remote[remoteIndex].float[floatIndex].parameterControlled.get() === "sourcepositionZ") {
                         arg = PolarToCartesian(Sources[sourceIndex].positionAED.get())[2];
-                    } else if (Remote[remoteIndex].float[floatIndex].parameterControlled.get() === "elevation") {
+                    } else if (Remote[remoteIndex].float[floatIndex].parameterControlled.get() === "sourceelevation") {
                         arg = Sources[sourceIndex].positionAED.get()[1];
-                    } else if (Remote[remoteIndex].float[floatIndex].parameterControlled.get() === "distance") {
+                    } else if (Remote[remoteIndex].float[floatIndex].parameterControlled.get() === "sourcedistance") {
                         arg = Sources[sourceIndex].positionAED.get()[2];
                     }
 
