@@ -584,7 +584,7 @@ function init()
 
     // Add Setup container
 
-    SetupContainer = local.values.addContainer("Setup", "Setup value");
+    SetupContainer = local.parameters.addContainer("Setup", "Setup value");
     distanceMax = SetupContainer.addFloatParameter("Distance Max", "Distance maximum of the position XYZ and distance for AED, in meters", 100.0, 1.0, 100.0);
 
     createSourceContainer();
@@ -647,6 +647,14 @@ function moduleParameterChanged(param)
         local.send("/source/*/dump", 0);
         local.send("/room/*/dump", 0);
     }
+    else if (param.name === 'distanceMax')
+    {
+        var val = value.get();
+        RangeForParameter['positionX'] = [-1 * val, val];
+        RangeForParameter['positionY'] = [-1 * val, val];
+        RangeForParameter['positionZ'] = [-1 * val, val];
+        RangeForParameter['distance'] = [-1 * val, val];
+    }
 }
 
 /**
@@ -677,14 +685,6 @@ function moduleValueChanged(value)
             {
                 Remote[i].indexNumber.set(value.get());
             }
-        }
-        else if (name === 'distanceMax')
-        {
-            var val = value.get();
-            RangeForParameter['positionX'] = [-1 * val, val];
-            RangeForParameter['positionY'] = [-1 * val, val];
-            RangeForParameter['positionZ'] = [-1 * val, val];
-            RangeForParameter['distance'] = [-1 * val, val];
         }
         else if (name === 'index')
         {
