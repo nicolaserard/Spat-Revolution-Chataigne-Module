@@ -609,7 +609,7 @@ function update(updateRate)
             {
                 if (Remote[remoteIndex].onOff[onOffIndex]['values'][l]["target"]) {
                     var target = Remote[remoteIndex].onOff[onOffIndex]['values'][l]["target"].getTarget();
-                    if (target && (remoteRange == 'midi' && target.get() * 127 !=parseInt(Remote[remoteIndex].float[onOffIndex]['values'][l]["value"].get() * 127)) | (remoteRange != 'midi' && target.get() != Remote[remoteIndex].float[onOffIndex]['values'[l]["value"].get()])) {
+                    if (target && ((remoteRange == 'midi' && target.get() * 127 !=parseInt(Remote[remoteIndex].float[onOffIndex]['values'][l]["value"].get() * 127)) | (remoteRange != 'midi' && target.get() != Remote[remoteIndex].float[onOffIndex]['values'[l]["value"].get()]))) {
                         var val = (target.get() - RemoteRangeFromString[remoteRange][0]) / (RemoteRangeFromString[remoteRange][1] - RemoteRangeFromString[remoteRange][0]);
                         Remote[remoteIndex].onOff[onOffIndex]['values'][l]["value"].set(val);
                     }
@@ -2094,6 +2094,7 @@ function addButtonControllable(remoteIndex, index)
         Remote[remoteIndex].onOff[index-1]['values'].push({"value": valContainer.addBoolParameter("Value" + i, "Value" + i, false),
             "target": Remote[remoteIndex].onOff[index - 1]['container'].addTargetParameter("Target" + i, "Target for control number " + i)});
     }
+    valContainer.setCollapsed(true);
 
 }
 
@@ -2113,6 +2114,7 @@ function addFloatControllable(remoteIndex, index)
         Remote[remoteIndex].float[index-1]['values'].push({"value": valContainer.addFloatParameter("Value" + i, "Value" + i, 0.0, 0.0, 1.0),
             "target": Remote[remoteIndex].float[index - 1]['container'].addTargetParameter("Target" + i, "Target for control number " + i)});
     }
+    valContainer.setCollapsed(true);
 }
 
 /**
@@ -2124,23 +2126,30 @@ function addRemote(index)
     // TODO: check if reload is ok if numberOfControls and numberOfButtonControllable and Float are not similar to saved one
     Remote.push({"index": 0, 'numberOfControls': 4, "numberOfButtonControllable":0, "numberOfFloatControllable":2});//, "container": RemoteContainer, 'controlsNumber': 8, 'onOffNumber': 8, 'floatNumber':8});
     Remote[i].RemoteContainer = RemotesContainer.addContainer("Remote" + index);
+    Remote[i].RemoteContainer.setCollapsed(true);
     Remote[i].indexNumber = Remote[i].RemoteContainer.addIntParameter("Index", "index", 0, 0, 64);
-    Remote[i].controlsNumber = Remote[i].RemoteContainer.addIntParameter("Controls number", "controls number", 1 ,1, 50);
-    Remote[i].onOffNumber = Remote[i].RemoteContainer.addIntParameter("On Off Number", "on off number", 0, 0, 50);
+    Remote[i].controlsNumber = Remote[i].RemoteContainer.addIntParameter("Controls number", "controls number", 8 ,1, 50);
+    Remote[i].controlsNumber.setAttribute("readonly", true);
+    Remote[i].onOffNumber = Remote[i].RemoteContainer.addIntParameter("On Off Number", "on off number", 4, 0, 50);
+    Remote[i].onOffNumber.setAttribute("readonly", true);
     Remote[i].remoteRange = Remote[i].RemoteContainer.addEnumParameter("Remote range", "Range of values of the remote parameter", "MIDI", "midi", "0 / 1", "linear01", "-1 / 1", "linear-11", "Percent", "percent");
     Remote[i].onOff = [];
 
-    // addButtonControllable(i, 1);
-    Remote[i].floatNumber = Remote[i].RemoteContainer.addIntParameter("Float Number", "float number", 8, 0, 50);
+    addButtonControllable(i, 1);
+    addButtonControllable(i, 2);
+    addButtonControllable(i, 3);
+    addButtonControllable(i, 4);
+    Remote[i].floatNumber = Remote[i].RemoteContainer.addIntParameter("Float Number", "float number", 4, 0, 50);
+    Remote[i].floatNumber.setAttribute("readonly", true);
     Remote[i].float = [];
     addFloatControllable(i, 1);
     addFloatControllable(i, 2);
     addFloatControllable(i, 3);
     addFloatControllable(i, 4);
-    addFloatControllable(i, 5);
-    addFloatControllable(i, 6);
-    addFloatControllable(i, 7);
-    addFloatControllable(i, 8);
+    // addFloatControllable(i, 5);
+    // addFloatControllable(i, 6);
+    // addFloatControllable(i, 7);
+    // addFloatControllable(i, 8);
 }
 
 /**
@@ -2162,7 +2171,8 @@ function createRemoteContainer()
     // Add the Remote container
     RemotesContainer = local.values.addContainer("Remotes");
 
-    var numberOfRemotes = RemotesContainer.addIntParameter("number of  remotes", "number of remotes", 1, 0, 64);
+    var numberOfRemotes = RemotesContainer.addIntParameter("number of  remotes", "number of remotes", 4, 0, 64);
+    numberOfRemotes.setAttribute("readonly", true);
     var masterIndex = RemotesContainer.addIntParameter("Master index", "master index", 0, 0, 128);
     for (var i = 1; i < numberOfRemotes.get() + 1; i++)
     {
