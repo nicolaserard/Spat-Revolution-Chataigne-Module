@@ -624,7 +624,7 @@ function update(updateRate)
                 if (Remote[remoteIndex].float[floatIndex]['values'][l]["target"]) {
                     var target = Remote[remoteIndex].float[floatIndex]['values'][l]["target"].getTarget();
                     // script.log(target.name);
-                    if (target && ((remoteRange == 'midi' && target.get() !=parseInt(Remote[remoteIndex].float[floatIndex]['values'][l]["value"].get() * 127)) | (remoteRange != 'midi' && target.get() != Remote[remoteIndex].float[floatIndex]['values'[l]["value"].get()]))) {
+                    if (target && ((remoteRange == 'midi' && target.get() !=parseInt(Remote[remoteIndex].float[floatIndex]['values'][l]["value"].get() * 127)) | (remoteRange != 'midi' && target.get() != Remote[remoteIndex].float[floatIndex]['values'][l]["value"].get()))) {
                         var val = (target.get() - RemoteRangeFromString[remoteRange][0]) / (RemoteRangeFromString[remoteRange][1] - RemoteRangeFromString[remoteRange][0]);
                         Remote[remoteIndex].float[floatIndex]['values'][l]["value"].set(val);
                     }
@@ -696,7 +696,7 @@ function moduleValueChanged(value)
                 for (var l = 0; l < Remote[remoteIndex].controlsNumber.get() ; l++)
                 {
                     var val = ParameterFromString[Remote[remoteIndex].onOff[onOffIndex].parameterControlled.get()](value.get()*Remote[remoteIndex].controlsNumber.get() + l).get();
-                    val = (val - RangeForParameter[Remote[remoteIndex].float[onOffIndex].parameterControlled.get()][0]) / (RangeForParameter[Remote[remoteIndex].float[floatIndex].parameterControlled.get()][1] - RangeForParameter[Remote[remoteIndex].float[floatIndex].parameterControlled.get()][0]);
+                    val = (val - RangeForParameter[Remote[remoteIndex].onOff[onOffIndex].parameterControlled.get()][0]) / (RangeForParameter[Remote[remoteIndex].onOff[floatIndex].parameterControlled.get()][1] - RangeForParameter[Remote[remoteIndex].onOff[floatIndex].parameterControlled.get()][0]);
                     var target = Remote[remoteIndex].onOff[onOffIndex]["values"][l]["target"].getTarget();
                     if (target)
                     {
@@ -753,7 +753,7 @@ function moduleValueChanged(value)
         else if (name === 'parameterControlled')
         {
             var remoteIndex = parseInt(value.getParent().getParent().name.substring(6, value.getParent().getParent().name.length)) - 1;
-            Remote[remoteIndex].parameterControlled = value.get();
+            Remote[remoteIndex]['parameterControlled'] = value.get();
             var cont = value.getParent();
             for (var l = 0; l < Remote[remoteIndex].controlsNumber.get() ; l++)
             {
@@ -1024,7 +1024,7 @@ function oscSourceEvent(address, args)
         if (typeof(args[0]) == 'number')
         {
             source.gain.set(args[0]);
-            controlName = 'gain';
+            controlName = 'sourcegain';
         }
     }
     else if (address[3]==='lfe')
@@ -1032,7 +1032,7 @@ function oscSourceEvent(address, args)
         if (typeof(args[0]) == 'number')
         {
             source.lfe1.set(args[0]);
-            controlName = 'lfe';
+            controlName = 'sourcelfe';
         }
     }
     else if (address[3]==='lfe2')
@@ -1040,7 +1040,7 @@ function oscSourceEvent(address, args)
         if (typeof(args[0]) == 'number')
         {
             source.lfe2.set(args[0]);
-            controlName = 'lfe2';
+            controlName = 'sourcelfe2';
         }
     }
     else if (address[3]==='lfe3')
@@ -1048,7 +1048,7 @@ function oscSourceEvent(address, args)
         if (typeof(args[0]) == 'number')
         {
             source.lfe3.set(args[0]);
-            controlName = 'lfe3';
+            controlName = 'sourcelfe3';
         }
     }
     else if (address[3]==='lfe4')
@@ -1056,7 +1056,7 @@ function oscSourceEvent(address, args)
         if (typeof(args[0]) == 'number')
         {
             source.lfe4.set(args[0]);
-            controlName = 'lfe4';
+            controlName = 'sourcelfe4';
         }
     }
     else if (address[3] ==='mute')
@@ -1064,7 +1064,7 @@ function oscSourceEvent(address, args)
         if (typeof(args[0]) == 'number')
         {
             source.mute.set(args[0]);
-            controlName = 'mute';
+            controlName = 'sourcemute';
         }
     }
     else if (address[3] ==='solo')
@@ -1072,14 +1072,14 @@ function oscSourceEvent(address, args)
         if (typeof(args[0]) == 'number')
         {
             source.solo.set(args[0]);
-            controlName = 'solo';
+            controlName = 'sourcesolo';
         }
     }
     else if (address[3]==='aed')
     {
         if (typeof(args[0]) == 'number' && typeof(args[1]) == 'number' && typeof(args[2]) == 'number')
         {
-            controlName = 'position';
+            controlName = 'sourceposition';
 
             // special function to remap stereo object as mono ones.
             if(transformStereoToMono)
@@ -1158,7 +1158,7 @@ function oscSourceEvent(address, args)
         if (typeof(args[0]) == 'number' && typeof(args[1]) == 'number' && typeof(args[2]) == 'number')
         {
             stopSendingOSC = true; // to avoid return to SPAT. TODO: Check if useful.
-            controlName = 'position';
+            controlName = 'sourceposition';
             source.positionAED.set(CartesianToPolar(args));
             stopSendingOSC = false;
         }
@@ -1168,7 +1168,7 @@ function oscSourceEvent(address, args)
         if (typeof(args[0]) == 'number')
         {
             source.reverbEnable.set(args[0]);
-            controlName = 'reverbEnable';
+            controlName = 'sourcereverbEnable';
         }
     }
     else if (address[3] === 'early')
@@ -1176,7 +1176,7 @@ function oscSourceEvent(address, args)
         if (typeof(args[0]) == 'number')
         {
             source.earlyEnable.set(args[0]);
-            controlName = 'earlyEnable';
+            controlName = 'sourceearlyEnable';
         }
     }
     else if (address[3] === 'cluster')
@@ -1184,7 +1184,7 @@ function oscSourceEvent(address, args)
         if (typeof(args[0]) == 'number')
         {
             source.clusterEnable.set(args[0]);
-            controlName = 'clusterEnable';
+            controlName = 'sourceclusterEnable';
         }
     }
     else if (address[3] === 'tail')
@@ -1192,7 +1192,7 @@ function oscSourceEvent(address, args)
         if (typeof(args[0]) == 'number')
         {
             source.tailEnable.set(args[0]);
-            controlName = 'tailEnable';
+            controlName = 'sourcetailEnable';
         }
     }
     else if (address[3] === 'name')
@@ -1200,7 +1200,7 @@ function oscSourceEvent(address, args)
         if (typeof(args[0]) == 'string')
         {
             source.sourceName.set(args[0]);
-            controlName = 'name';
+            controlName = 'sourcename';
         }
     }
     else if (address[3]==='pres')
@@ -1208,7 +1208,7 @@ function oscSourceEvent(address, args)
         if (typeof(args[0]) == 'number')
         {
             source.presence.set(args[0]);
-            controlName = 'presence';
+            controlName = 'sourcepresence';
         }
     }
     else if (address[3]==='prer')
@@ -1216,7 +1216,7 @@ function oscSourceEvent(address, args)
         if (typeof(args[0]) == 'number')
         {
             source.roomPresence.set(args[0]);
-            controlName = 'roomPresence';
+            controlName = 'sourceroomPresence';
         }
     }
     else if (address[3]==='revp')
@@ -1224,7 +1224,7 @@ function oscSourceEvent(address, args)
         if (typeof(args[0]) == 'number')
         {
             source.runningReverberance.set(args[0]);
-            controlName = 'runningReverberance';
+            controlName = 'sourcerunningReverberance';
         }
     }
     else if (address[3]==='env')
@@ -1232,7 +1232,7 @@ function oscSourceEvent(address, args)
         if (typeof(args[0]) == 'number')
         {
             source.envelopment.set(args[0]);
-            controlName = 'envelopment';
+            controlName = 'sourceenvelopment';
         }
     }
     else if (address[3]==='warmth')
@@ -1240,7 +1240,7 @@ function oscSourceEvent(address, args)
         if (typeof(args[0]) == 'number')
         {
             source.warmth.set(args[0]);
-            controlName = 'warmth';
+            controlName = 'sourcewarmth';
         }
     }
     else if (address[3]==='bril')
@@ -1248,7 +1248,7 @@ function oscSourceEvent(address, args)
         if (typeof(args[0]) == 'number')
         {
             source.brilliance.set(args[0]);
-            controlName = 'brilliance';
+            controlName = 'sourcebrilliance';
         }
     }
     else if (address[3]==='yaw')
@@ -1256,7 +1256,7 @@ function oscSourceEvent(address, args)
         if (typeof(args[0]) == 'number')
         {
             source.yaw.set(args[0]);
-            controlName = 'yaw';
+            controlName = 'sourceyaw';
         }
     }
     else if (address[3]==='pitch')
@@ -1264,7 +1264,7 @@ function oscSourceEvent(address, args)
         if (typeof(args[0]) == 'number')
         {
             source.pitch.set(args[0]);
-            controlName = 'pitch';
+            controlName = 'sourcepitch';
         }
     }
     else if (address[3]==='aperture')
@@ -1272,7 +1272,7 @@ function oscSourceEvent(address, args)
         if (typeof(args[0]) == 'number')
         {
             source.aperture.set(args[0]);
-            controlName = 'aperture';
+            controlName = 'sourceaperture';
         }
     }
     else if (address[3]==='scale')
@@ -1280,7 +1280,7 @@ function oscSourceEvent(address, args)
         if (typeof(args[0]) == 'number')
         {
             source.scale.set(args[0]);
-            controlName = 'scale';
+            controlName = 'sourcescale';
         }
     }
     else if (address[3]==='spread')
@@ -1288,7 +1288,7 @@ function oscSourceEvent(address, args)
         if (typeof(args[0]) == 'number')
         {
             source.spread.set(args[0]);
-            controlName = 'spread';
+            controlName = 'sourcespread';
         }
     }
     else if (address[3]==='nneig')
@@ -1296,7 +1296,7 @@ function oscSourceEvent(address, args)
         if (typeof(args[0]) == 'number')
         {
             source.knn.set(args[0]);
-            controlName = 'knn';
+            controlName = 'sourceknn';
         }
     }
     else if (address[3]==='early' && address[4]==='width')
@@ -1304,7 +1304,7 @@ function oscSourceEvent(address, args)
         if (typeof(args[0]) == 'number')
         {
             source.earlyWidth.set(args[0]);
-            controlName = 'earlyWidth';
+            controlName = 'sourceearlyWidth';
         }
     }
     else if (address[3]==='prevf')
@@ -1312,7 +1312,7 @@ function oscSourceEvent(address, args)
         if (typeof(args[0]) == 'number')
         {
             source.panRev.set(args[0]);
-            controlName = 'panRev';
+            controlName = 'sourcepanRev';
         }
     }
     else if (address[3]==='doppler' && address[4]==='enable')
@@ -1320,7 +1320,7 @@ function oscSourceEvent(address, args)
         if (typeof(args[0]) == 'number')
         {
             source.doppler.set(args[0]);
-            controlName = 'options';
+            controlName = 'sourceoptions';
         }
     }
     else if (address[3]==='radius')
@@ -1328,7 +1328,7 @@ function oscSourceEvent(address, args)
         if (typeof(args[0]) == 'number')
         {
             source.radius.set(args[0]);
-            controlName = 'radius';
+            controlName = 'sourceradius';
         }
     }
     else if (address[3]==='air' && address[4]==='enable')
@@ -1336,7 +1336,7 @@ function oscSourceEvent(address, args)
         if (typeof(args[0]) == 'number')
         {
             source.airAbsorption.set(args[0]);
-            controlName = 'airAbsorption';
+            controlName = 'sourceairAbsorption';
         }
     }
     else if (address[3]==='cm')
@@ -1344,7 +1344,7 @@ function oscSourceEvent(address, args)
         if (typeof(args[0]) == 'number')
         {
             source.xyCoordinatesMode.set(args[0]);
-            controlName = 'xyCoordinatesMode';
+            controlName = 'sourcexyCoordinatesMode';
         }
     }
     else if (address[3]==='zcm')
@@ -1352,7 +1352,7 @@ function oscSourceEvent(address, args)
         if (typeof(args[0]) == 'number')
         {
             source.zCoordinatesMode.set(args[0]);
-            controlName = 'zCoordinatesMode';
+            controlName = 'sourcezCoordinatesMode';
         }
     }
     else if (address[3]==='drop')
@@ -1362,7 +1362,7 @@ function oscSourceEvent(address, args)
             if (typeof(args[0]) == 'number')
             {
                 source.dropLog.set(args[0]);
-                controlName = 'dropLog';
+                controlName = 'sourcedropLog';
             }
         }
         if (address[4] ==='value')
@@ -1370,7 +1370,7 @@ function oscSourceEvent(address, args)
             if (typeof(args[0]) == 'number')
             {
                 source.dropFactor.set(args[0]);
-                controlName = 'dropFactor';
+                controlName = 'sourcedropFactor';
             }
         }
     }
@@ -1381,7 +1381,7 @@ function oscSourceEvent(address, args)
             var value = source.rotationXYZ.get();
             value = [args[0], value[1], value[2]];
             source.rotationXYZ.set(value);
-            controlName = 'rotx';
+            controlName = 'sourcerotx';
         }
     }
     else if (address[3]==='roty')
@@ -1391,7 +1391,7 @@ function oscSourceEvent(address, args)
             var value = source.rotationXYZ.get();
             value = [value[0], args[1], value[2]];
             source.rotationXYZ.set(value);
-            controlName = 'roty';
+            controlName = 'sourceroty';
         }
     }
     else if (address[3]==='rotz')
@@ -1401,7 +1401,7 @@ function oscSourceEvent(address, args)
             var value = source.rotationXYZ.get();
             value = [value[0], value[1], args[2]];
             source.rotationXYZ.set(value);
-            controlName = 'rotz';
+            controlName = 'sourcerotz';
         }
     }
     else if (address[3]==='rg1')
@@ -1409,7 +1409,7 @@ function oscSourceEvent(address, args)
         if (typeof(args[0]) == 'number')
         {
             source.roomGain1.set(args[0]);
-            controlName = 'roomGain1';
+            controlName = 'sourceroomGain1';
         }
     }
     else if (address[3]==='omni')
@@ -1419,7 +1419,7 @@ function oscSourceEvent(address, args)
             if (typeof(args[0]) == 'number')
             {
                 source.omniGain.set(args[0]);
-                controlName = 'omniGain';
+                controlName = 'sourceomniGain';
             }
         }
     }
@@ -1428,7 +1428,7 @@ function oscSourceEvent(address, args)
         if (typeof(args[0]) == 'number')
         {
             source.roomGain2.set(args[0]);
-            controlName = 'roomGain2';
+            controlName = 'sourceroomGain2';
         }
     }
     else if (address[3]==='rg3')
@@ -1436,7 +1436,7 @@ function oscSourceEvent(address, args)
         if (typeof(args[0]) == 'number')
         {
             source.roomGain3.set(args[0]);
-            controlName = 'roomGain3';
+            controlName = 'sourceroomGain3';
         }
     }
     else if (address[3]==='rg4')
@@ -1444,7 +1444,7 @@ function oscSourceEvent(address, args)
         if (typeof(args[0]) == 'number')
         {
             source.roomGain4.set(args[0]);
-            controlName = 'roomGain4';
+            controlName = 'sourceroomGain4';
         }
     }
     else if (address[3]==='rg5')
@@ -1452,7 +1452,7 @@ function oscSourceEvent(address, args)
         if (typeof(args[0]) == 'number')
         {
             source.roomGain5.set(args[0]);
-            controlName = 'roomGain5';
+            controlName = 'sourceroomGain5';
         }
     }
     else if (address[3]==='rg6')
@@ -1460,7 +1460,7 @@ function oscSourceEvent(address, args)
         if (typeof(args[0]) == 'number')
         {
             source.roomGain6.set(args[0]);
-            controlName = 'roomGain6';
+            controlName = 'sourceroomGain6';
         }
     }
     else if (address[3]==='rg7')
@@ -1468,7 +1468,7 @@ function oscSourceEvent(address, args)
         if (typeof(args[0]) == 'number')
         {
             source.roomGain7.set(args[0]);
-            controlName = 'roomGain7';
+            controlName = 'sourceroomGain7';
         }
     }
     else if (address[3]==='rg8')
@@ -1476,6 +1476,7 @@ function oscSourceEvent(address, args)
         if (typeof(args[0]) == 'number')
         {
             source.roomGain8.set(args[0]);
+            controlName = 'sourceroomGain8';
         }
     }
     else if (address[3]==='rg9')
@@ -1483,7 +1484,7 @@ function oscSourceEvent(address, args)
         if (typeof(args[0]) == 'number')
         {
             source.roomGain9.set(args[0]);
-            controlName = 'roomGain9';
+            controlName = 'sourceroomGain9';
         }
     }
     else if (address[3]==='rg10')
@@ -1491,7 +1492,7 @@ function oscSourceEvent(address, args)
         if (typeof(args[0]) == 'number')
         {
             source.roomGain10.set(args[0]);
-            controlName = 'roomGain10';
+            controlName = 'sourceroomGain10';
         }
     }
 
@@ -2108,7 +2109,7 @@ function addFloatControllable(remoteIndex, index)
 {
     Remote[remoteIndex].float[index - 1] = {'values': []};
     Remote[remoteIndex].float[index - 1]['container'] = Remote[remoteIndex].RemoteContainer.addContainer("Float" + index);
-    Remote[remoteIndex].float[index - 1]['parameterControlled'] = Remote[remoteIndex].float[index - 1]['container'].addEnumParameter("Parameter controlled", "parameterControlled", "Source: Azimuth", "sourceazimuth", "Source: Elevation", "sourceelevation", "Source: Distance", "sourcedistance", "Source: Position X", "sourcepositionX", "Source: Position Y", "sourcepositionY", "Source: Position Z", "sourcepositionZ", "Source: Gain", "sourcegain", "Source: Lfe", "sourcelfe", "Source: Lfe2", "sourcelfe2", "Source: Lfe3", "sourcelfe3", "Source: Lfe4", "sourcelfe4", "Source: Presence", "sourcepresence", "Source: Room presence", "sourceroomPresence", "Source: Running Reverberance", "sourcerunningReverberance", "Source: Envelopment", "sourceenvelopment", "Source: Brilliance", "sourcebrilliance", "Source: Warmth", "sourcewarmth", "Source: Yaw", "sourceyaw", "Source: Pitch", "sourcepitch", "Source: Aperture", "sourceaperture", "Source: Scale", "sourcescale", "Source: Spread", "sourcespread", "Source: Knn", "sourceknn", "Source: Early width", "sourceearlyWidth", "Source: Pan Rev", "sourcepanRev", "Source: Drop factor", "sourcedropFactor", "Source: Rotation X", "sourcerotX", "Source: Rotation Y", "sourcerotY", "Source: Rotation Z", "sourcerotZ", "Source: Omni Gain", "sourceomniGain", "Source: RoomGain 1", "sourceroomGain1", "Source: RoomGain 2", "sourceroomGain2", "Source: RoomGain 3", "sourceroomGain3", "Source: RoomGain 4", "sourceroomGain4", "Source: RoomGain 5", "sourceroomGain5", "Source: RoomGain 6", "sourceroomGain6", "Source: RoomGain 7", "sourceroomGain7", "Source: RoomGain 8", "sourceroomGain8", "Source: RoomGain 9", "sourceroomGain9", "Source: RoomGain 10", "sourceroomGain10");
+    Remote[remoteIndex].float[index - 1].parameterControlled = Remote[remoteIndex].float[index - 1]['container'].addEnumParameter("Parameter controlled", "parameterControlled", "Source: Azimuth", "sourceazimuth", "Source: Elevation", "sourceelevation", "Source: Distance", "sourcedistance", "Source: Position X", "sourcepositionX", "Source: Position Y", "sourcepositionY", "Source: Position Z", "sourcepositionZ", "Source: Gain", "sourcegain", "Source: Lfe", "sourcelfe", "Source: Lfe2", "sourcelfe2", "Source: Lfe3", "sourcelfe3", "Source: Lfe4", "sourcelfe4", "Source: Presence", "sourcepresence", "Source: Room presence", "sourceroomPresence", "Source: Running Reverberance", "sourcerunningReverberance", "Source: Envelopment", "sourceenvelopment", "Source: Brilliance", "sourcebrilliance", "Source: Warmth", "sourcewarmth", "Source: Yaw", "sourceyaw", "Source: Pitch", "sourcepitch", "Source: Aperture", "sourceaperture", "Source: Scale", "sourcescale", "Source: Spread", "sourcespread", "Source: Knn", "sourceknn", "Source: Early width", "sourceearlyWidth", "Source: Pan Rev", "sourcepanRev", "Source: Drop factor", "sourcedropFactor", "Source: Rotation X", "sourcerotX", "Source: Rotation Y", "sourcerotY", "Source: Rotation Z", "sourcerotZ", "Source: Omni Gain", "sourceomniGain", "Source: RoomGain 1", "sourceroomGain1", "Source: RoomGain 2", "sourceroomGain2", "Source: RoomGain 3", "sourceroomGain3", "Source: RoomGain 4", "sourceroomGain4", "Source: RoomGain 5", "sourceroomGain5", "Source: RoomGain 6", "sourceroomGain6", "Source: RoomGain 7", "sourceroomGain7", "Source: RoomGain 8", "sourceroomGain8", "Source: RoomGain 9", "sourceroomGain9", "Source: RoomGain 10", "sourceroomGain10");
     var valContainer = Remote[remoteIndex].float[index - 1]['container'].addContainer("Values");
     for (var i = 1; i < Remote[remoteIndex].controlsNumber.get() + 1; i++)
     {
@@ -2206,7 +2207,7 @@ function updateRemote(controlName, args, sourceIndex)
             }
             for (var floatIndex = 0; floatIndex < Remote[remoteIndex].floatNumber.get(); floatIndex++) {
                 // script.log(Remote[remoteIndex].float[floatIndex]['parameterControlled'].get());
-                if (Remote[remoteIndex].float[floatIndex].parameterControlled.get() === controlName | ((Remote[remoteIndex].float[floatIndex].parameterControlled.get() === 'sourceazimuth' | Remote[remoteIndex].float[floatIndex].parameterControlled.get() === 'sourceelevation' | Remote[remoteIndex].float[floatIndex].parameterControlled.get() === 'sourcedistance') && controlName === 'sourceposition') | ((Remote[remoteIndex].float[floatIndex].parameterControlled.get() === 'sourcepositionX' | Remote[remoteIndex].float[floatIndex].parameterControlled.get() === 'sourcepositionY' | Remote[remoteIndex].float[floatIndex].parameterControlled.get() === 'sourcepositionZ') && controlName === 'position') | ((controlName === 'sourceazimuth' | controlName ===  'sourceelevation' | controlName === 'sourcedistance')  && (Remote[remoteIndex].float[floatIndex].parameterControlled.get() === 'sourcepositionX' | Remote[remoteIndex].float[floatIndex].parameterControlled.get() === 'sourcepositionY' | Remote[remoteIndex].float[floatIndex].parameterControlled.get() === 'sourcepositionZ')) | ((controlName === 'sourcepositionX' | controlName === 'sourcepositionY' | controlName === 'sourcepositionZ')  && (Remote[remoteIndex].float[floatIndex].parameterControlled.get() === 'sourceazimuth' | Remote[remoteIndex].float[floatIndex].parameterControlled.get() === 'sourceelevation' | Remote[remoteIndex].float[floatIndex].parameterControlled.get() === 'sourcedistance'))) {
+                if (Remote[remoteIndex].float[floatIndex].parameterControlled.get() === controlName | ((Remote[remoteIndex].float[floatIndex].parameterControlled.get() === 'sourceazimuth' | Remote[remoteIndex].float[floatIndex].parameterControlled.get() === 'sourceelevation' | Remote[remoteIndex].float[floatIndex].parameterControlled.get() === 'sourcedistance') && controlName === 'sourceposition') | ((Remote[remoteIndex].float[floatIndex].parameterControlled.get() === 'sourcepositionX' | Remote[remoteIndex].float[floatIndex].parameterControlled.get() === 'sourcepositionY' | Remote[remoteIndex].float[floatIndex].parameterControlled.get() === 'sourcepositionZ') && controlName === 'sourceposition') | ((controlName === 'sourceazimuth' | controlName ===  'sourceelevation' | controlName === 'sourcedistance')  && (Remote[remoteIndex].float[floatIndex].parameterControlled.get() === 'sourcepositionX' | Remote[remoteIndex].float[floatIndex].parameterControlled.get() === 'sourcepositionY' | Remote[remoteIndex].float[floatIndex].parameterControlled.get() === 'sourcepositionZ')) | ((controlName === 'sourcepositionX' | controlName === 'sourcepositionY' | controlName === 'sourcepositionZ')  && (Remote[remoteIndex].float[floatIndex].parameterControlled.get() === 'sourceazimuth' | Remote[remoteIndex].float[floatIndex].parameterControlled.get() === 'sourceelevation' | Remote[remoteIndex].float[floatIndex].parameterControlled.get() === 'sourcedistance'))) {
                     var arg = args[0];
                     if (Remote[remoteIndex].float[floatIndex].parameterControlled.get() === "sourcepositionX") {
                         // script.log("position AED; "+ Sources[sourceIndex - 1].positionAED.get()[0] +Sources[sourceIndex - 1].positionAED.get()[1] +Sources[sourceIndex - 1].positionAED.get()[2]  + "position XYZ: " + PolarToCartesian(Sources[sourceIndex - 1].positionAED.get())[0]+ PolarToCartesian(Sources[sourceIndex - 1].positionAED.get())[1]+ PolarToCartesian(Sources[sourceIndex - 1].positionAED.get()[2]));
@@ -2229,7 +2230,7 @@ function updateRemote(controlName, args, sourceIndex)
                         var target = target.getTarget();
                         if (target) {
                             target.set(val * 127);
-                            target.set(val * (RemoteRangeFromString[remoteRange][1] - RemoteRangeFromString[remoteRange][0]) - RemoteRangeFromString[remoteRange][0]);
+                            target.set(val * (RemoteRangeFromString[remoteRange][1] - RemoteRangeFromString[remoteRange][0]) + RemoteRangeFromString[remoteRange][0]);
                         }
                         if (stopUpdateForSource != sourceIndex) {
                             Remote[remoteIndex].float[floatIndex]['values'][sourceIndex % Remote[remoteIndex].controlsNumber.get()]['value'].set(val);
