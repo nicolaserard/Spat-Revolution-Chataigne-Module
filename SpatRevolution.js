@@ -1981,7 +1981,7 @@ function createRoomContainer()
             "index": index
         });
 
-        Rooms[i].RoomContainer = RoomsContainer.addContainer("Room " + i);
+        Rooms[i].RoomContainer = RoomsContainer.addContainer("Room " + index);
 
         Rooms[i].roomName = Rooms[i].RoomContainer.addStringParameter("Room Name", "Room name", "Room name");
         Rooms[i].roomName.setAttribute("readonly", true);
