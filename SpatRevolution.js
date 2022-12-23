@@ -621,12 +621,12 @@ function update(updateRate)
         //float
         for (var floatIndex = 0; floatIndex < Remote[remoteIndex].floatNumber.get(); floatIndex++)
         {
-            var float = Remote[remoteIndex].float[floatIndex]
+            var float = Remote[remoteIndex].float[floatIndex];
             for (var l = 0; l < Remote[remoteIndex].controlsNumber.get(); l++)
             {
                 if (float['values'][l]["target"]) {
                     var target = float['values'][l]["target"].getTarget();
-                    var oldValue = float['values'][l]["value"].get()
+                    var oldValue = float['values'][l]["value"].get();
                     // script.log(target.name);
                     if (target && ((remoteRange == 'midi' && target.get() !=parseInt(oldValue * 127)) | (remoteRange != 'midi' && target.get() != oldValue))) {
                         var val = (target.get() - RemoteRangeFromString[remoteRange][0]) / (RemoteRangeFromString[remoteRange][1] - RemoteRangeFromString[remoteRange][0]);
@@ -700,7 +700,7 @@ function moduleValueChanged(value)
             for (var onOffIndex = 0; onOffIndex < Remote[remoteIndex].onOffNumber.get(); onOffIndex++)
             {
                 var localOnOff = Remote[remoteIndex].onOff[onOffIndex];
-                var localRangeForParameter = RangeForParameter[localParameterControlled]
+                var localRangeForParameter = RangeForParameter[localParameterControlled];
                 var localParameterControlled = localOnOff.parameterControlled.get();
 
                 for (var l = 0; l < Remote[remoteIndex].controlsNumber.get() ; l++)
@@ -2228,7 +2228,7 @@ function updateRemote(controlName, args, sourceIndex)
             for (var floatIndex = 0; floatIndex < Remote[remoteIndex].floatNumber.get(); floatIndex++) {
                 // script.log(Remote[remoteIndex].float[floatIndex]['parameterControlled'].get());
                 var parameterControlled = Remote[remoteIndex].float[floatIndex].parameterControlled.get();
-                if (parameterControlled === controlName | ((parameterControlled === 'sourceazimuth' | parameterControlled === 'sourceelevation' | parameterControlled === 'sourcedistance' | (parameterControlled === 'sourcepositionX' | parameterControlled === 'sourcepositionY' | parameterControlled === 'sourcepositionZ') && controlName === 'sourceposition') | ((controlName === 'sourceazimuth' | controlName ===  'sourceelevation' | controlName === 'sourcedistance')  && (parameterControlled === 'sourcepositionX' | parameterControlled === 'sourcepositionY' | parameterControlled === 'sourcepositionZ')) | ((controlName === 'sourcepositionX' | controlName === 'sourcepositionY' | controlName === 'sourcepositionZ')  && (parameterControlled === 'sourceazimuth' | parameterControlled === 'sourceelevation' | parameterControlled === 'sourcedistance'))) {
+                if (parameterControlled === controlName | (parameterControlled === 'sourceazimuth' | parameterControlled === 'sourceelevation' | parameterControlled === 'sourcedistance' | (parameterControlled === 'sourcepositionX' | parameterControlled === 'sourcepositionY' | parameterControlled === 'sourcepositionZ') && controlName === 'sourceposition') | ((controlName === 'sourceazimuth' | controlName ===  'sourceelevation' | controlName === 'sourcedistance')  && (parameterControlled === 'sourcepositionX' | parameterControlled === 'sourcepositionY' | parameterControlled === 'sourcepositionZ')) | ((controlName === 'sourcepositionX' | controlName === 'sourcepositionY' | controlName === 'sourcepositionZ')  && (parameterControlled === 'sourceazimuth' | parameterControlled === 'sourceelevation' | parameterControlled === 'sourcedistance'))) {
                     var arg = args[0];
                     if (parameterControlled === "sourcepositionX") {
                         // script.log("position AED; "+ Sources[sourceIndex - 1].positionAED.get()[0] +Sources[sourceIndex - 1].positionAED.get()[1] +Sources[sourceIndex - 1].positionAED.get()[2]  + "position XYZ: " + PolarToCartesian(Sources[sourceIndex - 1].positionAED.get())[0]+ PolarToCartesian(Sources[sourceIndex - 1].positionAED.get())[1]+ PolarToCartesian(Sources[sourceIndex - 1].positionAED.get()[2]));
