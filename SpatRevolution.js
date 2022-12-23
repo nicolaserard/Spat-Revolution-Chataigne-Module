@@ -247,10 +247,141 @@ var ParameterFromString = {
     'sourceroomGain10': function(index)
     {
         return Sources[index].roomGain10;
+    },
+    'roomGain': function(index)
+    {
+        return Rooms[index].gainRoom;
+    },
+    'roomMute': function(index)
+    {
+        return Rooms[index].muteRoom;
+    },
+    'roomListenerX': function(index)
+    {
+        return Rooms[index].listenerPosition;
+    },
+    'roomListenerY': function(index)
+    {
+        return Rooms[index].listenerPosition;
+    },
+    'roomListenerZ': function(index)
+    {
+        return Rooms[index].listenerPosition;
+    },
+    'roomListenerYaw': function(index)
+    {
+        return Rooms[index].listenerOrientation;
+    },
+    'roomListenerPitch': function(index)
+    {
+        return Rooms[index].listenerOrientation;
+    },
+    'roomListenerRoll': function(index)
+    {
+        return Rooms[index].listenerOrientation;
+    },
+    'roomReverbDensity': function(index)
+    {
+        return Rooms[index].reverbDensity;
+    },
+    'roomReverbEnable': function(index)
+    {
+        return Rooms[index].reverbEnableRoom;
+    },
+    'roomReverbSize': function(index)
+    {
+        return Rooms[index].roomSize;
+    },
+    'roomReverbStart': function(index)
+    {
+        return Rooms[index].reverbStart;
+    },
+    'roomReverbGain': function(index)
+    {
+        return Rooms[index].reverbGain;
+    },
+    'roomReverbFactor': function(index)
+    {
+        return Rooms[index].reverbFactor;
+    },
+    'roomReverberance': function(index)
+    {
+        return Rooms[index].reverberance;
+    },
+    'roomHeaviness': function(index)
+    {
+        return Rooms[index].heaviness;
+    },
+    'roomLiveness': function(index)
+    {
+        return Rooms[index].liveness;
+    },
+    'roomEarlyMin': function(index)
+    {
+        return Rooms[index].earlyMin;
+    },
+    'roomEarlyMax': function(index)
+    {
+        return Rooms[index].earlyMax;
+    },
+    'roomEarlyDist': function(index)
+    {
+        return Rooms[index].earlyDist;
+    },
+    'roomEarlyShape': function(index)
+    {
+        return Rooms[index].earlyShape;
+    },
+    'roomClusterMin': function(index)
+    {
+        return Rooms[index].clusterMin;
+    },
+    'roomClusterMax': function(index)
+    {
+        return Rooms[index].clusterMax;
+    },
+    'roomClusterDist': function(index)
+    {
+        return Rooms[index].clusterDist;
+    },
+    'roomReverbInfinite': function(index)
+    {
+        return Rooms[index].reverbInfinite;
+    },
+    'roomAirEnable': function(index)
+    {
+        return Rooms[index].airEnable;
+    },
+    'roomAirFreq': function(index)
+    {
+        return Rooms[index].airFreq;
+    },
+    'roomModalDensity': function(index)
+    {
+        return Rooms[index].modalDensity;
+    },
+    'roomFrequencyLow': function(index)
+    {
+        return Rooms[index].frequencyLow;
+    },
+    'roomFrequencyHigh': function(index)
+    {
+        return Rooms[index].frequencyHigh;
     }
 };
 
 var RangeForParameter = {
+    'sourcemute': [0, 1],
+    'sourcesolo': [0, 1],
+    'sourcereverbEnable': [0, 1],
+    'sourceearlyEnable': [0, 1],
+    'sourceclusterEnable': [0, 1],
+    'sourcetailEnable': [0, 1],
+    'sourcedoppler': [0, 1],
+    'sourceairAbsorption': [0, 1],
+    'sourcexyCoordinatesMode': [0, 1],
+    'sourcezCoordinatesMode': [0, 1],
+    'sourcedropLog': [0, 1],
     'sourcegain': [-144.5, 24.0],
     'sourcelfe': [-144.5, 24.0],
     'sourcelfe2': [-144.5, 24.0],
@@ -291,7 +422,32 @@ var RangeForParameter = {
     'sourceroomGain7': [-144.5, 24.0],
     'sourceroomGain8': [-144.5, 24.0],
     'sourceroomGain9': [-144.5, 24.0],
-    'sourceroomGain10': [-144.5, 24.0]
+    'sourceroomGain10': [-144.5, 24.0],
+    'roomGain': [-144.5, 24.0],
+    'roomMute': [0, 1],
+    'roomListenerX': [-100.0, 100],
+    'roomListenerY': [-100.0, 100.0],
+    'roomListenerZ': [-100.0, 100.0],
+    'roomListenerYaw': [-180.0, 180.0],
+    'roomListenerPitch': [-90.0, 90.0],
+    'roomListenerRoll': [-90.0, 90.0],
+    'roomReverbDensity': [0, 1],
+    'roomReverbEnable': [0, 1],
+    'roomReverbSize': [10, 15000],
+    'roomEarlyMin': [1, 120],
+    'roomEarlyMax': [1, 120],
+    'roomEarlyDist': [0.1, 0.9],
+    'roomEarlyShape': [0.1, 0.9],
+    'roomClusterMin': [1.0, 300.0],
+    'roomClusterMax': [1.0, 300.0],
+    'roomClusterDist': [0.1, 0.9],
+    'roomReverbInfinite': [0, 1],
+    'roomAirEnable': [0, 1],
+    'roomAirFreq': [20, 20000],
+    'roomModalDensity': [0.2, 2.0],
+    'roomFrequencyLow': [20, 20000],
+    'roomFrequencyHigh': [20, 20000],
+
 };
 
 /* OSCSourceMessage: array of all OSC Source Messages. Use to send OSC message when a value changed.*/
@@ -2108,7 +2264,7 @@ function addButtonControllable(remoteIndex, index)
 {
     Remote[remoteIndex].onOff[index - 1] = {'values': []};
     Remote[remoteIndex].onOff[index - 1]['container'] = Remote[remoteIndex].RemoteContainer.addContainer("OnOff" + index);
-    Remote[remoteIndex].onOff[index - 1]['parameterControlled'] = Remote[remoteIndex].onOff[index - 1]['container'].addEnumParameter("Parameter", "parameter", "Source: Mute", "sourcemute", "Source: Solo", "sourcesolo", "Source: Reverb on", "sourcereverbEnable", "Source: Early On", "sourceearlyEnable", "Source: Cluster On", "sourceclusterEnable", "Source: Doppler", "sourcedoppler", "Source: Air Absorption", "sourceairAbsorption", "Source: XY Coordinates mode", "sourcexyCoordinatesMode", "Source: Z Coordinates mode", "sourcezCoordinatesMode", "Source: Drop log", "sourcedropLog");
+    Remote[remoteIndex].onOff[index - 1]['parameterControlled'] = Remote[remoteIndex].onOff[index - 1]['container'].addEnumParameter("Parameter", "parameter", "Source: Mute", "sourcemute", "Source: Solo", "sourcesolo", "Source: Reverb on", "sourcereverbEnable", "Source: Early On", "sourceearlyEnable", "Source: Cluster On", "sourceclusterEnable","Source: Tail On", "sourcetailEnable", "Source: Doppler", "sourcedoppler", "Source: Air Absorption", "sourceairAbsorption", "Source: XY Coordinates mode", "sourcexyCoordinatesMode", "Source: Z Coordinates mode", "sourcezCoordinatesMode", "Source: Drop log", "sourcedropLog", "Room: Mute", "roomMute", "Room: Reverb density", "roomReverbDensity", "Room: Reverb enable", "roomReverbEnable", "Room: Reverb infinite", "roomReverbInfinite", "Room: Air enable", "roomAirEnable");
     var valContainer = Remote[remoteIndex].onOff[index - 1]['container'].addContainer("Values");
     for (var i = 1; i < Remote[remoteIndex].controlsNumber.get() + 1; i++)
     {
@@ -2128,7 +2284,7 @@ function addFloatControllable(remoteIndex, index)
 {
     Remote[remoteIndex].float[index - 1] = {'values': []};
     Remote[remoteIndex].float[index - 1]['container'] = Remote[remoteIndex].RemoteContainer.addContainer("Float" + index);
-    Remote[remoteIndex].float[index - 1].parameterControlled = Remote[remoteIndex].float[index - 1]['container'].addEnumParameter("Parameter controlled", "parameterControlled", "Source: Azimuth", "sourceazimuth", "Source: Elevation", "sourceelevation", "Source: Distance", "sourcedistance", "Source: Position X", "sourcepositionX", "Source: Position Y", "sourcepositionY", "Source: Position Z", "sourcepositionZ", "Source: Gain", "sourcegain", "Source: Lfe", "sourcelfe", "Source: Lfe2", "sourcelfe2", "Source: Lfe3", "sourcelfe3", "Source: Lfe4", "sourcelfe4", "Source: Presence", "sourcepresence", "Source: Room presence", "sourceroomPresence", "Source: Running Reverberance", "sourcerunningReverberance", "Source: Envelopment", "sourceenvelopment", "Source: Brilliance", "sourcebrilliance", "Source: Warmth", "sourcewarmth", "Source: Yaw", "sourceyaw", "Source: Pitch", "sourcepitch", "Source: Aperture", "sourceaperture", "Source: Scale", "sourcescale", "Source: Spread", "sourcespread", "Source: Knn", "sourceknn", "Source: Early width", "sourceearlyWidth", "Source: Pan Rev", "sourcepanRev", "Source: Drop factor", "sourcedropFactor", "Source: Rotation X", "sourcerotX", "Source: Rotation Y", "sourcerotY", "Source: Rotation Z", "sourcerotZ", "Source: Omni Gain", "sourceomniGain", "Source: RoomGain 1", "sourceroomGain1", "Source: RoomGain 2", "sourceroomGain2", "Source: RoomGain 3", "sourceroomGain3", "Source: RoomGain 4", "sourceroomGain4", "Source: RoomGain 5", "sourceroomGain5", "Source: RoomGain 6", "sourceroomGain6", "Source: RoomGain 7", "sourceroomGain7", "Source: RoomGain 8", "sourceroomGain8", "Source: RoomGain 9", "sourceroomGain9", "Source: RoomGain 10", "sourceroomGain10");
+    Remote[remoteIndex].float[index - 1].parameterControlled = Remote[remoteIndex].float[index - 1]['container'].addEnumParameter("Parameter controlled", "parameterControlled", "Source: Azimuth", "sourceazimuth", "Source: Elevation", "sourceelevation", "Source: Distance", "sourcedistance", "Source: Position X", "sourcepositionX", "Source: Position Y", "sourcepositionY", "Source: Position Z", "sourcepositionZ", "Source: Gain", "sourcegain", "Source: Lfe", "sourcelfe", "Source: Lfe2", "sourcelfe2", "Source: Lfe3", "sourcelfe3", "Source: Lfe4", "sourcelfe4", "Source: Presence", "sourcepresence", "Source: Room presence", "sourceroomPresence", "Source: Running Reverberance", "sourcerunningReverberance", "Source: Envelopment", "sourceenvelopment", "Source: Brilliance", "sourcebrilliance", "Source: Warmth", "sourcewarmth", "Source: Yaw", "sourceyaw", "Source: Pitch", "sourcepitch", "Source: Aperture", "sourceaperture", "Source: Scale", "sourcescale", "Source: Spread", "sourcespread", "Source: Knn", "sourceknn", "Source: Early width", "sourceearlyWidth", "Source: Pan Rev", "sourcepanRev", "Source: Drop factor", "sourcedropFactor", "Source: Rotation X", "sourcerotX", "Source: Rotation Y", "sourcerotY", "Source: Rotation Z", "sourcerotZ", "Source: Omni Gain", "sourceomniGain", "Source: RoomGain 1", "sourceroomGain1", "Source: RoomGain 2", "sourceroomGain2", "Source: RoomGain 3", "sourceroomGain3", "Source: RoomGain 4", "sourceroomGain4", "Source: RoomGain 5", "sourceroomGain5", "Source: RoomGain 6", "sourceroomGain6", "Source: RoomGain 7", "sourceroomGain7", "Source: RoomGain 8", "sourceroomGain8", "Source: RoomGain 9", "sourceroomGain9", "Source: RoomGain 10", "sourceroomGain10", "Room: Gain", "roomGain", "Room: Listener X", "roomListenerX", "Room: Listener Y", "roomListenerY", "Room: Listener Z", "roomListenerZ", "Room: Listener yaw", "roomListenerYaw", "Room: Listener pitch", "roomListenerPitch", "Room: Listener Roll", "roomListenerRoll", "Room: Reverb size", "roomReverbSize", "Room: Reverb start", "roomReverbStart", "Room: Reverb gain", "roomReverbGain", "Room: Reverb factor", "roomReverbFactor", "Room: Reverberance", "roomReverberance", "Room: Heaviness", "roomHeaviness", "Room: Liveness", "roomLiveness", "Room: Early min", "roomEarlyMin", "Room: Early max", "roomEarlyMax", "Room: Early dist", "roomEarlyDist", "Room: Early Shape", "roomEarlyShape", "Room: Cluster Min", "roomClusterMin", "Room: Cluster Max", "roomClusterMax", "Room: Cluster dist", "roomClusterDist", "Room: Air Freq", "roomAirFreq", "Room: Modal density", "roomModalDensity", "Room: Frequency low crossover", "roomFrequencyLow", "Room: Frequency high crossover", "roomFrequencyHigh");
     var valContainer = Remote[remoteIndex].float[index - 1]['container'].addContainer("Values");
     for (var i = 1; i < Remote[remoteIndex].controlsNumber.get() + 1; i++)
     {
