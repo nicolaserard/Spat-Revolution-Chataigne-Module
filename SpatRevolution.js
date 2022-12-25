@@ -370,6 +370,22 @@ var ParameterFromString = {
     }
 };
 
+/**
+ * Get maximum distance for remote
+ */
+function getMaxDistance()
+{
+    if (distanceMax)
+    {
+        var val = distanceMax.get();
+        return val;
+    }
+    else
+    {
+        return 100.0;
+    }
+}
+
 var RangeForParameter = {
     'sourcemute': [0, 1],
     'sourcesolo': [0, 1],
@@ -389,10 +405,10 @@ var RangeForParameter = {
     'sourcelfe4': [-144.5, 24.0],
     'sourceazimuth': [-180.0, 180.0],
     'sourceelevation': [-90.0, 90.0],
-    'sourcedistance': [0, 100.0],
-    'sourcepositionX': [-100.0, 100.0],
-    'sourcepositionY': [-100.0, 100.0],
-    'sourcepositionZ': [-100.0, 100.0],
+    'sourcedistance': [0, getMaxDistance()],
+    'sourcepositionX': [- 1 * getMaxDistance(), getMaxDistance()],
+    'sourcepositionY': [- 1 * getMaxDistance(), getMaxDistance()],
+    'sourcepositionZ': [- 1 * getMaxDistance(), getMaxDistance()],
     'sourcepresence': [0, 120.0],
     'sourceroomPresence': [0.0, 120.0],
     'sourcerunningReverberance': [0.0, 50.0],
@@ -450,8 +466,8 @@ var RangeForParameter = {
 
 };
 
-/* OSCSourceMessage: array of all OSC Source Messages. Use to send OSC message when a value changed.*/
-var OSCSourceMessage = {
+/* OSCSourcesMessage: array of all OSC Source Messages. Use to send OSC message when a value changed.*/
+var OSCSourcesMessage = {
     'gain': function (index, value) {
         local.send("/source/" + index + "/gain", value.get());
     },
@@ -595,7 +611,7 @@ var OSCSourceMessage = {
     }
 };
 //ROOM Parameter
-var OSCRoomMessage = {
+var OSCRoomsMessage = {
     'roomName': function(index, value)
     {
         local.send("/room/" + index + "/name", value.get());
@@ -716,11 +732,12 @@ var OSCRoomMessage = {
 
 var Sources = [];// array of all sources parameters.
 var Rooms = []; // array of all rooms parameters
-var Remote = [];
+var Snapshots = []; // array of all snapshots parameters
+var Remote = [];// array of all the remotes
 var stopSendingOSC = false;
 var stopUpdateForSource = -1;
-var stereo = ['false', 'false', 'false', 'false', 'false', 'false', 'false', 'false', 'false', 'true', 'true', 'true', 'true', 'true', 'false', 'true', 'true', 'true', 'true', 'false', 'true'];
 var transformStereoToMono = false;
+var stereo = ['false', 'false', 'false', 'false', 'false', 'false', 'false', 'false', 'false', 'true', 'true', 'true', 'true', 'true', 'false', 'true', 'true', 'true', 'true', 'false', 'true'];
 var normalizedRange = [-10, 10, -10, 10, -10, 10];
 var stopSendForSource = -1;
 
@@ -742,6 +759,7 @@ function init()
 
     SetupContainer = local.parameters.addContainer("Setup", "Setup value");
     distanceMax = SetupContainer.addFloatParameter("Distance Max", "Distance maximum of the position XYZ and distance for AED, in meters", 100.0, 1.0, 100.0);
+    numberOfRemotes = SetupContainer.addIntParameter("Number of  remotes", "number of remotes", 0, 0, 64);
 
     createSourceContainer();
     createRoomContainer();
@@ -809,11 +827,23 @@ function moduleParameterChanged(param)
     }
     else if (param.name === 'distanceMax')
     {
-        var val = value.get();
+        var val = param.get();
         RangeForParameter['sourcepositionX'] = [-1 * val, val];
         RangeForParameter['sourcepositionY'] = [-1 * val, val];
         RangeForParameter['sourcepositionZ'] = [-1 * val, val];
         RangeForParameter['sourcedistance'] = [-1 * val, val];
+    }
+    else if (param.name === 'numberOfRemotes')
+    {
+        var val = param.get();
+        if (val > Remote.length)
+        {
+            addRemote(val);
+        }
+        else if (val < Remote.length)
+        {
+            deleteRemote(val + 1);
+        }
     }
 }
 
@@ -826,19 +856,7 @@ function moduleValueChanged(value)
     var name = value.name;
     if (value.isParameter())
     {
-        if (name === 'numberOfRemotes')
-        {
-            if (value.get() > Remote.length)
-            {
-                addRemote(value.get());
-            }
-            else if (value.get() < Remote.length)
-            {
-                deleteRemote(value.get() + 1);
-            }
-        }
-
-        else if (name === 'masterIndex')
+        if (name === 'masterIndex')
         {
 
             for (var i = 0; i < Remote.length; i++)
@@ -923,7 +941,7 @@ function moduleValueChanged(value)
         else if (name === 'parameterControlled')
         {
             var remoteIndex = parseInt(value.getParent().getParent().name.substring(6, value.getParent().getParent().name.length)) - 1;
-            Remote[remoteIndex]['parameterControlled'] = value.get();
+            // Remote[remoteIndex]['parameterControlled'] = value.get();
             var localRemoteRange = RemoteRangeFromString[Remote[remoteIndex].remoteRange.get()];
             var cont = value.getParent();
             for (var l = 0; l < Remote[remoteIndex].controlsNumber.get() ; l++)
@@ -1038,7 +1056,7 @@ function moduleValueChanged(value)
         {
             var valueIndex = parseInt(value.name.substring(5, value.getParent().name.length));
             var index = valueIndex + value.getParent().getParent().getParent().getChild("Index").get() * value.getParent().getParent().getParent().getChild("controlsNumber").get();
-            script.log("index: " + index + " stopUpdateForSource: " + stopUpdateForSource);
+            // script.log("index: " + index + " stopUpdateForSource: " + stopUpdateForSource);
             if (index == stopUpdateForSource)
             {
                 return;
@@ -1095,7 +1113,7 @@ function moduleValueChanged(value)
         }
 
         else {
-            if (!stopSendingOSC && OSCSourceMessage[name])
+            if (!stopSendingOSC && OSCSourcesMessage[name])
             {
                 var index = parseInt(value.getParent().name.substring(6, value.getParent().name.length));
                 if (index === 0)
@@ -1104,10 +1122,10 @@ function moduleValueChanged(value)
                 }
                 if (index != stopSendForSource + 1)
                 {
-                    OSCSourceMessage[name](index, value);
+                    OSCSourcesMessage[name](index, value);
                 }
             }
-            else if (!stopSendingOSC && OSCRoomMessage[name])
+            else if (!stopSendingOSC && OSCRoomsMessage[name])
             {
                 var index = parseInt(value.getParent().name.substring(4, value.getParent().name.length));
                 if (index === 0)
@@ -1118,7 +1136,20 @@ function moduleValueChanged(value)
                         index = parseInt(value.getParent().getParent().getParent().name.substring(4, value.getParent().getParent().name.length));
                     }
                 }
-                OSCRoomMessage[name](index, value);
+                OSCRoomsMessage[name](index, value);
+            }
+            else if (!stopSendingOSC && OSCSnapshotsMessage[name])
+            {
+                // var index = parseInt(value.getParent().name.substring(4, value.getParent().name.length));
+                // if (index === 0)
+                // {
+                //     index = parseInt(value.getParent().getParent().name.substring(4, value.getParent().getParent().name.length));
+                //     if (index === 0)
+                //     {
+                //         index = parseInt(value.getParent().getParent().getParent().name.substring(4, value.getParent().getParent().name.length));
+                //     }
+                // }
+                OSCSnapshotsMessage[name](index, value);
             }
         }
     }
@@ -2264,7 +2295,7 @@ function addButtonControllable(remoteIndex, index)
 {
     Remote[remoteIndex].onOff[index - 1] = {'values': []};
     Remote[remoteIndex].onOff[index - 1]['container'] = Remote[remoteIndex].RemoteContainer.addContainer("OnOff" + index);
-    Remote[remoteIndex].onOff[index - 1]['parameterControlled'] = Remote[remoteIndex].onOff[index - 1]['container'].addEnumParameter("Parameter", "parameter", "Source: Mute", "sourcemute", "Source: Solo", "sourcesolo", "Source: Reverb on", "sourcereverbEnable", "Source: Early On", "sourceearlyEnable", "Source: Cluster On", "sourceclusterEnable","Source: Tail On", "sourcetailEnable", "Source: Doppler", "sourcedoppler", "Source: Air Absorption", "sourceairAbsorption", "Source: XY Coordinates mode", "sourcexyCoordinatesMode", "Source: Z Coordinates mode", "sourcezCoordinatesMode", "Source: Drop log", "sourcedropLog", "Room: Mute", "roomMute", "Room: Reverb density", "roomReverbDensity", "Room: Reverb enable", "roomReverbEnable", "Room: Reverb infinite", "roomReverbInfinite", "Room: Air enable", "roomAirEnable");
+    Remote[remoteIndex].onOff[index - 1].parameterControlled = Remote[remoteIndex].onOff[index - 1]['container'].addEnumParameter("Parameter", "parameter", "Source: Mute", "sourcemute", "Source: Solo", "sourcesolo", "Source: Reverb on", "sourcereverbEnable", "Source: Early On", "sourceearlyEnable", "Source: Cluster On", "sourceclusterEnable","Source: Tail On", "sourcetailEnable", "Source: Doppler", "sourcedoppler", "Source: Air Absorption", "sourceairAbsorption", "Source: XY Coordinates mode", "sourcexyCoordinatesMode", "Source: Z Coordinates mode", "sourcezCoordinatesMode", "Source: Drop log", "sourcedropLog", "Room: Mute", "roomMute", "Room: Reverb density", "roomReverbDensity", "Room: Reverb enable", "roomReverbEnable", "Room: Reverb infinite", "roomReverbInfinite", "Room: Air enable", "roomAirEnable");
     var valContainer = Remote[remoteIndex].onOff[index - 1]['container'].addContainer("Values");
     for (var i = 1; i < Remote[remoteIndex].controlsNumber.get() + 1; i++)
     {
@@ -2301,32 +2332,34 @@ function addFloatControllable(remoteIndex, index)
 function addRemote(index)
 {   var i = index - 1;
     // TODO: check if reload is ok if numberOfControls and numberOfButtonControllable and Float are not similar to saved one
-    Remote.push({"index": 0, 'numberOfControls': 4, "numberOfButtonControllable":0, "numberOfFloatControllable":2});//, "container": RemoteContainer, 'controlsNumber': 8, 'onOffNumber': 8, 'floatNumber':8});
+    // script.log("Adding Remote");
+    Remote.push({});
     Remote[i].RemoteContainer = RemotesContainer.addContainer("Remote" + index);
     Remote[i].RemoteContainer.setCollapsed(true);
     Remote[i].indexNumber = Remote[i].RemoteContainer.addIntParameter("Index", "index", 0, 0, 64);
     Remote[i].controlsNumber = Remote[i].RemoteContainer.addIntParameter("Controls number", "controls number", 8 ,1, 50);
-    Remote[i].controlsNumber.setAttribute("readonly", true);
-    Remote[i].onOffNumber = Remote[i].RemoteContainer.addIntParameter("On Off Number", "on off number", 4, 0, 50);
-    Remote[i].onOffNumber.setAttribute("readonly", true);
+    // Remote[i].controlsNumber.setAttribute("readonly", true);
+    Remote[i].onOffNumber = Remote[i].RemoteContainer.addIntParameter("On Off Number", "on off number", 0, 0, 50);
+    // Remote[i].onOffNumber.setAttribute("readonly", true);
     Remote[i].remoteRange = Remote[i].RemoteContainer.addEnumParameter("Remote range", "Range of values of the remote parameter", "MIDI", "midi", "0 / 1", "linear01", "-1 / 1", "linear-11", "Percent", "percent");
     Remote[i].onOff = [];
 
-    addButtonControllable(i, 1);
-    addButtonControllable(i, 2);
-    addButtonControllable(i, 3);
-    addButtonControllable(i, 4);
-    Remote[i].floatNumber = Remote[i].RemoteContainer.addIntParameter("Float Number", "float number", 4, 0, 50);
-    Remote[i].floatNumber.setAttribute("readonly", true);
+    for (var j = 1; j < Remote[i].onOffNumber.get() + 1; j++)
+    {
+        addButtonControllable(i, j);
+    }
+
+    Remote[i].floatNumber = Remote[i].RemoteContainer.addIntParameter("Float Number", "float number", 0, 0, 50);
+    // Remote[i].floatNumber.setAttribute("readonly", true);
     Remote[i].float = [];
-    addFloatControllable(i, 1);
-    addFloatControllable(i, 2);
-    addFloatControllable(i, 3);
-    addFloatControllable(i, 4);
-    // addFloatControllable(i, 5);
-    // addFloatControllable(i, 6);
-    // addFloatControllable(i, 7);
-    // addFloatControllable(i, 8);
+    for (var j = 1; j < Remote[i].floatNumber.get() + 1; j++)
+    {
+        addFloatControllable(i, j);
+    }
+    Remote[i]["index"] = Remote[i].indexNumber.get();
+    Remote[i]['numberOfControls'] = Remote[i].controlsNumber.get();
+    Remote[i]["numberOfButtonControllable"] = Remote[i].onOffNumber.get();
+    Remote[i]["numberOfFloatControllable"] =Remote[i].floatNumber.get();//, "container": RemoteContainer, 'controlsNumber': 8, 'onOffNumber': 8, 'floatNumber':8});
 }
 
 /**
@@ -2348,8 +2381,8 @@ function createRemoteContainer()
     // Add the Remote container
     RemotesContainer = local.values.addContainer("Remotes");
 
-    var numberOfRemotes = RemotesContainer.addIntParameter("number of  remotes", "number of remotes", 4, 0, 64);
-    numberOfRemotes.setAttribute("readonly", true);
+    // var numberOfRemotes = RemotesContainer.addIntParameter("number of  remotes", "number of remotes", 0, 0, 64);
+    // numberOfRemotes.setAttribute("readonly", true);
     var masterIndex = RemotesContainer.addIntParameter("Master index", "master index", 0, 0, 128);
     for (var i = 1; i < numberOfRemotes.get() + 1; i++)
     {
@@ -2424,7 +2457,6 @@ function updateRemote(controlName, args, sourceIndex)
  * Cartesian to Polar function
  * @param {float} value
  */
-
 function CartesianToPolar(value)
 {
     script.log("CartesianToPolar, value: X=" + value[0], ", Y=" + value[1]);
@@ -2466,7 +2498,6 @@ function CartesianToPolar(value)
  * Polar to cartesian function
  * @param {float} value
  */
-
 function PolarToCartesian(value)
 {
     var positionXYZ = [0.0,0.0,2.0];
