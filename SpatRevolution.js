@@ -726,6 +726,26 @@ var OSCRoomsMessage = {
     }
 };
 
+//SNAPSHOTS Parameter
+var OSCSnapshotsMessage = {
+    'globalRecallSources': function (index, value)
+    {
+        local.send("/snapshot/options/recall/sources", value.get());
+    },
+    'globalRecallRooms': function (index, value)
+    {
+        local.send("/snapshot/options/recall/rooms", value.get());
+    },
+    'globalRecallMasters': function (index, value)
+    {
+        local.send("/snapshot/options/recall/masters", value.get());
+    },
+    'globalRecallTiming': function (index, value)
+    {
+        local.send("/snapshot/options/recall/timing", value.get());
+    },
+};
+
 /**
  * Global variables
  */
@@ -740,6 +760,7 @@ var transformStereoToMono = false;
 var stereo = ['false', 'false', 'false', 'false', 'false', 'false', 'false', 'false', 'false', 'true', 'true', 'true', 'true', 'true', 'false', 'true', 'true', 'true', 'true', 'false', 'true'];
 var normalizedRange = [-10, 10, -10, 10, -10, 10];
 var stopSendForSource = -1;
+var isStarted = false;
 
 /* 	===============================================================================
 *	Chataigne common functions
@@ -761,11 +782,27 @@ function init()
     distanceMax = SetupContainer.addFloatParameter("Distance Max", "Distance maximum of the position XYZ and distance for AED, in meters", 100.0, 1.0, 100.0);
     numberOfRemotes = SetupContainer.addIntParameter("Number of  remotes", "number of remotes", 0, 0, 64);
 
+
+    // script.log("Module initialization");
+    createSnapshotsContainer();
     createSourceContainer();
     createRoomContainer();
     createRemoteContainer();
+
+    // var objectproperties = util.getObjectProperties(local.parameters.oscOutputs.oscOutput, true, false);
+    // for (var i = 0; i < objectproperties.length; i++)
+    // {
+    //     script.log(objectproperties[i]);
+    // }
+    // local.parameters.oscInput.localPort.set(local.parameters.oscInput.localPort.get());
+    // local.parameters.oscOutputs.oscOutput.remotePort.set(local.parameters.oscOutputs.oscOutput.remotePort.get());
+    // local.parameters.oscOutputs.oscOutput.remoteHost.set(local.parameters.oscOutputs.oscOutput.remoteHost.get());
+    // local.parameters.oscOutputs.oscOutput.local.set(local.parameters.oscOutputs.oscOutput.local.get());
+
     local.send("/source/*/dump", 0);
-    local.send("/room/1/dump", 0);
+    local.send("/room/*/dump", 0);
+
+    // script.log("End of the module initialization");
 }
 
 /**
@@ -785,8 +822,10 @@ function update(updateRate)
                 if (onOff['values'][l]["target"]) {
                     var target = onOff['values'][l]["target"].getTarget();
                     var oldValue = onOff['values'][l]["value"].get();
-                    if (target && ((remoteRange == 'midi' && target.get() * 127 !=parseInt(oldValue * 127)) | (remoteRange != 'midi' && target.get() != oldValue))) {
+                    if (target && ((remoteRange == 'midi' && parseInt(target.get()) != parseInt(oldValue * 127)) | (remoteRange != 'midi' && target.get() != oldValue))) {
                         var val = (target.get() - RemoteRangeFromString[remoteRange][0]) / (RemoteRangeFromString[remoteRange][1] - RemoteRangeFromString[remoteRange][0]);
+                        // script.log("On update le onoff, remoteRange: "+ remoteRange + ", oldValue: " + parseInt(oldValue * 127) + ", newValue: "+ parseInt(target.get()));
+                        // script.log("On update le onoff, newValue: "+ val);
                         onOff['values'][l]["value"].set(val);
                     }
                 }
@@ -854,6 +893,12 @@ function moduleParameterChanged(param)
 function moduleValueChanged(value)
 {
     var name = value.name;
+    if (!isStarted)
+    {
+        local.send("/source/*/dump", 0);
+        local.send("/room/*/dump", 0);
+        isStarted = true;
+    }
     if (value.isParameter())
     {
         if (name === 'masterIndex')
@@ -947,7 +992,7 @@ function moduleValueChanged(value)
             for (var l = 0; l < Remote[remoteIndex].controlsNumber.get() ; l++)
             {
                 var ind = Remote[remoteIndex].indexNumber.get() * Remote[remoteIndex].controlsNumber.get() + l;
-                script.log(value.get());
+                // script.log(value.get());
                 var val = ParameterFromString[value.get()](ind).get();
                 if (value.get() === 'sourcerotx' | value.get() === 'sourceazimuth' | value.get() === 'sourcepositionX')
                 {
@@ -1061,55 +1106,42 @@ function moduleValueChanged(value)
             {
                 return;
             }
-            var localParameterControlled = value.getParent().getParent().parameterControlled.get();
-            var localRangeForParameter = RangeForParameter[localParameterControlled];
-            var param = ParameterFromString[localParameterControlled](index - 1);
-            var val = value.get() * (localRangeForParameter[1] - localRangeForParameter[0]) + localRangeForParameter[0];
-            if (localParameterControlled === "sourceazimuth" | localParameterControlled === "sourcerotx")
-            {
-                param.set(val, param.get()[1], param.get()[2]);
-            }
-            else if (localParameterControlled === "sourceelevation" | localParameterControlled === "sourceroty")
-            {
-                param.set(param.get()[0], val, param.get()[2]);
-            }
-            else if (localParameterControlled === "sourcedistance" | localParameterControlled === "sourcerotz")
-            {
-                param.set(param.get()[0], param.get()[1], val);
-            }
-            else if (localParameterControlled === "sourcepositionX")
-            {
-                var cartesian = PolarToCartesian(param.get());
-                param.set(CartesianToPolar([val, cartesian[1], cartesian[2]]));
+            if (value.getParent().getParent().parameterControlled) {
+                var localParameterControlled = value.getParent().getParent().parameterControlled.get();
+                // script.log("LocalParameterControlled: " + localParameterControlled);
+                var localRangeForParameter = RangeForParameter[localParameterControlled];
+                var param = ParameterFromString[localParameterControlled](index - 1);
+                var val = value.get() * (localRangeForParameter[1] - localRangeForParameter[0]) + localRangeForParameter[0];
+                if (localParameterControlled === "sourceazimuth" | localParameterControlled === "sourcerotx") {
+                    param.set(val, param.get()[1], param.get()[2]);
+                } else if (localParameterControlled === "sourceelevation" | localParameterControlled === "sourceroty") {
+                    param.set(param.get()[0], val, param.get()[2]);
+                } else if (localParameterControlled === "sourcedistance" | localParameterControlled === "sourcerotz") {
+                    param.set(param.get()[0], param.get()[1], val);
+                } else if (localParameterControlled === "sourcepositionX") {
+                    var cartesian = PolarToCartesian(param.get());
+                    param.set(CartesianToPolar([val, cartesian[1], cartesian[2]]));
 
-            }
-            else if (localParameterControlled === "sourcepositionY")
-            {
-                var cartesian = PolarToCartesian(param.get());
-                param.set(CartesianToPolar([cartesian[0], val, cartesian[2]]));
-            }
-            else if (localParameterControlled === "sourcepositionZ")
-            {
-                var cartesian = PolarToCartesian(param.get());
-                param.set(CartesianToPolar([cartesian[0], cartesian[1], val]));
-            }
-            else
-            {
-                param.set(val);
-            }
+                } else if (localParameterControlled === "sourcepositionY") {
+                    var cartesian = PolarToCartesian(param.get());
+                    param.set(CartesianToPolar([cartesian[0], val, cartesian[2]]));
+                } else if (localParameterControlled === "sourcepositionZ") {
+                    var cartesian = PolarToCartesian(param.get());
+                    param.set(CartesianToPolar([cartesian[0], cartesian[1], val]));
+                } else {
+                    param.set(val);
+                }
 
-            stopSendingOSC = true;
-            stopUpdateForSource = index;
-            if (localParameterControlled === "sourceazimuth" | localParameterControlled === "sourceelevation" | localParameterControlled === "sourcedistance")
-            {
-                updateRemote("azimuth" , param.getParent().getChild("positionAED").get(), index);
+                stopSendingOSC = true;
+                stopUpdateForSource = index;
+                if (localParameterControlled === "sourceazimuth" | localParameterControlled === "sourceelevation" | localParameterControlled === "sourcedistance") {
+                    updateRemote("azimuth", param.getParent().getChild("positionAED").get(), index);
+                } else if (localParameterControlled === "sourcepositionX" | localParameterControlled === "sourcepositionY" | localParameterControlled === "sourcepositionZ") {
+                    updateRemote("positionX", param.getParent().getChild("positionAED").get(), index);
+                }
+                stopSendingOSC = false;
+                stopUpdateForSource = -1;
             }
-            else if (localParameterControlled === "sourcepositionX" | localParameterControlled === "sourcepositionY" | localParameterControlled === "sourcepositionZ")
-            {
-                updateRemote("positionX", param.getParent().getChild("positionAED").get(), index);
-            }
-            stopSendingOSC = false;
-            stopUpdateForSource = -1;
         }
 
         else {
@@ -2021,150 +2053,150 @@ function createSourceContainer()
         Sources[i].SourceContainer = SourcesContainer.addContainer("Source " + index);
 
         Sources[i].sourceName = Sources[i].SourceContainer.addStringParameter("Source Name", "Source name", "Source name");
-        Sources[i].sourceName.setAttribute("readonly", true);
+        // Sources[i].sourceName.setAttribute("readonly", true);
 
         Sources[i].gain = Sources[i].SourceContainer.addFloatParameter("Gain", "Gain", 0, -144.5, 24);
-        Sources[i].gain.setAttribute("readonly", true);
+        // Sources[i].gain.setAttribute("readonly", true);
 
         Sources[i].mute = Sources[i].SourceContainer.addBoolParameter("Mute", "Mute", 0);
-        Sources[i].mute.setAttribute("readonly", true);
+        // Sources[i].mute.setAttribute("readonly", true);
 
         Sources[i].solo = Sources[i].SourceContainer.addBoolParameter("Solo", "Solo", 0);
-        Sources[i].solo.setAttribute("readonly", true);
+        // Sources[i].solo.setAttribute("readonly", true);
 
         Sources[i].lfe1 = Sources[i].SourceContainer.addFloatParameter("LFE 1", "LFE level", -144.5, -144.5, 24);
-        Sources[i].lfe1.setAttribute("readonly", true);
+        // Sources[i].lfe1.setAttribute("readonly", true);
 
         Sources[i].lfe2 = Sources[i].SourceContainer.addFloatParameter("LFE 2", "LFE level", -144.5, -144.5, 24);
-        Sources[i].lfe2.setAttribute("readonly", true);
+        // Sources[i].lfe2.setAttribute("readonly", true);
 
         Sources[i].lfe3 = Sources[i].SourceContainer.addFloatParameter("LFE 3", "LFE level", -144.5, -144.5, 24);
-        Sources[i].lfe3.setAttribute("readonly", true);
+        // Sources[i].lfe3.setAttribute("readonly", true);
 
         Sources[i].lfe4 = Sources[i].SourceContainer.addFloatParameter("LFE 4", "LFE level", -144.5, -144.5, 24);
-        Sources[i].lfe4.setAttribute("readonly", true);
+        // Sources[i].lfe4.setAttribute("readonly", true);
 
         Sources[i].positionAED = Sources[i].SourceContainer.addPoint3DParameter("Position AED", "PositionAED", [0.0, 0.0, 2.0]);
-        Sources[i].positionAED.setAttribute("readonly", true);
+        // Sources[i].positionAED.setAttribute("readonly", true);
 
         Sources[i].reverbSourceContainer = Sources[i].SourceContainer.addContainer("Reverb");
         Sources[i].reverbEnable = Sources[i].reverbSourceContainer.addBoolParameter("Reverb Enable", "Reverb Enable", 1);
-        Sources[i].reverbEnable.setAttribute("readonly", true);
+        // Sources[i].reverbEnable.setAttribute("readonly", true);
 
         Sources[i].earlyEnable = Sources[i].reverbSourceContainer.addBoolParameter("Early Enable", "Early Enable", 1);
-        Sources[i].earlyEnable.setAttribute("readonly", true);
+        // Sources[i].earlyEnable.setAttribute("readonly", true);
 
         Sources[i].clusterEnable = Sources[i].reverbSourceContainer.addBoolParameter("Cluster Enable", "Cluster Enable", 1);
-        Sources[i].clusterEnable.setAttribute("readonly", true);
+        // Sources[i].clusterEnable.setAttribute("readonly", true);
 
         Sources[i].tailEnable = Sources[i].reverbSourceContainer.addBoolParameter("Tail Enable", "Tail Enable", 1);
-        Sources[i].tailEnable.setAttribute("readonly", true);
+        // Sources[i].tailEnable.setAttribute("readonly", true);
 
         Sources[i].perceptualFactorSourceContainer = Sources[i].SourceContainer.addContainer("Perceptual Factors");
         Sources[i].presence = Sources[i].perceptualFactorSourceContainer.addIntParameter("Presence", "Source Presence", 80, 0, 120);
-        Sources[i].presence.setAttribute("readonly", true);
+        // Sources[i].presence.setAttribute("readonly", true);
 
         Sources[i].roomPresence = Sources[i].perceptualFactorSourceContainer.addIntParameter("Room presence", "Room Presence", 48, 0, 120);
-        Sources[i].roomPresence.setAttribute("readonly", true);
+        // Sources[i].roomPresence.setAttribute("readonly", true);
 
         Sources[i].runningReverberance = Sources[i].perceptualFactorSourceContainer.addIntParameter("Running Reverberance", "Running Reverberance", 34, 0, 50);
-        Sources[i].runningReverberance.setAttribute("readonly", true);
+        // Sources[i].runningReverberance.setAttribute("readonly", true);
 
         Sources[i].envelopment = Sources[i].perceptualFactorSourceContainer.addIntParameter("Envelopment", "Envelopment", 25, 0, 50);
-        Sources[i].envelopment.setAttribute("readonly", true);
+        // Sources[i].envelopment.setAttribute("readonly", true);
 
         Sources[i].warmth = Sources[i].perceptualFactorSourceContainer.addIntParameter("Warmth", "Warmth", 30, 0, 60);
-        Sources[i].warmth.setAttribute("readonly", true);
+        // Sources[i].warmth.setAttribute("readonly", true);
 
         Sources[i].brilliance = Sources[i].perceptualFactorSourceContainer.addIntParameter("Brilliance", "Brilliance", 30, 0, 60);
-        Sources[i].brilliance.setAttribute("readonly", true);
+        // Sources[i].brilliance.setAttribute("readonly", true);
 
         Sources[i].yaw = Sources[i].SourceContainer.addFloatParameter("Yaw", "Yaw", -180, 0, 180);
-        Sources[i].yaw.setAttribute("readonly", true);
+        // Sources[i].yaw.setAttribute("readonly", true);
 
         Sources[i].pitch = Sources[i].SourceContainer.addFloatParameter("Pitch", "Pitch", -90, 0, 90);
-        Sources[i].pitch.setAttribute("readonly", true);
+        // Sources[i].pitch.setAttribute("readonly", true);
 
         Sources[i].aperture = Sources[i].SourceContainer.addFloatParameter("Aperture", "Aperture", 10, 0, 180);
-        Sources[i].aperture.setAttribute("readonly", true);
+        // Sources[i].aperture.setAttribute("readonly", true);
 
         Sources[i].barycentricSourceContainer = Sources[i].SourceContainer.addContainer("Barycentric");
         Sources[i].scale = Sources[i].barycentricSourceContainer.addFloatParameter("Scale", "Scale", 1.0, 0.01, 100.0);
-        Sources[i].scale.setAttribute("readonly", true);
+        // Sources[i].scale.setAttribute("readonly", true);
         Sources[i].scale.set(1.0);
 
         Sources[i].rotationXYZ = Sources[i].barycentricSourceContainer.addPoint3DParameter("Rotation XYZ", "Rotation XYZ", [0.0, 0.0, 0.0]);
-        Sources[i].rotationXYZ.setAttribute("readonly", true);
+        // Sources[i].rotationXYZ.setAttribute("readonly", true);
 
         Sources[i].spreadingSourceContainer = Sources[i].SourceContainer.addContainer("Spreading");
         Sources[i].spread = Sources[i].spreadingSourceContainer.addFloatParameter("Spread", "Spread", 0, 0, 100);
-        Sources[i].spread.setAttribute("readonly", true);
+        // Sources[i].spread.setAttribute("readonly", true);
 
         Sources[i].knn = Sources[i].spreadingSourceContainer.addIntParameter("Knn", "Knn", 0, 0, 100);
-        Sources[i].knn.setAttribute("readonly", true);
+        // Sources[i].knn.setAttribute("readonly", true);
 
         Sources[i].earlyWidth = Sources[i].reverbSourceContainer.addFloatParameter("Early Width", "Early Width", 10, 0, 100);
-        Sources[i].earlyWidth.setAttribute("readonly", true);
+        // Sources[i].earlyWidth.setAttribute("readonly", true);
 
         Sources[i].panRev = Sources[i].reverbSourceContainer.addFloatParameter("PanRev", "Pan Rev", 0, 0, 100);
-        Sources[i].panRev.setAttribute("readonly", true);
+        // Sources[i].panRev.setAttribute("readonly", true);
 
         Sources[i].optionsSourceContainer = Sources[i].SourceContainer.addContainer("Options");
         Sources[i].doppler = Sources[i].optionsSourceContainer.addBoolParameter("Doppler", "Doppler", 0);
-        Sources[i].doppler.setAttribute("readonly", true);
+        // Sources[i].doppler.setAttribute("readonly", true);
 
         Sources[i].airAbsorption = Sources[i].optionsSourceContainer.addBoolParameter("Air Absorption", "Air Absorption", 1);
-        Sources[i].airAbsorption.setAttribute("readonly", true);
+        // Sources[i].airAbsorption.setAttribute("readonly", true);
 
         Sources[i].xyCoordinatesMode = Sources[i].optionsSourceContainer.addBoolParameter("XY Coordinates Mode", "Coordinates Mode", 0);
-        Sources[i].xyCoordinatesMode.setAttribute("readonly", true);
+        // Sources[i].xyCoordinatesMode.setAttribute("readonly", true);
 
         Sources[i].zCoordinatesMode = Sources[i].optionsSourceContainer.addBoolParameter("Z Coordinates Mode", "Coordinates Mode", 0);
-        Sources[i].zCoordinatesMode.setAttribute("readonly", true);
+        // Sources[i].zCoordinatesMode.setAttribute("readonly", true);
 
         Sources[i].dropLog = Sources[i].optionsSourceContainer.addBoolParameter("Drop Log", "Drop Log", 0);
-        Sources[i].dropLog.setAttribute("readonly", true);
+        // Sources[i].dropLog.setAttribute("readonly", true);
 
         Sources[i].dropFactor = Sources[i].optionsSourceContainer.addFloatParameter("Drop Factor", "Drop Factor", 6.0, -10.0, 30.0);
-        Sources[i].dropFactor.setAttribute("readonly", true);
+        // Sources[i].dropFactor.setAttribute("readonly", true);
 
         Sources[i].radius = Sources[i].optionsSourceContainer.addFloatParameter("Radius", "Radius", 1.0, 0.001, 100.0);
-        Sources[i].radius.setAttribute("readonly", true);
+        // Sources[i].radius.setAttribute("readonly", true);
 
         Sources[i].OmniSourceContainer = Sources[i].SourceContainer.addContainer("Omni");
         Sources[i].omniGain = Sources[i].OmniSourceContainer.addFloatParameter("Omni Gain", "Omni Gain", 0, -144.5, 24);
-        Sources[i].omniGain.setAttribute("readonly", true);
+        // Sources[i].omniGain.setAttribute("readonly", true);
 
         Sources[i].roomGainsSourceContainer = Sources[i].SourceContainer.addContainer("Room Gains");
         Sources[i].roomGain1 = Sources[i].roomGainsSourceContainer.addFloatParameter("Room Gain 1", "Room Gain 1", 0, -144.5, 24);
-        Sources[i].roomGain1.setAttribute("readonly", true);
+        // Sources[i].roomGain1.setAttribute("readonly", true);
 
         Sources[i].roomGain2 = Sources[i].roomGainsSourceContainer.addFloatParameter("Room Gain 2", "Room Gain 2", 0, -144.5, 24);
-        Sources[i].roomGain2.setAttribute("readonly", true);
+        // Sources[i].roomGain2.setAttribute("readonly", true);
 
         Sources[i].roomGain3 = Sources[i].roomGainsSourceContainer.addFloatParameter("Room Gain 3", "Room Gain 3", 0, -144.5, 24);
-        Sources[i].roomGain3.setAttribute("readonly", true);
+        // Sources[i].roomGain3.setAttribute("readonly", true);
 
         Sources[i].roomGain4 = Sources[i].roomGainsSourceContainer.addFloatParameter("Room Gain 4", "Room Gain 4", 0, -144.5, 24);
-        Sources[i].roomGain4.setAttribute("readonly", true);
+        // Sources[i].roomGain4.setAttribute("readonly", true);
 
         Sources[i].roomGain5 = Sources[i].roomGainsSourceContainer.addFloatParameter("Room Gain 5", "Room Gain 5", 0, -144.5, 24);
-        Sources[i].roomGain5.setAttribute("readonly", true);
+        // Sources[i].roomGain5.setAttribute("readonly", true);
 
         Sources[i].roomGain6 = Sources[i].roomGainsSourceContainer.addFloatParameter("Room Gain 6", "Room Gain 6", 0, -144.5, 24);
-        Sources[i].roomGain6.setAttribute("readonly", true);
+        // Sources[i].roomGain6.setAttribute("readonly", true);
 
         Sources[i].roomGain7 = Sources[i].roomGainsSourceContainer.addFloatParameter("Room Gain 7", "Room Gain 7", 0, -144.5, 24);
-        Sources[i].roomGain7.setAttribute("readonly", true);
+        // Sources[i].roomGain7.setAttribute("readonly", true);
 
         Sources[i].roomGain8 = Sources[i].roomGainsSourceContainer.addFloatParameter("Room Gain 8", "Room Gain 8", 0, -144.5, 24);
-        Sources[i].roomGain8.setAttribute("readonly", true);
+        // Sources[i].roomGain8.setAttribute("readonly", true);
 
         Sources[i].roomGain9 = Sources[i].roomGainsSourceContainer.addFloatParameter("Room Gain 9", "Room Gain 9", 0, -144.5, 24);
-        Sources[i].roomGain9.setAttribute("readonly", true);
+        // Sources[i].roomGain9.setAttribute("readonly", true);
 
         Sources[i].roomGain10 = Sources[i].roomGainsSourceContainer.addFloatParameter("Room Gain 10", "Room Gain 10", 0, -144.5, 24);
-        Sources[i].roomGain10.setAttribute("readonly", true);
+        // Sources[i].roomGain10.setAttribute("readonly", true);
 
         Sources[i].reverbSourceContainer.setCollapsed(true);
         Sources[i].perceptualFactorSourceContainer.setCollapsed(true);
@@ -2191,90 +2223,90 @@ function createRoomContainer()
         Rooms[i].RoomContainer = RoomsContainer.addContainer("Room " + index);
 
         Rooms[i].roomName = Rooms[i].RoomContainer.addStringParameter("Room Name", "Room name", "Room name");
-        Rooms[i].roomName.setAttribute("readonly", true);
+        // Rooms[i].roomName.setAttribute("readonly", true);
 
         Rooms[i].gainRoom = Rooms[i].RoomContainer.addFloatParameter("Gain Room", "Matrix input level", 0, -144.5, 24);
-        Rooms[i].gainRoom.setAttribute("readonly", true);
+        // Rooms[i].gainRoom.setAttribute("readonly", true);
 
         Rooms[i].muteRoom = Rooms[i].RoomContainer.addBoolParameter("Mute Room", "Mute", 0);
-        Rooms[i].muteRoom.setAttribute("readonly", true);
+        // Rooms[i].muteRoom.setAttribute("readonly", true);
 
         Rooms[i].listenerPosition = Rooms[i].RoomContainer.addPoint3DParameter("Listener Position", "Listener Position", [0.0, 0.0, 0.0]);
-        Rooms[i].listenerPosition.setAttribute("readonly", true);
+        // Rooms[i].listenerPosition.setAttribute("readonly", true);
 
         Rooms[i].listenerOrientation = Rooms[i].RoomContainer.addPoint3DParameter("Listener Orientation", "Listener Orientation", [0.0, 0.0, 0.0]);
-        Rooms[i].listenerOrientation.setAttribute("readonly", true);
+        // Rooms[i].listenerOrientation.setAttribute("readonly", true);
 
         Rooms[i].roomReverbContainer = Rooms[i].RoomContainer.addContainer("Reverb");
         Rooms[i].reverbDensity = Rooms[i].roomReverbContainer.addBoolParameter("Reverb Density", "Reverb Density", 1);
-        Rooms[i].reverbDensity.setAttribute("readonly", true);
+        // Rooms[i].reverbDensity.setAttribute("readonly", true);
 
         Rooms[i].reverbEnableRoom = Rooms[i].roomReverbContainer.addBoolParameter("Reverb Enable Room", "Reverb Enable", 1);
-        Rooms[i].reverbEnableRoom.setAttribute("readonly", true);
+        // Rooms[i].reverbEnableRoom.setAttribute("readonly", true);
 
         Rooms[i].roomSize = Rooms[i].roomReverbContainer.addFloatParameter("Room Size", "Room Size", 2500, 10, 15000);
-        Rooms[i].roomSize.setAttribute("readonly", true);
+        // Rooms[i].roomSize.setAttribute("readonly", true);
 
         Rooms[i].reverbStart = Rooms[i].roomReverbContainer.addFloatParameter("Reverb Start", "Reverb Start", 80.0, 8.0, 500.0);
-        Rooms[i].reverbStart.setAttribute("readonly", true);
+        // Rooms[i].reverbStart.setAttribute("readonly", true);
 
         Rooms[i].reverbGain = Rooms[i].roomReverbContainer.addFloatParameter("Reverb Gain", "Reverb Gain", 0, -24.0, 24.0);
-        Rooms[i].reverbGain.setAttribute("readonly", true);
+        // Rooms[i].reverbGain.setAttribute("readonly", true);
 
         Rooms[i].reverbFactor = Rooms[i].roomReverbContainer.addFloatParameter("Reverb Factor", "Reverb Factor", 1.0, 0.10, 2.0);
-        Rooms[i].reverbFactor.setAttribute("readonly", true);
+        // Rooms[i].reverbFactor.setAttribute("readonly", true);
 
         Rooms[i].perceptualFactorRoomContainer = Rooms[i].roomReverbContainer.addContainer("Perceptual Factors");
         Rooms[i].reverberance = Rooms[i].perceptualFactorRoomContainer.addFloatParameter("Reverberance", "Reverberance", 65.0, 5.0, 100.0);
-        Rooms[i].reverberance.setAttribute("readonly", true);
+        // Rooms[i].reverberance.setAttribute("readonly", true);
 
         Rooms[i].heaviness = Rooms[i].perceptualFactorRoomContainer.addFloatParameter("Heaviness", "Heaviness", 25.0, 5.0, 50.0);
-        Rooms[i].heaviness.setAttribute("readonly", true);
+        // Rooms[i].heaviness.setAttribute("readonly", true);
 
         Rooms[i].liveness = Rooms[i].perceptualFactorRoomContainer.addFloatParameter("Liveness", "Liveness", 35.0, 5.0, 50.0);
-        Rooms[i].liveness.setAttribute("readonly", true);
+        // Rooms[i].liveness.setAttribute("readonly", true);
 
         Rooms[i].roomResponseRoomContainer = Rooms[i].roomReverbContainer.addContainer("Room Response");
         Rooms[i].earlyMin = Rooms[i].roomResponseRoomContainer.addFloatParameter("Early Min", "Early Min", 24.2, 1.0, 120.0);
-        Rooms[i].earlyMin.setAttribute("readonly", true);
+        // Rooms[i].earlyMin.setAttribute("readonly", true);
 
         Rooms[i].earlyMax = Rooms[i].roomResponseRoomContainer.addFloatParameter("Early Max", "Early Max", 40.0, 1.0, 120.0);
-        Rooms[i].earlyMax.setAttribute("readonly", true);
+        // Rooms[i].earlyMax.setAttribute("readonly", true);
 
         Rooms[i].earlyDist = Rooms[i].roomResponseRoomContainer.addFloatParameter("Early Dist", "Early Dist", 0.5, 0.1, 0.9);
-        Rooms[i].earlyDist.setAttribute("readonly", true);
+        // Rooms[i].earlyDist.setAttribute("readonly", true);
 
         Rooms[i].earlyShape = Rooms[i].roomResponseRoomContainer.addFloatParameter("Early Shape", "Early Shape", 0.5, 0.1, 0.9);
-        Rooms[i].earlyShape.setAttribute("readonly", true);
+        // Rooms[i].earlyShape.setAttribute("readonly", true);
 
         Rooms[i].clusterMin = Rooms[i].roomResponseRoomContainer.addFloatParameter("Cluster Min", "Cluster Min", 36.0, 1.0, 300.0);
-        Rooms[i].clusterMin.setAttribute("readonly", true);
+        // Rooms[i].clusterMin.setAttribute("readonly", true);
 
         Rooms[i].clusterMax = Rooms[i].roomResponseRoomContainer.addFloatParameter("Cluster Max", "Cluster Max", 90.0, 1.0, 300.0);
-        Rooms[i].clusterMax.setAttribute("readonly", true);
+        // Rooms[i].clusterMax.setAttribute("readonly", true);
 
         Rooms[i].clusterDist = Rooms[i].roomResponseRoomContainer.addFloatParameter("Cluster Dist", "Cluster Dist", 0.5, 0.1, 0.9);
-        Rooms[i].clusterDist.setAttribute("readonly", true);
+        // Rooms[i].clusterDist.setAttribute("readonly", true);
 
         Rooms[i].reverbOptionsRoomContainer = Rooms[i].roomReverbContainer.addContainer("Options");
         Rooms[i].reverbInfinite = Rooms[i].reverbOptionsRoomContainer.addBoolParameter("Reverb Infinite", "Reverb Infinite", 0);
-        Rooms[i].reverbInfinite.setAttribute("readonly", true);
+        // Rooms[i].reverbInfinite.setAttribute("readonly", true);
 
         Rooms[i].airEnable = Rooms[i].reverbOptionsRoomContainer.addBoolParameter("Air Enable", "Air Enable", 1);
-        Rooms[i].airEnable.setAttribute("readonly", true);
+        // Rooms[i].airEnable.setAttribute("readonly", true);
 
         Rooms[i].airFreq = Rooms[i].reverbOptionsRoomContainer.addFloatParameter("Air Freq", "Air absorption Frequency", 10000, 20, 20000);
-        Rooms[i].airFreq.setAttribute("readonly", true);
+        // Rooms[i].airFreq.setAttribute("readonly", true);
 
         Rooms[i].modalDensity = Rooms[i].reverbOptionsRoomContainer.addFloatParameter("Modal Density", "Modal Density", 1.0, 0.2, 2.0);
-        Rooms[i].modalDensity.setAttribute("readonly", true);
+        // Rooms[i].modalDensity.setAttribute("readonly", true);
 
         Rooms[i].reverbCrossoverRoomContainer = Rooms[i].roomReverbContainer.addContainer("Crossover");
         Rooms[i].frequencyLow = Rooms[i].reverbCrossoverRoomContainer.addFloatParameter("Frequency Low", "Frequency Low", 177.0, 20.0, 20000.0);
-        Rooms[i].frequencyLow.setAttribute("readonly", true);
+        // Rooms[i].frequencyLow.setAttribute("readonly", true);
 
         Rooms[i].frequencyHigh = Rooms[i].reverbCrossoverRoomContainer.addFloatParameter("Frequency High", "Frequency High", 5657.0, 20.0, 20000.0);
-        Rooms[i].frequencyHigh.setAttribute("readonly", true);
+        // Rooms[i].frequencyHigh.setAttribute("readonly", true);
 
         Rooms[i].roomReverbContainer.setCollapsed(true);
         Rooms[i].perceptualFactorRoomContainer.setCollapsed(true);
@@ -2283,7 +2315,25 @@ function createRoomContainer()
         Rooms[i].reverbCrossoverRoomContainer.setCollapsed(true);
         Rooms[i].RoomContainer.setCollapsed(true);
     }
-    local.scripts.setCollapsed(true);
+
+}
+
+function createSnapshotsContainer() {
+    // Add the snapshot container
+    SnapshotsContainer = local.values.addContainer("Snapshots container");
+    SnapshotsGlobalRecallTiming = SnapshotsContainer.addFloatParameter("Global recall timing", "global recall timing", 1.0, 0.0, 600.0);
+    SnapshotsGlobalRecallSources = SnapshotsContainer.addBoolParameter("Global recall sources", "global recall sources", 1);
+    SnapshotsGlobalRecallRooms = SnapshotsContainer.addBoolParameter("Global recall rooms", "global recall rooms", 0);
+    SnapshotsGlobalRecallMasters = SnapshotsContainer.addBoolParameter("Global recall masters", "global recall masters", 0);
+
+    for (var i = 0; i < 24; i++) {
+        var index = i + 1;
+        Snapshots.push({
+            "index": index
+        });
+    }
+
+    SnapshotsContainer.setCollapsed(true);
 }
 
 /**
@@ -2295,7 +2345,7 @@ function addButtonControllable(remoteIndex, index)
 {
     Remote[remoteIndex].onOff[index - 1] = {'values': []};
     Remote[remoteIndex].onOff[index - 1]['container'] = Remote[remoteIndex].RemoteContainer.addContainer("OnOff" + index);
-    Remote[remoteIndex].onOff[index - 1].parameterControlled = Remote[remoteIndex].onOff[index - 1]['container'].addEnumParameter("Parameter", "parameter", "Source: Mute", "sourcemute", "Source: Solo", "sourcesolo", "Source: Reverb on", "sourcereverbEnable", "Source: Early On", "sourceearlyEnable", "Source: Cluster On", "sourceclusterEnable","Source: Tail On", "sourcetailEnable", "Source: Doppler", "sourcedoppler", "Source: Air Absorption", "sourceairAbsorption", "Source: XY Coordinates mode", "sourcexyCoordinatesMode", "Source: Z Coordinates mode", "sourcezCoordinatesMode", "Source: Drop log", "sourcedropLog", "Room: Mute", "roomMute", "Room: Reverb density", "roomReverbDensity", "Room: Reverb enable", "roomReverbEnable", "Room: Reverb infinite", "roomReverbInfinite", "Room: Air enable", "roomAirEnable");
+    Remote[remoteIndex].onOff[index - 1].parameterControlled = Remote[remoteIndex].onOff[index - 1]['container'].addEnumParameter("Parameter controlled", "parameterControlled", "Source: Mute", "sourcemute", "Source: Solo", "sourcesolo", "Source: Reverb on", "sourcereverbEnable", "Source: Early On", "sourceearlyEnable", "Source: Cluster On", "sourceclusterEnable","Source: Tail On", "sourcetailEnable", "Source: Doppler", "sourcedoppler", "Source: Air Absorption", "sourceairAbsorption", "Source: XY Coordinates mode", "sourcexyCoordinatesMode", "Source: Z Coordinates mode", "sourcezCoordinatesMode", "Source: Drop log", "sourcedropLog", "Room: Mute", "roomMute", "Room: Reverb density", "roomReverbDensity", "Room: Reverb enable", "roomReverbEnable", "Room: Reverb infinite", "roomReverbInfinite", "Room: Air enable", "roomAirEnable");
     var valContainer = Remote[remoteIndex].onOff[index - 1]['container'].addContainer("Values");
     for (var i = 1; i < Remote[remoteIndex].controlsNumber.get() + 1; i++)
     {
@@ -2404,7 +2454,7 @@ function updateRemote(controlName, args, sourceIndex)
         if (Math.floor(sourceIndex / Remote[remoteIndex].controlsNumber.get()) == Remote[remoteIndex].indexNumber.get()) {
             // script.log("updateRemote index: " + sourceIndex);
             for (var onOffIndex = 0; onOffIndex < Remote[remoteIndex].onOffNumber.get(); onOffIndex++) {
-                if (Remote[remoteIndex].onOff[onOffIndex].parameterControlled.get() === controlName)
+                if (Remote[remoteIndex].onOff[onOffIndex].parameterControlled && Remote[remoteIndex].onOff[onOffIndex].parameterControlled.get() === controlName)
                 {
                     var remoteRange = RemoteRangeFromString[Remote[remoteIndex].remoteRange.get()];
                     var target = Remote[remoteIndex].onOff[onOffIndex]['values'][sourceIndex % Remote[remoteIndex].controlsNumber.get()]['target'].getTarget();
@@ -2416,34 +2466,35 @@ function updateRemote(controlName, args, sourceIndex)
             }
             for (var floatIndex = 0; floatIndex < Remote[remoteIndex].floatNumber.get(); floatIndex++) {
                 // script.log(Remote[remoteIndex].float[floatIndex]['parameterControlled'].get());
-                var parameterControlled = Remote[remoteIndex].float[floatIndex].parameterControlled.get();
-                if (parameterControlled === controlName | (parameterControlled === 'sourceazimuth' | parameterControlled === 'sourceelevation' | parameterControlled === 'sourcedistance' | (parameterControlled === 'sourcepositionX' | parameterControlled === 'sourcepositionY' | parameterControlled === 'sourcepositionZ') && controlName === 'sourceposition') | ((controlName === 'sourceazimuth' | controlName ===  'sourceelevation' | controlName === 'sourcedistance')  && (parameterControlled === 'sourcepositionX' | parameterControlled === 'sourcepositionY' | parameterControlled === 'sourcepositionZ')) | ((controlName === 'sourcepositionX' | controlName === 'sourcepositionY' | controlName === 'sourcepositionZ')  && (parameterControlled === 'sourceazimuth' | parameterControlled === 'sourceelevation' | parameterControlled === 'sourcedistance'))) {
-                    var arg = args[0];
-                    if (parameterControlled === "sourcepositionX") {
-                        // script.log("position AED; "+ Sources[sourceIndex - 1].positionAED.get()[0] +Sources[sourceIndex - 1].positionAED.get()[1] +Sources[sourceIndex - 1].positionAED.get()[2]  + "position XYZ: " + PolarToCartesian(Sources[sourceIndex - 1].positionAED.get())[0]+ PolarToCartesian(Sources[sourceIndex - 1].positionAED.get())[1]+ PolarToCartesian(Sources[sourceIndex - 1].positionAED.get()[2]));
-                        arg = PolarToCartesian(Sources[sourceIndex].positionAED.get())[0];
-                    } else if (parameterControlled === "sourcepositionY") {
-                        arg = PolarToCartesian(Sources[sourceIndex].positionAED.get())[1];
-                    } else if (parameterControlled === "sourcepositionZ") {
-                        arg = PolarToCartesian(Sources[sourceIndex].positionAED.get())[2];
-                    } else if (parameterControlled === "sourceelevation") {
-                        arg = Sources[sourceIndex].positionAED.get()[1];
-                    } else if (parameterControlled === "sourcedistance") {
-                        arg = Sources[sourceIndex].positionAED.get()[2];
-                    }
-                    var localRangeForParameter = RangeForParameter[parameterControlled];
-                    var val = (arg - localRangeForParameter[0]) / (localRangeForParameter[1] - localRangeForParameter[0]);
-                    var target = Remote[remoteIndex].float[floatIndex]['values'][sourceIndex % Remote[remoteIndex].controlsNumber.get()]["target"];
-                    if (target)
-                    {
-                        var remoteRange = RemoteRangeFromString[Remote[remoteIndex].remoteRange.get()];
-                        var target = target.getTarget();
-                        if (target) {
-                            target.set(val * 127);
-                            target.set(val * (remoteRange[1] - remoteRange[0]) + remoteRange[0]);
+                if (Remote[remoteIndex].float[floatIndex].parameterControlled) {
+                    var parameterControlled = Remote[remoteIndex].float[floatIndex].parameterControlled.get();
+                    if (parameterControlled === controlName | (parameterControlled === 'sourceazimuth' | parameterControlled === 'sourceelevation' | parameterControlled === 'sourcedistance' | (parameterControlled === 'sourcepositionX' | parameterControlled === 'sourcepositionY' | parameterControlled === 'sourcepositionZ') && controlName === 'sourceposition') | ((controlName === 'sourceazimuth' | controlName === 'sourceelevation' | controlName === 'sourcedistance') && (parameterControlled === 'sourcepositionX' | parameterControlled === 'sourcepositionY' | parameterControlled === 'sourcepositionZ')) | ((controlName === 'sourcepositionX' | controlName === 'sourcepositionY' | controlName === 'sourcepositionZ') && (parameterControlled === 'sourceazimuth' | parameterControlled === 'sourceelevation' | parameterControlled === 'sourcedistance'))) {
+                        var arg = args[0];
+                        if (parameterControlled === "sourcepositionX") {
+                            // script.log("position AED; "+ Sources[sourceIndex - 1].positionAED.get()[0] +Sources[sourceIndex - 1].positionAED.get()[1] +Sources[sourceIndex - 1].positionAED.get()[2]  + "position XYZ: " + PolarToCartesian(Sources[sourceIndex - 1].positionAED.get())[0]+ PolarToCartesian(Sources[sourceIndex - 1].positionAED.get())[1]+ PolarToCartesian(Sources[sourceIndex - 1].positionAED.get()[2]));
+                            arg = PolarToCartesian(Sources[sourceIndex].positionAED.get())[0];
+                        } else if (parameterControlled === "sourcepositionY") {
+                            arg = PolarToCartesian(Sources[sourceIndex].positionAED.get())[1];
+                        } else if (parameterControlled === "sourcepositionZ") {
+                            arg = PolarToCartesian(Sources[sourceIndex].positionAED.get())[2];
+                        } else if (parameterControlled === "sourceelevation") {
+                            arg = Sources[sourceIndex].positionAED.get()[1];
+                        } else if (parameterControlled === "sourcedistance") {
+                            arg = Sources[sourceIndex].positionAED.get()[2];
                         }
-                        if (stopUpdateForSource != sourceIndex) {
-                            Remote[remoteIndex].float[floatIndex]['values'][sourceIndex % Remote[remoteIndex].controlsNumber.get()]['value'].set(val);
+                        var localRangeForParameter = RangeForParameter[parameterControlled];
+                        var val = (arg - localRangeForParameter[0]) / (localRangeForParameter[1] - localRangeForParameter[0]);
+                        var target = Remote[remoteIndex].float[floatIndex]['values'][sourceIndex % Remote[remoteIndex].controlsNumber.get()]["target"];
+                        if (target) {
+                            var remoteRange = RemoteRangeFromString[Remote[remoteIndex].remoteRange.get()];
+                            var target = target.getTarget();
+                            if (target) {
+                                target.set(val * 127);
+                                target.set(val * (remoteRange[1] - remoteRange[0]) + remoteRange[0]);
+                            }
+                            if (stopUpdateForSource != sourceIndex) {
+                                Remote[remoteIndex].float[floatIndex]['values'][sourceIndex % Remote[remoteIndex].controlsNumber.get()]['value'].set(val);
+                            }
                         }
                     }
                 }
@@ -2459,7 +2510,7 @@ function updateRemote(controlName, args, sourceIndex)
  */
 function CartesianToPolar(value)
 {
-    script.log("CartesianToPolar, value: X=" + value[0], ", Y=" + value[1]);
+    // script.log("CartesianToPolar, value: X=" + value[0], ", Y=" + value[1]);
     var positionAED = [0.0, 0.0, 0.0];
     if (value[0] != 0.0 || value[1] != 0.0 || value[2] != 0.0)
     {
@@ -2489,7 +2540,7 @@ function CartesianToPolar(value)
     else if(value[0] < 0.0 && value[1] !== 0.0)
     {positionAED[0] = (-180 * Math.atan(value[1]/value[0]) / Math.PI) - 90;}
 
-    script.log("CartesianToPolar, value: A:" + positionAED[0], ", D=" + positionAED[2]);
+    // script.log("CartesianToPolar, value: A:" + positionAED[0], ", D=" + positionAED[2]);
 
     return positionAED;
 }
