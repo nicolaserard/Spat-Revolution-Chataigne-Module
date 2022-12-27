@@ -1012,7 +1012,7 @@ function moduleValueChanged(value)
             var container = value.getParent();
             for (var l = 0; l < Remote[remoteIndex].controlsNumber.get() ; l++)
             {
-                var ind = Remote[remoteIndex].indexNumber.get() * Remote[remoteIndex].controlsNumber.get() + l;
+                var ind = (Remote[remoteIndex].indexNumber.get() - 1) * Remote[remoteIndex].controlsNumber.get() + l;
                 // script.log(value.get());
                 var val = ParameterFromString[value.get()](ind).get();
 
@@ -1140,7 +1140,7 @@ function moduleValueChanged(value)
                     {
                         if (Remote[remoteIndex].onOff[i]['values'][j]["target"].name == value.name);
                         {
-                            sourceIndex = Remote[remoteIndex].indexNumber.get() * Remote[remoteIndex].controlsNumber.get() + j;
+                            sourceIndex = (Remote[remoteIndex].indexNumber.get() - 1) * Remote[remoteIndex].controlsNumber.get() + j;
                             script.log("We find it! sourceIndex: " + sourceIndex + ", localParameterControlled: " + localParameterControlled);
                             break
                         }
@@ -1164,7 +1164,7 @@ function moduleValueChanged(value)
                         script.log("Target: " + Remote[remoteIndex].float[i]['values'][j]["target"] + ", value: " + value.name);
                         if (Remote[remoteIndex].float[i]['values'][j]["target"].name == value.name)
                         {
-                            sourceIndex = Remote[remoteIndex].indexNumber.get() * Remote[remoteIndex].controlsNumber.get() + j;
+                            sourceIndex = (Remote[remoteIndex].indexNumber.get() - 1) * Remote[remoteIndex].controlsNumber.get() + j;
                             script.log("We find it! sourceIndex: " + sourceIndex + ", localParameterControlled: " + localParameterControlled);
                             break
                         }
@@ -1186,7 +1186,7 @@ function moduleValueChanged(value)
         else if (name.startsWith("value"))
         {
             var valueIndex = parseInt(value.name.substring(5, value.getParent().name.length));
-            var index = valueIndex + value.getParent().getParent().getParent().getChild("Index").get() * value.getParent().getParent().getParent().getChild("controlsNumber").get();
+            var index = valueIndex + (value.getParent().getParent().getParent().getChild("Index").get() - 1) * value.getParent().getParent().getParent().getChild("controlsNumber").get();
             // script.log("index: " + index + " stopUpdateForSource: " + stopUpdateForSource);
             if (index == stopUpdateForSource)
             {
@@ -2479,7 +2479,7 @@ function addRemote(index)
     Remote.push({});
     Remote[i].RemoteContainer = RemotesContainer.addContainer("Remote" + index);
     Remote[i].RemoteContainer.setCollapsed(true);
-    Remote[i].indexNumber = Remote[i].RemoteContainer.addIntParameter("Index", "index", 0, 0, 64);
+    Remote[i].indexNumber = Remote[i].RemoteContainer.addIntParameter("Index", "index", 1, 1, 64);
     Remote[i].controlsNumber = Remote[i].RemoteContainer.addIntParameter("Controls number", "controls number", 8 ,1, 50);
     // Remote[i].controlsNumber.setAttribute("readonly", true);
     Remote[i].onOffNumber = Remote[i].RemoteContainer.addIntParameter("On Off Number", "on off number", 0, 0, 50);
@@ -2526,7 +2526,7 @@ function createRemoteContainer()
 
     // var numberOfRemotes = RemotesContainer.addIntParameter("number of  remotes", "number of remotes", 0, 0, 64);
     // numberOfRemotes.setAttribute("readonly", true);
-    var masterIndex = RemotesContainer.addIntParameter("Master index", "master index", 0, 0, 128);
+    var masterIndex = RemotesContainer.addIntParameter("Master index", "master index", 1, 1, 64);
     for (var i = 1; i < numberOfRemotes.get() + 1; i++)
     {
         addRemote(i);
@@ -2546,7 +2546,7 @@ function updateRemote(controlName, args, sourceIndex)
     script.log("ControlName: " + controlName + ", args: " + args + ", sourceIndex: " + sourceIndex);
     var arg = 0.0;
     for (var remoteIndex = 0; remoteIndex < Remote.length; remoteIndex++) {
-        if (Math.floor(sourceIndex / Remote[remoteIndex].controlsNumber.get()) == Remote[remoteIndex].indexNumber.get()) {
+        if (Math.floor(sourceIndex / Remote[remoteIndex].controlsNumber.get()) == (Remote[remoteIndex].indexNumber.get() - 1)) {
             // script.log("updateRemote index: " + sourceIndex);
 
             for (var onOffIndex = 0; onOffIndex < Remote[remoteIndex].onOffNumber.get(); onOffIndex++) {
