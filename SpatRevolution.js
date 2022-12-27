@@ -931,7 +931,10 @@ function moduleValueChanged(value)
                 var localOnOff = Remote[remoteIndex].onOff[onOffIndex];
                 var localRangeForParameter = RangeForParameter[localParameterControlled];
                 var localParameterControlled = localOnOff.parameterControlled.get();
-
+                if (localParameterControlled === 'none')
+                {
+                    return;
+                }
                 for (var l = 0; l < Remote[remoteIndex].controlsNumber.get() ; l++)
                 {
                     var val = ParameterFromString[localParameterControlled](value.get()*Remote[remoteIndex].controlsNumber.get() + l).get();
@@ -953,6 +956,10 @@ function moduleValueChanged(value)
                 var localParameterControlled = localFloat.parameterControlled.get();
                 var localRangeForParameter =  RangeForParameter[localParameterControlled];
 
+                if (localParameterControlled === 'none')
+                {
+                    return;
+                }
                 for (var l = 0; l < Remote[remoteIndex].controlsNumber.get(); l++)
                 {
                     var val = ParameterFromString[localParameterControlled](value.get() * Remote[remoteIndex].controlsNumber.get() + l).get();
@@ -995,6 +1002,10 @@ function moduleValueChanged(value)
         }
         else if (name === 'parameterControlled')
         {
+            if (value.get === 'none')
+            {
+                return;
+            }
             var remoteIndex = parseInt(value.getParent().getParent().name.substring(6, value.getParent().getParent().name.length)) - 1;
             // Remote[remoteIndex]['parameterControlled'] = value.get();
             var localRemoteRange = RemoteRangeFromString[Remote[remoteIndex].remoteRange.get()];
@@ -1004,6 +1015,7 @@ function moduleValueChanged(value)
                 var ind = Remote[remoteIndex].indexNumber.get() * Remote[remoteIndex].controlsNumber.get() + l;
                 // script.log(value.get());
                 var val = ParameterFromString[value.get()](ind).get();
+
                 if (value.get() === 'sourcerotx' | value.get() === 'sourceazimuth' | value.get() === 'sourcepositionX')
                 {
                     val = val[0];
@@ -1119,6 +1131,10 @@ function moduleValueChanged(value)
                 if (Remote[remoteIndex].onOff[i].container.name == value.getParent().name)
                 {
                     localParameterControlled = Remote[remoteIndex].onOff[i].parameterControlled.get();
+                    if (localParameterControlled === 'none')
+                    {
+                        return;
+                    }
                     script.log("parameterControlled: " + localParameterControlled);
                     for (var j = 0; j < Remote[remoteIndex].onOff[i]['values'].length; j++)
                     {
@@ -1138,6 +1154,10 @@ function moduleValueChanged(value)
                 if (Remote[remoteIndex].float[i].container.name == value.getParent().name)
                 {
                     localParameterControlled = Remote[remoteIndex].float[i].parameterControlled.get();
+                    if (localParameterControlled === 'none')
+                    {
+                        return;
+                    }
                     // script.log("parameterControlled: " + localParameterControlled);
                     for (var j = 0; j < Remote[remoteIndex].float[i]['values'].length; j++)
                     {
@@ -1175,6 +1195,10 @@ function moduleValueChanged(value)
             if (value.getParent().getParent().parameterControlled) {
                 var localParameterControlled = value.getParent().getParent().parameterControlled.get();
                 // script.log("LocalParameterControlled: " + localParameterControlled);
+                if (localParameterControlled === 'none')
+                {
+                    return;
+                }
                 var localRangeForParameter = RangeForParameter[localParameterControlled];
                 var param = ParameterFromString[localParameterControlled](index - 1);
                 var val = value.get() * (localRangeForParameter[1] - localRangeForParameter[0]) + localRangeForParameter[0];
@@ -2414,7 +2438,7 @@ function addButtonControllable(remoteIndex, index)
 {
     Remote[remoteIndex].onOff[index - 1] = {'values': []};
     Remote[remoteIndex].onOff[index - 1]['container'] = Remote[remoteIndex].RemoteContainer.addContainer("OnOff" + index);
-    Remote[remoteIndex].onOff[index - 1].parameterControlled = Remote[remoteIndex].onOff[index - 1]['container'].addEnumParameter("Parameter controlled", "parameterControlled", "Source: Selected", "sourceselected", "Source: Mute", "sourcemute", "Source: Solo", "sourcesolo", "Source: Reverb on", "sourcereverbEnable", "Source: Early On", "sourceearlyEnable", "Source: Cluster On", "sourceclusterEnable","Source: Tail On", "sourcetailEnable", "Source: Doppler", "sourcedoppler", "Source: Air Absorption", "sourceairAbsorption", "Source: XY Coordinates mode", "sourcexyCoordinatesMode", "Source: Z Coordinates mode", "sourcezCoordinatesMode", "Source: Drop log", "sourcedropLog", "Room: Mute", "roomMute", "Room: Reverb density", "roomReverbDensity", "Room: Reverb enable", "roomReverbEnable", "Room: Reverb infinite", "roomReverbInfinite", "Room: Air enable", "roomAirEnable");
+    Remote[remoteIndex].onOff[index - 1].parameterControlled = Remote[remoteIndex].onOff[index - 1]['container'].addEnumParameter("Parameter controlled", "parameterControlled", "None", "none", "Source: Selected", "sourceselected", "Source: Mute", "sourcemute", "Source: Solo", "sourcesolo", "Source: Reverb on", "sourcereverbEnable", "Source: Early On", "sourceearlyEnable", "Source: Cluster On", "sourceclusterEnable","Source: Tail On", "sourcetailEnable", "Source: Doppler", "sourcedoppler", "Source: Air Absorption", "sourceairAbsorption", "Source: XY Coordinates mode", "sourcexyCoordinatesMode", "Source: Z Coordinates mode", "sourcezCoordinatesMode", "Source: Drop log", "sourcedropLog", "Room: Mute", "roomMute", "Room: Reverb density", "roomReverbDensity", "Room: Reverb enable", "roomReverbEnable", "Room: Reverb infinite", "roomReverbInfinite", "Room: Air enable", "roomAirEnable");
     var valContainer = Remote[remoteIndex].onOff[index - 1]['container'].addContainer("Values");
     for (var i = 1; i < Remote[remoteIndex].controlsNumber.get() + 1; i++)
     {
@@ -2434,7 +2458,7 @@ function addFloatControllable(remoteIndex, index)
 {
     Remote[remoteIndex].float[index - 1] = {'values': []};
     Remote[remoteIndex].float[index - 1]['container'] = Remote[remoteIndex].RemoteContainer.addContainer("Float" + index);
-    Remote[remoteIndex].float[index - 1].parameterControlled = Remote[remoteIndex].float[index - 1]['container'].addEnumParameter("Parameter controlled", "parameterControlled", "Source: Azimuth", "sourceazimuth", "Source: Elevation", "sourceelevation", "Source: Distance", "sourcedistance", "Source: Position X", "sourcepositionX", "Source: Position Y", "sourcepositionY", "Source: Position Z", "sourcepositionZ", "Source: Gain", "sourcegain", "Source: Lfe", "sourcelfe", "Source: Lfe2", "sourcelfe2", "Source: Lfe3", "sourcelfe3", "Source: Lfe4", "sourcelfe4", "Source: Presence", "sourcepresence", "Source: Room presence", "sourceroomPresence", "Source: Running Reverberance", "sourcerunningReverberance", "Source: Envelopment", "sourceenvelopment", "Source: Brilliance", "sourcebrilliance", "Source: Warmth", "sourcewarmth", "Source: Yaw", "sourceyaw", "Source: Pitch", "sourcepitch", "Source: Aperture", "sourceaperture", "Source: Scale", "sourcescale", "Source: Spread", "sourcespread", "Source: Knn", "sourceknn", "Source: Early width", "sourceearlyWidth", "Source: Pan Rev", "sourcepanRev", "Source: Drop factor", "sourcedropFactor", "Source: Rotation X", "sourcerotX", "Source: Rotation Y", "sourcerotY", "Source: Rotation Z", "sourcerotZ", "Source: Omni Gain", "sourceomniGain", "Source: RoomGain 1", "sourceroomGain1", "Source: RoomGain 2", "sourceroomGain2", "Source: RoomGain 3", "sourceroomGain3", "Source: RoomGain 4", "sourceroomGain4", "Source: RoomGain 5", "sourceroomGain5", "Source: RoomGain 6", "sourceroomGain6", "Source: RoomGain 7", "sourceroomGain7", "Source: RoomGain 8", "sourceroomGain8", "Source: RoomGain 9", "sourceroomGain9", "Source: RoomGain 10", "sourceroomGain10", "Room: Gain", "roomGain", "Room: Listener X", "roomListenerX", "Room: Listener Y", "roomListenerY", "Room: Listener Z", "roomListenerZ", "Room: Listener yaw", "roomListenerYaw", "Room: Listener pitch", "roomListenerPitch", "Room: Listener Roll", "roomListenerRoll", "Room: Reverb size", "roomReverbSize", "Room: Reverb start", "roomReverbStart", "Room: Reverb gain", "roomReverbGain", "Room: Reverb factor", "roomReverbFactor", "Room: Reverberance", "roomReverberance", "Room: Heaviness", "roomHeaviness", "Room: Liveness", "roomLiveness", "Room: Early min", "roomEarlyMin", "Room: Early max", "roomEarlyMax", "Room: Early dist", "roomEarlyDist", "Room: Early Shape", "roomEarlyShape", "Room: Cluster Min", "roomClusterMin", "Room: Cluster Max", "roomClusterMax", "Room: Cluster dist", "roomClusterDist", "Room: Air Freq", "roomAirFreq", "Room: Modal density", "roomModalDensity", "Room: Frequency low crossover", "roomFrequencyLow", "Room: Frequency high crossover", "roomFrequencyHigh");
+    Remote[remoteIndex].float[index - 1].parameterControlled = Remote[remoteIndex].float[index - 1]['container'].addEnumParameter("Parameter controlled", "parameterControlled", "None", "none", "Source: Azimuth", "sourceazimuth", "Source: Elevation", "sourceelevation", "Source: Distance", "sourcedistance", "Source: Position X", "sourcepositionX", "Source: Position Y", "sourcepositionY", "Source: Position Z", "sourcepositionZ", "Source: Gain", "sourcegain", "Source: Lfe", "sourcelfe", "Source: Lfe2", "sourcelfe2", "Source: Lfe3", "sourcelfe3", "Source: Lfe4", "sourcelfe4", "Source: Presence", "sourcepresence", "Source: Room presence", "sourceroomPresence", "Source: Running Reverberance", "sourcerunningReverberance", "Source: Envelopment", "sourceenvelopment", "Source: Brilliance", "sourcebrilliance", "Source: Warmth", "sourcewarmth", "Source: Yaw", "sourceyaw", "Source: Pitch", "sourcepitch", "Source: Aperture", "sourceaperture", "Source: Scale", "sourcescale", "Source: Spread", "sourcespread", "Source: Knn", "sourceknn", "Source: Early width", "sourceearlyWidth", "Source: Pan Rev", "sourcepanRev", "Source: Drop factor", "sourcedropFactor", "Source: Rotation X", "sourcerotX", "Source: Rotation Y", "sourcerotY", "Source: Rotation Z", "sourcerotZ", "Source: Omni Gain", "sourceomniGain", "Source: RoomGain 1", "sourceroomGain1", "Source: RoomGain 2", "sourceroomGain2", "Source: RoomGain 3", "sourceroomGain3", "Source: RoomGain 4", "sourceroomGain4", "Source: RoomGain 5", "sourceroomGain5", "Source: RoomGain 6", "sourceroomGain6", "Source: RoomGain 7", "sourceroomGain7", "Source: RoomGain 8", "sourceroomGain8", "Source: RoomGain 9", "sourceroomGain9", "Source: RoomGain 10", "sourceroomGain10", "Room: Gain", "roomGain", "Room: Listener X", "roomListenerX", "Room: Listener Y", "roomListenerY", "Room: Listener Z", "roomListenerZ", "Room: Listener yaw", "roomListenerYaw", "Room: Listener pitch", "roomListenerPitch", "Room: Listener Roll", "roomListenerRoll", "Room: Reverb size", "roomReverbSize", "Room: Reverb start", "roomReverbStart", "Room: Reverb gain", "roomReverbGain", "Room: Reverb factor", "roomReverbFactor", "Room: Reverberance", "roomReverberance", "Room: Heaviness", "roomHeaviness", "Room: Liveness", "roomLiveness", "Room: Early min", "roomEarlyMin", "Room: Early max", "roomEarlyMax", "Room: Early dist", "roomEarlyDist", "Room: Early Shape", "roomEarlyShape", "Room: Cluster Min", "roomClusterMin", "Room: Cluster Max", "roomClusterMax", "Room: Cluster dist", "roomClusterDist", "Room: Air Freq", "roomAirFreq", "Room: Modal density", "roomModalDensity", "Room: Frequency low crossover", "roomFrequencyLow", "Room: Frequency high crossover", "roomFrequencyHigh");
     var valContainer = Remote[remoteIndex].float[index - 1]['container'].addContainer("Values");
     for (var i = 1; i < Remote[remoteIndex].controlsNumber.get() + 1; i++)
     {
@@ -2545,7 +2569,7 @@ function updateRemote(controlName, args, sourceIndex)
                 }
             }
             for (var floatIndex = 0; floatIndex < Remote[remoteIndex].floatNumber.get(); floatIndex++) {
-                script.log(Remote[remoteIndex].float[floatIndex]['parameterControlled'].get() + ", val: " + args);
+                // script.log(Remote[remoteIndex].float[floatIndex]['parameterControlled'].get() + ", val: " + args);
                 if (Remote[remoteIndex].float[floatIndex].parameterControlled) {
                     var parameterControlled = Remote[remoteIndex].float[floatIndex].parameterControlled.get();
                     if (parameterControlled === controlName | (parameterControlled === 'sourceazimuth' | parameterControlled === 'sourceelevation' | parameterControlled === 'sourcedistance' | (parameterControlled === 'sourcepositionX' | parameterControlled === 'sourcepositionY' | parameterControlled === 'sourcepositionZ') && controlName === 'sourceposition') | ((controlName === 'sourceazimuth' | controlName === 'sourceelevation' | controlName === 'sourcedistance') && (parameterControlled === 'sourcepositionX' | parameterControlled === 'sourcepositionY' | parameterControlled === 'sourcepositionZ')) | ((controlName === 'sourcepositionX' | controlName === 'sourcepositionY' | controlName === 'sourcepositionZ') && (parameterControlled === 'sourceazimuth' | parameterControlled === 'sourceelevation' | parameterControlled === 'sourcedistance'))) {
