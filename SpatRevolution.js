@@ -1846,10 +1846,8 @@ function oscRoomEvent(address, args)
     }
     else
     {
-        var room = Rooms[i]['container'];
+        var room = Rooms[i];
     }
-
-    return;
 
     if (address[3]==='name')
     {
@@ -1885,7 +1883,8 @@ function oscRoomEvent(address, args)
         {
             var value = room.listenerPosition.get();
             value = [args[0], value[1], value[2]];
-            room.listenerPosition.set(value);    }
+            room.listenerPosition.set(value);
+        }
     }
     if (address[3]==='y')
     {
