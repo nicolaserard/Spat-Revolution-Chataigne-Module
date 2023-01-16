@@ -788,11 +788,11 @@ function init()
     script.setUpdateRate(20);
     SetupContainer = local.parameters.addContainer("Setup", "Setup value");
     distanceMax = SetupContainer.addFloatParameter("Distance Max", "Distance maximum of the position XYZ and distance for AED, in meters", 100.0, 1.0, 100.0);
-    numberOfRemotes = SetupContainer.addIntParameter("Number of  remotes", "number of remotes", 0, 0, 64);
+    numberOfRemotes = SetupContainer.addIntParameter("Number of  remotes", "number of remotes", 1, 0, 64);
 
 
     // script.log("Module initialization");
-    createSnapshotsContainer();
+    // createSnapshotsContainer();
     createSourceContainer();
     createRoomContainer();
     createRemoteContainer();
@@ -1013,7 +1013,7 @@ function moduleValueChanged(value)
             for (var l = 0; l < Remote[remoteIndex].controlsNumber.get() ; l++)
             {
                 var ind = (Remote[remoteIndex].indexNumber.get() - 1) * Remote[remoteIndex].controlsNumber.get() + l;
-                // script.log(value.get());
+                // script.log("Parameter value: " + value.get() + "index: " + ind);
                 var val = ParameterFromString[value.get()](ind).get();
 
                 if (value.get() === 'sourcerotx' | value.get() === 'sourceazimuth' | value.get() === 'sourcepositionX')
@@ -1093,30 +1093,28 @@ function moduleValueChanged(value)
         else if (name === 'onOffNumber')
         {
             var index = parseInt(value.getParent().name.substring(6, value.getParent().name.length));
-            if (value.get() > Remote[index - 1]["numberOfButtonControllable"])
-            {
-                addButtonControllable(index - 1, value.get());
+            if (Remote[index-1].onOff) {
+                if (value.get() > Remote[index - 1]["numberOfButtonControllable"]) {
+                    addButtonControllable(index - 1, value.get());
+                } else if (value.get() < Remote[index - 1]["numberOfButtonControllable"]) {
+                    i = value.get() + 1;
+                    value.getParent().removeContainer("onOff" + i);
+                }
+                Remote[index - 1]["numberOfButtonControllable"] = value.get();
             }
-            else if (value.get() < Remote[index - 1]["numberOfButtonControllable"])
-            {
-                i = value.get() + 1;
-                value.getParent().removeContainer("OnOff" + i);
-            }
-            Remote[index-1]["numberOfButtonControllable"] = value.get();
         }
         else if (name === 'floatNumber')
         {
             var index = parseInt(value.getParent().name.substring(6, value.getParent().name.length));
-            if (value.get() > Remote[index - 1]["numberOfFloatControllable"])
-            {
-                addFloatControllable(index - 1, value.get());
+            if (Remote[index-1].float) {
+                if (value.get() > Remote[index - 1]["numberOfFloatControllable"]) {
+                    addFloatControllable(index - 1, value.get());
+                } else if (value.get() < Remote[index - 1]["numberOfFloatControllable"]) {
+                    i = value.get() + 1;
+                    value.getParent().removeContainer("float" + i);
+                }
+                Remote[index - 1]["numberOfFloatControllable"] = value.get();
             }
-            else if (value.get() < Remote[index - 1]["numberOfFloatControllable"])
-            {
-                i = value.get() + 1;
-                value.getParent().removeContainer("Float" + i);
-            }
-            Remote[index-1]["numberOfFloatControllable"] = value.get();
         }
 
         else if (name.startsWith("target"))
@@ -1125,30 +1123,29 @@ function moduleValueChanged(value)
             var remoteIndex = parseInt(value.getParent().getParent().name.substring(6, value.getParent().getParent().name.length)) - 1;
             var localParameterControlled = false;
             var sourceIndex = -1;
-            for (var i = 0; i < Remote[remoteIndex].onOffNumber.get(); i++)
-            {
-                // script.log("Container: " + Remote[remoteIndex].onOff[i].container.name + ", valueParent: " + value.getParent().name);
-                if (Remote[remoteIndex].onOff[i].container.name == value.getParent().name)
-                {
-                    localParameterControlled = Remote[remoteIndex].onOff[i].parameterControlled.get();
-                    if (localParameterControlled === 'none')
-                    {
-                        return;
-                    }
-                    script.log("parameterControlled: " + localParameterControlled);
-                    for (var j = 0; j < Remote[remoteIndex].onOff[i]['values'].length; j++)
-                    {
-                        if (Remote[remoteIndex].onOff[i]['values'][j]["target"].name == value.name);
-                        {
-                            sourceIndex = (Remote[remoteIndex].indexNumber.get() - 1) * Remote[remoteIndex].controlsNumber.get() + j;
-                            script.log("We find it! sourceIndex: " + sourceIndex + ", localParameterControlled: " + localParameterControlled);
-                            break
+            if (Remote[remoteIndex].onOffNumber) {
+                for (var i = 0; i < Remote[remoteIndex].onOffNumber.get(); i++) {
+                    // script.log("Container: " + Remote[remoteIndex].onOff[i].container.name + ", valueParent: " + value.getParent().name);
+                    if (Remote[remoteIndex].onOff[i].container.name == value.getParent().name) {
+                        localParameterControlled = Remote[remoteIndex].onOff[i].parameterControlled.get();
+                        if (localParameterControlled === 'none') {
+                            return;
                         }
+                        // script.log("parameterControlled: " + localParameterControlled);
+                        for (var j = 0; j < Remote[remoteIndex].onOff[i]['values'].length; j++) {
+                            if (Remote[remoteIndex].onOff[i]['values'][j]["target"].name == value.name) ;
+                            {
+                                sourceIndex = (Remote[remoteIndex].indexNumber.get() - 1) * Remote[remoteIndex].controlsNumber.get() + j;
+                                // script.log("We find it! sourceIndex: " + sourceIndex + ", localParameterControlled: " + localParameterControlled);
+                                break
+                            }
+                        }
+                        break;
                     }
-                    break;
                 }
             }
-            for (var i = 0; i < Remote[remoteIndex].floatNumber.get(); i++)
+            if (Remote[remoteIndex].floatNumber) {
+                for (var i = 0; i < Remote[remoteIndex].floatNumber.get(); i++)
             {
                 // script.log("Container: " + Remote[remoteIndex].float[i].container + ", valueParent: " + value.getParent());
                 if (Remote[remoteIndex].float[i].container.name == value.getParent().name)
@@ -1172,6 +1169,7 @@ function moduleValueChanged(value)
                     break;
                 }
             }
+            }
             stopUpdateForSource = sourceIndex;
             if (sourceIndex != -1) {
                 var param = ParameterFromString[localParameterControlled](sourceIndex - 1);
@@ -1192,9 +1190,9 @@ function moduleValueChanged(value)
             {
                 return;
             }
+            var localParameterControlled = value.getParent().getParent().parameterControlled.get();
+            script.log("LocalParameterControlled: " + localParameterControlled);
             if (value.getParent().getParent().parameterControlled) {
-                var localParameterControlled = value.getParent().getParent().parameterControlled.get();
-                // script.log("LocalParameterControlled: " + localParameterControlled);
                 if (localParameterControlled === 'none')
                 {
                     return;
@@ -2437,7 +2435,7 @@ function createSnapshotsContainer() {
 function addButtonControllable(remoteIndex, index)
 {
     Remote[remoteIndex].onOff[index - 1] = {'values': []};
-    Remote[remoteIndex].onOff[index - 1]['container'] = Remote[remoteIndex].RemoteContainer.addContainer("OnOff" + index);
+    Remote[remoteIndex].onOff[index - 1]['container'] = Remote[remoteIndex].RemoteContainer.addContainer("onOff" + index);
     Remote[remoteIndex].onOff[index - 1].parameterControlled = Remote[remoteIndex].onOff[index - 1]['container'].addEnumParameter("Parameter controlled", "parameterControlled", "None", "none", "Source: Selected", "sourceselected", "Source: Mute", "sourcemute", "Source: Solo", "sourcesolo", "Source: Reverb on", "sourcereverbEnable", "Source: Early On", "sourceearlyEnable", "Source: Cluster On", "sourceclusterEnable","Source: Tail On", "sourcetailEnable", "Source: Doppler", "sourcedoppler", "Source: Air Absorption", "sourceairAbsorption", "Source: XY Coordinates mode", "sourcexyCoordinatesMode", "Source: Z Coordinates mode", "sourcezCoordinatesMode", "Source: Drop log", "sourcedropLog", "Room: Mute", "roomMute", "Room: Reverb density", "roomReverbDensity", "Room: Reverb enable", "roomReverbEnable", "Room: Reverb infinite", "roomReverbInfinite", "Room: Air enable", "roomAirEnable");
     var valContainer = Remote[remoteIndex].onOff[index - 1]['container'].addContainer("Values");
     for (var i = 1; i < Remote[remoteIndex].controlsNumber.get() + 1; i++)
@@ -2457,7 +2455,7 @@ function addButtonControllable(remoteIndex, index)
 function addFloatControllable(remoteIndex, index)
 {
     Remote[remoteIndex].float[index - 1] = {'values': []};
-    Remote[remoteIndex].float[index - 1]['container'] = Remote[remoteIndex].RemoteContainer.addContainer("Float" + index);
+    Remote[remoteIndex].float[index - 1]['container'] = Remote[remoteIndex].RemoteContainer.addContainer("float" + index);
     Remote[remoteIndex].float[index - 1].parameterControlled = Remote[remoteIndex].float[index - 1]['container'].addEnumParameter("Parameter controlled", "parameterControlled", "None", "none", "Source: Azimuth", "sourceazimuth", "Source: Elevation", "sourceelevation", "Source: Distance", "sourcedistance", "Source: Position X", "sourcepositionX", "Source: Position Y", "sourcepositionY", "Source: Position Z", "sourcepositionZ", "Source: Gain", "sourcegain", "Source: Lfe", "sourcelfe", "Source: Lfe2", "sourcelfe2", "Source: Lfe3", "sourcelfe3", "Source: Lfe4", "sourcelfe4", "Source: Presence", "sourcepresence", "Source: Room presence", "sourceroomPresence", "Source: Running Reverberance", "sourcerunningReverberance", "Source: Envelopment", "sourceenvelopment", "Source: Brilliance", "sourcebrilliance", "Source: Warmth", "sourcewarmth", "Source: Yaw", "sourceyaw", "Source: Pitch", "sourcepitch", "Source: Aperture", "sourceaperture", "Source: Scale", "sourcescale", "Source: Spread", "sourcespread", "Source: Knn", "sourceknn", "Source: Early width", "sourceearlyWidth", "Source: Pan Rev", "sourcepanRev", "Source: Drop factor", "sourcedropFactor", "Source: Rotation X", "sourcerotX", "Source: Rotation Y", "sourcerotY", "Source: Rotation Z", "sourcerotZ", "Source: Omni Gain", "sourceomniGain", "Source: RoomGain 1", "sourceroomGain1", "Source: RoomGain 2", "sourceroomGain2", "Source: RoomGain 3", "sourceroomGain3", "Source: RoomGain 4", "sourceroomGain4", "Source: RoomGain 5", "sourceroomGain5", "Source: RoomGain 6", "sourceroomGain6", "Source: RoomGain 7", "sourceroomGain7", "Source: RoomGain 8", "sourceroomGain8", "Source: RoomGain 9", "sourceroomGain9", "Source: RoomGain 10", "sourceroomGain10", "Room: Gain", "roomGain", "Room: Listener X", "roomListenerX", "Room: Listener Y", "roomListenerY", "Room: Listener Z", "roomListenerZ", "Room: Listener yaw", "roomListenerYaw", "Room: Listener pitch", "roomListenerPitch", "Room: Listener Roll", "roomListenerRoll", "Room: Reverb size", "roomReverbSize", "Room: Reverb start", "roomReverbStart", "Room: Reverb gain", "roomReverbGain", "Room: Reverb factor", "roomReverbFactor", "Room: Reverberance", "roomReverberance", "Room: Heaviness", "roomHeaviness", "Room: Liveness", "roomLiveness", "Room: Early min", "roomEarlyMin", "Room: Early max", "roomEarlyMax", "Room: Early dist", "roomEarlyDist", "Room: Early Shape", "roomEarlyShape", "Room: Cluster Min", "roomClusterMin", "Room: Cluster Max", "roomClusterMax", "Room: Cluster dist", "roomClusterDist", "Room: Air Freq", "roomAirFreq", "Room: Modal density", "roomModalDensity", "Room: Frequency low crossover", "roomFrequencyLow", "Room: Frequency high crossover", "roomFrequencyHigh");
     var valContainer = Remote[remoteIndex].float[index - 1]['container'].addContainer("Values");
     for (var i = 1; i < Remote[remoteIndex].controlsNumber.get() + 1; i++)
@@ -2480,7 +2478,7 @@ function addRemote(index)
     Remote[i].RemoteContainer = RemotesContainer.addContainer("Remote" + index);
     Remote[i].RemoteContainer.setCollapsed(true);
     Remote[i].indexNumber = Remote[i].RemoteContainer.addIntParameter("Index", "index", 1, 1, 64);
-    Remote[i].controlsNumber = Remote[i].RemoteContainer.addIntParameter("Controls number", "controls number", 8 ,1, 50);
+    Remote[i].controlsNumber = Remote[i].RemoteContainer.addIntParameter("Controls Number", "controls number", 8 ,1, 50);
     // Remote[i].controlsNumber.setAttribute("readonly", true);
     Remote[i].onOffNumber = Remote[i].RemoteContainer.addIntParameter("On Off Number", "on off number", 0, 0, 50);
     // Remote[i].onOffNumber.setAttribute("readonly", true);
@@ -2524,12 +2522,58 @@ function createRemoteContainer()
     // Add the Remote container
     RemotesContainer = local.values.addContainer("Remotes");
 
-    // var numberOfRemotes = RemotesContainer.addIntParameter("number of  remotes", "number of remotes", 0, 0, 64);
+    // var numberOfRemotes = RemotesContainer.addIntParameter("number of remotes", "number of remotes", 1, 0, 64);
     // numberOfRemotes.setAttribute("readonly", true);
     var masterIndex = RemotesContainer.addIntParameter("Master index", "master index", 1, 1, 64);
-    for (var i = 1; i < numberOfRemotes.get() + 1; i++)
+    for (var i = 1; i < SetupContainer.getChild("numberOfRemotes").get() + 1; i++)
     {
         addRemote(i);
+    }
+
+    // if (SetupContainer.getChild("numberOfRemotes").get() < 8)
+    // {
+    //     for (var i = 8; i > SetupContainer.getChild("numberOfRemotes").get(); i--)
+    //     {deleteRemote(i);}
+    // }
+
+    for (var i = 0; i < SetupContainer.getChild("numberOfRemotes").get(); i++)
+    {
+        if (Remote[i].numberOfFloatControllable < 8)
+        {
+            for (var j=8; j > Remote[i].numberOfFloatControllable + 1; j--)
+            {
+                RemotesContainer.getChild("Remote" + parseInt(i+1)).removeContainer("float" + j);
+            }
+            if (Remote[i].controlsNumber.get() < 8)
+            {
+                for (var j = 1; j < Remote[i].floatNumber.get() + 1; j++)
+                {
+                    for (var k = 8; k > Remote[i].controlsNumber.get();k--) {
+                        RemotesContainer.getChild("Remote" + parseInt(i + 1)).getChild("float" + j).removeParameter("Target" + k);
+                        RemotesContainer.getChild("Remote" + parseInt(i + 1)).getChild("float" + j).getChild("Values").removeParameter("Value" + k);
+                    }
+                }
+            }
+        }
+        if (Remote[i].numberOfButtonControllable < 8)
+        {
+            for (var j=8; j > Remote[i].numberOfButtonControllable + 1; j--)
+            {
+                RemotesContainer.getChild("Remote" + parseInt(i+1)).removeContainer("onOff" + j);
+            }
+            if (Remote[i].controlsNumber.get() < 8)
+            {
+                for (var j = 1; j < Remote[i].onOffNumber.get() + 1; j++)
+                {
+                    for (var k = 8; k > Remote[i].controlsNumber.get();k--) {
+                        RemotesContainer.getChild("Remote" + parseInt(i + 1)).getChild("onOff" + j).removeParameter("Target" + k);
+
+                        ;
+                        RemotesContainer.getChild("Remote" + parseInt(i + 1)).getChild("onOff" + j).getChild("Values").removeParameter("Value" + k);
+                    }
+                }
+            }
+        }
     }
 }
 
