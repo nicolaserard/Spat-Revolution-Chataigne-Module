@@ -499,10 +499,12 @@ var OSCSourcesMessage = {
     },
     'positionAED': function (index, value) {
         local.send("/source/" + index + "/aed", value.get());
+        Sources[index - 1].positionXYZ.set(PolarToCartesian(value.get()));
     },
-    // 'positionXYZ': function (index, value) {
-    //     local.send("/source/" + index + "/aed", CartesianToPolar(value.get()));
-    // },
+    'positionXYZ': function (index, value) {
+        Sources[index - 1].positionAED.set(CartesianToPolar(value.get()));
+        // local.send("/source/" + index + "/aed", CartesianToPolar(value.get()));
+    },
     'reverbEnable': function (index, value) {
         local.send("/source/" + index + "/reverb/enable", value.get());
     },
@@ -851,8 +853,7 @@ function update(updateRate)
                     // script.log(target.name);
                     if (target && ((remoteRange == 'midi' && target.get() !=parseInt(oldValue * 127)) | (remoteRange != 'midi' && target.get() != oldValue))) {
                         var val = (target.get() - RemoteRangeFromString[remoteRange][0]) / (RemoteRangeFromString[remoteRange][1] - RemoteRangeFromString[remoteRange][0]);
-                       float['values'][l]["value"].set(val);
-                        script.log("On update le float, newValue: "+ val);
+                        float['values'][l]["value"].set(val);
 
                     }
                 }
@@ -923,28 +924,29 @@ function moduleValueChanged(value)
         {
             var remoteIndex = parseInt(value.getParent().name.substring(6, value.getParent().name.length)) - 1;
             var localRemoteRange = RemoteRangeFromString[Remote[remoteIndex].remoteRange.get()];
+//             script.log(Remote[remoteIndex].floatNumber.get());
 
 
             // onOff
             for (var onOffIndex = 0; onOffIndex < Remote[remoteIndex].onOffNumber.get(); onOffIndex++)
             {
                 var localOnOff = Remote[remoteIndex].onOff[onOffIndex];
-                var localRangeForParameter = RangeForParameter[localParameterControlled];
                 var localParameterControlled = localOnOff.parameterControlled.get();
                 if (localParameterControlled === 'none')
                 {
-                    return;
+                    continue;
                 }
+                var localRangeForParameter = RangeForParameter[localParameterControlled];
                 for (var l = 0; l < Remote[remoteIndex].controlsNumber.get() ; l++)
                 {
-                    var val = ParameterFromString[localParameterControlled](value.get()*Remote[remoteIndex].controlsNumber.get() + l).get();
+                    var val = ParameterFromString[localParameterControlled]((value.get() - 1) *Remote[remoteIndex].controlsNumber.get() + l).get();
                     val = (val - localRangeForParameter[0]) / (localRangeForParameter[1] - localRangeForParameter[0]);
                     var target = localOnOff["values"][l]["target"].getTarget();
+                    localOnOff["values"][l]["value"].set(val);
                     if (target)
                     {
                         target.set(val * (localRemoteRange[1] - localRemoteRange[0]) + localRemoteRange[0]);
                     }
-                    localOnOff["values"][l]["value"].set(val);
 
                 }
             }
@@ -952,17 +954,18 @@ function moduleValueChanged(value)
             //float
             for (var floatIndex = 0; floatIndex < Remote[remoteIndex].floatNumber.get(); floatIndex++)
             {
+                //script.log("For float number" + floatIndex);
                 var localFloat = Remote[remoteIndex].float[floatIndex];
                 var localParameterControlled = localFloat.parameterControlled.get();
-                var localRangeForParameter =  RangeForParameter[localParameterControlled];
-
                 if (localParameterControlled === 'none')
                 {
-                    return;
+                    continue;
                 }
+                var localRangeForParameter =  RangeForParameter[localParameterControlled];
+
                 for (var l = 0; l < Remote[remoteIndex].controlsNumber.get(); l++)
                 {
-                    var val = ParameterFromString[localParameterControlled](value.get() * Remote[remoteIndex].controlsNumber.get() + l).get();
+                    var val = ParameterFromString[localParameterControlled]((value.get() - 1) * Remote[remoteIndex].controlsNumber.get() + l).get();
                     if (localParameterControlled === "sourceazimuth")
                     {
                         val = val[0];
@@ -990,12 +993,12 @@ function moduleValueChanged(value)
 
                     var target = localFloat["values"][l]["target"].getTarget();
                     val = (val - localRangeForParameter[0]) / (localRangeForParameter[1] - localRangeForParameter[0]);
+                    localFloat["values"][l]["value"].set(val);
                     if (target)
                     {
                         target.set(val * (localRemoteRange[1] - localRemoteRange[0]) + localRemoteRange[0]);
 
                     }
-                    localFloat["values"][l]["value"].set(val);
                 }
             }
 
@@ -1013,7 +1016,6 @@ function moduleValueChanged(value)
             for (var l = 0; l < Remote[remoteIndex].controlsNumber.get() ; l++)
             {
                 var ind = (Remote[remoteIndex].indexNumber.get() - 1) * Remote[remoteIndex].controlsNumber.get() + l;
-                // script.log("Parameter value: " + value.get() + "index: " + ind);
                 var val = ParameterFromString[value.get()](ind).get();
 
                 if (value.get() === 'sourcerotx' | value.get() === 'sourceazimuth' | value.get() === 'sourcepositionX')
@@ -1202,6 +1204,7 @@ function moduleValueChanged(value)
                 var val = value.get() * (localRangeForParameter[1] - localRangeForParameter[0]) + localRangeForParameter[0];
                 if (localParameterControlled === "sourceazimuth" | localParameterControlled === "sourcerotx") {
                     param.set(val, param.get()[1], param.get()[2]);
+
                 } else if (localParameterControlled === "sourceelevation" | localParameterControlled === "sourceroty") {
                     param.set(param.get()[0], val, param.get()[2]);
                 } else if (localParameterControlled === "sourcedistance" | localParameterControlled === "sourcerotz") {
@@ -1334,7 +1337,7 @@ function oscSourceEvent(address, args)
 
     
     // Validate the source index
-    if (i +1 > Sources.length)
+    if (i + 1 > Sources.length || i < 0)
     {
         return false;
     }
@@ -1476,6 +1479,7 @@ function oscSourceEvent(address, args)
             }
             stopSendingOSC = true; // to avoid return to SPAT. TODO: Check if useful.
             source.positionAED.set(args);
+            source.positionXYZ.set(PolarToCartesian(args));
             stopSendingOSC = false;
         }
     }
@@ -1501,8 +1505,16 @@ function oscSourceEvent(address, args)
     {
         if (typeof(args[0]) == 'number')
         {
-            source.earlyEnable.set(args[0]);
-            controlName = 'sourceearlyEnable';
+            if (address[4] === 'width')
+            {
+                source.earlyWidth.set(args[0]);
+                controlName = 'sourceearlyWidth';
+            }
+            else
+            {
+                source.earlyEnable.set(args[0]);
+                controlName = 'sourceearlyEnable';
+            }
         }
     }
     else if (address[3] === 'cluster')
@@ -1715,7 +1727,7 @@ function oscSourceEvent(address, args)
         if (typeof(args[0]) == 'number')
         {
             var value = source.rotationXYZ.get();
-            value = [value[0], args[1], value[2]];
+            value = [value[0], args[0], value[2]];
             source.rotationXYZ.set(value);
             controlName = 'sourceroty';
         }
@@ -1725,7 +1737,7 @@ function oscSourceEvent(address, args)
         if (typeof(args[0]) == 'number')
         {
             var value = source.rotationXYZ.get();
-            value = [value[0], value[1], args[2]];
+            value = [value[0], value[1], args[0]];
             source.rotationXYZ.set(value);
             controlName = 'sourcerotz';
         }
@@ -2169,6 +2181,9 @@ function createSourceContainer()
         Sources[i].positionAED = Sources[i].SourceContainer.addPoint3DParameter("Position AED", "PositionAED", [0.0, 0.0, 2.0]);
         // Sources[i].positionAED.setAttribute("readonly", true);
 
+        Sources[i].positionXYZ = Sources[i].SourceContainer.addPoint3DParameter("Position XYZ", "PositionXYZ", [0.0, 2.0, 0.0]);
+        // Sources[i].positionXYZ.setAttribute("readonly", true);
+
         Sources[i].reverbSourceContainer = Sources[i].SourceContainer.addContainer("Reverb");
         Sources[i].reverbEnable = Sources[i].reverbSourceContainer.addBoolParameter("Reverb Enable", "Reverb Enable", 1);
         // Sources[i].reverbEnable.setAttribute("readonly", true);
@@ -2474,28 +2489,53 @@ function addRemote(index)
     // TODO: check if reload is ok if numberOfControls and numberOfButtonControllable and Float are not similar to saved one
     // script.log("Adding Remote");
     Remote.push({});
-    Remote[i].RemoteContainer = RemotesContainer.addContainer("Remote" + index);
+    Remote[i].RemoteContainer = local.values.addContainer("Remote" + index);
     Remote[i].RemoteContainer.setCollapsed(true);
     Remote[i].indexNumber = Remote[i].RemoteContainer.addIntParameter("Index", "index", 1, 1, 64);
-    Remote[i].controlsNumber = Remote[i].RemoteContainer.addIntParameter("Controls Number", "controls number", 8 ,1, 50);
+    Remote[i].controlsNumber = Remote[i].RemoteContainer.addIntParameter("Controls Number", "controls number", 1 ,1, 50);
     // Remote[i].controlsNumber.setAttribute("readonly", true);
-    Remote[i].onOffNumber = Remote[i].RemoteContainer.addIntParameter("On Off Number", "on off number", 0, 0, 50);
+    Remote[i].onOffNumber = Remote[i].RemoteContainer.addIntParameter("On Off Number", "on off number", 0, 0, 10);
     // Remote[i].onOffNumber.setAttribute("readonly", true);
     Remote[i].remoteRange = Remote[i].RemoteContainer.addEnumParameter("Remote range", "Range of values of the remote parameter", "MIDI", "midi", "0 / 1", "linear01", "-1 / 1", "linear-11", "Percent", "percent");
     Remote[i].onOff = [];
 
-    for (var j = 1; j < Remote[i].onOffNumber.get() + 1; j++)
-    {
+    for (var j = 1; j <= 10; j++) {
         addButtonControllable(i, j);
     }
 
-    Remote[i].floatNumber = Remote[i].RemoteContainer.addIntParameter("Float Number", "float number", 0, 0, 50);
+    local.send("/numberofOffOn", Remote[i].onOffNumber.get());
+    script.log("/numberofOffOn" + Remote[i].onOffNumber.get());
+    if (Remote[i].onOffNumber.get() < 10)
+    {
+        for (var j=10; j > Remote[i].onOffNumber.get() + 1; j--)
+        {
+            local.values.getChild("Remote" + parseInt(i+1)).removeContainer("onOff" + j);
+
+            // local.values.getChild("Remote" + parseInt(i + 1)).getChild("onOff" + j).removeParameter("Target" + k);
+            // local.values.getChild("Remote" + parseInt(i + 1)).getChild("onOff" + j).getChild("Values").removeParameter("Value" + k);
+        }
+    }
+
+    Remote[i].floatNumber = Remote[i].RemoteContainer.addIntParameter("Float Number", "float number", 0, 0, 10);
+    // Remote[i].floatNumber.set(Remote[i].floatNumber.get());
     // Remote[i].floatNumber.setAttribute("readonly", true);
     Remote[i].float = [];
-    for (var j = 1; j < Remote[i].floatNumber.get() + 1; j++)
-    {
+
+    for (var j = 1; j <= 10; j++) {
         addFloatControllable(i, j);
     }
+
+    if (Remote[i].floatNumber.get() < 10)
+    {
+        for (var j=10; j > Remote[i].floatNumber.get(); j--)
+        {
+            local.values.getChild("Remote" + parseInt(i+1)).removeContainer("float" + j);
+
+            // local.values.getChild("Remote" + parseInt(i + 1)).getChild("float" + j).removeParameter("Target" + k);
+            // local.values.getChild("Remote" + parseInt(i + 1)).getChild("float" + j).getChild("Values").removeParameter("Value" + k);
+        }
+    }
+
     Remote[i]["index"] = Remote[i].indexNumber.get();
     Remote[i]['numberOfControls'] = Remote[i].controlsNumber.get();
     Remote[i]["numberOfButtonControllable"] = Remote[i].onOffNumber.get();
@@ -2509,7 +2549,7 @@ function addRemote(index)
 function deleteRemote(index)
 {
     // script.log("Removing remote: " + index);
-    RemotesContainer.removeContainer("Remote" + index);
+    local.values.removeContainer("Remote" + index);
     Remote.splice(-1);
 }
 
@@ -2519,11 +2559,11 @@ function deleteRemote(index)
 function createRemoteContainer()
 {
     // Add the Remote container
-    RemotesContainer = local.values.addContainer("Remotes");
+    // RemotesContainer = local.values.addContainer("Remotes");
 
-    // var numberOfRemotes = RemotesContainer.addIntParameter("number of remotes", "number of remotes", 1, 0, 64);
+    // var numberOfRemotes = local.values.addIntParameter("number of remotes", "number of remotes", 1, 0, 64);
     // numberOfRemotes.setAttribute("readonly", true);
-    var masterIndex = RemotesContainer.addIntParameter("Master index", "master index", 1, 1, 64);
+    var masterIndex = local.values.addIntParameter("Master index", "master index", 1, 1, 64);
     for (var i = 1; i < SetupContainer.getChild("numberOfRemotes").get() + 1; i++)
     {
         addRemote(i);
@@ -2534,46 +2574,46 @@ function createRemoteContainer()
     //     for (var i = 8; i > SetupContainer.getChild("numberOfRemotes").get(); i--)
     //     {deleteRemote(i);}
     // }
-
-    for (var i = 0; i < SetupContainer.getChild("numberOfRemotes").get(); i++)
-    {
-        if (Remote[i].numberOfFloatControllable < 8)
-        {
-            for (var j=8; j > Remote[i].numberOfFloatControllable + 1; j--)
-            {
-                RemotesContainer.getChild("Remote" + parseInt(i+1)).removeContainer("float" + j);
-            }
-            if (Remote[i].controlsNumber.get() < 8)
-            {
-                for (var j = 1; j < Remote[i].floatNumber.get() + 1; j++)
-                {
-                    for (var k = 8; k > Remote[i].controlsNumber.get();k--) {
-                        RemotesContainer.getChild("Remote" + parseInt(i + 1)).getChild("float" + j).removeParameter("Target" + k);
-                        RemotesContainer.getChild("Remote" + parseInt(i + 1)).getChild("float" + j).getChild("Values").removeParameter("Value" + k);
-                    }
-                }
-            }
-        }
-        if (Remote[i].numberOfButtonControllable < 8)
-        {
-            for (var j=8; j > Remote[i].numberOfButtonControllable + 1; j--)
-            {
-                RemotesContainer.getChild("Remote" + parseInt(i+1)).removeContainer("onOff" + j);
-            }
-            if (Remote[i].controlsNumber.get() < 8)
-            {
-                for (var j = 1; j < Remote[i].onOffNumber.get() + 1; j++)
-                {
-                    for (var k = 8; k > Remote[i].controlsNumber.get();k--) {
-                        RemotesContainer.getChild("Remote" + parseInt(i + 1)).getChild("onOff" + j).removeParameter("Target" + k);
-
-                        ;
-                        RemotesContainer.getChild("Remote" + parseInt(i + 1)).getChild("onOff" + j).getChild("Values").removeParameter("Value" + k);
-                    }
-                }
-            }
-        }
-    }
+    // local.send("/deleteuntilnumber", Remote[i].numberOfFloatControllable);
+    // for (var i = 0; i < SetupContainer.getChild("numberOfRemotes").get(); i++)
+    // {
+    //     if (Remote[i].numberOfFloatControllable < 10)
+    //     {
+    //         local.send("/deleteuntilnumber", Remote[i].numberOfFloatControllable);
+    //         script.log("deleteuntilnumber" + Remote[i].numberOfFloatControllable);
+    //         for (var j=8; j > Remote[i].numberOfFloatControllable + 1; j--)
+    //         {
+    //             local.values.getChild("Remote" + parseInt(i+1)).removeContainer("float" + j);
+    //         }
+    //         if (Remote[i].controlsNumber.get() < 8)
+    //         {
+    //             for (var j = 1; j < Remote[i].floatNumber.get() + 1; j++)
+    //             {
+    //                 for (var k = 8; k > Remote[i].controlsNumber.get();k--) {
+    //                     local.values.getChild("Remote" + parseInt(i + 1)).getChild("float" + j).removeParameter("Target" + k);
+    //                     local.values.getChild("Remote" + parseInt(i + 1)).getChild("float" + j).getChild("Values").removeParameter("Value" + k);
+    //                 }
+    //             }
+    //         }
+    //     }
+    //     if (Remote[i].numberOfButtonControllable < 10)
+    //     {
+    //         for (var j=8; j > Remote[i].numberOfButtonControllable; j--)
+    //         {
+    //             local.values.getChild("Remote" + parseInt(i+1)).removeContainer("onOff" + j);
+    //         }
+    //         if (Remote[i].controlsNumber.get() < 8)
+    //         {
+    //             for (var j = 1; j < Remote[i].onOffNumber.get() + 1; j++)
+    //             {
+    //                 for (var k = 8; k > Remote[i].controlsNumber.get();k--) {
+    //                     local.values.getChild("Remote" + parseInt(i + 1)).getChild("onOff" + j).removeParameter("Target" + k);
+    //                     local.values.getChild("Remote" + parseInt(i + 1)).getChild("onOff" + j).getChild("Values").removeParameter("Value" + k);
+    //                 }
+    //             }
+    //         }
+    //     }
+    // }
 }
 
 /**
