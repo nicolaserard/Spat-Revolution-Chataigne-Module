@@ -20478,18 +20478,14 @@
       }
 
     },
-   "Remotes":
-   {
-     "type": "Container",
      "Master index":  {"type":  "Integer", "description": "Control the index of all the remotes\n", "min":  1, "max":  128},
      "Remote1":
      {
        "type": "Container",
-
        "Index": {"type":  "Integer", "description":  "Index of the sources", "min":  1, "max":  128},
-       "Controls Number": {"type":  "Integer", "description":  "Number of controllables", "min": 1, "max": 24},
-       "On Off Number": {"type":  "Integer", "description":  "Number of on off", "min": 0, "max": 8},
-       "Float Number": {"type":  "Integer", "description":  "Number of floats", "min": 0, "max":  8},
+       "Controls Number": {"type":  "Integer", "description":  "Number of controllables", "min": 1, "max": 24, "default": 8},
+       "On Off Number": {"type":  "Integer", "description":  "Number of on off", "min": 0, "max": 10, "default": 0},
+       "Float Number": {"type":  "Integer", "description":  "Number of floats", "min": 0, "max":  10, "default": 0},
        "onOff1":
        {
          "type": "Container",
@@ -21696,7 +21692,6 @@
          }
        }
        }
-     }
   },
 
   "commands": {
