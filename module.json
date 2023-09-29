@@ -155,7 +155,7 @@
             "type": "Float",
             "description": "Set the width of the early reflections.\n",
             "min": 0,
-            "max": 100.0
+            "max": 180.0
           },
           "PanRev": {
             "type": "Float",
@@ -250,10 +250,6 @@
             "type": "Boolean",
             "description": "Enable/Disable the air absorption.\n"
           },
-          "Coordinates Mode": {
-            "type": "Boolean",
-            "description": "Coordinates Mode.\n"
-          },
           "Radius": {
             "type": "Float",
             "description": "Set radius parameter.\n",
@@ -269,6 +265,14 @@
             "description": "Set the drop factor.\n",
             "min": -10.0,
             "max": 30.0
+          },
+          "XY Coordinates Mode": {
+            "type": "Boolean",
+            "description": "XY Coordinates Mode.\n"
+          },
+          "Z Coordinates Mode": {
+            "type": "Boolean",
+            "description": "XY Coordinates Mode.\n"
           }
         },
         "Room Gains": {
@@ -444,7 +448,7 @@
             "type": "Float",
             "description": "Set the width of the early reflections.\n",
             "min": 0,
-            "max": 100.0
+            "max": 180.0
           },
           "PanRev": {
             "type": "Float",
@@ -539,10 +543,6 @@
             "type": "Boolean",
             "description": "Enable/Disable the air absorption.\n"
           },
-          "Coordinates Mode": {
-            "type": "Boolean",
-            "description": "Coordinates Mode.\n"
-          },
           "Radius": {
             "type": "Float",
             "description": "Set radius parameter.\n",
@@ -558,6 +558,22 @@
             "description": "Set the drop factor.\n",
             "min": -10.0,
             "max": 30.0
+          },
+          "XY Coordinates Mode": {
+            "type": "Boolean",
+            "description": "XY Coordinates Mode.\n"
+          },
+          "Z Coordinates Mode": {
+            "type": "Boolean",
+            "description": "XY Coordinates Mode.\n"
+          },
+          "XY Coordinates Mode": {
+            "type": "Boolean",
+            "description": "XY Coordinates Mode.\n"
+          },
+          "Z Coordinates Mode": {
+            "type": "Boolean",
+            "description": "XY Coordinates Mode.\n"
           }
         },
         "Room Gains": {
@@ -733,7 +749,7 @@
             "type": "Float",
             "description": "Set the width of the early reflections.\n",
             "min": 0,
-            "max": 100.0
+            "max": 180.0
           },
           "PanRev": {
             "type": "Float",
@@ -828,10 +844,6 @@
             "type": "Boolean",
             "description": "Enable/Disable the air absorption.\n"
           },
-          "Coordinates Mode": {
-            "type": "Boolean",
-            "description": "Coordinates Mode.\n"
-          },
           "Radius": {
             "type": "Float",
             "description": "Set radius parameter.\n",
@@ -847,6 +859,14 @@
             "description": "Set the drop factor.\n",
             "min": -10.0,
             "max": 30.0
+          },
+          "XY Coordinates Mode": {
+            "type": "Boolean",
+            "description": "XY Coordinates Mode.\n"
+          },
+          "Z Coordinates Mode": {
+            "type": "Boolean",
+            "description": "XY Coordinates Mode.\n"
           }
         },
         "Room Gains": {
@@ -1022,7 +1042,7 @@
             "type": "Float",
             "description": "Set the width of the early reflections.\n",
             "min": 0,
-            "max": 100.0
+            "max": 180.0
           },
           "PanRev": {
             "type": "Float",
@@ -1117,10 +1137,6 @@
             "type": "Boolean",
             "description": "Enable/Disable the air absorption.\n"
           },
-          "Coordinates Mode": {
-            "type": "Boolean",
-            "description": "Coordinates Mode.\n"
-          },
           "Radius": {
             "type": "Float",
             "description": "Set radius parameter.\n",
@@ -1136,6 +1152,14 @@
             "description": "Set the drop factor.\n",
             "min": -10.0,
             "max": 30.0
+          },
+          "XY Coordinates Mode": {
+            "type": "Boolean",
+            "description": "XY Coordinates Mode.\n"
+          },
+          "Z Coordinates Mode": {
+            "type": "Boolean",
+            "description": "XY Coordinates Mode.\n"
           }
         },
         "Room Gains": {
@@ -1311,7 +1335,7 @@
             "type": "Float",
             "description": "Set the width of the early reflections.\n",
             "min": 0,
-            "max": 100.0
+            "max": 180.0
           },
           "PanRev": {
             "type": "Float",
@@ -1406,10 +1430,6 @@
             "type": "Boolean",
             "description": "Enable/Disable the air absorption.\n"
           },
-          "Coordinates Mode": {
-            "type": "Boolean",
-            "description": "Coordinates Mode.\n"
-          },
           "Radius": {
             "type": "Float",
             "description": "Set radius parameter.\n",
@@ -1425,6 +1445,14 @@
             "description": "Set the drop factor.\n",
             "min": -10.0,
             "max": 30.0
+          },
+          "XY Coordinates Mode": {
+            "type": "Boolean",
+            "description": "XY Coordinates Mode.\n"
+          },
+          "Z Coordinates Mode": {
+            "type": "Boolean",
+            "description": "XY Coordinates Mode.\n"
           }
         },
         "Room Gains": {
@@ -1600,7 +1628,7 @@
             "type": "Float",
             "description": "Set the width of the early reflections.\n",
             "min": 0,
-            "max": 100.0
+            "max": 180.0
           },
           "PanRev": {
             "type": "Float",
@@ -1695,10 +1723,6 @@
             "type": "Boolean",
             "description": "Enable/Disable the air absorption.\n"
           },
-          "Coordinates Mode": {
-            "type": "Boolean",
-            "description": "Coordinates Mode.\n"
-          },
           "Radius": {
             "type": "Float",
             "description": "Set radius parameter.\n",
@@ -1714,6 +1738,14 @@
             "description": "Set the drop factor.\n",
             "min": -10.0,
             "max": 30.0
+          },
+          "XY Coordinates Mode": {
+            "type": "Boolean",
+            "description": "XY Coordinates Mode.\n"
+          },
+          "Z Coordinates Mode": {
+            "type": "Boolean",
+            "description": "XY Coordinates Mode.\n"
           }
         },
         "Room Gains": {
@@ -1889,7 +1921,7 @@
             "type": "Float",
             "description": "Set the width of the early reflections.\n",
             "min": 0,
-            "max": 100.0
+            "max": 180.0
           },
           "PanRev": {
             "type": "Float",
@@ -1984,10 +2016,6 @@
             "type": "Boolean",
             "description": "Enable/Disable the air absorption.\n"
           },
-          "Coordinates Mode": {
-            "type": "Boolean",
-            "description": "Coordinates Mode.\n"
-          },
           "Radius": {
             "type": "Float",
             "description": "Set radius parameter.\n",
@@ -2003,6 +2031,14 @@
             "description": "Set the drop factor.\n",
             "min": -10.0,
             "max": 30.0
+          },
+          "XY Coordinates Mode": {
+            "type": "Boolean",
+            "description": "XY Coordinates Mode.\n"
+          },
+          "Z Coordinates Mode": {
+            "type": "Boolean",
+            "description": "XY Coordinates Mode.\n"
           }
         },
         "Room Gains": {
@@ -2178,7 +2214,7 @@
             "type": "Float",
             "description": "Set the width of the early reflections.\n",
             "min": 0,
-            "max": 100.0
+            "max": 180.0
           },
           "PanRev": {
             "type": "Float",
@@ -2273,10 +2309,6 @@
             "type": "Boolean",
             "description": "Enable/Disable the air absorption.\n"
           },
-          "Coordinates Mode": {
-            "type": "Boolean",
-            "description": "Coordinates Mode.\n"
-          },
           "Radius": {
             "type": "Float",
             "description": "Set radius parameter.\n",
@@ -2292,6 +2324,14 @@
             "description": "Set the drop factor.\n",
             "min": -10.0,
             "max": 30.0
+          },
+          "XY Coordinates Mode": {
+            "type": "Boolean",
+            "description": "XY Coordinates Mode.\n"
+          },
+          "Z Coordinates Mode": {
+            "type": "Boolean",
+            "description": "XY Coordinates Mode.\n"
           }
         },
         "Room Gains": {
@@ -2467,7 +2507,7 @@
             "type": "Float",
             "description": "Set the width of the early reflections.\n",
             "min": 0,
-            "max": 100.0
+            "max": 180.0
           },
           "PanRev": {
             "type": "Float",
@@ -2562,10 +2602,6 @@
             "type": "Boolean",
             "description": "Enable/Disable the air absorption.\n"
           },
-          "Coordinates Mode": {
-            "type": "Boolean",
-            "description": "Coordinates Mode.\n"
-          },
           "Radius": {
             "type": "Float",
             "description": "Set radius parameter.\n",
@@ -2581,6 +2617,14 @@
             "description": "Set the drop factor.\n",
             "min": -10.0,
             "max": 30.0
+          },
+          "XY Coordinates Mode": {
+            "type": "Boolean",
+            "description": "XY Coordinates Mode.\n"
+          },
+          "Z Coordinates Mode": {
+            "type": "Boolean",
+            "description": "XY Coordinates Mode.\n"
           }
         },
         "Room Gains": {
@@ -2756,7 +2800,7 @@
             "type": "Float",
             "description": "Set the width of the early reflections.\n",
             "min": 0,
-            "max": 100.0
+            "max": 180.0
           },
           "PanRev": {
             "type": "Float",
@@ -2851,10 +2895,6 @@
             "type": "Boolean",
             "description": "Enable/Disable the air absorption.\n"
           },
-          "Coordinates Mode": {
-            "type": "Boolean",
-            "description": "Coordinates Mode.\n"
-          },
           "Radius": {
             "type": "Float",
             "description": "Set radius parameter.\n",
@@ -2870,6 +2910,14 @@
             "description": "Set the drop factor.\n",
             "min": -10.0,
             "max": 30.0
+          },
+          "XY Coordinates Mode": {
+            "type": "Boolean",
+            "description": "XY Coordinates Mode.\n"
+          },
+          "Z Coordinates Mode": {
+            "type": "Boolean",
+            "description": "XY Coordinates Mode.\n"
           }
         },
         "Room Gains": {
@@ -3045,7 +3093,7 @@
             "type": "Float",
             "description": "Set the width of the early reflections.\n",
             "min": 0,
-            "max": 100.0
+            "max": 180.0
           },
           "PanRev": {
             "type": "Float",
@@ -3140,10 +3188,6 @@
             "type": "Boolean",
             "description": "Enable/Disable the air absorption.\n"
           },
-          "Coordinates Mode": {
-            "type": "Boolean",
-            "description": "Coordinates Mode.\n"
-          },
           "Radius": {
             "type": "Float",
             "description": "Set radius parameter.\n",
@@ -3159,6 +3203,14 @@
             "description": "Set the drop factor.\n",
             "min": -10.0,
             "max": 30.0
+          },
+          "XY Coordinates Mode": {
+            "type": "Boolean",
+            "description": "XY Coordinates Mode.\n"
+          },
+          "Z Coordinates Mode": {
+            "type": "Boolean",
+            "description": "XY Coordinates Mode.\n"
           }
         },
         "Room Gains": {
@@ -3334,7 +3386,7 @@
             "type": "Float",
             "description": "Set the width of the early reflections.\n",
             "min": 0,
-            "max": 100.0
+            "max": 180.0
           },
           "PanRev": {
             "type": "Float",
@@ -3429,10 +3481,6 @@
             "type": "Boolean",
             "description": "Enable/Disable the air absorption.\n"
           },
-          "Coordinates Mode": {
-            "type": "Boolean",
-            "description": "Coordinates Mode.\n"
-          },
           "Radius": {
             "type": "Float",
             "description": "Set radius parameter.\n",
@@ -3448,6 +3496,14 @@
             "description": "Set the drop factor.\n",
             "min": -10.0,
             "max": 30.0
+          },
+          "XY Coordinates Mode": {
+            "type": "Boolean",
+            "description": "XY Coordinates Mode.\n"
+          },
+          "Z Coordinates Mode": {
+            "type": "Boolean",
+            "description": "XY Coordinates Mode.\n"
           }
         },
         "Room Gains": {
@@ -3623,7 +3679,7 @@
             "type": "Float",
             "description": "Set the width of the early reflections.\n",
             "min": 0,
-            "max": 100.0
+            "max": 180.0
           },
           "PanRev": {
             "type": "Float",
@@ -3718,10 +3774,6 @@
             "type": "Boolean",
             "description": "Enable/Disable the air absorption.\n"
           },
-          "Coordinates Mode": {
-            "type": "Boolean",
-            "description": "Coordinates Mode.\n"
-          },
           "Radius": {
             "type": "Float",
             "description": "Set radius parameter.\n",
@@ -3737,6 +3789,14 @@
             "description": "Set the drop factor.\n",
             "min": -10.0,
             "max": 30.0
+          },
+          "XY Coordinates Mode": {
+            "type": "Boolean",
+            "description": "XY Coordinates Mode.\n"
+          },
+          "Z Coordinates Mode": {
+            "type": "Boolean",
+            "description": "XY Coordinates Mode.\n"
           }
         },
         "Room Gains": {
@@ -3912,7 +3972,7 @@
             "type": "Float",
             "description": "Set the width of the early reflections.\n",
             "min": 0,
-            "max": 100.0
+            "max": 180.0
           },
           "PanRev": {
             "type": "Float",
@@ -4007,10 +4067,6 @@
             "type": "Boolean",
             "description": "Enable/Disable the air absorption.\n"
           },
-          "Coordinates Mode": {
-            "type": "Boolean",
-            "description": "Coordinates Mode.\n"
-          },
           "Radius": {
             "type": "Float",
             "description": "Set radius parameter.\n",
@@ -4026,6 +4082,14 @@
             "description": "Set the drop factor.\n",
             "min": -10.0,
             "max": 30.0
+          },
+          "XY Coordinates Mode": {
+            "type": "Boolean",
+            "description": "XY Coordinates Mode.\n"
+          },
+          "Z Coordinates Mode": {
+            "type": "Boolean",
+            "description": "XY Coordinates Mode.\n"
           }
         },
         "Room Gains": {
@@ -4201,7 +4265,7 @@
             "type": "Float",
             "description": "Set the width of the early reflections.\n",
             "min": 0,
-            "max": 100.0
+            "max": 180.0
           },
           "PanRev": {
             "type": "Float",
@@ -4296,10 +4360,6 @@
             "type": "Boolean",
             "description": "Enable/Disable the air absorption.\n"
           },
-          "Coordinates Mode": {
-            "type": "Boolean",
-            "description": "Coordinates Mode.\n"
-          },
           "Radius": {
             "type": "Float",
             "description": "Set radius parameter.\n",
@@ -4315,6 +4375,14 @@
             "description": "Set the drop factor.\n",
             "min": -10.0,
             "max": 30.0
+          },
+          "XY Coordinates Mode": {
+            "type": "Boolean",
+            "description": "XY Coordinates Mode.\n"
+          },
+          "Z Coordinates Mode": {
+            "type": "Boolean",
+            "description": "XY Coordinates Mode.\n"
           }
         },
         "Room Gains": {
@@ -4490,7 +4558,7 @@
             "type": "Float",
             "description": "Set the width of the early reflections.\n",
             "min": 0,
-            "max": 100.0
+            "max": 180.0
           },
           "PanRev": {
             "type": "Float",
@@ -4585,10 +4653,6 @@
             "type": "Boolean",
             "description": "Enable/Disable the air absorption.\n"
           },
-          "Coordinates Mode": {
-            "type": "Boolean",
-            "description": "Coordinates Mode.\n"
-          },
           "Radius": {
             "type": "Float",
             "description": "Set radius parameter.\n",
@@ -4604,6 +4668,14 @@
             "description": "Set the drop factor.\n",
             "min": -10.0,
             "max": 30.0
+          },
+          "XY Coordinates Mode": {
+            "type": "Boolean",
+            "description": "XY Coordinates Mode.\n"
+          },
+          "Z Coordinates Mode": {
+            "type": "Boolean",
+            "description": "XY Coordinates Mode.\n"
           }
         },
         "Room Gains": {
@@ -4779,7 +4851,7 @@
             "type": "Float",
             "description": "Set the width of the early reflections.\n",
             "min": 0,
-            "max": 100.0
+            "max": 180.0
           },
           "PanRev": {
             "type": "Float",
@@ -4874,10 +4946,6 @@
             "type": "Boolean",
             "description": "Enable/Disable the air absorption.\n"
           },
-          "Coordinates Mode": {
-            "type": "Boolean",
-            "description": "Coordinates Mode.\n"
-          },
           "Radius": {
             "type": "Float",
             "description": "Set radius parameter.\n",
@@ -4893,6 +4961,14 @@
             "description": "Set the drop factor.\n",
             "min": -10.0,
             "max": 30.0
+          },
+          "XY Coordinates Mode": {
+            "type": "Boolean",
+            "description": "XY Coordinates Mode.\n"
+          },
+          "Z Coordinates Mode": {
+            "type": "Boolean",
+            "description": "XY Coordinates Mode.\n"
           }
         },
         "Room Gains": {
@@ -5068,7 +5144,7 @@
             "type": "Float",
             "description": "Set the width of the early reflections.\n",
             "min": 0,
-            "max": 100.0
+            "max": 180.0
           },
           "PanRev": {
             "type": "Float",
@@ -5163,10 +5239,6 @@
             "type": "Boolean",
             "description": "Enable/Disable the air absorption.\n"
           },
-          "Coordinates Mode": {
-            "type": "Boolean",
-            "description": "Coordinates Mode.\n"
-          },
           "Radius": {
             "type": "Float",
             "description": "Set radius parameter.\n",
@@ -5182,6 +5254,14 @@
             "description": "Set the drop factor.\n",
             "min": -10.0,
             "max": 30.0
+          },
+          "XY Coordinates Mode": {
+            "type": "Boolean",
+            "description": "XY Coordinates Mode.\n"
+          },
+          "Z Coordinates Mode": {
+            "type": "Boolean",
+            "description": "XY Coordinates Mode.\n"
           }
         },
         "Room Gains": {
@@ -5357,7 +5437,7 @@
             "type": "Float",
             "description": "Set the width of the early reflections.\n",
             "min": 0,
-            "max": 100.0
+            "max": 180.0
           },
           "PanRev": {
             "type": "Float",
@@ -5452,10 +5532,6 @@
             "type": "Boolean",
             "description": "Enable/Disable the air absorption.\n"
           },
-          "Coordinates Mode": {
-            "type": "Boolean",
-            "description": "Coordinates Mode.\n"
-          },
           "Radius": {
             "type": "Float",
             "description": "Set radius parameter.\n",
@@ -5471,6 +5547,14 @@
             "description": "Set the drop factor.\n",
             "min": -10.0,
             "max": 30.0
+          },
+          "XY Coordinates Mode": {
+            "type": "Boolean",
+            "description": "XY Coordinates Mode.\n"
+          },
+          "Z Coordinates Mode": {
+            "type": "Boolean",
+            "description": "XY Coordinates Mode.\n"
           }
         },
         "Room Gains": {
@@ -5646,7 +5730,7 @@
             "type": "Float",
             "description": "Set the width of the early reflections.\n",
             "min": 0,
-            "max": 100.0
+            "max": 180.0
           },
           "PanRev": {
             "type": "Float",
@@ -5741,10 +5825,6 @@
             "type": "Boolean",
             "description": "Enable/Disable the air absorption.\n"
           },
-          "Coordinates Mode": {
-            "type": "Boolean",
-            "description": "Coordinates Mode.\n"
-          },
           "Radius": {
             "type": "Float",
             "description": "Set radius parameter.\n",
@@ -5760,6 +5840,14 @@
             "description": "Set the drop factor.\n",
             "min": -10.0,
             "max": 30.0
+          },
+          "XY Coordinates Mode": {
+            "type": "Boolean",
+            "description": "XY Coordinates Mode.\n"
+          },
+          "Z Coordinates Mode": {
+            "type": "Boolean",
+            "description": "XY Coordinates Mode.\n"
           }
         },
         "Room Gains": {
@@ -5935,7 +6023,7 @@
             "type": "Float",
             "description": "Set the width of the early reflections.\n",
             "min": 0,
-            "max": 100.0
+            "max": 180.0
           },
           "PanRev": {
             "type": "Float",
@@ -6030,10 +6118,6 @@
             "type": "Boolean",
             "description": "Enable/Disable the air absorption.\n"
           },
-          "Coordinates Mode": {
-            "type": "Boolean",
-            "description": "Coordinates Mode.\n"
-          },
           "Radius": {
             "type": "Float",
             "description": "Set radius parameter.\n",
@@ -6049,6 +6133,14 @@
             "description": "Set the drop factor.\n",
             "min": -10.0,
             "max": 30.0
+          },
+          "XY Coordinates Mode": {
+            "type": "Boolean",
+            "description": "XY Coordinates Mode.\n"
+          },
+          "Z Coordinates Mode": {
+            "type": "Boolean",
+            "description": "XY Coordinates Mode.\n"
           }
         },
         "Room Gains": {
@@ -6224,7 +6316,7 @@
             "type": "Float",
             "description": "Set the width of the early reflections.\n",
             "min": 0,
-            "max": 100.0
+            "max": 180.0
           },
           "PanRev": {
             "type": "Float",
@@ -6319,10 +6411,6 @@
             "type": "Boolean",
             "description": "Enable/Disable the air absorption.\n"
           },
-          "Coordinates Mode": {
-            "type": "Boolean",
-            "description": "Coordinates Mode.\n"
-          },
           "Radius": {
             "type": "Float",
             "description": "Set radius parameter.\n",
@@ -6338,6 +6426,14 @@
             "description": "Set the drop factor.\n",
             "min": -10.0,
             "max": 30.0
+          },
+          "XY Coordinates Mode": {
+            "type": "Boolean",
+            "description": "XY Coordinates Mode.\n"
+          },
+          "Z Coordinates Mode": {
+            "type": "Boolean",
+            "description": "XY Coordinates Mode.\n"
           }
         },
         "Room Gains": {
@@ -6513,7 +6609,7 @@
             "type": "Float",
             "description": "Set the width of the early reflections.\n",
             "min": 0,
-            "max": 100.0
+            "max": 180.0
           },
           "PanRev": {
             "type": "Float",
@@ -6608,10 +6704,6 @@
             "type": "Boolean",
             "description": "Enable/Disable the air absorption.\n"
           },
-          "Coordinates Mode": {
-            "type": "Boolean",
-            "description": "Coordinates Mode.\n"
-          },
           "Radius": {
             "type": "Float",
             "description": "Set radius parameter.\n",
@@ -6627,6 +6719,14 @@
             "description": "Set the drop factor.\n",
             "min": -10.0,
             "max": 30.0
+          },
+          "XY Coordinates Mode": {
+            "type": "Boolean",
+            "description": "XY Coordinates Mode.\n"
+          },
+          "Z Coordinates Mode": {
+            "type": "Boolean",
+            "description": "XY Coordinates Mode.\n"
           }
         },
         "Room Gains": {
@@ -6802,7 +6902,7 @@
             "type": "Float",
             "description": "Set the width of the early reflections.\n",
             "min": 0,
-            "max": 100.0
+            "max": 180.0
           },
           "PanRev": {
             "type": "Float",
@@ -6897,10 +6997,6 @@
             "type": "Boolean",
             "description": "Enable/Disable the air absorption.\n"
           },
-          "Coordinates Mode": {
-            "type": "Boolean",
-            "description": "Coordinates Mode.\n"
-          },
           "Radius": {
             "type": "Float",
             "description": "Set radius parameter.\n",
@@ -6916,6 +7012,14 @@
             "description": "Set the drop factor.\n",
             "min": -10.0,
             "max": 30.0
+          },
+          "XY Coordinates Mode": {
+            "type": "Boolean",
+            "description": "XY Coordinates Mode.\n"
+          },
+          "Z Coordinates Mode": {
+            "type": "Boolean",
+            "description": "XY Coordinates Mode.\n"
           }
         },
         "Room Gains": {
@@ -7091,7 +7195,7 @@
             "type": "Float",
             "description": "Set the width of the early reflections.\n",
             "min": 0,
-            "max": 100.0
+            "max": 180.0
           },
           "PanRev": {
             "type": "Float",
@@ -7186,10 +7290,6 @@
             "type": "Boolean",
             "description": "Enable/Disable the air absorption.\n"
           },
-          "Coordinates Mode": {
-            "type": "Boolean",
-            "description": "Coordinates Mode.\n"
-          },
           "Radius": {
             "type": "Float",
             "description": "Set radius parameter.\n",
@@ -7205,6 +7305,14 @@
             "description": "Set the drop factor.\n",
             "min": -10.0,
             "max": 30.0
+          },
+          "XY Coordinates Mode": {
+            "type": "Boolean",
+            "description": "XY Coordinates Mode.\n"
+          },
+          "Z Coordinates Mode": {
+            "type": "Boolean",
+            "description": "XY Coordinates Mode.\n"
           }
         },
         "Room Gains": {
@@ -7380,7 +7488,7 @@
             "type": "Float",
             "description": "Set the width of the early reflections.\n",
             "min": 0,
-            "max": 100.0
+            "max": 180.0
           },
           "PanRev": {
             "type": "Float",
@@ -7475,10 +7583,6 @@
             "type": "Boolean",
             "description": "Enable/Disable the air absorption.\n"
           },
-          "Coordinates Mode": {
-            "type": "Boolean",
-            "description": "Coordinates Mode.\n"
-          },
           "Radius": {
             "type": "Float",
             "description": "Set radius parameter.\n",
@@ -7494,6 +7598,14 @@
             "description": "Set the drop factor.\n",
             "min": -10.0,
             "max": 30.0
+          },
+          "XY Coordinates Mode": {
+            "type": "Boolean",
+            "description": "XY Coordinates Mode.\n"
+          },
+          "Z Coordinates Mode": {
+            "type": "Boolean",
+            "description": "XY Coordinates Mode.\n"
           }
         },
         "Room Gains": {
@@ -7669,7 +7781,7 @@
             "type": "Float",
             "description": "Set the width of the early reflections.\n",
             "min": 0,
-            "max": 100.0
+            "max": 180.0
           },
           "PanRev": {
             "type": "Float",
@@ -7764,10 +7876,6 @@
             "type": "Boolean",
             "description": "Enable/Disable the air absorption.\n"
           },
-          "Coordinates Mode": {
-            "type": "Boolean",
-            "description": "Coordinates Mode.\n"
-          },
           "Radius": {
             "type": "Float",
             "description": "Set radius parameter.\n",
@@ -7783,6 +7891,14 @@
             "description": "Set the drop factor.\n",
             "min": -10.0,
             "max": 30.0
+          },
+          "XY Coordinates Mode": {
+            "type": "Boolean",
+            "description": "XY Coordinates Mode.\n"
+          },
+          "Z Coordinates Mode": {
+            "type": "Boolean",
+            "description": "XY Coordinates Mode.\n"
           }
         },
         "Room Gains": {
@@ -7958,7 +8074,7 @@
             "type": "Float",
             "description": "Set the width of the early reflections.\n",
             "min": 0,
-            "max": 100.0
+            "max": 180.0
           },
           "PanRev": {
             "type": "Float",
@@ -8053,10 +8169,6 @@
             "type": "Boolean",
             "description": "Enable/Disable the air absorption.\n"
           },
-          "Coordinates Mode": {
-            "type": "Boolean",
-            "description": "Coordinates Mode.\n"
-          },
           "Radius": {
             "type": "Float",
             "description": "Set radius parameter.\n",
@@ -8072,6 +8184,14 @@
             "description": "Set the drop factor.\n",
             "min": -10.0,
             "max": 30.0
+          },
+          "XY Coordinates Mode": {
+            "type": "Boolean",
+            "description": "XY Coordinates Mode.\n"
+          },
+          "Z Coordinates Mode": {
+            "type": "Boolean",
+            "description": "XY Coordinates Mode.\n"
           }
         },
         "Room Gains": {
@@ -8247,7 +8367,7 @@
             "type": "Float",
             "description": "Set the width of the early reflections.\n",
             "min": 0,
-            "max": 100.0
+            "max": 180.0
           },
           "PanRev": {
             "type": "Float",
@@ -8342,10 +8462,6 @@
             "type": "Boolean",
             "description": "Enable/Disable the air absorption.\n"
           },
-          "Coordinates Mode": {
-            "type": "Boolean",
-            "description": "Coordinates Mode.\n"
-          },
           "Radius": {
             "type": "Float",
             "description": "Set radius parameter.\n",
@@ -8361,6 +8477,14 @@
             "description": "Set the drop factor.\n",
             "min": -10.0,
             "max": 30.0
+          },
+          "XY Coordinates Mode": {
+            "type": "Boolean",
+            "description": "XY Coordinates Mode.\n"
+          },
+          "Z Coordinates Mode": {
+            "type": "Boolean",
+            "description": "XY Coordinates Mode.\n"
           }
         },
         "Room Gains": {
@@ -8536,7 +8660,7 @@
             "type": "Float",
             "description": "Set the width of the early reflections.\n",
             "min": 0,
-            "max": 100.0
+            "max": 180.0
           },
           "PanRev": {
             "type": "Float",
@@ -8631,10 +8755,6 @@
             "type": "Boolean",
             "description": "Enable/Disable the air absorption.\n"
           },
-          "Coordinates Mode": {
-            "type": "Boolean",
-            "description": "Coordinates Mode.\n"
-          },
           "Radius": {
             "type": "Float",
             "description": "Set radius parameter.\n",
@@ -8650,6 +8770,14 @@
             "description": "Set the drop factor.\n",
             "min": -10.0,
             "max": 30.0
+          },
+          "XY Coordinates Mode": {
+            "type": "Boolean",
+            "description": "XY Coordinates Mode.\n"
+          },
+          "Z Coordinates Mode": {
+            "type": "Boolean",
+            "description": "XY Coordinates Mode.\n"
           }
         },
         "Room Gains": {
@@ -8825,7 +8953,7 @@
             "type": "Float",
             "description": "Set the width of the early reflections.\n",
             "min": 0,
-            "max": 100.0
+            "max": 180.0
           },
           "PanRev": {
             "type": "Float",
@@ -8920,10 +9048,6 @@
             "type": "Boolean",
             "description": "Enable/Disable the air absorption.\n"
           },
-          "Coordinates Mode": {
-            "type": "Boolean",
-            "description": "Coordinates Mode.\n"
-          },
           "Radius": {
             "type": "Float",
             "description": "Set radius parameter.\n",
@@ -8939,6 +9063,14 @@
             "description": "Set the drop factor.\n",
             "min": -10.0,
             "max": 30.0
+          },
+          "XY Coordinates Mode": {
+            "type": "Boolean",
+            "description": "XY Coordinates Mode.\n"
+          },
+          "Z Coordinates Mode": {
+            "type": "Boolean",
+            "description": "XY Coordinates Mode.\n"
           }
         },
         "Room Gains": {
@@ -9114,7 +9246,7 @@
             "type": "Float",
             "description": "Set the width of the early reflections.\n",
             "min": 0,
-            "max": 100.0
+            "max": 180.0
           },
           "PanRev": {
             "type": "Float",
@@ -9209,10 +9341,6 @@
             "type": "Boolean",
             "description": "Enable/Disable the air absorption.\n"
           },
-          "Coordinates Mode": {
-            "type": "Boolean",
-            "description": "Coordinates Mode.\n"
-          },
           "Radius": {
             "type": "Float",
             "description": "Set radius parameter.\n",
@@ -9228,6 +9356,14 @@
             "description": "Set the drop factor.\n",
             "min": -10.0,
             "max": 30.0
+          },
+          "XY Coordinates Mode": {
+            "type": "Boolean",
+            "description": "XY Coordinates Mode.\n"
+          },
+          "Z Coordinates Mode": {
+            "type": "Boolean",
+            "description": "XY Coordinates Mode.\n"
           }
         },
         "Room Gains": {
@@ -9403,7 +9539,7 @@
             "type": "Float",
             "description": "Set the width of the early reflections.\n",
             "min": 0,
-            "max": 100.0
+            "max": 180.0
           },
           "PanRev": {
             "type": "Float",
@@ -9498,10 +9634,6 @@
             "type": "Boolean",
             "description": "Enable/Disable the air absorption.\n"
           },
-          "Coordinates Mode": {
-            "type": "Boolean",
-            "description": "Coordinates Mode.\n"
-          },
           "Radius": {
             "type": "Float",
             "description": "Set radius parameter.\n",
@@ -9517,6 +9649,14 @@
             "description": "Set the drop factor.\n",
             "min": -10.0,
             "max": 30.0
+          },
+          "XY Coordinates Mode": {
+            "type": "Boolean",
+            "description": "XY Coordinates Mode.\n"
+          },
+          "Z Coordinates Mode": {
+            "type": "Boolean",
+            "description": "XY Coordinates Mode.\n"
           }
         },
         "Room Gains": {
@@ -9692,7 +9832,7 @@
             "type": "Float",
             "description": "Set the width of the early reflections.\n",
             "min": 0,
-            "max": 100.0
+            "max": 180.0
           },
           "PanRev": {
             "type": "Float",
@@ -9787,10 +9927,6 @@
             "type": "Boolean",
             "description": "Enable/Disable the air absorption.\n"
           },
-          "Coordinates Mode": {
-            "type": "Boolean",
-            "description": "Coordinates Mode.\n"
-          },
           "Radius": {
             "type": "Float",
             "description": "Set radius parameter.\n",
@@ -9806,6 +9942,14 @@
             "description": "Set the drop factor.\n",
             "min": -10.0,
             "max": 30.0
+          },
+          "XY Coordinates Mode": {
+            "type": "Boolean",
+            "description": "XY Coordinates Mode.\n"
+          },
+          "Z Coordinates Mode": {
+            "type": "Boolean",
+            "description": "XY Coordinates Mode.\n"
           }
         },
         "Room Gains": {
@@ -9981,7 +10125,7 @@
             "type": "Float",
             "description": "Set the width of the early reflections.\n",
             "min": 0,
-            "max": 100.0
+            "max": 180.0
           },
           "PanRev": {
             "type": "Float",
@@ -10076,10 +10220,6 @@
             "type": "Boolean",
             "description": "Enable/Disable the air absorption.\n"
           },
-          "Coordinates Mode": {
-            "type": "Boolean",
-            "description": "Coordinates Mode.\n"
-          },
           "Radius": {
             "type": "Float",
             "description": "Set radius parameter.\n",
@@ -10095,6 +10235,14 @@
             "description": "Set the drop factor.\n",
             "min": -10.0,
             "max": 30.0
+          },
+          "XY Coordinates Mode": {
+            "type": "Boolean",
+            "description": "XY Coordinates Mode.\n"
+          },
+          "Z Coordinates Mode": {
+            "type": "Boolean",
+            "description": "XY Coordinates Mode.\n"
           }
         },
         "Room Gains": {
@@ -10270,7 +10418,7 @@
             "type": "Float",
             "description": "Set the width of the early reflections.\n",
             "min": 0,
-            "max": 100.0
+            "max": 180.0
           },
           "PanRev": {
             "type": "Float",
@@ -10365,10 +10513,6 @@
             "type": "Boolean",
             "description": "Enable/Disable the air absorption.\n"
           },
-          "Coordinates Mode": {
-            "type": "Boolean",
-            "description": "Coordinates Mode.\n"
-          },
           "Radius": {
             "type": "Float",
             "description": "Set radius parameter.\n",
@@ -10384,6 +10528,14 @@
             "description": "Set the drop factor.\n",
             "min": -10.0,
             "max": 30.0
+          },
+          "XY Coordinates Mode": {
+            "type": "Boolean",
+            "description": "XY Coordinates Mode.\n"
+          },
+          "Z Coordinates Mode": {
+            "type": "Boolean",
+            "description": "XY Coordinates Mode.\n"
           }
         },
         "Room Gains": {
@@ -10559,7 +10711,7 @@
             "type": "Float",
             "description": "Set the width of the early reflections.\n",
             "min": 0,
-            "max": 100.0
+            "max": 180.0
           },
           "PanRev": {
             "type": "Float",
@@ -10654,10 +10806,6 @@
             "type": "Boolean",
             "description": "Enable/Disable the air absorption.\n"
           },
-          "Coordinates Mode": {
-            "type": "Boolean",
-            "description": "Coordinates Mode.\n"
-          },
           "Radius": {
             "type": "Float",
             "description": "Set radius parameter.\n",
@@ -10673,6 +10821,14 @@
             "description": "Set the drop factor.\n",
             "min": -10.0,
             "max": 30.0
+          },
+          "XY Coordinates Mode": {
+            "type": "Boolean",
+            "description": "XY Coordinates Mode.\n"
+          },
+          "Z Coordinates Mode": {
+            "type": "Boolean",
+            "description": "XY Coordinates Mode.\n"
           }
         },
         "Room Gains": {
@@ -10848,7 +11004,7 @@
             "type": "Float",
             "description": "Set the width of the early reflections.\n",
             "min": 0,
-            "max": 100.0
+            "max": 180.0
           },
           "PanRev": {
             "type": "Float",
@@ -10943,10 +11099,6 @@
             "type": "Boolean",
             "description": "Enable/Disable the air absorption.\n"
           },
-          "Coordinates Mode": {
-            "type": "Boolean",
-            "description": "Coordinates Mode.\n"
-          },
           "Radius": {
             "type": "Float",
             "description": "Set radius parameter.\n",
@@ -10962,6 +11114,14 @@
             "description": "Set the drop factor.\n",
             "min": -10.0,
             "max": 30.0
+          },
+          "XY Coordinates Mode": {
+            "type": "Boolean",
+            "description": "XY Coordinates Mode.\n"
+          },
+          "Z Coordinates Mode": {
+            "type": "Boolean",
+            "description": "XY Coordinates Mode.\n"
           }
         },
         "Room Gains": {
@@ -11137,7 +11297,7 @@
             "type": "Float",
             "description": "Set the width of the early reflections.\n",
             "min": 0,
-            "max": 100.0
+            "max": 180.0
           },
           "PanRev": {
             "type": "Float",
@@ -11232,10 +11392,6 @@
             "type": "Boolean",
             "description": "Enable/Disable the air absorption.\n"
           },
-          "Coordinates Mode": {
-            "type": "Boolean",
-            "description": "Coordinates Mode.\n"
-          },
           "Radius": {
             "type": "Float",
             "description": "Set radius parameter.\n",
@@ -11251,6 +11407,14 @@
             "description": "Set the drop factor.\n",
             "min": -10.0,
             "max": 30.0
+          },
+          "XY Coordinates Mode": {
+            "type": "Boolean",
+            "description": "XY Coordinates Mode.\n"
+          },
+          "Z Coordinates Mode": {
+            "type": "Boolean",
+            "description": "XY Coordinates Mode.\n"
           }
         },
         "Room Gains": {
@@ -11426,7 +11590,7 @@
             "type": "Float",
             "description": "Set the width of the early reflections.\n",
             "min": 0,
-            "max": 100.0
+            "max": 180.0
           },
           "PanRev": {
             "type": "Float",
@@ -11521,10 +11685,6 @@
             "type": "Boolean",
             "description": "Enable/Disable the air absorption.\n"
           },
-          "Coordinates Mode": {
-            "type": "Boolean",
-            "description": "Coordinates Mode.\n"
-          },
           "Radius": {
             "type": "Float",
             "description": "Set radius parameter.\n",
@@ -11540,6 +11700,14 @@
             "description": "Set the drop factor.\n",
             "min": -10.0,
             "max": 30.0
+          },
+          "XY Coordinates Mode": {
+            "type": "Boolean",
+            "description": "XY Coordinates Mode.\n"
+          },
+          "Z Coordinates Mode": {
+            "type": "Boolean",
+            "description": "XY Coordinates Mode.\n"
           }
         },
         "Room Gains": {
@@ -11715,7 +11883,7 @@
             "type": "Float",
             "description": "Set the width of the early reflections.\n",
             "min": 0,
-            "max": 100.0
+            "max": 180.0
           },
           "PanRev": {
             "type": "Float",
@@ -11810,10 +11978,6 @@
             "type": "Boolean",
             "description": "Enable/Disable the air absorption.\n"
           },
-          "Coordinates Mode": {
-            "type": "Boolean",
-            "description": "Coordinates Mode.\n"
-          },
           "Radius": {
             "type": "Float",
             "description": "Set radius parameter.\n",
@@ -11829,6 +11993,14 @@
             "description": "Set the drop factor.\n",
             "min": -10.0,
             "max": 30.0
+          },
+          "XY Coordinates Mode": {
+            "type": "Boolean",
+            "description": "XY Coordinates Mode.\n"
+          },
+          "Z Coordinates Mode": {
+            "type": "Boolean",
+            "description": "XY Coordinates Mode.\n"
           }
         },
         "Room Gains": {
@@ -12004,7 +12176,7 @@
             "type": "Float",
             "description": "Set the width of the early reflections.\n",
             "min": 0,
-            "max": 100.0
+            "max": 180.0
           },
           "PanRev": {
             "type": "Float",
@@ -12099,10 +12271,6 @@
             "type": "Boolean",
             "description": "Enable/Disable the air absorption.\n"
           },
-          "Coordinates Mode": {
-            "type": "Boolean",
-            "description": "Coordinates Mode.\n"
-          },
           "Radius": {
             "type": "Float",
             "description": "Set radius parameter.\n",
@@ -12118,6 +12286,14 @@
             "description": "Set the drop factor.\n",
             "min": -10.0,
             "max": 30.0
+          },
+          "XY Coordinates Mode": {
+            "type": "Boolean",
+            "description": "XY Coordinates Mode.\n"
+          },
+          "Z Coordinates Mode": {
+            "type": "Boolean",
+            "description": "XY Coordinates Mode.\n"
           }
         },
         "Room Gains": {
@@ -12293,7 +12469,7 @@
             "type": "Float",
             "description": "Set the width of the early reflections.\n",
             "min": 0,
-            "max": 100.0
+            "max": 180.0
           },
           "PanRev": {
             "type": "Float",
@@ -12388,10 +12564,6 @@
             "type": "Boolean",
             "description": "Enable/Disable the air absorption.\n"
           },
-          "Coordinates Mode": {
-            "type": "Boolean",
-            "description": "Coordinates Mode.\n"
-          },
           "Radius": {
             "type": "Float",
             "description": "Set radius parameter.\n",
@@ -12407,6 +12579,14 @@
             "description": "Set the drop factor.\n",
             "min": -10.0,
             "max": 30.0
+          },
+          "XY Coordinates Mode": {
+            "type": "Boolean",
+            "description": "XY Coordinates Mode.\n"
+          },
+          "Z Coordinates Mode": {
+            "type": "Boolean",
+            "description": "XY Coordinates Mode.\n"
           }
         },
         "Room Gains": {
@@ -12582,7 +12762,7 @@
             "type": "Float",
             "description": "Set the width of the early reflections.\n",
             "min": 0,
-            "max": 100.0
+            "max": 180.0
           },
           "PanRev": {
             "type": "Float",
@@ -12677,10 +12857,6 @@
             "type": "Boolean",
             "description": "Enable/Disable the air absorption.\n"
           },
-          "Coordinates Mode": {
-            "type": "Boolean",
-            "description": "Coordinates Mode.\n"
-          },
           "Radius": {
             "type": "Float",
             "description": "Set radius parameter.\n",
@@ -12696,6 +12872,14 @@
             "description": "Set the drop factor.\n",
             "min": -10.0,
             "max": 30.0
+          },
+          "XY Coordinates Mode": {
+            "type": "Boolean",
+            "description": "XY Coordinates Mode.\n"
+          },
+          "Z Coordinates Mode": {
+            "type": "Boolean",
+            "description": "XY Coordinates Mode.\n"
           }
         },
         "Room Gains": {
@@ -12871,7 +13055,7 @@
             "type": "Float",
             "description": "Set the width of the early reflections.\n",
             "min": 0,
-            "max": 100.0
+            "max": 180.0
           },
           "PanRev": {
             "type": "Float",
@@ -12966,10 +13150,6 @@
             "type": "Boolean",
             "description": "Enable/Disable the air absorption.\n"
           },
-          "Coordinates Mode": {
-            "type": "Boolean",
-            "description": "Coordinates Mode.\n"
-          },
           "Radius": {
             "type": "Float",
             "description": "Set radius parameter.\n",
@@ -12985,6 +13165,14 @@
             "description": "Set the drop factor.\n",
             "min": -10.0,
             "max": 30.0
+          },
+          "XY Coordinates Mode": {
+            "type": "Boolean",
+            "description": "XY Coordinates Mode.\n"
+          },
+          "Z Coordinates Mode": {
+            "type": "Boolean",
+            "description": "XY Coordinates Mode.\n"
           }
         },
         "Room Gains": {
@@ -13160,7 +13348,7 @@
             "type": "Float",
             "description": "Set the width of the early reflections.\n",
             "min": 0,
-            "max": 100.0
+            "max": 180.0
           },
           "PanRev": {
             "type": "Float",
@@ -13255,10 +13443,6 @@
             "type": "Boolean",
             "description": "Enable/Disable the air absorption.\n"
           },
-          "Coordinates Mode": {
-            "type": "Boolean",
-            "description": "Coordinates Mode.\n"
-          },
           "Radius": {
             "type": "Float",
             "description": "Set radius parameter.\n",
@@ -13274,6 +13458,14 @@
             "description": "Set the drop factor.\n",
             "min": -10.0,
             "max": 30.0
+          },
+          "XY Coordinates Mode": {
+            "type": "Boolean",
+            "description": "XY Coordinates Mode.\n"
+          },
+          "Z Coordinates Mode": {
+            "type": "Boolean",
+            "description": "XY Coordinates Mode.\n"
           }
         },
         "Room Gains": {
@@ -13449,7 +13641,7 @@
             "type": "Float",
             "description": "Set the width of the early reflections.\n",
             "min": 0,
-            "max": 100.0
+            "max": 180.0
           },
           "PanRev": {
             "type": "Float",
@@ -13544,10 +13736,6 @@
             "type": "Boolean",
             "description": "Enable/Disable the air absorption.\n"
           },
-          "Coordinates Mode": {
-            "type": "Boolean",
-            "description": "Coordinates Mode.\n"
-          },
           "Radius": {
             "type": "Float",
             "description": "Set radius parameter.\n",
@@ -13563,6 +13751,14 @@
             "description": "Set the drop factor.\n",
             "min": -10.0,
             "max": 30.0
+          },
+          "XY Coordinates Mode": {
+            "type": "Boolean",
+            "description": "XY Coordinates Mode.\n"
+          },
+          "Z Coordinates Mode": {
+            "type": "Boolean",
+            "description": "XY Coordinates Mode.\n"
           }
         },
         "Room Gains": {
@@ -13738,7 +13934,7 @@
             "type": "Float",
             "description": "Set the width of the early reflections.\n",
             "min": 0,
-            "max": 100.0
+            "max": 180.0
           },
           "PanRev": {
             "type": "Float",
@@ -13833,10 +14029,6 @@
             "type": "Boolean",
             "description": "Enable/Disable the air absorption.\n"
           },
-          "Coordinates Mode": {
-            "type": "Boolean",
-            "description": "Coordinates Mode.\n"
-          },
           "Radius": {
             "type": "Float",
             "description": "Set radius parameter.\n",
@@ -13852,6 +14044,14 @@
             "description": "Set the drop factor.\n",
             "min": -10.0,
             "max": 30.0
+          },
+          "XY Coordinates Mode": {
+            "type": "Boolean",
+            "description": "XY Coordinates Mode.\n"
+          },
+          "Z Coordinates Mode": {
+            "type": "Boolean",
+            "description": "XY Coordinates Mode.\n"
           }
         },
         "Room Gains": {
@@ -14027,7 +14227,7 @@
             "type": "Float",
             "description": "Set the width of the early reflections.\n",
             "min": 0,
-            "max": 100.0
+            "max": 180.0
           },
           "PanRev": {
             "type": "Float",
@@ -14122,10 +14322,6 @@
             "type": "Boolean",
             "description": "Enable/Disable the air absorption.\n"
           },
-          "Coordinates Mode": {
-            "type": "Boolean",
-            "description": "Coordinates Mode.\n"
-          },
           "Radius": {
             "type": "Float",
             "description": "Set radius parameter.\n",
@@ -14141,6 +14337,14 @@
             "description": "Set the drop factor.\n",
             "min": -10.0,
             "max": 30.0
+          },
+          "XY Coordinates Mode": {
+            "type": "Boolean",
+            "description": "XY Coordinates Mode.\n"
+          },
+          "Z Coordinates Mode": {
+            "type": "Boolean",
+            "description": "XY Coordinates Mode.\n"
           }
         },
         "Room Gains": {
@@ -14316,7 +14520,7 @@
             "type": "Float",
             "description": "Set the width of the early reflections.\n",
             "min": 0,
-            "max": 100.0
+            "max": 180.0
           },
           "PanRev": {
             "type": "Float",
@@ -14411,10 +14615,6 @@
             "type": "Boolean",
             "description": "Enable/Disable the air absorption.\n"
           },
-          "Coordinates Mode": {
-            "type": "Boolean",
-            "description": "Coordinates Mode.\n"
-          },
           "Radius": {
             "type": "Float",
             "description": "Set radius parameter.\n",
@@ -14430,6 +14630,14 @@
             "description": "Set the drop factor.\n",
             "min": -10.0,
             "max": 30.0
+          },
+          "XY Coordinates Mode": {
+            "type": "Boolean",
+            "description": "XY Coordinates Mode.\n"
+          },
+          "Z Coordinates Mode": {
+            "type": "Boolean",
+            "description": "XY Coordinates Mode.\n"
           }
         },
         "Room Gains": {
@@ -14605,7 +14813,7 @@
             "type": "Float",
             "description": "Set the width of the early reflections.\n",
             "min": 0,
-            "max": 100.0
+            "max": 180.0
           },
           "PanRev": {
             "type": "Float",
@@ -14700,10 +14908,6 @@
             "type": "Boolean",
             "description": "Enable/Disable the air absorption.\n"
           },
-          "Coordinates Mode": {
-            "type": "Boolean",
-            "description": "Coordinates Mode.\n"
-          },
           "Radius": {
             "type": "Float",
             "description": "Set radius parameter.\n",
@@ -14719,6 +14923,14 @@
             "description": "Set the drop factor.\n",
             "min": -10.0,
             "max": 30.0
+          },
+          "XY Coordinates Mode": {
+            "type": "Boolean",
+            "description": "XY Coordinates Mode.\n"
+          },
+          "Z Coordinates Mode": {
+            "type": "Boolean",
+            "description": "XY Coordinates Mode.\n"
           }
         },
         "Room Gains": {
@@ -14894,7 +15106,7 @@
             "type": "Float",
             "description": "Set the width of the early reflections.\n",
             "min": 0,
-            "max": 100.0
+            "max": 180.0
           },
           "PanRev": {
             "type": "Float",
@@ -14989,10 +15201,6 @@
             "type": "Boolean",
             "description": "Enable/Disable the air absorption.\n"
           },
-          "Coordinates Mode": {
-            "type": "Boolean",
-            "description": "Coordinates Mode.\n"
-          },
           "Radius": {
             "type": "Float",
             "description": "Set radius parameter.\n",
@@ -15008,6 +15216,14 @@
             "description": "Set the drop factor.\n",
             "min": -10.0,
             "max": 30.0
+          },
+          "XY Coordinates Mode": {
+            "type": "Boolean",
+            "description": "XY Coordinates Mode.\n"
+          },
+          "Z Coordinates Mode": {
+            "type": "Boolean",
+            "description": "XY Coordinates Mode.\n"
           }
         },
         "Room Gains": {
@@ -15183,7 +15399,7 @@
             "type": "Float",
             "description": "Set the width of the early reflections.\n",
             "min": 0,
-            "max": 100.0
+            "max": 180.0
           },
           "PanRev": {
             "type": "Float",
@@ -15278,10 +15494,6 @@
             "type": "Boolean",
             "description": "Enable/Disable the air absorption.\n"
           },
-          "Coordinates Mode": {
-            "type": "Boolean",
-            "description": "Coordinates Mode.\n"
-          },
           "Radius": {
             "type": "Float",
             "description": "Set radius parameter.\n",
@@ -15297,6 +15509,14 @@
             "description": "Set the drop factor.\n",
             "min": -10.0,
             "max": 30.0
+          },
+          "XY Coordinates Mode": {
+            "type": "Boolean",
+            "description": "XY Coordinates Mode.\n"
+          },
+          "Z Coordinates Mode": {
+            "type": "Boolean",
+            "description": "XY Coordinates Mode.\n"
           }
         },
         "Room Gains": {
@@ -15472,7 +15692,7 @@
             "type": "Float",
             "description": "Set the width of the early reflections.\n",
             "min": 0,
-            "max": 100.0
+            "max": 180.0
           },
           "PanRev": {
             "type": "Float",
@@ -15567,10 +15787,6 @@
             "type": "Boolean",
             "description": "Enable/Disable the air absorption.\n"
           },
-          "Coordinates Mode": {
-            "type": "Boolean",
-            "description": "Coordinates Mode.\n"
-          },
           "Radius": {
             "type": "Float",
             "description": "Set radius parameter.\n",
@@ -15586,6 +15802,14 @@
             "description": "Set the drop factor.\n",
             "min": -10.0,
             "max": 30.0
+          },
+          "XY Coordinates Mode": {
+            "type": "Boolean",
+            "description": "XY Coordinates Mode.\n"
+          },
+          "Z Coordinates Mode": {
+            "type": "Boolean",
+            "description": "XY Coordinates Mode.\n"
           }
         },
         "Room Gains": {
@@ -15761,7 +15985,7 @@
             "type": "Float",
             "description": "Set the width of the early reflections.\n",
             "min": 0,
-            "max": 100.0
+            "max": 180.0
           },
           "PanRev": {
             "type": "Float",
@@ -15856,10 +16080,6 @@
             "type": "Boolean",
             "description": "Enable/Disable the air absorption.\n"
           },
-          "Coordinates Mode": {
-            "type": "Boolean",
-            "description": "Coordinates Mode.\n"
-          },
           "Radius": {
             "type": "Float",
             "description": "Set radius parameter.\n",
@@ -15875,6 +16095,14 @@
             "description": "Set the drop factor.\n",
             "min": -10.0,
             "max": 30.0
+          },
+          "XY Coordinates Mode": {
+            "type": "Boolean",
+            "description": "XY Coordinates Mode.\n"
+          },
+          "Z Coordinates Mode": {
+            "type": "Boolean",
+            "description": "XY Coordinates Mode.\n"
           }
         },
         "Room Gains": {
@@ -16050,7 +16278,7 @@
             "type": "Float",
             "description": "Set the width of the early reflections.\n",
             "min": 0,
-            "max": 100.0
+            "max": 180.0
           },
           "PanRev": {
             "type": "Float",
@@ -16145,10 +16373,6 @@
             "type": "Boolean",
             "description": "Enable/Disable the air absorption.\n"
           },
-          "Coordinates Mode": {
-            "type": "Boolean",
-            "description": "Coordinates Mode.\n"
-          },
           "Radius": {
             "type": "Float",
             "description": "Set radius parameter.\n",
@@ -16164,6 +16388,14 @@
             "description": "Set the drop factor.\n",
             "min": -10.0,
             "max": 30.0
+          },
+          "XY Coordinates Mode": {
+            "type": "Boolean",
+            "description": "XY Coordinates Mode.\n"
+          },
+          "Z Coordinates Mode": {
+            "type": "Boolean",
+            "description": "XY Coordinates Mode.\n"
           }
         },
         "Room Gains": {
@@ -16339,7 +16571,7 @@
             "type": "Float",
             "description": "Set the width of the early reflections.\n",
             "min": 0,
-            "max": 100.0
+            "max": 180.0
           },
           "PanRev": {
             "type": "Float",
@@ -16434,10 +16666,6 @@
             "type": "Boolean",
             "description": "Enable/Disable the air absorption.\n"
           },
-          "Coordinates Mode": {
-            "type": "Boolean",
-            "description": "Coordinates Mode.\n"
-          },
           "Radius": {
             "type": "Float",
             "description": "Set radius parameter.\n",
@@ -16453,6 +16681,14 @@
             "description": "Set the drop factor.\n",
             "min": -10.0,
             "max": 30.0
+          },
+          "XY Coordinates Mode": {
+            "type": "Boolean",
+            "description": "XY Coordinates Mode.\n"
+          },
+          "Z Coordinates Mode": {
+            "type": "Boolean",
+            "description": "XY Coordinates Mode.\n"
           }
         },
         "Room Gains": {
@@ -16628,7 +16864,7 @@
             "type": "Float",
             "description": "Set the width of the early reflections.\n",
             "min": 0,
-            "max": 100.0
+            "max": 180.0
           },
           "PanRev": {
             "type": "Float",
@@ -16723,10 +16959,6 @@
             "type": "Boolean",
             "description": "Enable/Disable the air absorption.\n"
           },
-          "Coordinates Mode": {
-            "type": "Boolean",
-            "description": "Coordinates Mode.\n"
-          },
           "Radius": {
             "type": "Float",
             "description": "Set radius parameter.\n",
@@ -16742,6 +16974,14 @@
             "description": "Set the drop factor.\n",
             "min": -10.0,
             "max": 30.0
+          },
+          "XY Coordinates Mode": {
+            "type": "Boolean",
+            "description": "XY Coordinates Mode.\n"
+          },
+          "Z Coordinates Mode": {
+            "type": "Boolean",
+            "description": "XY Coordinates Mode.\n"
           }
         },
         "Room Gains": {
@@ -16917,7 +17157,7 @@
             "type": "Float",
             "description": "Set the width of the early reflections.\n",
             "min": 0,
-            "max": 100.0
+            "max": 180.0
           },
           "PanRev": {
             "type": "Float",
@@ -17012,10 +17252,6 @@
             "type": "Boolean",
             "description": "Enable/Disable the air absorption.\n"
           },
-          "Coordinates Mode": {
-            "type": "Boolean",
-            "description": "Coordinates Mode.\n"
-          },
           "Radius": {
             "type": "Float",
             "description": "Set radius parameter.\n",
@@ -17031,6 +17267,14 @@
             "description": "Set the drop factor.\n",
             "min": -10.0,
             "max": 30.0
+          },
+          "XY Coordinates Mode": {
+            "type": "Boolean",
+            "description": "XY Coordinates Mode.\n"
+          },
+          "Z Coordinates Mode": {
+            "type": "Boolean",
+            "description": "XY Coordinates Mode.\n"
           }
         },
         "Room Gains": {
@@ -17206,7 +17450,7 @@
             "type": "Float",
             "description": "Set the width of the early reflections.\n",
             "min": 0,
-            "max": 100.0
+            "max": 180.0
           },
           "PanRev": {
             "type": "Float",
@@ -17301,10 +17545,6 @@
             "type": "Boolean",
             "description": "Enable/Disable the air absorption.\n"
           },
-          "Coordinates Mode": {
-            "type": "Boolean",
-            "description": "Coordinates Mode.\n"
-          },
           "Radius": {
             "type": "Float",
             "description": "Set radius parameter.\n",
@@ -17320,6 +17560,14 @@
             "description": "Set the drop factor.\n",
             "min": -10.0,
             "max": 30.0
+          },
+          "XY Coordinates Mode": {
+            "type": "Boolean",
+            "description": "XY Coordinates Mode.\n"
+          },
+          "Z Coordinates Mode": {
+            "type": "Boolean",
+            "description": "XY Coordinates Mode.\n"
           }
         },
         "Room Gains": {
@@ -17495,7 +17743,7 @@
             "type": "Float",
             "description": "Set the width of the early reflections.\n",
             "min": 0,
-            "max": 100.0
+            "max": 180.0
           },
           "PanRev": {
             "type": "Float",
@@ -17590,10 +17838,6 @@
             "type": "Boolean",
             "description": "Enable/Disable the air absorption.\n"
           },
-          "Coordinates Mode": {
-            "type": "Boolean",
-            "description": "Coordinates Mode.\n"
-          },
           "Radius": {
             "type": "Float",
             "description": "Set radius parameter.\n",
@@ -17609,6 +17853,14 @@
             "description": "Set the drop factor.\n",
             "min": -10.0,
             "max": 30.0
+          },
+          "XY Coordinates Mode": {
+            "type": "Boolean",
+            "description": "XY Coordinates Mode.\n"
+          },
+          "Z Coordinates Mode": {
+            "type": "Boolean",
+            "description": "XY Coordinates Mode.\n"
           }
         },
         "Room Gains": {
@@ -17784,7 +18036,7 @@
             "type": "Float",
             "description": "Set the width of the early reflections.\n",
             "min": 0,
-            "max": 100.0
+            "max": 180.0
           },
           "PanRev": {
             "type": "Float",
@@ -17879,10 +18131,6 @@
             "type": "Boolean",
             "description": "Enable/Disable the air absorption.\n"
           },
-          "Coordinates Mode": {
-            "type": "Boolean",
-            "description": "Coordinates Mode.\n"
-          },
           "Radius": {
             "type": "Float",
             "description": "Set radius parameter.\n",
@@ -17898,6 +18146,14 @@
             "description": "Set the drop factor.\n",
             "min": -10.0,
             "max": 30.0
+          },
+          "XY Coordinates Mode": {
+            "type": "Boolean",
+            "description": "XY Coordinates Mode.\n"
+          },
+          "Z Coordinates Mode": {
+            "type": "Boolean",
+            "description": "XY Coordinates Mode.\n"
           }
         },
         "Room Gains": {
@@ -18073,7 +18329,7 @@
             "type": "Float",
             "description": "Set the width of the early reflections.\n",
             "min": 0,
-            "max": 100.0
+            "max": 180.0
           },
           "PanRev": {
             "type": "Float",
@@ -18168,10 +18424,6 @@
             "type": "Boolean",
             "description": "Enable/Disable the air absorption.\n"
           },
-          "Coordinates Mode": {
-            "type": "Boolean",
-            "description": "Coordinates Mode.\n"
-          },
           "Radius": {
             "type": "Float",
             "description": "Set radius parameter.\n",
@@ -18187,6 +18439,14 @@
             "description": "Set the drop factor.\n",
             "min": -10.0,
             "max": 30.0
+          },
+          "XY Coordinates Mode": {
+            "type": "Boolean",
+            "description": "XY Coordinates Mode.\n"
+          },
+          "Z Coordinates Mode": {
+            "type": "Boolean",
+            "description": "XY Coordinates Mode.\n"
           }
         },
         "Room Gains": {
@@ -18362,7 +18622,7 @@
             "type": "Float",
             "description": "Set the width of the early reflections.\n",
             "min": 0,
-            "max": 100.0
+            "max": 180.0
           },
           "PanRev": {
             "type": "Float",
@@ -18457,10 +18717,6 @@
             "type": "Boolean",
             "description": "Enable/Disable the air absorption.\n"
           },
-          "Coordinates Mode": {
-            "type": "Boolean",
-            "description": "Coordinates Mode.\n"
-          },
           "Radius": {
             "type": "Float",
             "description": "Set radius parameter.\n",
@@ -18476,6 +18732,14 @@
             "description": "Set the drop factor.\n",
             "min": -10.0,
             "max": 30.0
+          },
+          "XY Coordinates Mode": {
+            "type": "Boolean",
+            "description": "XY Coordinates Mode.\n"
+          },
+          "Z Coordinates Mode": {
+            "type": "Boolean",
+            "description": "XY Coordinates Mode.\n"
           }
         },
         "Room Gains": {
@@ -20479,1222 +20743,12 @@
 
     },
      "Master index":  {"type":  "Integer", "description": "Control the index of all the remotes\n", "min":  1, "max":  128},
-     "Remote1":
-     {
-       "type": "Container",
-       "Index": {"type":  "Integer", "description":  "Index of the sources", "min":  1, "max":  128},
-       "Controls Number": {"type":  "Integer", "description":  "Number of controllables", "min": 1, "max": 24, "default": 8},
-       "On Off Number": {"type":  "Integer", "description":  "Number of on off", "min": 0, "max": 10, "default": 0},
-       "Float Number": {"type":  "Integer", "description":  "Number of floats", "min": 0, "max":  10, "default": 0},
-       "onOff1":
-       {
-         "type": "Container",
-         "collapsed": true,
-         "Parameter controlled": {"type":  "Enum", "options":  {
-           "None": "none",
-           "Source: Selected": "sourceselected",
-           "Source: Mute": "sourcemute",
-           "Source: Solo": "sourcesolo",
-           "Source: Reverb on": "sourcereverbEnable",
-           "Source: Early On": "sourceearlyEnable",
-           "Source: Cluster On": "sourceclusterEnable",
-           "Source: Tail On": "sourcetailEnable",
-           "Source: Doppler": "sourcedoppler",
-           "Source: Air Absorption": "sourceairAbsorption",
-           "Source: XY Coordinates mode": "sourcexyCoordinatesMode",
-           "Source: Z Coordinates mode": "sourcezCoordinatesMode",
-           "Source: Drop log": "sourcedropLog",
-           "Room: Mute": "roommute",
-           "Room: Solo": "roomsolo",
-           "Room: Reverb density": "roomReverbDensity",
-           "Room: Reverb enable": "roomReverbEnable",
-           "Room: Reverb infinite": "roomReverbInfinite",
-           "Room: Air enable": "roomAirEnable"
-         }},
-         "Target1": {"type":  "Target"},
-         "Target2": {"type":  "Target"},
-         "Target3": {"type":  "Target"},
-         "Target4": {"type":  "Target"},
-         "Target5": {"type":  "Target"},
-         "Target6": {"type":  "Target"},
-         "Target7": {"type":  "Target"},
-         "Target8": {"type":  "Target"},
-         "Values":
-         {
-           "type": "Container",
-           "Value1": {"type":  "Bool", "description": "Value1"},
-           "Value2": {"type":  "Bool", "description": "Value2"},
-           "Value3": {"type":  "Bool", "description": "Value3"},
-           "Value4": {"type":  "Bool", "description": "Value4"},
-           "Value5": {"type":  "Bool", "description": "Value5"},
-           "Value6": {"type":  "Bool", "description": "Value6"},
-           "Value7": {"type":  "Bool", "description": "Value7"},
-           "Value8": {"type":  "Bool", "description": "Value8"}
-         }
-       },       "onOff2":
-       {
-         "type": "Container",
-         "collapsed": true,
-         "Parameter controlled": {"type":  "Enum", "options":  {
-           "None": "none",
-           "Source: Selected": "sourceselected",
-           "Source: Mute": "sourcemute",
-           "Source: Solo": "sourcesolo",
-           "Source: Reverb on": "sourcereverbEnable",
-           "Source: Early On": "sourceearlyEnable",
-           "Source: Cluster On": "sourceclusterEnable",
-           "Source: Tail On": "sourcetailEnable",
-           "Source: Doppler": "sourcedoppler",
-           "Source: Air Absorption": "sourceairAbsorption",
-           "Source: XY Coordinates mode": "sourcexyCoordinatesMode",
-           "Source: Z Coordinates mode": "sourcezCoordinatesMode",
-           "Source: Drop log": "sourcedropLog",
-           "Room: Mute": "roommute",
-           "Room: Solo": "roomsolo",
-           "Room: Reverb density": "roomReverbDensity",
-           "Room: Reverb enable": "roomReverbEnable",
-           "Room: Reverb infinite": "roomReverbInfinite",
-           "Room: Air enable": "roomAirEnable"
-         }},
-         "Target1": {"type":  "Target"},
-         "Target2": {"type":  "Target"},
-         "Target3": {"type":  "Target"},
-         "Target4": {"type":  "Target"},
-         "Target5": {"type":  "Target"},
-         "Target6": {"type":  "Target"},
-         "Target7": {"type":  "Target"},
-         "Target8": {"type":  "Target"},
-         "Values":
-         {
-           "type": "Container",
-           "Value1": {"type":  "Bool", "description": "Value1"},
-           "Value2": {"type":  "Bool", "description": "Value2"},
-           "Value3": {"type":  "Bool", "description": "Value3"},
-           "Value4": {"type":  "Bool", "description": "Value4"},
-           "Value5": {"type":  "Bool", "description": "Value5"},
-           "Value6": {"type":  "Bool", "description": "Value6"},
-           "Value7": {"type":  "Bool", "description": "Value7"},
-           "Value8": {"type":  "Bool", "description": "Value8"}
-         }
-       },       "onOff3":
-       {
-         "type": "Container",
-         "collapsed": true,
-         "Parameter controlled": {"type":  "Enum", "options":  {
-           "None": "none",
-           "Source: Selected": "sourceselected",
-           "Source: Mute": "sourcemute",
-           "Source: Solo": "sourcesolo",
-           "Source: Reverb on": "sourcereverbEnable",
-           "Source: Early On": "sourceearlyEnable",
-           "Source: Cluster On": "sourceclusterEnable",
-           "Source: Tail On": "sourcetailEnable",
-           "Source: Doppler": "sourcedoppler",
-           "Source: Air Absorption": "sourceairAbsorption",
-           "Source: XY Coordinates mode": "sourcexyCoordinatesMode",
-           "Source: Z Coordinates mode": "sourcezCoordinatesMode",
-           "Source: Drop log": "sourcedropLog",
-           "Room: Mute": "roommute",
-           "Room: Solo": "roomsolo",
-           "Room: Reverb density": "roomReverbDensity",
-           "Room: Reverb enable": "roomReverbEnable",
-           "Room: Reverb infinite": "roomReverbInfinite",
-           "Room: Air enable": "roomAirEnable"
-         }},
-         "Target1": {"type":  "Target"},
-         "Target2": {"type":  "Target"},
-         "Target3": {"type":  "Target"},
-         "Target4": {"type":  "Target"},
-         "Target5": {"type":  "Target"},
-         "Target6": {"type":  "Target"},
-         "Target7": {"type":  "Target"},
-         "Target8": {"type":  "Target"},
-         "Values":
-         {
-           "type": "Container",
-           "Value1": {"type":  "Bool", "description": "Value1"},
-           "Value2": {"type":  "Bool", "description": "Value2"},
-           "Value3": {"type":  "Bool", "description": "Value3"},
-           "Value4": {"type":  "Bool", "description": "Value4"},
-           "Value5": {"type":  "Bool", "description": "Value5"},
-           "Value6": {"type":  "Bool", "description": "Value6"},
-           "Value7": {"type":  "Bool", "description": "Value7"},
-           "Value8": {"type":  "Bool", "description": "Value8"}
-         }
-       },       "onOff4":
-       {
-         "type": "Container",
-         "collapsed": true,
-         "Parameter controlled": {"type":  "Enum", "options":  {
-           "None": "none",
-           "Source: Selected": "sourceselected",
-           "Source: Mute": "sourcemute",
-           "Source: Solo": "sourcesolo",
-           "Source: Reverb on": "sourcereverbEnable",
-           "Source: Early On": "sourceearlyEnable",
-           "Source: Cluster On": "sourceclusterEnable",
-           "Source: Tail On": "sourcetailEnable",
-           "Source: Doppler": "sourcedoppler",
-           "Source: Air Absorption": "sourceairAbsorption",
-           "Source: XY Coordinates mode": "sourcexyCoordinatesMode",
-           "Source: Z Coordinates mode": "sourcezCoordinatesMode",
-           "Source: Drop log": "sourcedropLog",
-           "Room: Mute": "roommute",
-           "Room: Solo": "roomsolo",
-           "Room: Reverb density": "roomReverbDensity",
-           "Room: Reverb enable": "roomReverbEnable",
-           "Room: Reverb infinite": "roomReverbInfinite",
-           "Room: Air enable": "roomAirEnable"
-         }},
-         "Target1": {"type":  "Target"},
-         "Target2": {"type":  "Target"},
-         "Target3": {"type":  "Target"},
-         "Target4": {"type":  "Target"},
-         "Target5": {"type":  "Target"},
-         "Target6": {"type":  "Target"},
-         "Target7": {"type":  "Target"},
-         "Target8": {"type":  "Target"},
-         "Values":
-         {
-           "type": "Container",
-           "Value1": {"type":  "Bool", "description": "Value1"},
-           "Value2": {"type":  "Bool", "description": "Value2"},
-           "Value3": {"type":  "Bool", "description": "Value3"},
-           "Value4": {"type":  "Bool", "description": "Value4"},
-           "Value5": {"type":  "Bool", "description": "Value5"},
-           "Value6": {"type":  "Bool", "description": "Value6"},
-           "Value7": {"type":  "Bool", "description": "Value7"},
-           "Value8": {"type":  "Bool", "description": "Value8"}
-         }
-       },       "onOff5":
-       {
-         "type": "Container",
-         "collapsed": true,
-         "Parameter controlled": {"type":  "Enum", "options":  {
-           "None": "none",
-           "Source: Selected": "sourceselected",
-           "Source: Mute": "sourcemute",
-           "Source: Solo": "sourcesolo",
-           "Source: Reverb on": "sourcereverbEnable",
-           "Source: Early On": "sourceearlyEnable",
-           "Source: Cluster On": "sourceclusterEnable",
-           "Source: Tail On": "sourcetailEnable",
-           "Source: Doppler": "sourcedoppler",
-           "Source: Air Absorption": "sourceairAbsorption",
-           "Source: XY Coordinates mode": "sourcexyCoordinatesMode",
-           "Source: Z Coordinates mode": "sourcezCoordinatesMode",
-           "Source: Drop log": "sourcedropLog",
-           "Room: Mute": "roommute",
-           "Room: Solo": "roomsolo",
-           "Room: Reverb density": "roomReverbDensity",
-           "Room: Reverb enable": "roomReverbEnable",
-           "Room: Reverb infinite": "roomReverbInfinite",
-           "Room: Air enable": "roomAirEnable"
-         }},
-         "Target1": {"type":  "Target"},
-         "Target2": {"type":  "Target"},
-         "Target3": {"type":  "Target"},
-         "Target4": {"type":  "Target"},
-         "Target5": {"type":  "Target"},
-         "Target6": {"type":  "Target"},
-         "Target7": {"type":  "Target"},
-         "Target8": {"type":  "Target"},
-         "Values":
-         {
-           "type": "Container",
-           "Value1": {"type":  "Bool", "description": "Value1"},
-           "Value2": {"type":  "Bool", "description": "Value2"},
-           "Value3": {"type":  "Bool", "description": "Value3"},
-           "Value4": {"type":  "Bool", "description": "Value4"},
-           "Value5": {"type":  "Bool", "description": "Value5"},
-           "Value6": {"type":  "Bool", "description": "Value6"},
-           "Value7": {"type":  "Bool", "description": "Value7"},
-           "Value8": {"type":  "Bool", "description": "Value8"}
-         }
-       },       "onOff6":
-       {
-         "type": "Container",
-         "collapsed": true,
-         "Parameter controlled": {"type":  "Enum", "options":  {
-           "None": "none",
-           "Source: Selected": "sourceselected",
-           "Source: Mute": "sourcemute",
-           "Source: Solo": "sourcesolo",
-           "Source: Reverb on": "sourcereverbEnable",
-           "Source: Early On": "sourceearlyEnable",
-           "Source: Cluster On": "sourceclusterEnable",
-           "Source: Tail On": "sourcetailEnable",
-           "Source: Doppler": "sourcedoppler",
-           "Source: Air Absorption": "sourceairAbsorption",
-           "Source: XY Coordinates mode": "sourcexyCoordinatesMode",
-           "Source: Z Coordinates mode": "sourcezCoordinatesMode",
-           "Source: Drop log": "sourcedropLog",
-           "Room: Mute": "roommute",
-           "Room: Solo": "roomsolo",
-           "Room: Reverb density": "roomReverbDensity",
-           "Room: Reverb enable": "roomReverbEnable",
-           "Room: Reverb infinite": "roomReverbInfinite",
-           "Room: Air enable": "roomAirEnable"
-         }},
-         "Target1": {"type":  "Target"},
-         "Target2": {"type":  "Target"},
-         "Target3": {"type":  "Target"},
-         "Target4": {"type":  "Target"},
-         "Target5": {"type":  "Target"},
-         "Target6": {"type":  "Target"},
-         "Target7": {"type":  "Target"},
-         "Target8": {"type":  "Target"},
-         "Values":
-         {
-           "type": "Container",
-           "Value1": {"type":  "Bool", "description": "Value1"},
-           "Value2": {"type":  "Bool", "description": "Value2"},
-           "Value3": {"type":  "Bool", "description": "Value3"},
-           "Value4": {"type":  "Bool", "description": "Value4"},
-           "Value5": {"type":  "Bool", "description": "Value5"},
-           "Value6": {"type":  "Bool", "description": "Value6"},
-           "Value7": {"type":  "Bool", "description": "Value7"},
-           "Value8": {"type":  "Bool", "description": "Value8"}
-         }
-       },       "onOff7":
-       {
-         "type": "Container",
-         "collapsed": true,
-         "Parameter controlled": {"type":  "Enum", "options":  {
-           "None": "none",
-           "Source: Selected": "sourceselected",
-           "Source: Mute": "sourcemute",
-           "Source: Solo": "sourcesolo",
-           "Source: Reverb on": "sourcereverbEnable",
-           "Source: Early On": "sourceearlyEnable",
-           "Source: Cluster On": "sourceclusterEnable",
-           "Source: Tail On": "sourcetailEnable",
-           "Source: Doppler": "sourcedoppler",
-           "Source: Air Absorption": "sourceairAbsorption",
-           "Source: XY Coordinates mode": "sourcexyCoordinatesMode",
-           "Source: Z Coordinates mode": "sourcezCoordinatesMode",
-           "Source: Drop log": "sourcedropLog",
-           "Room: Mute": "roommute",
-           "Room: Solo": "roomsolo",
-           "Room: Reverb density": "roomReverbDensity",
-           "Room: Reverb enable": "roomReverbEnable",
-           "Room: Reverb infinite": "roomReverbInfinite",
-           "Room: Air enable": "roomAirEnable"
-         }},
-         "Target1": {"type":  "Target"},
-         "Target2": {"type":  "Target"},
-         "Target3": {"type":  "Target"},
-         "Target4": {"type":  "Target"},
-         "Target5": {"type":  "Target"},
-         "Target6": {"type":  "Target"},
-         "Target7": {"type":  "Target"},
-         "Target8": {"type":  "Target"},
-         "Values":
-         {
-           "type": "Container",
-           "Value1": {"type":  "Bool", "description": "Value1"},
-           "Value2": {"type":  "Bool", "description": "Value2"},
-           "Value3": {"type":  "Bool", "description": "Value3"},
-           "Value4": {"type":  "Bool", "description": "Value4"},
-           "Value5": {"type":  "Bool", "description": "Value5"},
-           "Value6": {"type":  "Bool", "description": "Value6"},
-           "Value7": {"type":  "Bool", "description": "Value7"},
-           "Value8": {"type":  "Bool", "description": "Value8"}
-         }
-       },       "onOff8":
-       {
-         "type": "Container",
-         "collapsed": true,
-         "Parameter controlled": {"type":  "Enum", "options":  {
-           "None": "none",
-           "Source: Selected": "sourceselected",
-           "Source: Mute": "sourcemute",
-           "Source: Solo": "sourcesolo",
-           "Source: Reverb on": "sourcereverbEnable",
-           "Source: Early On": "sourceearlyEnable",
-           "Source: Cluster On": "sourceclusterEnable",
-           "Source: Tail On": "sourcetailEnable",
-           "Source: Doppler": "sourcedoppler",
-           "Source: Air Absorption": "sourceairAbsorption",
-           "Source: XY Coordinates mode": "sourcexyCoordinatesMode",
-           "Source: Z Coordinates mode": "sourcezCoordinatesMode",
-           "Source: Drop log": "sourcedropLog",
-           "Room: Mute": "roommute",
-           "Room: Solo": "roomsolo",
-           "Room: Reverb density": "roomReverbDensity",
-           "Room: Reverb enable": "roomReverbEnable",
-           "Room: Reverb infinite": "roomReverbInfinite",
-           "Room: Air enable": "roomAirEnable"
-         }},
-         "Target1": {"type":  "Target"},
-         "Target2": {"type":  "Target"},
-         "Target3": {"type":  "Target"},
-         "Target4": {"type":  "Target"},
-         "Target5": {"type":  "Target"},
-         "Target6": {"type":  "Target"},
-         "Target7": {"type":  "Target"},
-         "Target8": {"type":  "Target"},
-         "Values":
-         {
-           "type": "Container",
-           "Value1": {"type":  "Bool", "description": "Value1"},
-           "Value2": {"type":  "Bool", "description": "Value2"},
-           "Value3": {"type":  "Bool", "description": "Value3"},
-           "Value4": {"type":  "Bool", "description": "Value4"},
-           "Value5": {"type":  "Bool", "description": "Value5"},
-           "Value6": {"type":  "Bool", "description": "Value6"},
-           "Value7": {"type":  "Bool", "description": "Value7"},
-           "Value8": {"type":  "Bool", "description": "Value8"}
-         }
-       },
-       "float1":
-       {
-         "type": "Container",
-          "Parameter controlled": {
-           "type": "Enum",
-           "options": {
-             "None": "none", 
-             "Source: Azimuth": "sourceazimuth",
-             "Source: Elevation": "sourceelevation",
-             "Source: Distance": "sourcedistance",
-             "Source: Position X": "sourcepositionX",
-             "Source: Position Y": "sourcepositionY", 
-             "Source: Position Z": "sourcepositionZ", 
-             "Source: Gain": "sourcegain", 
-             "Source: Lfe": "sourcelfe", 
-             "Source: Lfe2": "sourcelfe2", 
-             "Source: Lfe3": "sourcelfe3", 
-             "Source: Lfe4": "sourcelfe4", 
-             "Source: Presence": "sourcepresence", 
-             "Source: Room presence": "sourceroomPresence", 
-             "Source: Running Reverberance": "sourcerunningReverberance", 
-             "Source: Envelopment": "sourceenvelopment", 
-             "Source: Brilliance": "sourcebrilliance",
-              "Source: Warmth": "sourcewarmth",
-              "Source: Yaw": "sourceyaw",
-              "Source: Pitch": "sourcepitch",
-              "Source: Aperture": "sourceaperture",
-              "Source: Scale": "sourcescale",
-              "Source: Spread": "sourcespread",
-              "Source: Knn": "sourceknn",
-              "Source: Early width": "sourceearlyWidth",
-              "Source: Pan Rev": "sourcepanRev",
-              "Source: Drop factor": "sourcedropFactor",
-              "Source: Rotation X": "sourcerotX",
-              "Source: Rotation Y": "sourcerotY",
-              "Source: Rotation Z": "sourcerotZ",
-              "Source: Omni Gain": "sourceomniGain",
-              "Source: RoomGain 1": "sourceroomGain1",
-              "Source: RoomGain 2": "sourceroomGain2",
-              "Source: RoomGain 3": "sourceroomGain3",
-              "Source: RoomGain 4": "sourceroomGain4",
-              "Source: RoomGain 5": "sourceroomGain5",
-              "Source: RoomGain 6": "sourceroomGain6",
-              "Source: RoomGain 7": "sourceroomGain7",
-              "Source: RoomGain 8": "sourceroomGain8",
-              "Source: RoomGain 9": "sourceroomGain9",
-              "Source: RoomGain 10": "sourceroomGain10",
-              "Room: Gain": "roomGain",
-              "Room: Listener X": "roomListenerX",
-              "Room: Listener Y": "roomListenerY",
-              "Room: Listener Z": "roomListenerZ",
-              "Room: Listener yaw": "roomListenerYaw",
-              "Room: Listener pitch": "roomListenerPitch",
-              "Room: Listener Roll": "roomListenerRoll",
-              "Room: Reverb size": "roomReverbSize",
-              "Room: Reverb start": "roomReverbStart",
-              "Room: Reverb gain": "roomReverbGain",
-              "Room: Reverb factor": "roomReverbFactor",
-              "Room: Reverberance": "roomReverberance",
-              "Room: Heaviness": "roomHeaviness",
-              "Room: Liveness": "roomLiveness",
-              "Room: Early min": "roomEarlyMin",
-              "Room: Early max": "roomEarlyMax",
-              "Room: Early dist": "roomEarlyDist",
-              "Room: Early Shape": "roomEarlyShape",
-              "Room: Cluster Min": "roomClusterMin",
-              "Room: Cluster Max": "roomClusterMax",
-              "Room: Cluster dist": "roomClusterDist",
-              "Room: Air Freq": "roomAirFreq",
-              "Room: Modal density": "roomModalDensity",
-              "Room: Frequency low crossover": "roomFrequencyLow",
-              "Room: Frequency high crossover": "roomFrequencyHigh"
-           }
-         },
-         "Target1": {"type":  "Target"},
-         "Target2": {"type":  "Target"},
-         "Target3": {"type":  "Target"},
-         "Target4": {"type":  "Target"},
-         "Target5": {"type":  "Target"},
-         "Target6": {"type":  "Target"},
-         "Target7": {"type":  "Target"},
-         "Target8": {"type":  "Target"},
-         "Values":
-         {
-           "type": "Container",
-           "Value1": {"type":  "Float", "description": "Value1", "min":  0.0, "max":  1.0},
-           "Value2": {"type":  "Float", "description": "Value2", "min":  0.0, "max":  1.0},
-           "Value3": {"type":  "Float", "description": "Value3", "min":  0.0, "max":  1.0},
-           "Value4": {"type":  "Float", "description": "Value4", "min":  0.0, "max":  1.0},
-           "Value5": {"type":  "Float", "description": "Value5", "min":  0.0, "max":  1.0},
-           "Value6": {"type":  "Float", "description": "Value6", "min":  0.0, "max":  1.0},
-           "Value7": {"type":  "Float", "description": "Value7", "min":  0.0, "max":  1.0},
-           "Value8": {"type":  "Float", "description": "Value8", "min":  0.0, "max":  1.0}
-         }
-       },
-       "float2":
-       {
-         "type": "Container",
-         "collapsed": true,
-"Parameter controlled": {
-           "type": "Enum",
-           "options": {
-             "None": "none", 
-             "Source: Azimuth": "sourceazimuth",
-             "Source: Elevation": "sourceelevation",
-             "Source: Distance": "sourcedistance",
-             "Source: Position X": "sourcepositionX",
-             "Source: Position Y": "sourcepositionY", 
-             "Source: Position Z": "sourcepositionZ", 
-             "Source: Gain": "sourcegain", 
-             "Source: Lfe": "sourcelfe", 
-             "Source: Lfe2": "sourcelfe2", 
-             "Source: Lfe3": "sourcelfe3", 
-             "Source: Lfe4": "sourcelfe4", 
-             "Source: Presence": "sourcepresence", 
-             "Source: Room presence": "sourceroomPresence", 
-             "Source: Running Reverberance": "sourcerunningReverberance", 
-             "Source: Envelopment": "sourceenvelopment", 
-             "Source: Brilliance": "sourcebrilliance",
-              "Source: Warmth": "sourcewarmth",
-              "Source: Yaw": "sourceyaw",
-              "Source: Pitch": "sourcepitch",
-              "Source: Aperture": "sourceaperture",
-              "Source: Scale": "sourcescale",
-              "Source: Spread": "sourcespread",
-              "Source: Knn": "sourceknn",
-              "Source: Early width": "sourceearlyWidth",
-              "Source: Pan Rev": "sourcepanRev",
-              "Source: Drop factor": "sourcedropFactor",
-              "Source: Rotation X": "sourcerotX",
-              "Source: Rotation Y": "sourcerotY",
-              "Source: Rotation Z": "sourcerotZ",
-              "Source: Omni Gain": "sourceomniGain",
-              "Source: RoomGain 1": "sourceroomGain1",
-              "Source: RoomGain 2": "sourceroomGain2",
-              "Source: RoomGain 3": "sourceroomGain3",
-              "Source: RoomGain 4": "sourceroomGain4",
-              "Source: RoomGain 5": "sourceroomGain5",
-              "Source: RoomGain 6": "sourceroomGain6",
-              "Source: RoomGain 7": "sourceroomGain7",
-              "Source: RoomGain 8": "sourceroomGain8",
-              "Source: RoomGain 9": "sourceroomGain9",
-              "Source: RoomGain 10": "sourceroomGain10",
-              "Room: Gain": "roomGain",
-              "Room: Listener X": "roomListenerX",
-              "Room: Listener Y": "roomListenerY",
-              "Room: Listener Z": "roomListenerZ",
-              "Room: Listener yaw": "roomListenerYaw",
-              "Room: Listener pitch": "roomListenerPitch",
-              "Room: Listener Roll": "roomListenerRoll",
-              "Room: Reverb size": "roomReverbSize",
-              "Room: Reverb start": "roomReverbStart",
-              "Room: Reverb gain": "roomReverbGain",
-              "Room: Reverb factor": "roomReverbFactor",
-              "Room: Reverberance": "roomReverberance",
-              "Room: Heaviness": "roomHeaviness",
-              "Room: Liveness": "roomLiveness",
-              "Room: Early min": "roomEarlyMin",
-              "Room: Early max": "roomEarlyMax",
-              "Room: Early dist": "roomEarlyDist",
-              "Room: Early Shape": "roomEarlyShape",
-              "Room: Cluster Min": "roomClusterMin",
-              "Room: Cluster Max": "roomClusterMax",
-              "Room: Cluster dist": "roomClusterDist",
-              "Room: Air Freq": "roomAirFreq",
-              "Room: Modal density": "roomModalDensity",
-              "Room: Frequency low crossover": "roomFrequencyLow",
-              "Room: Frequency high crossover": "roomFrequencyHigh"
-           }
-         },         "Target1": {"type":  "Target"},
-         "Target2": {"type":  "Target"},
-         "Target3": {"type":  "Target"},
-         "Target4": {"type":  "Target"},
-         "Target5": {"type":  "Target"},
-         "Target6": {"type":  "Target"},
-         "Target7": {"type":  "Target"},
-         "Target8": {"type":  "Target"},
-         "Values":
-         {
-           "type": "Container",
-           "Value1": {"type":  "Float", "description": "Value1", "min":  0.0, "max":  1.0},
-           "Value2": {"type":  "Float", "description": "Value2", "min":  0.0, "max":  1.0},
-           "Value3": {"type":  "Float", "description": "Value3", "min":  0.0, "max":  1.0},
-           "Value4": {"type":  "Float", "description": "Value4", "min":  0.0, "max":  1.0},
-           "Value5": {"type":  "Float", "description": "Value5", "min":  0.0, "max":  1.0},
-           "Value6": {"type":  "Float", "description": "Value6", "min":  0.0, "max":  1.0},
-           "Value7": {"type":  "Float", "description": "Value7", "min":  0.0, "max":  1.0},
-           "Value8": {"type":  "Float", "description": "Value8", "min":  0.0, "max":  1.0}
-         }
-       },
-       "float3":
-       {
-         "type": "Container",
-         "collapsed": true,
-"Parameter controlled": {
-           "type": "Enum",
-           "options": {
-             "None": "none", 
-             "Source: Azimuth": "sourceazimuth",
-             "Source: Elevation": "sourceelevation",
-             "Source: Distance": "sourcedistance",
-             "Source: Position X": "sourcepositionX",
-             "Source: Position Y": "sourcepositionY", 
-             "Source: Position Z": "sourcepositionZ", 
-             "Source: Gain": "sourcegain", 
-             "Source: Lfe": "sourcelfe", 
-             "Source: Lfe2": "sourcelfe2", 
-             "Source: Lfe3": "sourcelfe3", 
-             "Source: Lfe4": "sourcelfe4", 
-             "Source: Presence": "sourcepresence", 
-             "Source: Room presence": "sourceroomPresence", 
-             "Source: Running Reverberance": "sourcerunningReverberance", 
-             "Source: Envelopment": "sourceenvelopment", 
-             "Source: Brilliance": "sourcebrilliance",
-              "Source: Warmth": "sourcewarmth",
-              "Source: Yaw": "sourceyaw",
-              "Source: Pitch": "sourcepitch",
-              "Source: Aperture": "sourceaperture",
-              "Source: Scale": "sourcescale",
-              "Source: Spread": "sourcespread",
-              "Source: Knn": "sourceknn",
-              "Source: Early width": "sourceearlyWidth",
-              "Source: Pan Rev": "sourcepanRev",
-              "Source: Drop factor": "sourcedropFactor",
-              "Source: Rotation X": "sourcerotX",
-              "Source: Rotation Y": "sourcerotY",
-              "Source: Rotation Z": "sourcerotZ",
-              "Source: Omni Gain": "sourceomniGain",
-              "Source: RoomGain 1": "sourceroomGain1",
-              "Source: RoomGain 2": "sourceroomGain2",
-              "Source: RoomGain 3": "sourceroomGain3",
-              "Source: RoomGain 4": "sourceroomGain4",
-              "Source: RoomGain 5": "sourceroomGain5",
-              "Source: RoomGain 6": "sourceroomGain6",
-              "Source: RoomGain 7": "sourceroomGain7",
-              "Source: RoomGain 8": "sourceroomGain8",
-              "Source: RoomGain 9": "sourceroomGain9",
-              "Source: RoomGain 10": "sourceroomGain10",
-              "Room: Gain": "roomGain",
-              "Room: Listener X": "roomListenerX",
-              "Room: Listener Y": "roomListenerY",
-              "Room: Listener Z": "roomListenerZ",
-              "Room: Listener yaw": "roomListenerYaw",
-              "Room: Listener pitch": "roomListenerPitch",
-              "Room: Listener Roll": "roomListenerRoll",
-              "Room: Reverb size": "roomReverbSize",
-              "Room: Reverb start": "roomReverbStart",
-              "Room: Reverb gain": "roomReverbGain",
-              "Room: Reverb factor": "roomReverbFactor",
-              "Room: Reverberance": "roomReverberance",
-              "Room: Heaviness": "roomHeaviness",
-              "Room: Liveness": "roomLiveness",
-              "Room: Early min": "roomEarlyMin",
-              "Room: Early max": "roomEarlyMax",
-              "Room: Early dist": "roomEarlyDist",
-              "Room: Early Shape": "roomEarlyShape",
-              "Room: Cluster Min": "roomClusterMin",
-              "Room: Cluster Max": "roomClusterMax",
-              "Room: Cluster dist": "roomClusterDist",
-              "Room: Air Freq": "roomAirFreq",
-              "Room: Modal density": "roomModalDensity",
-              "Room: Frequency low crossover": "roomFrequencyLow",
-              "Room: Frequency high crossover": "roomFrequencyHigh"
-           }
-         },         "Target1": {"type":  "Target"},
-         "Target2": {"type":  "Target"},
-         "Target3": {"type":  "Target"},
-         "Target4": {"type":  "Target"},
-         "Target5": {"type":  "Target"},
-         "Target6": {"type":  "Target"},
-         "Target7": {"type":  "Target"},
-         "Target8": {"type":  "Target"},
-         "Values":
-         {
-           "type": "Container",
-           "Value1": {"type":  "Float", "description": "Value1", "min":  0.0, "max":  1.0},
-           "Value2": {"type":  "Float", "description": "Value2", "min":  0.0, "max":  1.0},
-           "Value3": {"type":  "Float", "description": "Value3", "min":  0.0, "max":  1.0},
-           "Value4": {"type":  "Float", "description": "Value4", "min":  0.0, "max":  1.0},
-           "Value5": {"type":  "Float", "description": "Value5", "min":  0.0, "max":  1.0},
-           "Value6": {"type":  "Float", "description": "Value6", "min":  0.0, "max":  1.0},
-           "Value7": {"type":  "Float", "description": "Value7", "min":  0.0, "max":  1.0},
-           "Value8": {"type":  "Float", "description": "Value8", "min":  0.0, "max":  1.0}
-         }
-       },
-       "float4":
-       {
-         "type": "Container",
-         "collapsed": true,
-         "Parameter controlled": {
-           "type": "Enum",
-           "options": {
-             "Azimuth": "azimuth",
-             "Elevation": "elevation",
-             "Distance": "distance",
-             "Position X": "positionX",
-             "Position Y": "positionY",
-             "Position Z": "positionZ",
-             "Gain": "gain",
-             "Lfe": "lfe",
-             "Lfe2": "lfe2",
-             "Lfe3": "lfe3",
-             "Lfe4": "lfe4",
-             "Presence": "presence",
-             "Room presence": "roomPresence",
-             "Running Reverberance": "runningReverberance",
-             "Envelopment": "envelopment",
-             "Brilliance": "brilliance",
-             "Warmth": "warmth",
-             "Yaw": "yaw",
-             "Pitch": "pitch",
-             "Aperture": "aperture",
-             "Scale": "scale",
-             "Spread": "spread",
-             "Knn": "knn",
-             "Early width": "earlyWidth",
-             "Pan Rev": "panRev",
-             "Drop factor": "dropFactor",
-             "Rotation X": "rotX",
-             "Rotation Y": "rotY",
-             "Rotation Z": "rotZ",
-             "RoomGain 1": "roomGain1",
-             "RoomGain 2": "roomGain2",
-             "RoomGain 3": "roomGain3",
-             "RoomGain 4": "roomGain4",
-             "RoomGain 5": "roomGain5",
-             "RoomGain 6": "roomGain6",
-             "RoomGain 7": "roomGain7",
-             "RoomGain 8": "roomGain8",
-             "RoomGain 9": "roomGain9",
-             "RoomGain 10": "roomGain10"
-           }
-         },
-         "Target1": {
-           "type": "Target"
-         },
-         "Target2": {
-           "type": "Target"
-         },
-         "Target3": {
-           "type": "Target"
-         },
-         "Target4": {
-           "type": "Target"
-         },
-         "Target5": {
-           "type": "Target"
-         },
-         "Target6": {
-           "type": "Target"
-         },
-         "Target7": {
-           "type": "Target"
-         },
-         "Target8": {
-           "type": "Target"
-         },
-         "Values": {
-           "type": "Container",
-           "Value1": {
-             "type": "Float",
-             "description": "Value1",
-             "min": 0.0,
-             "max": 1.0
-           },
-           "Value2": {
-             "type": "Float",
-             "description": "Value2",
-             "min": 0.0,
-             "max": 1.0
-           },
-           "Value3": {
-             "type": "Float",
-             "description": "Value3",
-             "min": 0.0,
-             "max": 1.0
-           },
-           "Value4": {
-             "type": "Float",
-             "description": "Value4",
-             "min": 0.0,
-             "max": 1.0
-           },
-           "Value5": {
-             "type": "Float",
-             "description": "Value5",
-             "min": 0.0,
-             "max": 1.0
-           },
-           "Value6": {
-             "type": "Float",
-             "description": "Value6",
-             "min": 0.0,
-             "max": 1.0
-           },
-           "Value7": {
-             "type": "Float",
-             "description": "Value7",
-             "min": 0.0,
-             "max": 1.0
-           },
-           "Value8": {
-             "type": "Float",
-             "description": "Value8",
-             "min": 0.0,
-             "max": 1.0
-           }
-         }
-       },
-       "float5":
-       {
-         "type": "Container",
-         "collapsed": true,
-"Parameter controlled": {
-           "type": "Enum",
-           "options": {
-             "None": "none", 
-             "Source: Azimuth": "sourceazimuth",
-             "Source: Elevation": "sourceelevation",
-             "Source: Distance": "sourcedistance",
-             "Source: Position X": "sourcepositionX",
-             "Source: Position Y": "sourcepositionY", 
-             "Source: Position Z": "sourcepositionZ", 
-             "Source: Gain": "sourcegain", 
-             "Source: Lfe": "sourcelfe", 
-             "Source: Lfe2": "sourcelfe2", 
-             "Source: Lfe3": "sourcelfe3", 
-             "Source: Lfe4": "sourcelfe4", 
-             "Source: Presence": "sourcepresence", 
-             "Source: Room presence": "sourceroomPresence", 
-             "Source: Running Reverberance": "sourcerunningReverberance", 
-             "Source: Envelopment": "sourceenvelopment", 
-             "Source: Brilliance": "sourcebrilliance",
-              "Source: Warmth": "sourcewarmth",
-              "Source: Yaw": "sourceyaw",
-              "Source: Pitch": "sourcepitch",
-              "Source: Aperture": "sourceaperture",
-              "Source: Scale": "sourcescale",
-              "Source: Spread": "sourcespread",
-              "Source: Knn": "sourceknn",
-              "Source: Early width": "sourceearlyWidth",
-              "Source: Pan Rev": "sourcepanRev",
-              "Source: Drop factor": "sourcedropFactor",
-              "Source: Rotation X": "sourcerotX",
-              "Source: Rotation Y": "sourcerotY",
-              "Source: Rotation Z": "sourcerotZ",
-              "Source: Omni Gain": "sourceomniGain",
-              "Source: RoomGain 1": "sourceroomGain1",
-              "Source: RoomGain 2": "sourceroomGain2",
-              "Source: RoomGain 3": "sourceroomGain3",
-              "Source: RoomGain 4": "sourceroomGain4",
-              "Source: RoomGain 5": "sourceroomGain5",
-              "Source: RoomGain 6": "sourceroomGain6",
-              "Source: RoomGain 7": "sourceroomGain7",
-              "Source: RoomGain 8": "sourceroomGain8",
-              "Source: RoomGain 9": "sourceroomGain9",
-              "Source: RoomGain 10": "sourceroomGain10",
-              "Room: Gain": "roomGain",
-              "Room: Listener X": "roomListenerX",
-              "Room: Listener Y": "roomListenerY",
-              "Room: Listener Z": "roomListenerZ",
-              "Room: Listener yaw": "roomListenerYaw",
-              "Room: Listener pitch": "roomListenerPitch",
-              "Room: Listener Roll": "roomListenerRoll",
-              "Room: Reverb size": "roomReverbSize",
-              "Room: Reverb start": "roomReverbStart",
-              "Room: Reverb gain": "roomReverbGain",
-              "Room: Reverb factor": "roomReverbFactor",
-              "Room: Reverberance": "roomReverberance",
-              "Room: Heaviness": "roomHeaviness",
-              "Room: Liveness": "roomLiveness",
-              "Room: Early min": "roomEarlyMin",
-              "Room: Early max": "roomEarlyMax",
-              "Room: Early dist": "roomEarlyDist",
-              "Room: Early Shape": "roomEarlyShape",
-              "Room: Cluster Min": "roomClusterMin",
-              "Room: Cluster Max": "roomClusterMax",
-              "Room: Cluster dist": "roomClusterDist",
-              "Room: Air Freq": "roomAirFreq",
-              "Room: Modal density": "roomModalDensity",
-              "Room: Frequency low crossover": "roomFrequencyLow",
-              "Room: Frequency high crossover": "roomFrequencyHigh"
-           }
-         },         "Target1": {"type":  "Target"},
-         "Target2": {"type":  "Target"},
-         "Target3": {"type":  "Target"},
-         "Target4": {"type":  "Target"},
-         "Target5": {"type":  "Target"},
-         "Target6": {"type":  "Target"},
-         "Target7": {"type":  "Target"},
-         "Target8": {"type":  "Target"},
-         "Values":
-         {
-           "type": "Container",
-           "Value1": {"type":  "Float", "description": "Value1", "min":  0.0, "max":  1.0},
-           "Value2": {"type":  "Float", "description": "Value2", "min":  0.0, "max":  1.0},
-           "Value3": {"type":  "Float", "description": "Value3", "min":  0.0, "max":  1.0},
-           "Value4": {"type":  "Float", "description": "Value4", "min":  0.0, "max":  1.0},
-           "Value5": {"type":  "Float", "description": "Value5", "min":  0.0, "max":  1.0},
-           "Value6": {"type":  "Float", "description": "Value6", "min":  0.0, "max":  1.0},
-           "Value7": {"type":  "Float", "description": "Value7", "min":  0.0, "max":  1.0},
-           "Value8": {"type":  "Float", "description": "Value8", "min":  0.0, "max":  1.0}
-         }
-       },
-       "float6":
-       {
-         "type": "Container",
-         "collapsed": true,
-"Parameter controlled": {
-           "type": "Enum",
-           "options": {
-             "None": "none", 
-             "Source: Azimuth": "sourceazimuth",
-             "Source: Elevation": "sourceelevation",
-             "Source: Distance": "sourcedistance",
-             "Source: Position X": "sourcepositionX",
-             "Source: Position Y": "sourcepositionY", 
-             "Source: Position Z": "sourcepositionZ", 
-             "Source: Gain": "sourcegain", 
-             "Source: Lfe": "sourcelfe", 
-             "Source: Lfe2": "sourcelfe2", 
-             "Source: Lfe3": "sourcelfe3", 
-             "Source: Lfe4": "sourcelfe4", 
-             "Source: Presence": "sourcepresence", 
-             "Source: Room presence": "sourceroomPresence", 
-             "Source: Running Reverberance": "sourcerunningReverberance", 
-             "Source: Envelopment": "sourceenvelopment", 
-             "Source: Brilliance": "sourcebrilliance",
-              "Source: Warmth": "sourcewarmth",
-              "Source: Yaw": "sourceyaw",
-              "Source: Pitch": "sourcepitch",
-              "Source: Aperture": "sourceaperture",
-              "Source: Scale": "sourcescale",
-              "Source: Spread": "sourcespread",
-              "Source: Knn": "sourceknn",
-              "Source: Early width": "sourceearlyWidth",
-              "Source: Pan Rev": "sourcepanRev",
-              "Source: Drop factor": "sourcedropFactor",
-              "Source: Rotation X": "sourcerotX",
-              "Source: Rotation Y": "sourcerotY",
-              "Source: Rotation Z": "sourcerotZ",
-              "Source: Omni Gain": "sourceomniGain",
-              "Source: RoomGain 1": "sourceroomGain1",
-              "Source: RoomGain 2": "sourceroomGain2",
-              "Source: RoomGain 3": "sourceroomGain3",
-              "Source: RoomGain 4": "sourceroomGain4",
-              "Source: RoomGain 5": "sourceroomGain5",
-              "Source: RoomGain 6": "sourceroomGain6",
-              "Source: RoomGain 7": "sourceroomGain7",
-              "Source: RoomGain 8": "sourceroomGain8",
-              "Source: RoomGain 9": "sourceroomGain9",
-              "Source: RoomGain 10": "sourceroomGain10",
-              "Room: Gain": "roomGain",
-              "Room: Listener X": "roomListenerX",
-              "Room: Listener Y": "roomListenerY",
-              "Room: Listener Z": "roomListenerZ",
-              "Room: Listener yaw": "roomListenerYaw",
-              "Room: Listener pitch": "roomListenerPitch",
-              "Room: Listener Roll": "roomListenerRoll",
-              "Room: Reverb size": "roomReverbSize",
-              "Room: Reverb start": "roomReverbStart",
-              "Room: Reverb gain": "roomReverbGain",
-              "Room: Reverb factor": "roomReverbFactor",
-              "Room: Reverberance": "roomReverberance",
-              "Room: Heaviness": "roomHeaviness",
-              "Room: Liveness": "roomLiveness",
-              "Room: Early min": "roomEarlyMin",
-              "Room: Early max": "roomEarlyMax",
-              "Room: Early dist": "roomEarlyDist",
-              "Room: Early Shape": "roomEarlyShape",
-              "Room: Cluster Min": "roomClusterMin",
-              "Room: Cluster Max": "roomClusterMax",
-              "Room: Cluster dist": "roomClusterDist",
-              "Room: Air Freq": "roomAirFreq",
-              "Room: Modal density": "roomModalDensity",
-              "Room: Frequency low crossover": "roomFrequencyLow",
-              "Room: Frequency high crossover": "roomFrequencyHigh"
-           }
-         },         "Target1": {"type":  "Target"},
-         "Target2": {"type":  "Target"},
-         "Target3": {"type":  "Target"},
-         "Target4": {"type":  "Target"},
-         "Target5": {"type":  "Target"},
-         "Target6": {"type":  "Target"},
-         "Target7": {"type":  "Target"},
-         "Target8": {"type":  "Target"},
-         "Values":
-         {
-           "type": "Container",
-           "Value1": {"type":  "Float", "description": "Value1", "min":  0.0, "max":  1.0},
-           "Value2": {"type":  "Float", "description": "Value2", "min":  0.0, "max":  1.0},
-           "Value3": {"type":  "Float", "description": "Value3", "min":  0.0, "max":  1.0},
-           "Value4": {"type":  "Float", "description": "Value4", "min":  0.0, "max":  1.0},
-           "Value5": {"type":  "Float", "description": "Value5", "min":  0.0, "max":  1.0},
-           "Value6": {"type":  "Float", "description": "Value6", "min":  0.0, "max":  1.0},
-           "Value7": {"type":  "Float", "description": "Value7", "min":  0.0, "max":  1.0},
-           "Value8": {"type":  "Float", "description": "Value8", "min":  0.0, "max":  1.0}
-         }
-       },
-       "float7":
-       {
-         "type": "Container",
-         "collapsed": true,
-         "Parameter controlled": {
-           "type": "Enum",
-           "options": {
-             "None": "none",
-             "Source: Azimuth": "sourceazimuth",
-             "Source: Elevation": "sourceelevation",
-             "Source: Distance": "sourcedistance",
-             "Source: Position X": "sourcepositionX",
-             "Source: Position Y": "sourcepositionY",
-             "Source: Position Z": "sourcepositionZ",
-             "Source: Gain": "sourcegain",
-             "Source: Lfe": "sourcelfe",
-             "Source: Lfe2": "sourcelfe2",
-             "Source: Lfe3": "sourcelfe3",
-             "Source: Lfe4": "sourcelfe4",
-             "Source: Presence": "sourcepresence",
-             "Source: Room presence": "sourceroomPresence",
-             "Source: Running Reverberance": "sourcerunningReverberance",
-             "Source: Envelopment": "sourceenvelopment",
-             "Source: Brilliance": "sourcebrilliance",
-             "Source: Warmth": "sourcewarmth",
-             "Source: Yaw": "sourceyaw",
-             "Source: Pitch": "sourcepitch",
-             "Source: Aperture": "sourceaperture",
-             "Source: Scale": "sourcescale",
-             "Source: Spread": "sourcespread",
-             "Source: Knn": "sourceknn",
-             "Source: Early width": "sourceearlyWidth",
-             "Source: Pan Rev": "sourcepanRev",
-             "Source: Drop factor": "sourcedropFactor",
-             "Source: Rotation X": "sourcerotX",
-             "Source: Rotation Y": "sourcerotY",
-             "Source: Rotation Z": "sourcerotZ",
-             "Source: Omni Gain": "sourceomniGain",
-             "Source: RoomGain 1": "sourceroomGain1",
-             "Source: RoomGain 2": "sourceroomGain2",
-             "Source: RoomGain 3": "sourceroomGain3",
-             "Source: RoomGain 4": "sourceroomGain4",
-             "Source: RoomGain 5": "sourceroomGain5",
-             "Source: RoomGain 6": "sourceroomGain6",
-             "Source: RoomGain 7": "sourceroomGain7",
-             "Source: RoomGain 8": "sourceroomGain8",
-             "Source: RoomGain 9": "sourceroomGain9",
-             "Source: RoomGain 10": "sourceroomGain10",
-             "Room: Gain": "roomGain",
-             "Room: Listener X": "roomListenerX",
-             "Room: Listener Y": "roomListenerY",
-             "Room: Listener Z": "roomListenerZ",
-             "Room: Listener yaw": "roomListenerYaw",
-             "Room: Listener pitch": "roomListenerPitch",
-             "Room: Listener Roll": "roomListenerRoll",
-             "Room: Reverb size": "roomReverbSize",
-             "Room: Reverb start": "roomReverbStart",
-             "Room: Reverb gain": "roomReverbGain",
-             "Room: Reverb factor": "roomReverbFactor",
-             "Room: Reverberance": "roomReverberance",
-             "Room: Heaviness": "roomHeaviness",
-             "Room: Liveness": "roomLiveness",
-             "Room: Early min": "roomEarlyMin",
-             "Room: Early max": "roomEarlyMax",
-             "Room: Early dist": "roomEarlyDist",
-             "Room: Early Shape": "roomEarlyShape",
-             "Room: Cluster Min": "roomClusterMin",
-             "Room: Cluster Max": "roomClusterMax",
-             "Room: Cluster dist": "roomClusterDist",
-             "Room: Air Freq": "roomAirFreq",
-             "Room: Modal density": "roomModalDensity",
-             "Room: Frequency low crossover": "roomFrequencyLow",
-             "Room: Frequency high crossover": "roomFrequencyHigh"
-           }
-         },         "Target1": {"type":  "Target"},
-         "Target2": {"type":  "Target"},
-         "Target3": {"type":  "Target"},
-         "Target4": {"type":  "Target"},
-         "Target5": {"type":  "Target"},
-         "Target6": {"type":  "Target"},
-         "Target7": {"type":  "Target"},
-         "Target8": {"type":  "Target"},
-         "Values":
-         {
-           "type": "Container",
-           "Value1": {"type":  "Float", "description": "Value1", "min":  0.0, "max":  1.0},
-           "Value2": {"type":  "Float", "description": "Value2", "min":  0.0, "max":  1.0},
-           "Value3": {"type":  "Float", "description": "Value3", "min":  0.0, "max":  1.0},
-           "Value4": {"type":  "Float", "description": "Value4", "min":  0.0, "max":  1.0},
-           "Value5": {"type":  "Float", "description": "Value5", "min":  0.0, "max":  1.0},
-           "Value6": {"type":  "Float", "description": "Value6", "min":  0.0, "max":  1.0},
-           "Value7": {"type":  "Float", "description": "Value7", "min":  0.0, "max":  1.0},
-           "Value8": {"type":  "Float", "description": "Value8", "min":  0.0, "max":  1.0}
-         }
-       },
-       "float8": {
-         "type": "Container",
-         "collapsed": true,
-         "Parameter controlled": {
-           "type": "Enum",
-           "options": {
-             "None": "none", 
-             "Source: Azimuth": "sourceazimuth",
-             "Source: Elevation": "sourceelevation",
-             "Source: Distance": "sourcedistance",
-             "Source: Position X": "sourcepositionX",
-             "Source: Position Y": "sourcepositionY", 
-             "Source: Position Z": "sourcepositionZ", 
-             "Source: Gain": "sourcegain", 
-             "Source: Lfe": "sourcelfe", 
-             "Source: Lfe2": "sourcelfe2", 
-             "Source: Lfe3": "sourcelfe3", 
-             "Source: Lfe4": "sourcelfe4", 
-             "Source: Presence": "sourcepresence", 
-             "Source: Room presence": "sourceroomPresence", 
-             "Source: Running Reverberance": "sourcerunningReverberance", 
-             "Source: Envelopment": "sourceenvelopment", 
-             "Source: Brilliance": "sourcebrilliance",
-              "Source: Warmth": "sourcewarmth",
-              "Source: Yaw": "sourceyaw",
-              "Source: Pitch": "sourcepitch",
-              "Source: Aperture": "sourceaperture",
-              "Source: Scale": "sourcescale",
-              "Source: Spread": "sourcespread",
-              "Source: Knn": "sourceknn",
-              "Source: Early width": "sourceearlyWidth",
-              "Source: Pan Rev": "sourcepanRev",
-              "Source: Drop factor": "sourcedropFactor",
-              "Source: Rotation X": "sourcerotX",
-              "Source: Rotation Y": "sourcerotY",
-              "Source: Rotation Z": "sourcerotZ",
-              "Source: Omni Gain": "sourceomniGain",
-              "Source: RoomGain 1": "sourceroomGain1",
-              "Source: RoomGain 2": "sourceroomGain2",
-              "Source: RoomGain 3": "sourceroomGain3",
-              "Source: RoomGain 4": "sourceroomGain4",
-              "Source: RoomGain 5": "sourceroomGain5",
-              "Source: RoomGain 6": "sourceroomGain6",
-              "Source: RoomGain 7": "sourceroomGain7",
-              "Source: RoomGain 8": "sourceroomGain8",
-              "Source: RoomGain 9": "sourceroomGain9",
-              "Source: RoomGain 10": "sourceroomGain10",
-              "Room: Gain": "roomGain",
-              "Room: Listener X": "roomListenerX",
-              "Room: Listener Y": "roomListenerY",
-              "Room: Listener Z": "roomListenerZ",
-              "Room: Listener yaw": "roomListenerYaw",
-              "Room: Listener pitch": "roomListenerPitch",
-              "Room: Listener Roll": "roomListenerRoll",
-              "Room: Reverb size": "roomReverbSize",
-              "Room: Reverb start": "roomReverbStart",
-              "Room: Reverb gain": "roomReverbGain",
-              "Room: Reverb factor": "roomReverbFactor",
-              "Room: Reverberance": "roomReverberance",
-              "Room: Heaviness": "roomHeaviness",
-              "Room: Liveness": "roomLiveness",
-              "Room: Early min": "roomEarlyMin",
-              "Room: Early max": "roomEarlyMax",
-              "Room: Early dist": "roomEarlyDist",
-              "Room: Early Shape": "roomEarlyShape",
-              "Room: Cluster Min": "roomClusterMin",
-              "Room: Cluster Max": "roomClusterMax",
-              "Room: Cluster dist": "roomClusterDist",
-              "Room: Air Freq": "roomAirFreq",
-              "Room: Modal density": "roomModalDensity",
-              "Room: Frequency low crossover": "roomFrequencyLow",
-              "Room: Frequency high crossover": "roomFrequencyHigh"
-           }
-         },
-         "Target1": {
-           "type": "Target"
-         },
-         "Target2": {
-           "type": "Target"
-         },
-         "Target3": {
-           "type": "Target"
-         },
-         "Target4": {
-           "type": "Target"
-         },
-         "Target5": {
-           "type": "Target"
-         },
-         "Target6": {
-           "type": "Target"
-         },
-         "Target7": {
-           "type": "Target"
-         },
-         "Target8": {
-           "type": "Target"
-         },
-         "Values": {
-           "type": "Container",
-           "Value1": {
-             "type": "Float",
-             "description": "Value1",
-             "min": 0.0,
-             "max": 1.0
-           },
-           "Value2": {
-             "type": "Float",
-             "description": "Value2",
-             "min": 0.0,
-             "max": 1.0
-           },
-           "Value3": {
-             "type": "Float",
-             "description": "Value3",
-             "min": 0.0,
-             "max": 1.0
-           },
-           "Value4": {
-             "type": "Float",
-             "description": "Value4",
-             "min": 0.0,
-             "max": 1.0
-           },
-           "Value5": {
-             "type": "Float",
-             "description": "Value5",
-             "min": 0.0,
-             "max": 1.0
-           },
-           "Value6": {
-             "type": "Float",
-             "description": "Value6",
-             "min": 0.0,
-             "max": 1.0
-           },
-           "Value7": {
-             "type": "Float",
-             "description": "Value7",
-             "min": 0.0,
-             "max": 1.0
-           },
-           "Value8": {
-             "type": "Float",
-             "description": "Value8",
-             "min": 0.0,
-             "max": 1.0
-           }
-         }
-       }
-       }
   },
 
   "commands": {
+    "Recall next snapshot": {"menu":"","callback":"recallNextSnapshot"},
+    "Recall previous snapshot": {"menu":"","callback":"recallPreviousSnapshot"},
+    "Recall snapshot": {"menu":"","callback":"recallSnapshot", "parameters":  {"Index":  {"type":  "Integer"}}},
   }
 }
 

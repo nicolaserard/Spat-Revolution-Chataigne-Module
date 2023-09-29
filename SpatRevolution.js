@@ -212,6 +212,50 @@ var ParameterFromString = {
     {
         return Sources[index].omniGain;
     },
+    'sourceomniGainLow': function(index)
+    {
+        return Sources[index].omniGainLow;
+    },
+    'sourceomniGainMid': function(index)
+    {
+        return Sources[index].omniGainMid;
+    },
+    'sourceomniGainHigh': function(index)
+    {
+        return Sources[index].omniGainHigh;
+    },
+    'sourceomniLowFrequency': function(index)
+    {
+        return Sources[index].omniLowFrequency;
+    },
+    'sourceomniHighFrequency': function(index)
+    {
+        return Sources[index].omniHighFrequency;
+    },
+    'sourceaxisGain': function(index)
+    {
+        return Sources[index].axisGain;
+    },
+    'sourceaxisGainLow': function(index)
+    {
+        return Sources[index].axisGainLow;
+    },
+    'sourceaxisGainMid': function(index)
+    {
+        return Sources[index].axisGainMid;
+    },
+    'sourceaxisGainHigh': function(index)
+    {
+        return Sources[index].axisGainHigh;
+    },
+    'sourceaxisLowFrequency': function(index)
+    {
+        return Sources[index].axisLowFrequency;
+    },
+    'sourceaxisHighFrequency': function(index)
+    {
+        return Sources[index].axisHighFrequency;
+    },
     'sourceroomGain1': function(index)
     {
         return Sources[index].roomGain1;
@@ -433,7 +477,18 @@ var RangeForParameter = {
     'sourcerotx': [-180, 180.0],
     'sourceroty': [-180, 180.0],
     'sourcerotz': [-180, 180.0],
-    'sourceomniGain': [-144.5, 24.0],
+    'sourceomniGain': [-60, 10.0],
+    'sourceomniGainLow': [-30.0, 30.0],
+    'sourceomniGainMid': [-30.0, 30.0],
+    'sourceomniGainHigh': [-30.0, 30.0],
+    'sourceomniLowFrequency': [20, 20000.0],
+    'sourceomniHighFrequency': [20, 20000.0],
+    'sourceaxisGain': [-60, 10.0],
+    'sourceaxisGainLow': [-30.0, 30.0],
+    'sourceaxisGainMid': [-30.0, 30.0],
+    'sourceaxisGainHigh': [-30.0, 30.0],
+    'sourceaxisLowFrequency': [20, 20000.0],
+    'sourceaxisHighFrequency': [20, 20000.0],
     'sourceroomGain1': [-144.5, 24.0],
     'sourceroomGain2': [-144.5, 24.0],
     'sourceroomGain3': [-144.5, 24.0],
@@ -553,7 +608,7 @@ var OSCSourcesMessage = {
     'spread': function (index, value) {
         local.send("/source/" + index + "/spread", value.get());
     },
-    'KNN': function (index, value) {
+    'knn': function (index, value) {
         local.send("/source/" + index + "/nneig", value.get());
     },
     'earlyWidth': function (index, value) {
@@ -588,6 +643,39 @@ var OSCSourcesMessage = {
     },
     'omniGain': function (index, value) {
         local.send("/source/" + index + "/omni/G0", value.get());
+    },
+    'omniGainLow': function (index, value) {
+        local.send("/source/" + index + "/omni/Gl", value.get());
+    },
+    'omniGainMid': function (index, value) {
+        local.send("/source/" + index + "/omni/Gm", value.get());
+    },
+    'omniGainHigh': function (index, value) {
+        local.send("/source/" + index + "/omni/Gh", value.get());
+    },
+    'omniLowFrequency': function (index, value) {
+        local.send("/source/" + index + "/omni/fl", value.get());
+    },
+    'omniHighFrequency': function (index, value) {
+        local.send("/source/" + index + "/omni/fh", value.get());
+    },
+    'axisGain': function (index, value) {
+        local.send("/source/" + index + "/axis/G0", value.get());
+    },
+    'axisGainLow': function (index, value) {
+        local.send("/source/" + index + "/axis/Gl", value.get());
+    },
+    'axisGainMid': function (index, value) {
+        local.send("/source/" + index + "/axis/Gm", value.get());
+    },
+    'axisGainHigh': function (index, value) {
+        local.send("/source/" + index + "/axis/Gh", value.get());
+    },
+    'axisLowFrequency': function (index, value) {
+        local.send("/source/" + index + "/axis/fl", value.get());
+    },
+    'axisHighFrequency': function (index, value) {
+        local.send("/source/" + index + "/axis/fh", value.get());
     },
     'roomGain1': function (index, value) {
         local.send("/source/" + index + "/rg1", value.get());
@@ -740,19 +828,19 @@ var OSCRoomsMessage = {
 var OSCSnapshotsMessage = {
     'globalRecallSources': function (index, value)
     {
-        local.send("/snapshot/options/recall/sources", value.get());
+        local.send("/snapshot/global/options/recall/sources", value.get());
     },
     'globalRecallRooms': function (index, value)
     {
-        local.send("/snapshot/options/recall/rooms", value.get());
+        local.send("/snapshot/global/options/recall/rooms", value.get());
     },
     'globalRecallMasters': function (index, value)
     {
-        local.send("/snapshot/options/recall/masters", value.get());
+        local.send("/snapshot/global/options/recall/masters", value.get());
     },
     'globalRecallTiming': function (index, value)
     {
-        local.send("/snapshot/options/recall/timing", value.get());
+        local.send("/snapshot/global/options/recall/timing", value.get());
     },
 };
 
@@ -789,12 +877,13 @@ function init()
     // Add Setup container
     script.setUpdateRate(20);
     SetupContainer = local.parameters.addContainer("Setup", "Setup value");
+    synchronise = SetupContainer.addTrigger("Synchronise", "Synchronise: ask to SPAT Revolution for all parameters");
     distanceMax = SetupContainer.addFloatParameter("Distance Max", "Distance maximum of the position XYZ and distance for AED, in meters", 100.0, 1.0, 100.0);
-    numberOfRemotes = SetupContainer.addIntParameter("Number of  remotes", "number of remotes", 1, 0, 64);
+    numberOfRemotes = SetupContainer.addIntParameter("Number of  remotes", "number of remotes", 0, 0, 64);
 
 
     // script.log("Module initialization");
-    // createSnapshotsContainer();
+    createSnapshotsContainer();
     createSourceContainer();
     createRoomContainer();
     createRemoteContainer();
@@ -824,7 +913,7 @@ function update(updateRate)
     for (var remoteIndex = 0; remoteIndex < Remote.length; remoteIndex++)
     {
         var remoteRange = Remote[remoteIndex].remoteRange.get();
-        for (var onOffIndex = 0; onOffIndex < Remote[remoteIndex].onOffNumber.get(); onOffIndex++)
+        for (var onOffIndex = 0; onOffIndex < Remote[remoteIndex]["numberOfButtonControllable"]; onOffIndex++)
         {
             var onOff = Remote[remoteIndex].onOff[onOffIndex];
             for (var l = 0; l < Remote[remoteIndex].controlsNumber.get(); l++)
@@ -842,7 +931,7 @@ function update(updateRate)
             }
         }
         //float
-        for (var floatIndex = 0; floatIndex < Remote[remoteIndex].floatNumber.get(); floatIndex++)
+        for (var floatIndex = 0; floatIndex < Remote[remoteIndex]["numberOfFloatControllable"]; floatIndex++)
         {
             var float = Remote[remoteIndex].float[floatIndex];
             for (var l = 0; l < Remote[remoteIndex].controlsNumber.get(); l++)
@@ -860,8 +949,6 @@ function update(updateRate)
             }
         }
     }
-
-
 }
 
 /**
@@ -870,7 +957,7 @@ function update(updateRate)
  */
 function moduleParameterChanged(param)
 {
-    if (param.name === 'remotePort' || param.name === 'local' || param.name === 'remoteHost')
+    if (param.name === 'remotePort' || param.name === 'local' || param.name === 'remoteHost' || param.name === 'synchronise')
     {
         local.send("/source/*/dump", 0);
         local.send("/room/*/dump", 0);
@@ -912,6 +999,7 @@ function moduleValueChanged(value)
     }
     if (value.isParameter())
     {
+        script.log(name);
         if (name === 'masterIndex')
         {
 
@@ -924,11 +1012,9 @@ function moduleValueChanged(value)
         {
             var remoteIndex = parseInt(value.getParent().name.substring(6, value.getParent().name.length)) - 1;
             var localRemoteRange = RemoteRangeFromString[Remote[remoteIndex].remoteRange.get()];
-//             script.log(Remote[remoteIndex].floatNumber.get());
-
 
             // onOff
-            for (var onOffIndex = 0; onOffIndex < Remote[remoteIndex].onOffNumber.get(); onOffIndex++)
+            for (var onOffIndex = 0; onOffIndex < Remote[remoteIndex]["numberOfButtonControllable"]; onOffIndex++)
             {
                 var localOnOff = Remote[remoteIndex].onOff[onOffIndex];
                 var localParameterControlled = localOnOff.parameterControlled.get();
@@ -952,7 +1038,7 @@ function moduleValueChanged(value)
             }
 
             //float
-            for (var floatIndex = 0; floatIndex < Remote[remoteIndex].floatNumber.get(); floatIndex++)
+            for (var floatIndex = 0; floatIndex < Remote[remoteIndex]["numberOfFloatControllable"]; floatIndex++)
             {
                 //script.log("For float number" + floatIndex);
                 var localFloat = Remote[remoteIndex].float[floatIndex];
@@ -1005,7 +1091,7 @@ function moduleValueChanged(value)
         }
         else if (name === 'parameterControlled')
         {
-            if (value.get === 'none')
+            if (value.get() === 'none')
             {
                 return;
             }
@@ -1051,7 +1137,7 @@ function moduleValueChanged(value)
                 {
                     var i = Remote[index]['numberOfControls'] + 1;
                     // onOff
-                    for (var onOffIndex = 0; onOffIndex < Remote[index].onOffNumber.get(); onOffIndex++)
+                    for (var onOffIndex = 0; onOffIndex < Remote[index]["numberOfButtonControllable"]; onOffIndex++)
                     {
                         Remote[index].onOff[onOffIndex]['values'].push(
                             {"value": Remote[index].onOff[onOffIndex]['container'].getChild("Values").addBoolParameter("Value" + i, "Value" + i, false),
@@ -1059,7 +1145,7 @@ function moduleValueChanged(value)
                             });
                     }
                     // float
-                    for (var floatIndex = 1; floatIndex < Remote[index].floatNumber.get() + 1; floatIndex++)
+                    for (var floatIndex = 1; floatIndex < Remote[index]["numberOfFloatControllable"] + 1; floatIndex++)
                     {
                         Remote[index].float[floatIndex-1]['values'].push(
                             {"value": Remote[index].float[floatIndex-1]['container'].getChild("Values").addFloatParameter("Value" + i, "Value" + i, 0.0, 0.0, 1.0),
@@ -1074,14 +1160,14 @@ function moduleValueChanged(value)
                 while (Remote[index]['numberOfControls'] > value.get())
                 {
                     //onOff
-                    for (var onOffIndex = 1; onOffIndex < Remote[index].onOffNumber.get() + 1; onOffIndex++)
+                    for (var onOffIndex = 1; onOffIndex < Remote[index]["numberOfButtonControllable"] + 1; onOffIndex++)
                     {
                         var onOffCont = Remote[index].onOff[onOffIndex-1]['container'];
                         onOffCont.removeParameter("Target"+parseInt(Remote[index]['numberOfControls']));
                         onOffCont.getChild("Values").removeParameter("Value" + parseInt(Remote[index]['numberOfControls']));
                     }
                     //float
-                    for (var floatIndex = 1; floatIndex < Remote[index].floatNumber.get() + 1; floatIndex++)
+                    for (var floatIndex = 1; floatIndex < Remote[index]["numberOfFloatControllable"] + 1; floatIndex++)
                     {
                         var floatCont = Remote[index].float[floatIndex-1]['container'];
                         floatCont.removeParameter("Target"+parseInt(Remote[index]['numberOfControls']));
@@ -1092,32 +1178,6 @@ function moduleValueChanged(value)
             }
 
         }
-        else if (name === 'onOffNumber')
-        {
-            var index = parseInt(value.getParent().name.substring(6, value.getParent().name.length));
-            if (Remote[index-1].onOff) {
-                if (value.get() > Remote[index - 1]["numberOfButtonControllable"]) {
-                    addButtonControllable(index - 1, value.get());
-                } else if (value.get() < Remote[index - 1]["numberOfButtonControllable"]) {
-                    i = value.get() + 1;
-                    value.getParent().removeContainer("onOff" + i);
-                }
-                Remote[index - 1]["numberOfButtonControllable"] = value.get();
-            }
-        }
-        else if (name === 'floatNumber')
-        {
-            var index = parseInt(value.getParent().name.substring(6, value.getParent().name.length));
-            if (Remote[index-1].float) {
-                if (value.get() > Remote[index - 1]["numberOfFloatControllable"]) {
-                    addFloatControllable(index - 1, value.get());
-                } else if (value.get() < Remote[index - 1]["numberOfFloatControllable"]) {
-                    i = value.get() + 1;
-                    value.getParent().removeContainer("float" + i);
-                }
-                Remote[index - 1]["numberOfFloatControllable"] = value.get();
-            }
-        }
 
         else if (name.startsWith("target"))
         {
@@ -1125,29 +1185,28 @@ function moduleValueChanged(value)
             var remoteIndex = parseInt(value.getParent().getParent().name.substring(6, value.getParent().getParent().name.length)) - 1;
             var localParameterControlled = false;
             var sourceIndex = -1;
-            if (Remote[remoteIndex].onOffNumber) {
-                for (var i = 0; i < Remote[remoteIndex].onOffNumber.get(); i++) {
-                    // script.log("Container: " + Remote[remoteIndex].onOff[i].container.name + ", valueParent: " + value.getParent().name);
-                    if (Remote[remoteIndex].onOff[i].container.name == value.getParent().name) {
-                        localParameterControlled = Remote[remoteIndex].onOff[i].parameterControlled.get();
-                        if (localParameterControlled === 'none') {
-                            return;
-                        }
-                        // script.log("parameterControlled: " + localParameterControlled);
-                        for (var j = 0; j < Remote[remoteIndex].onOff[i]['values'].length; j++) {
-                            if (Remote[remoteIndex].onOff[i]['values'][j]["target"].name == value.name) ;
-                            {
-                                sourceIndex = (Remote[remoteIndex].indexNumber.get() - 1) * Remote[remoteIndex].controlsNumber.get() + j;
-                                // script.log("We find it! sourceIndex: " + sourceIndex + ", localParameterControlled: " + localParameterControlled);
-                                break
-                            }
-                        }
-                        break;
+            for (var i = 0; i < Remote[remoteIndex]['numberOfButtonControllable']; i++)
+            {
+                // script.log("Container: " + Remote[remoteIndex].onOff[i].container.name + ", valueParent: " + value.getParent().name);
+                if (Remote[remoteIndex].onOff[i].container.name == value.getParent().name) {
+                    localParameterControlled = Remote[remoteIndex].onOff[i].parameterControlled.get();
+                    if (localParameterControlled === 'none') {
+                        return;
                     }
+                    // script.log("parameterControlled: " + localParameterControlled);
+                    for (var j = 0; j < Remote[remoteIndex].onOff[i]['values'].length; j++) {
+                        if (Remote[remoteIndex].onOff[i]['values'][j]["target"].name == value.name) ;
+                        {
+                            sourceIndex = (Remote[remoteIndex].indexNumber.get() - 1) * Remote[remoteIndex].controlsNumber.get() + j;
+                            // script.log("We find it! sourceIndex: " + sourceIndex + ", localParameterControlled: " + localParameterControlled);
+                            break
+                        }
+                    }
+                    break;
                 }
             }
-            if (Remote[remoteIndex].floatNumber) {
-                for (var i = 0; i < Remote[remoteIndex].floatNumber.get(); i++)
+
+            for (var i = 0; i < Remote[remoteIndex]["numberOfFloatControllable"]; i++)
             {
                 // script.log("Container: " + Remote[remoteIndex].float[i].container + ", valueParent: " + value.getParent());
                 if (Remote[remoteIndex].float[i].container.name == value.getParent().name)
@@ -1171,7 +1230,7 @@ function moduleValueChanged(value)
                     break;
                 }
             }
-            }
+
             stopUpdateForSource = sourceIndex;
             if (sourceIndex != -1) {
                 var param = ParameterFromString[localParameterControlled](sourceIndex - 1);
@@ -1394,6 +1453,14 @@ function oscSourceEvent(address, args)
         {
             source.mute.set(args[0]);
             controlName = 'sourcemute';
+        }
+    }
+    else if (address[3] ==='select')
+    {
+        if (typeof(args[0]) == 'number')
+        {
+            source.selected.set(args[0]);
+            controlName = 'sourceselected';
         }
     }
     else if (address[3] ==='solo')
@@ -1758,6 +1825,97 @@ function oscSourceEvent(address, args)
             {
                 source.omniGain.set(args[0]);
                 controlName = 'sourceomniGain';
+            }
+        }
+        else if (address[4] ==='Gl')
+        {
+            if (typeof(args[0]) == 'number')
+            {
+                source.omniGainLow.set(args[0]);
+                controlName = 'sourceomniGainLow';
+            }
+        }
+        else if (address[4] ==='Gm')
+        {
+            if (typeof(args[0]) == 'number')
+            {
+                source.omniGainMid.set(args[0]);
+                controlName = 'sourceomniGainMid';
+            }
+        }
+        else if (address[4] ==='Gh')
+        {
+            if (typeof(args[0]) == 'number')
+            {
+                source.omniGainHigh.set(args[0]);
+                controlName = 'sourceomniGainHigh';
+            }
+        }
+        else if (address[4] ==='fl')
+        {
+            if (typeof(args[0]) == 'number')
+            {
+                source.omniLowFrequency.set(args[0]);
+                controlName = 'sourceomniLowFrequency';
+            }
+        }
+        else if (address[4] ==='fh')
+        {
+            if (typeof(args[0]) == 'number')
+            {
+                source.omniHighFrequency.set(args[0]);
+                controlName = 'sourceomniHighFrequency';
+            }
+        }
+    }
+    else if (address[3]==='axis')
+    {
+        if (address[4] ==='G0')
+        {
+            if (typeof(args[0]) == 'number')
+            {
+                source.axisGain.set(args[0]);
+                controlName = 'sourceaxisGain';
+            }
+        }
+        else if (address[4] ==='Gl')
+        {
+            if (typeof(args[0]) == 'number')
+            {
+                source.axisGainLow.set(args[0]);
+                controlName = 'sourceaxisGainLow';
+            }
+        }
+        else if (address[4] ==='Gm')
+        {
+            if (typeof(args[0]) == 'number')
+            {
+                source.axisGainMid.set(args[0]);
+                controlName = 'sourceaxisGainMid';
+            }
+        }
+        else if (address[4] ==='Gh')
+        {
+            if (typeof(args[0]) == 'number')
+            {
+                source.axisGainHigh.set(args[0]);
+                controlName = 'sourceaxisGainHigh';
+            }
+        }
+        else if (address[4] ==='fl')
+        {
+            if (typeof(args[0]) == 'number')
+            {
+                source.axisLowFrequency.set(args[0]);
+                controlName = 'sourceaxisLowFrequency';
+            }
+        }
+        else if (address[4] ==='fh')
+        {
+            if (typeof(args[0]) == 'number')
+            {
+                source.axisHighFrequency.set(args[0]);
+                controlName = 'sourceaxisHighFrequency';
             }
         }
     }
@@ -2131,6 +2289,46 @@ function oscMasterEvent(address, args)
 
 function oscSnapshotEvent(address, args)
 {
+    if (address[2] === 'current')
+    {
+        if (address[3] ==='name')
+        {
+            currentSnasphotName.set(args[0]);
+        }
+    }
+    else if (address[2] === 'previous')
+    {
+        if (address[3] ==='name')
+        {
+            previousSnasphotName.set(args[0]);
+        }
+    }
+    else if (address[2] === 'next')
+    {
+        if (address[3] ==='name')
+        {
+            nextSnasphotName.set(args[0]);
+        }
+    }
+   else if (address[2] === 'global' && address[3] === 'options'  && address[4] === 'recall' && typeof(args[0]) == 'number')
+   {
+        if (address[5] === 'sources')
+        {
+            SnapshotsGlobalRecallSources.set(args[0]);
+        }
+        else if (address[5] === 'rooms')
+        {
+            SnapshotsGlobalRecallRooms.set(args[0]);
+        }
+        else if (address[5] === 'masters')
+        {
+            SnapshotsGlobalRecallMasters.set(args[0]);
+        }
+        else if (address[5] === 'timing')
+        {
+            SnapshotsGlobalRecallTiming.set(args[0]);
+        }
+   }
     // to be completed later
 }
 
@@ -2166,16 +2364,16 @@ function createSourceContainer()
         Sources[i].solo = Sources[i].SourceContainer.addBoolParameter("Solo", "Solo", 0);
         // Sources[i].solo.setAttribute("readonly", true);
 
-        Sources[i].lfe1 = Sources[i].SourceContainer.addFloatParameter("LFE 1", "LFE level", -144.5, -144.5, 24);
+        Sources[i].lfe1 = Sources[i].SourceContainer.addFloatParameter("LFE1", "LFE level", -144.5, -144.5, 24);
         // Sources[i].lfe1.setAttribute("readonly", true);
 
-        Sources[i].lfe2 = Sources[i].SourceContainer.addFloatParameter("LFE 2", "LFE level", -144.5, -144.5, 24);
+        Sources[i].lfe2 = Sources[i].SourceContainer.addFloatParameter("LFE2", "LFE level", -144.5, -144.5, 24);
         // Sources[i].lfe2.setAttribute("readonly", true);
 
-        Sources[i].lfe3 = Sources[i].SourceContainer.addFloatParameter("LFE 3", "LFE level", -144.5, -144.5, 24);
+        Sources[i].lfe3 = Sources[i].SourceContainer.addFloatParameter("LFE3", "LFE level", -144.5, -144.5, 24);
         // Sources[i].lfe3.setAttribute("readonly", true);
 
-        Sources[i].lfe4 = Sources[i].SourceContainer.addFloatParameter("LFE 4", "LFE level", -144.5, -144.5, 24);
+        Sources[i].lfe4 = Sources[i].SourceContainer.addFloatParameter("LFE4", "LFE level", -144.5, -144.5, 24);
         // Sources[i].lfe4.setAttribute("readonly", true);
 
         Sources[i].positionAED = Sources[i].SourceContainer.addPoint3DParameter("Position AED", "PositionAED", [0.0, 0.0, 2.0]);
@@ -2240,7 +2438,7 @@ function createSourceContainer()
         Sources[i].knn = Sources[i].spreadingSourceContainer.addIntParameter("Knn", "Knn", 0, 0, 100);
         // Sources[i].knn.setAttribute("readonly", true);
 
-        Sources[i].earlyWidth = Sources[i].reverbSourceContainer.addFloatParameter("Early Width", "Early Width", 10, 0, 100);
+        Sources[i].earlyWidth = Sources[i].reverbSourceContainer.addFloatParameter("Early Width", "Early Width", 10, 0, 180.0);
         // Sources[i].earlyWidth.setAttribute("readonly", true);
 
         Sources[i].panRev = Sources[i].reverbSourceContainer.addFloatParameter("PanRev", "Pan Rev", 0, 0, 100);
@@ -2269,8 +2467,42 @@ function createSourceContainer()
         // Sources[i].radius.setAttribute("readonly", true);
 
         Sources[i].OmniSourceContainer = Sources[i].SourceContainer.addContainer("Omni");
-        Sources[i].omniGain = Sources[i].OmniSourceContainer.addFloatParameter("Omni Gain", "Omni Gain", 0, -144.5, 24);
+        Sources[i].omniGain = Sources[i].OmniSourceContainer.addFloatParameter("Omni Gain", "Omni Gain", 0, -60.0, 10);
         // Sources[i].omniGain.setAttribute("readonly", true);
+        
+        Sources[i].omniGainLow = Sources[i].OmniSourceContainer.addFloatParameter("Omni Gain Low", "Omni Gain Low", 0, -30.0, 30.0);
+        // Sources[i].omniGainLow.setAttribute("readonly", true);
+        
+        Sources[i].omniGainMid = Sources[i].OmniSourceContainer.addFloatParameter("Omni Gain Mid", "Omni Gain Mid", 0, -30.0, 30.0);
+        // Sources[i].omniGainMid.setAttribute("readonly", true);
+        
+        Sources[i].omniGainHigh = Sources[i].OmniSourceContainer.addFloatParameter("Omni Gain High", "Omni Gain High", 0, -30.0, 30.0);
+        // Sources[i].omniGain.setAttribute("readonly", true);
+        
+        Sources[i].omniLowFrequency = Sources[i].OmniSourceContainer.addFloatParameter("Omni Low Frequency", "Omni Low Frequency", 0, 20.0, 20000.0);
+        // Sources[i].omniLowFrequency.setAttribute("readonly", true);
+        
+        Sources[i].omniHighFrequency = Sources[i].OmniSourceContainer.addFloatParameter("Omni High Frequency", "Omni High Frequency", 0, 20.0, 20000.0);
+        // Sources[i].omniHighFrequency.setAttribute("readonly", true);
+
+        Sources[i].axisSourceContainer = Sources[i].SourceContainer.addContainer("Axis");
+        Sources[i].axisGain = Sources[i].axisSourceContainer.addFloatParameter("Axis Gain", "axis Gain", 0, -60.0, 10);
+        // Sources[i].axisGain.setAttribute("readonly", true);
+        
+        Sources[i].axisGainLow = Sources[i].axisSourceContainer.addFloatParameter("Axis Gain Low", "Axis Gain Low", 0, -30.0, 30.0);
+        // Sources[i].axisGainLow.setAttribute("readonly", true);
+        
+        Sources[i].axisGainMid = Sources[i].axisSourceContainer.addFloatParameter("Axis Gain Mid", "Axis Gain Mid", 0, -30.0, 30.0);
+        // Sources[i].axisGainMid.setAttribute("readonly", true);
+        
+        Sources[i].axisGainHigh = Sources[i].axisSourceContainer.addFloatParameter("Axis Gain High", "Axis Gain High", 0, -30.0, 30.0);
+        // Sources[i].axisGain.setAttribute("readonly", true);
+        
+        Sources[i].axisLowFrequency = Sources[i].axisSourceContainer.addFloatParameter("Axis Low Frequency", "Axis Low Frequency", 0, 20.0, 20000.0);
+        // Sources[i].axisLowFrequency.setAttribute("readonly", true);
+        
+        Sources[i].axisHighFrequency = Sources[i].axisSourceContainer.addFloatParameter("Axis High Frequency", "Axis High Frequency", 0, 20.0, 20000.0);
+        // Sources[i].axisHighFrequency.setAttribute("readonly", true);
 
         Sources[i].roomGainsSourceContainer = Sources[i].SourceContainer.addContainer("Room Gains");
         Sources[i].roomGain1 = Sources[i].roomGainsSourceContainer.addFloatParameter("Room Gain 1", "Room Gain 1", 0, -144.5, 24);
@@ -2430,7 +2662,9 @@ function createSnapshotsContainer() {
     SnapshotsGlobalRecallSources = SnapshotsContainer.addBoolParameter("Global recall sources", "global recall sources", 1);
     SnapshotsGlobalRecallRooms = SnapshotsContainer.addBoolParameter("Global recall rooms", "global recall rooms", 0);
     SnapshotsGlobalRecallMasters = SnapshotsContainer.addBoolParameter("Global recall masters", "global recall masters", 0);
-
+    currentSnasphotName = SnapshotsContainer.addStringParameter("Current snapshot name", "current snapshot name", "");
+    previousSnasphotName = SnapshotsContainer.addStringParameter("Previous snapshot name", "previous snapshot name", "");
+    nextSnasphotName = SnapshotsContainer.addStringParameter("Next snapshot name", "next snapshot name", "");
     for (var i = 0; i < 24; i++) {
         var index = i + 1;
         Snapshots.push({
@@ -2492,54 +2726,25 @@ function addRemote(index)
     Remote[i].RemoteContainer = local.values.addContainer("Remote" + index);
     Remote[i].RemoteContainer.setCollapsed(true);
     Remote[i].indexNumber = Remote[i].RemoteContainer.addIntParameter("Index", "index", 1, 1, 64);
-    Remote[i].controlsNumber = Remote[i].RemoteContainer.addIntParameter("Controls Number", "controls number", 1 ,1, 50);
+    Remote[i].controlsNumber = Remote[i].RemoteContainer.addIntParameter("Controls Number", "controls number", 8, 1, 50);
     // Remote[i].controlsNumber.setAttribute("readonly", true);
-    Remote[i].onOffNumber = Remote[i].RemoteContainer.addIntParameter("On Off Number", "on off number", 0, 0, 10);
-    // Remote[i].onOffNumber.setAttribute("readonly", true);
     Remote[i].remoteRange = Remote[i].RemoteContainer.addEnumParameter("Remote range", "Range of values of the remote parameter", "MIDI", "midi", "0 / 1", "linear01", "-1 / 1", "linear-11", "Percent", "percent");
     Remote[i].onOff = [];
 
-    for (var j = 1; j <= 10; j++) {
+    for (var j = 1; j <= 4; j++) {
         addButtonControllable(i, j);
     }
 
-    local.send("/numberofOffOn", Remote[i].onOffNumber.get());
-    script.log("/numberofOffOn" + Remote[i].onOffNumber.get());
-    if (Remote[i].onOffNumber.get() < 10)
-    {
-        for (var j=10; j > Remote[i].onOffNumber.get() + 1; j--)
-        {
-            local.values.getChild("Remote" + parseInt(i+1)).removeContainer("onOff" + j);
-
-            // local.values.getChild("Remote" + parseInt(i + 1)).getChild("onOff" + j).removeParameter("Target" + k);
-            // local.values.getChild("Remote" + parseInt(i + 1)).getChild("onOff" + j).getChild("Values").removeParameter("Value" + k);
-        }
-    }
-
-    Remote[i].floatNumber = Remote[i].RemoteContainer.addIntParameter("Float Number", "float number", 0, 0, 10);
-    // Remote[i].floatNumber.set(Remote[i].floatNumber.get());
-    // Remote[i].floatNumber.setAttribute("readonly", true);
     Remote[i].float = [];
 
-    for (var j = 1; j <= 10; j++) {
+    for (var j = 1; j <= 4; j++) {
         addFloatControllable(i, j);
-    }
-
-    if (Remote[i].floatNumber.get() < 10)
-    {
-        for (var j=10; j > Remote[i].floatNumber.get(); j--)
-        {
-            local.values.getChild("Remote" + parseInt(i+1)).removeContainer("float" + j);
-
-            // local.values.getChild("Remote" + parseInt(i + 1)).getChild("float" + j).removeParameter("Target" + k);
-            // local.values.getChild("Remote" + parseInt(i + 1)).getChild("float" + j).getChild("Values").removeParameter("Value" + k);
-        }
     }
 
     Remote[i]["index"] = Remote[i].indexNumber.get();
     Remote[i]['numberOfControls'] = Remote[i].controlsNumber.get();
-    Remote[i]["numberOfButtonControllable"] = Remote[i].onOffNumber.get();
-    Remote[i]["numberOfFloatControllable"] =Remote[i].floatNumber.get();//, "container": RemoteContainer, 'controlsNumber': 8, 'onOffNumber': 8, 'floatNumber':8});
+    Remote[i]["numberOfButtonControllable"] = 4;
+    Remote[i]["numberOfFloatControllable"] = 4;
 }
 
 /**
@@ -2566,54 +2771,8 @@ function createRemoteContainer()
     var masterIndex = local.values.addIntParameter("Master index", "master index", 1, 1, 64);
     for (var i = 1; i < SetupContainer.getChild("numberOfRemotes").get() + 1; i++)
     {
-        addRemote(i);
+       addRemote(i);
     }
-
-    // if (SetupContainer.getChild("numberOfRemotes").get() < 8)
-    // {
-    //     for (var i = 8; i > SetupContainer.getChild("numberOfRemotes").get(); i--)
-    //     {deleteRemote(i);}
-    // }
-    // local.send("/deleteuntilnumber", Remote[i].numberOfFloatControllable);
-    // for (var i = 0; i < SetupContainer.getChild("numberOfRemotes").get(); i++)
-    // {
-    //     if (Remote[i].numberOfFloatControllable < 10)
-    //     {
-    //         local.send("/deleteuntilnumber", Remote[i].numberOfFloatControllable);
-    //         script.log("deleteuntilnumber" + Remote[i].numberOfFloatControllable);
-    //         for (var j=8; j > Remote[i].numberOfFloatControllable + 1; j--)
-    //         {
-    //             local.values.getChild("Remote" + parseInt(i+1)).removeContainer("float" + j);
-    //         }
-    //         if (Remote[i].controlsNumber.get() < 8)
-    //         {
-    //             for (var j = 1; j < Remote[i].floatNumber.get() + 1; j++)
-    //             {
-    //                 for (var k = 8; k > Remote[i].controlsNumber.get();k--) {
-    //                     local.values.getChild("Remote" + parseInt(i + 1)).getChild("float" + j).removeParameter("Target" + k);
-    //                     local.values.getChild("Remote" + parseInt(i + 1)).getChild("float" + j).getChild("Values").removeParameter("Value" + k);
-    //                 }
-    //             }
-    //         }
-    //     }
-    //     if (Remote[i].numberOfButtonControllable < 10)
-    //     {
-    //         for (var j=8; j > Remote[i].numberOfButtonControllable; j--)
-    //         {
-    //             local.values.getChild("Remote" + parseInt(i+1)).removeContainer("onOff" + j);
-    //         }
-    //         if (Remote[i].controlsNumber.get() < 8)
-    //         {
-    //             for (var j = 1; j < Remote[i].onOffNumber.get() + 1; j++)
-    //             {
-    //                 for (var k = 8; k > Remote[i].controlsNumber.get();k--) {
-    //                     local.values.getChild("Remote" + parseInt(i + 1)).getChild("onOff" + j).removeParameter("Target" + k);
-    //                     local.values.getChild("Remote" + parseInt(i + 1)).getChild("onOff" + j).getChild("Values").removeParameter("Value" + k);
-    //                 }
-    //             }
-    //         }
-    //     }
-    // }
 }
 
 /**
@@ -2632,7 +2791,7 @@ function updateRemote(controlName, args, sourceIndex)
         if (Math.floor(sourceIndex / Remote[remoteIndex].controlsNumber.get()) == (Remote[remoteIndex].indexNumber.get() - 1)) {
             // script.log("updateRemote index: " + sourceIndex);
 
-            for (var onOffIndex = 0; onOffIndex < Remote[remoteIndex].onOffNumber.get(); onOffIndex++) {
+            for (var onOffIndex = 0; onOffIndex < Remote[remoteIndex]["onOffButtonControllable"]; onOffIndex++) {
                 if (typeof(args) === 'number')
                 {
                     arg = args;
@@ -2651,7 +2810,7 @@ function updateRemote(controlName, args, sourceIndex)
                     Remote[remoteIndex].onOff[onOffIndex]['values'][sourceIndex % Remote[remoteIndex].controlsNumber.get()]['value'].set(arg);
                 }
             }
-            for (var floatIndex = 0; floatIndex < Remote[remoteIndex].floatNumber.get(); floatIndex++) {
+            for (var floatIndex = 0; floatIndex < Remote[remoteIndex]["numberOfFloatControllable"]; floatIndex++) {
                 // script.log(Remote[remoteIndex].float[floatIndex]['parameterControlled'].get() + ", val: " + args);
                 if (Remote[remoteIndex].float[floatIndex].parameterControlled) {
                     var parameterControlled = Remote[remoteIndex].float[floatIndex].parameterControlled.get();
@@ -2762,4 +2921,19 @@ function PolarToCartesian(value)
 function DegToRad(value)
 {
     return -1 * Math.PI * (value - 90) / 180;
+}
+
+function recallNextSnapshot()
+{
+    local.send("/snapshot/next/recall");
+}
+
+function recallPreviousSnapshot()
+{
+    local.send("/snapshot/previous/recall");
+}
+
+function recallSnapshot(index)
+{
+    local.send("/snapshot/"+ index + "/recall");
 }
