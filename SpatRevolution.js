@@ -529,298 +529,363 @@ var RangeForParameter = {
 /* OSCSourcesMessage: array of all OSC Source Messages. Use to send OSC message when a value changed.*/
 var OSCSourcesMessage = {
     'gain': function (index, value) {
-        local.send("/source/" + index + "/gain", value.get());
+        local.send("/source/" + index + "/gain", value);
     },
     'mute': function (index, value) {
-        local.send("/source/" + index + "/mute", value.get());
+        local.send("/source/" + index + "/mute", value);
     },
     'selected': function (index, value) {
-        local.send("/source/" + index + "/select", value.get());
+        local.send("/source/" + index + "/select", value);
     },
     'solo': function (index, value) {
-        local.send("/source/" + index + "/solo", value.get());
+        local.send("/source/" + index + "/solo", value);
     },
     'lfe1': function (index, value) {
-        local.send("/source/" + index + "/lfe", value.get());
+        local.send("/source/" + index + "/lfe", value);
     },
     'lfe2': function (index, value) {
-        local.send("/source/" + index + "/lfe2", value.get());
+        local.send("/source/" + index + "/lfe2", value);
     },
     'lfe3': function (index, value) {
-        local.send("/source/" + index + "/lfe3", value.get());
+        local.send("/source/" + index + "/lfe3", value);
     },
     'lfe4': function (index, value) {
-        local.send("/source/" + index + "/lfe4", value.get());
+        local.send("/source/" + index + "/lfe4", value);
     },
     'positionAED': function (index, value) {
-        local.send("/source/" + index + "/aed", value.get());
-        Sources[index - 1].positionXYZ.set(PolarToCartesian(value.get()));
+        local.send("/source/" + index + "/aed", value);
+        Sources[index - 1].positionXYZ.set(PolarToCartesian(value));
+    },
+    'positionAzimuth': function (index, value) {
+        var val = Sources[index-1].positionAED.get();
+        val[0] = value;
+        Sources[index - 1].positionXYZ.set(PolarToCartesian(val));
+    },
+    'positionElevation': function (index, value) {
+        var val = Sources[index-1].positionAED.get();
+        val[1] = value;
+        Sources[index - 1].positionXYZ.set(PolarToCartesian(val));
+    },
+    'positionDistance': function (index, value) {
+        var val = Sources[index-1].positionAED.get();
+        val[2] = value;
+        Sources[index - 1].positionXYZ.set(PolarToCartesian(val));
+    },
+    'positionX': function(index, value){
+        var val = Sources[index-1].positionXYZ.get();
+        val[0] = value;
+        Sources[index - 1].positionAED.set(CartesianToPolar(val));
+    },
+    'positionY': function(index, value){
+        var val = Sources[index-1].positionXYZ.get();
+        val[1] = value;
+        Sources[index - 1].positionAED.set(CartesianToPolar(val));
+    },
+    'positionZ': function(index, value){
+        var val = Sources[index-1].positionXYZ.get();
+        val[2] = value;
+        Sources[index - 1].positionAED.set(CartesianToPolar(val));
+    },
+    'positionXY': function(index, value){
+        var val = Sources[index-1].positionXYZ.get();
+        val[0] = value[0];
+        val[1] = value[1];
+        Sources[index - 1].positionAED.set(CartesianToPolar(val));
     },
     'positionXYZ': function (index, value) {
-        Sources[index - 1].positionAED.set(CartesianToPolar(value.get()));
-        // local.send("/source/" + index + "/aed", CartesianToPolar(value.get()));
+        Sources[index - 1].positionAED.set(CartesianToPolar(value));
+        // local.send("/source/" + index + "/aed", CartesianToPolar(value));
     },
     'reverbEnable': function (index, value) {
-        local.send("/source/" + index + "/reverb/enable", value.get());
+        local.send("/source/" + index + "/reverb/enable", value);
     },
     'earlyEnable': function (index, value) {
-        local.send("/source/" + index + "/early", value.get());
+        local.send("/source/" + index + "/early", value);
     },
     'clusterEnable': function (index, value) {
-        local.send("/source/" + index + "/cluster", value.get());
+        local.send("/source/" + index + "/cluster", value);
     },
     'tailEnable': function (index, value) {
-        local.send("/source/" + index + "/tail", value.get());
+        local.send("/source/" + index + "/tail", value);
     },
     'sourceName': function (index, value) {
-        local.send("/source/" + index + "/name", value.get());
+        local.send("/source/" + index + "/name", value);
     },
     'presence': function (index, value) {
-        local.send("/source/" + index + "/pres", value.get());
+        local.send("/source/" + index + "/pres", value);
     },
     'roomPresence': function (index, value) {
-        local.send("/source/" + index + "/prer", value.get());
+        local.send("/source/" + index + "/prer", value);
     },
     'runningReverberance': function (index, value) {
-        local.send("/source/" + index + "/revp", value.get());
+        local.send("/source/" + index + "/revp", value);
     },
     'envelopment': function (index, value) {
-        local.send("/source/" + index + "/env", value.get());
+        local.send("/source/" + index + "/env", value);
     },
     'brilliance': function (index, value) {
-        local.send("/source/" + index + "/bril", value.get());
+        local.send("/source/" + index + "/bril", value);
     },
     'warmth': function (index, value) {
-        local.send("/source/" + index + "/warmth", value.get());
+        local.send("/source/" + index + "/warmth", value);
     },
     'yaw': function (index, value) {
-        local.send("/source/" + index + "/yaw", value.get());
+        local.send("/source/" + index + "/yaw", value);
     },
     'pitch': function (index, value) {
-        local.send("/source/" + index + "/pitch", value.get());
+        local.send("/source/" + index + "/pitch", value);
     },
     'aperture': function (index, value) {
-        local.send("/source/" + index + "/aperture", value.get());
+        local.send("/source/" + index + "/aperture", value);
     },
     'scale': function (index, value) {
-        local.send("/source/" + index + "/scale", value.get());
+        local.send("/source/" + index + "/scale", value);
     },
     'spread': function (index, value) {
-        local.send("/source/" + index + "/spread", value.get());
+        local.send("/source/" + index + "/spread", value);
     },
     'knn': function (index, value) {
-        local.send("/source/" + index + "/nneig", value.get());
+        local.send("/source/" + index + "/nneig", value);
     },
     'earlyWidth': function (index, value) {
-        local.send("/source/" + index + "/early/width", value.get());
+        local.send("/source/" + index + "/early/width", value);
     },
     'panRev': function (index, value) {
-        local.send("/source/" + index + "/prevf", value.get());
+        local.send("/source/" + index + "/prevf", value);
     },
     'doppler': function (index, value) {
-        local.send("/source/" + index + "/doppler/enable", value.get());
+        local.send("/source/" + index + "/doppler/enable", value);
     },
     'radius': function (index, value) {
-        local.send("/source/" + index + "/radius", value.get());
+        local.send("/source/" + index + "/radius", value);
     },
     'airAbsorption': function (index, value) {
-        local.send("/source/" + index + "/air/enable", value.get());
+        local.send("/source/" + index + "/air/enable", value);
     },
     'xyCoordinatesMode': function (index, value) {
-        local.send("/source/" + index + "/cm", value.get());
+        local.send("/source/" + index + "/cm", value);
     },
     'zCoordinatesMode': function (index, value) {
-        local.send("/source/" + index + "/zcm", value.get());
+        local.send("/source/" + index + "/zcm", value);
     },
     'dropLog': function (index, value) {
-        local.send("/source/" + index + "/drop/type", value.get());
+        local.send("/source/" + index + "/drop/type", value);
     },
     'dropFactor': function (index, value) {
-        local.send("/source/" + index + "/drop/value", value.get());
+        local.send("/source/" + index + "/drop/value", value);
     },
     'rotationXYZ': function (index, value) {
-        local.send("/source/" + index + "/rotation", value.get());
+        local.send("/source/" + index + "/rotation", value);
     },
     'omniGain': function (index, value) {
-        local.send("/source/" + index + "/omni/G0", value.get());
+        local.send("/source/" + index + "/omni/G0", value);
     },
     'omniGainLow': function (index, value) {
-        local.send("/source/" + index + "/omni/Gl", value.get());
+        local.send("/source/" + index + "/omni/Gl", value);
     },
     'omniGainMid': function (index, value) {
-        local.send("/source/" + index + "/omni/Gm", value.get());
+        local.send("/source/" + index + "/omni/Gm", value);
     },
     'omniGainHigh': function (index, value) {
-        local.send("/source/" + index + "/omni/Gh", value.get());
+        local.send("/source/" + index + "/omni/Gh", value);
     },
     'omniLowFrequency': function (index, value) {
-        local.send("/source/" + index + "/omni/fl", value.get());
+        local.send("/source/" + index + "/omni/fl", value);
     },
     'omniHighFrequency': function (index, value) {
-        local.send("/source/" + index + "/omni/fh", value.get());
+        local.send("/source/" + index + "/omni/fh", value);
     },
     'axisGain': function (index, value) {
-        local.send("/source/" + index + "/axis/G0", value.get());
+        local.send("/source/" + index + "/axis/G0", value);
     },
     'axisGainLow': function (index, value) {
-        local.send("/source/" + index + "/axis/Gl", value.get());
+        local.send("/source/" + index + "/axis/Gl", value);
     },
     'axisGainMid': function (index, value) {
-        local.send("/source/" + index + "/axis/Gm", value.get());
+        local.send("/source/" + index + "/axis/Gm", value);
     },
     'axisGainHigh': function (index, value) {
-        local.send("/source/" + index + "/axis/Gh", value.get());
+        local.send("/source/" + index + "/axis/Gh", value);
     },
     'axisLowFrequency': function (index, value) {
-        local.send("/source/" + index + "/axis/fl", value.get());
+        local.send("/source/" + index + "/axis/fl", value);
     },
     'axisHighFrequency': function (index, value) {
-        local.send("/source/" + index + "/axis/fh", value.get());
+        local.send("/source/" + index + "/axis/fh", value);
     },
     'roomGain1': function (index, value) {
-        local.send("/source/" + index + "/rg1", value.get());
+        local.send("/source/" + index + "/rg1", value);
     },
     'roomGain2': function (index, value) {
-        local.send("/source/" + index + "/rg2", value.get());
+        local.send("/source/" + index + "/rg2", value);
     },
     'roomGain3': function (index, value) {
-        local.send("/source/" + index + "/rg3", value.get());
+        local.send("/source/" + index + "/rg3", value);
     },
     'roomGain4': function (index, value) {
-        local.send("/source/" + index + "/rg4", value.get());
+        local.send("/source/" + index + "/rg4", value);
     },
     'roomGain5': function (index, value) {
-        local.send("/source/" + index + "/rg5", value.get());
+        local.send("/source/" + index + "/rg5", value);
     },
     'roomGain6': function (index, value) {
-        local.send("/source/" + index + "/rg6", value.get());
+        local.send("/source/" + index + "/rg6", value);
     },
     'roomGain7': function (index, value) {
-        local.send("/source/" + index + "/rg7", value.get());
+        local.send("/source/" + index + "/rg7", value);
     },
     'roomGain8': function (index, value) {
-        local.send("/source/" + index + "/rg8", value.get());
+        local.send("/source/" + index + "/rg8", value);
     },
     'roomGain9': function (index, value) {
-        local.send("/source/" + index + "/rg9", value.get());
+        local.send("/source/" + index + "/rg9", value);
     },
     'roomGain10': function (index, value) {
-        local.send("/source/" + index + "/rg10", value.get());
+        local.send("/source/" + index + "/rg10", value);
     }
 };
 //ROOM Parameter
 var OSCRoomsMessage = {
     'roomName': function(index, value)
     {
-        local.send("/room/" + index + "/name", value.get());
+        local.send("/room/" + index + "/name", value());
     }
     ,  'gainRoom': function(index, value)
     {
-        local.send("/room/" + index + "/gain", value.get());
+        local.send("/room/" + index + "/gain", value());
     },
     'muteRoom': function(index, value)
     {
-        local.send("/room/" + index + "/mute", value.get());
+        local.send("/room/" + index + "/mute", value());
     },
     'soloRoom': function(index, value)
     {
-        local.send("/room/" + index + "/solo", value.get());
+        local.send("/room/" + index + "/solo", value());
     },
     'reverbDensity': function(index, value)
     {
-        local.send("/room/" + index + "/reverb/density", value.get());
+        local.send("/room/" + index + "/reverb/density", value());
     },
     'reverbEnableRoom': function(index, value)
     {
-        local.send("/room/" + index + "/reverb/enable", value.get());
+        local.send("/room/" + index + "/reverb/enable", value());
     },
     'roomSize': function(index, value)
     {
-        local.send("/room/" + index + "/size", value.get());
+        local.send("/room/" + index + "/size", value());
     },
     'reverbStart': function(index, value)
     {
-        local.send("/room/" + index + "/reverb/start", value.get());
+        local.send("/room/" + index + "/reverb/start", value());
     },
     'reverbGain': function(index, value)
     {
-        local.send("/room/" + index + "/reverb/gain", value.get());
+        local.send("/room/" + index + "/reverb/gain", value());
     },
     'reverbFactor': function(index, value)
     {
-        local.send("/room/" + index + "/reverb/factor", value.get());
+        local.send("/room/" + index + "/reverb/factor", value());
     },
     'reverberance': function(index, value)
     {
-        local.send("/room/" + index + "/reverberance", value.get());
+        local.send("/room/" + index + "/reverberance", value());
     },
     'heaviness': function(index, value)
     {
-        local.send("/room/" + index + "/heaviness", value.get());
+        local.send("/room/" + index + "/heaviness", value());
     },
     'liveness': function(index, value)
     {
-        local.send("/room/" + index + "/liveness", value.get());
+        local.send("/room/" + index + "/liveness", value());
     },
     'earlyMin': function(index, value)
     {
-        local.send("/room/" + index + "/early/min", value.get());
+        local.send("/room/" + index + "/early/min", value());
     },
     'earlyMax': function(index, value)
     {
-        local.send("/room/" + index + "/early/max", value.get());
+        local.send("/room/" + index + "/early/max", value());
     },
     'earlyDist': function(index, value)
     {
-        local.send("/room/" + index + "/early/dist", value.get());
+        local.send("/room/" + index + "/early/dist", value());
     },
     'earlyShape': function(index, value)
     {
-        local.send("/room/" + index + "/early/shape", value.get());
+        local.send("/room/" + index + "/early/shape", value());
     },
     'clusterMin': function(index, value)
     {
-        local.send("/room/" + index + "/cluster/min", value.get());
+        local.send("/room/" + index + "/cluster/min", value());
     },
     'clusterMax': function(index, value)
     {
-        local.send("/room/" + index + "/cluster/max", value.get());
+        local.send("/room/" + index + "/cluster/max", value());
     },
     'clusterDist': function(index, value)
     {
-        local.send("/room/" + index + "/cluster/dist", value.get());
+        local.send("/room/" + index + "/cluster/dist", value());
     },
     'reverbInfinite': function(index, value)
     {
-        local.send("/room/" + index + "/reverb/infinite", value.get());
+        local.send("/room/" + index + "/reverb/infinite", value());
     },
     'airEnable': function(index, value)
     {
-        local.send("/room/" + index + "/air/enable", value.get());
+        local.send("/room/" + index + "/air/enable", value());
     },
     'airFreq': function(index, value)
     {
-        local.send("/room/" + index + "/air/freq", value.get());
+        local.send("/room/" + index + "/air/freq", value());
     },
     'modalDensity': function(index, value)
     {
-        local.send("/room/" + index + "/reverb/modal/density", value.get());
+        local.send("/room/" + index + "/reverb/modal/density", value());
     },
     'frequencyLow': function(index, value)
     {
-        local.send("/room/" + index + "/reverb/fl", value.get());
+        local.send("/room/" + index + "/reverb/fl", value());
     },
     'frequencyHigh': function(index, value)
     {
-        local.send("/room/" + index + "/reverb/fh", value.get());
+        local.send("/room/" + index + "/reverb/fh", value());
     },
     'listenerPosition': function(index, value)
     {
-        local.send("/room/" + index + "/xyz", value.get());
+        local.send("/room/" + index + "/xyz", value());
     },
     'listenerOrientation': function(index, value)
     {
-        local.send("/room/" + index + "/ypr", value.get());
+        local.send("/room/" + index + "/ypr", value());
+    },
+    'listenerPositionX': function(index, value)
+    {
+        var val = Rooms[index-1].listenerPosition.get();
+        val[0] = value;
+        Rooms[index - 1].listenerPosition.set(val);
+        local.send("/room/" + index + "/xyz", val);
+    },
+    'listenerPositionY': function(index, value)
+    {
+        var val = Rooms[index-1].listenerPosition.get();
+        val[1] = value;
+        Rooms[index - 1].listenerPosition.set(val);
+        local.send("/room/" + index + "/xyz", val);
+    },
+    'listenerPositionZ': function(index, value)
+    {
+        var val = Rooms[index-1].listenerPosition.get();
+        val[2] = value;
+        Rooms[index - 1].listenerPosition.set(val);
+        local.send("/room/" + index + "/xyz", val);
+    },
+    'listenerPositionXY': function(index, value)
+    {
+        var val = Rooms[index-1].listenerPosition.get();
+        val[0] = value[0];
+        val[1] = value[1];
+        Rooms[index - 1].listenerPosition.set(val);
+        local.send("/room/" + index + "/xyz", val);
     }
 };
 
@@ -828,19 +893,19 @@ var OSCRoomsMessage = {
 var OSCSnapshotsMessage = {
     'globalRecallSources': function (index, value)
     {
-        local.send("/snapshot/global/options/recall/sources", value.get());
+        local.send("/snapshot/global/options/recall/sources", value());
     },
     'globalRecallRooms': function (index, value)
     {
-        local.send("/snapshot/global/options/recall/rooms", value.get());
+        local.send("/snapshot/global/options/recall/rooms", value());
     },
     'globalRecallMasters': function (index, value)
     {
-        local.send("/snapshot/global/options/recall/masters", value.get());
+        local.send("/snapshot/global/options/recall/masters", value());
     },
     'globalRecallTiming': function (index, value)
     {
-        local.send("/snapshot/global/options/recall/timing", value.get());
+        local.send("/snapshot/global/options/recall/timing", value());
     },
 };
 
@@ -1304,7 +1369,7 @@ function moduleValueChanged(value)
                 }
                 if (index != stopSendForSource + 1)
                 {
-                    OSCSourcesMessage[name](index, value);
+                    OSCSourcesMessage[name](index, value.get());
                 }
             }
             else if (!stopSendingOSC && OSCRoomsMessage[name])
@@ -1318,7 +1383,7 @@ function moduleValueChanged(value)
                         index = parseInt(value.getParent().getParent().getParent().name.substring(4, value.getParent().getParent().name.length));
                     }
                 }
-                OSCRoomsMessage[name](index, value);
+                OSCRoomsMessage[name](index, value.get());
             }
             else if (!stopSendingOSC && OSCSnapshotsMessage[name])
             {
@@ -1331,7 +1396,7 @@ function moduleValueChanged(value)
                 //         index = parseInt(value.getParent().getParent().getParent().name.substring(4, value.getParent().getParent().name.length));
                 //     }
                 // }
-                OSCSnapshotsMessage[name](index, value);
+                OSCSnapshotsMessage[name](index, value.get());
             }
         }
     }
@@ -2420,7 +2485,7 @@ function createSourceContainer()
         Sources[i].pitch = Sources[i].SourceContainer.addFloatParameter("Pitch", "Pitch", -90, 0, 90);
         // Sources[i].pitch.setAttribute("readonly", true);
 
-        Sources[i].aperture = Sources[i].SourceContainer.addFloatParameter("Aperture", "Aperture", 10, 0, 180);
+        Sources[i].aperture = Sources[i].SourceContainer.addFloatParameter("Aperture", "Aperture", 10, 80, 180);
         // Sources[i].aperture.setAttribute("readonly", true);
 
         Sources[i].barycentricSourceContainer = Sources[i].SourceContainer.addContainer("Barycentric");
@@ -2936,4 +3001,479 @@ function recallPreviousSnapshot()
 function recallSnapshot(index)
 {
     local.send("/snapshot/"+ index + "/recall");
+}
+
+function send_azimuth(index, value)
+{
+    OSCSourcesMessage['positionAzimuth'](index, value);
+}
+
+function send_distance(index, value)
+{
+    OSCSourcesMessage['positionDistance'](index, value);
+}
+
+function send_elevation(index, value)
+{
+    OSCSourcesMessage['positionElevation'](index, value);
+}
+
+function send_position_x(index, value)
+{
+    OSCSourcesMessage['positionX'](index, value);
+}
+
+function send_position_y(index, value)
+{
+    OSCSourcesMessage['positionY'](index, value);
+}
+
+function send_position_z(index, value)
+{
+    OSCSourcesMessage['positionZ'](index, value);
+}
+
+function send_position_aed(index, value)
+{
+    OSCSourcesMessage['positionAED'](index, value);
+}
+
+function send_position_xyz(index, value)
+{
+    OSCSourcesMessage['positionXYZ'](index, value);
+}
+
+function send_position_xy(index, value)
+{
+    OSCSourcesMessage['positionXY'](index, value);
+}
+
+function send_gain(index, value)
+{
+    OSCSourcesMessage['gain'](index, value);
+}
+
+function send_mute(index, value)
+{
+    OSCSourcesMessage['mute'](index, value);
+}
+
+function send_selected(index, value)
+{
+    OSCSourcesMessage['selected'](index, value);
+}
+
+function send_solo(index, value)
+{
+    OSCSourcesMessage['solo'](index, value);
+}
+
+function send_lfe1(index, value)
+{
+    OSCSourcesMessage['lfe1'](index, value);
+}
+
+function send_lfe2(index, value)
+{
+    OSCSourcesMessage['lfe2'](index, value);
+}
+
+function send_lfe3(index, value)
+{
+    OSCSourcesMessage['lfe3'](index, value);
+}
+
+function send_lfe4(index, value)
+{
+    OSCSourcesMessage['lfe4'](index, value);
+}
+
+function send_tail_enable(index, value)
+{
+    OSCSourcesMessage['tailEnable'](index, value);
+}
+
+function send_early_enable(index, value)
+{
+    OSCSourcesMessage['earlyEnable'](index, value);
+}
+
+function send_cluster_enable(index, value)
+{
+    OSCSourcesMessage['clusterEnable'](index, value);
+}
+
+function send_reverb_enable(index, value)
+{
+    OSCSourcesMessage['reverbEnable'](index, value);
+}
+
+function send_name(index, value)
+{
+    OSCSourcesMessage['sourceName'](index, value);
+}
+
+function send_presence(index, value)
+{
+    OSCSourcesMessage['presence'](index, value);
+}
+
+function send_room_presence(index, value)
+{
+    OSCSourcesMessage['roomPresence'](index, value);
+}
+
+function send_running_reverberance(index, value)
+{
+    OSCSourcesMessage['runningReverberance'](index, value);
+}
+
+function send_envelopment(index, value)
+{
+    OSCSourcesMessage['envelopment'](index, value);
+}
+
+function send_brilliance(index, value)
+{
+    OSCSourcesMessage['brilliance'](index, value);
+}
+
+function send_scale(index, value)
+{
+    OSCSourcesMessage['scale'](index, value);
+}
+
+function send_spread(index, value)
+{
+    OSCSourcesMessage['spread'](index, value);
+}
+
+function send_knn(index, value)
+{
+    OSCSourcesMessage['spread'](index, value);
+}
+
+function send_early_width(index, value)
+{
+    OSCSourcesMessage['early_width'](index, value);
+}
+
+function send_pan_rev(index, value)
+{
+    OSCSourcesMessage['panRev'](index, value);
+}
+
+function send_doppler(index, value)
+{
+    OSCSourcesMessage['doppler'](index, value);
+}
+
+function send_air_absorption(index, value)
+{
+    OSCSourcesMessage['airAbsorption'](index, value);
+}
+
+function send_radius(index, value)
+{
+    OSCSourcesMessage['radius'](index, value);
+}
+
+function send_xy_coordinates_mode(index, value)
+{
+    OSCSourcesMessage['xyCoordinatesMode'](index, value);
+}
+
+function send_z_coordinates_mode(index, value)
+{
+    OSCSourcesMessage['zCoordinatesMode'](index, value);
+}
+
+function send_drop_log(index, value)
+{
+    OSCSourcesMessage['dropLog'](index, value);
+}
+
+function send_drop_factor(index, value)
+{
+    OSCSourcesMessage['dropFactor'](index, value);
+}
+
+function send_rotation_xyz(index, value)
+{
+    OSCSourcesMessage['rotationXYZ'](index, value);
+}
+
+function send_omni_gain(index, value)
+{
+    OSCSourcesMessage['omniGain'](index, value);
+}
+
+function send_omni_gain_low(index, value)
+{
+    OSCSourcesMessage['omniGainLow'](index, value);
+}
+
+function send_omni_gain_mid(index, value)
+{
+    OSCSourcesMessage['omniGainMid'](index, value);
+}
+
+function send_omni_gain_high(index, value)
+{
+    OSCSourcesMessage['omniGainHigh'](index, value);
+}
+
+function send_omni_low_frequency(index, value)
+{
+    OSCSourcesMessage['omniLowFrequency'](index, value);
+}
+
+function send_omni_high_frequency(index, value)
+{
+    OSCSourcesMessage['omniHighFrequency'](index, value);
+}
+
+function send_axis_gain(index, value)
+{
+    OSCSourcesMessage['axisGain'](index, value);
+}
+
+function send_axis_gain_low(index, value)
+{
+    OSCSourcesMessage['axisGainLow'](index, value);
+}
+
+function send_axis_gain_mid(index, value)
+{
+    OSCSourcesMessage['axisGainMid'](index, value);
+}
+
+function send_axis_gain_high(index, value)
+{
+    OSCSourcesMessage['axisGainHigh'](index, value);
+}
+
+function send_axis_low_frequency(index, value)
+{
+    OSCSourcesMessage['axisLowFrequency'](index, value);
+}
+
+function send_axis_high_frequency(index, value)
+{
+    OSCSourcesMessage['axisHighFrequency'](index, value);
+}
+
+function send_room_gain_1(index, value)
+{
+    OSCSourcesMessage['roomGain1'](index, value);
+}
+
+function send_room_gain_2(index, value)
+{
+    OSCSourcesMessage['roomGain2'](index, value);
+}
+
+function send_room_gain_3(index, value)
+{
+    OSCSourcesMessage['roomGain3'](index, value);
+}
+
+function send_room_gain_4(index, value)
+{
+    OSCSourcesMessage['roomGain4'](index, value);
+}
+
+function send_room_gain_5(index, value)
+{
+    OSCSourcesMessage['roomGain5'](index, value);
+}
+
+function send_room_gain_6(index, value)
+{
+    OSCSourcesMessage['roomGain6'](index, value);
+}
+
+function send_room_gain_7(index, value)
+{
+    OSCSourcesMessage['roomGain7'](index, value);
+}
+
+function send_room_gain_8(index, value)
+{
+    OSCSourcesMessage['roomGain8'](index, value);
+}
+
+function send_room_gain_9(index, value)
+{
+    OSCSourcesMessage['roomGain9'](index, value);
+}
+
+function send_room_gain_10(index, value)
+{
+    OSCSourcesMessage['roomGain10'](index, value);
+}
+
+function send_room_name(index, value)
+{
+    OSCRoomsMessage['roomName'](index, value);
+}
+
+function send_room_mute(index, value)
+{
+    OSCRoomsMessage['muteRoom'](index, value);
+}
+
+function send_room_solo(index, value)
+{
+    OSCRoomsMessage['soloRoom'](index, value);
+}
+
+function send_room_reverb_density(index, value)
+{
+    OSCRoomsMessage['reverbDensity'](index, value);
+}
+
+function send_room_reverb_enable(index, value)
+{
+    OSCRoomsMessage['reverbEnableRoom'](index, value);
+}
+
+function send_room_reverb_size(index, value)
+{
+    OSCRoomsMessage['roomSize'](index, value);
+}
+
+function send_room_reverb_start(index, value)
+{
+    OSCRoomsMessage['reverbStart'](index, value);
+}
+
+function send_room_reverb_gain(index, value)
+{
+    OSCRoomsMessage['reverbGain'](index, value);
+}
+
+function send_room_reverb_factor(index, value)
+{
+    OSCRoomsMessage['reverbFactor'](index, value);
+}
+
+function send_room_reverb_reverberance(index, value)
+{
+    OSCRoomsMessage['reverberance'](index, value);
+}
+
+function send_room_reverb_heaviness(index, value)
+{
+    OSCRoomsMessage['heaviness'](index, value);
+}
+
+function send_room_reverb_liveness(index, value)
+{
+    OSCRoomsMessage['liveness'](index, value);
+}
+
+function send_room_reverb_early_min(index, value)
+{
+    OSCRoomsMessage['earlyMin'](index, value);
+}
+
+function send_room_reverb_early_max(index, value)
+{
+    OSCRoomsMessage['earlyMax'](index, value);
+}
+
+function send_room_reverb_early_dist(index, value)
+{
+    OSCRoomsMessage['earlyDist'](index, value);
+}
+
+function send_room_reverb_early_shape(index, value)
+{
+    OSCRoomsMessage['earlyShape'](index, value);
+}
+
+function send_room_reverb_cluster_min(index, value)
+{
+    OSCRoomsMessage['clusterMin'](index, value);
+}
+
+function send_room_reverb_cluster_max(index, value)
+{
+    OSCRoomsMessage['clusterMax'](index, value);
+}
+
+function send_room_reverb_cluster_dist(index, value)
+{
+    OSCRoomsMessage['clusterDist'](index, value);
+}
+
+function send_room_reverb_infinite(index, value)
+{
+    OSCRoomsMessage['reverbInfinite'](index, value);
+}
+
+function send_room_reverb_air_enable(index, value)
+{
+    OSCRoomsMessage['airEnable'](index, value);
+}
+
+function send_room_reverb_air_freq(index, value)
+{
+    OSCRoomsMessage['airFreq'](index, value);
+}
+
+function send_room_reverb_modal_density(index, value)
+{
+    OSCRoomsMessage['modalDensity'](index, value);
+}
+
+function send_room_reverb_frequency_low(index, value)
+{
+    OSCRoomsMessage['frequencyLow'](index, value);
+}
+
+function send_room_reverb_frequency_high(index, value)
+{
+    OSCRoomsMessage['frequencyHigh'](index, value);
+}
+
+function send_room_listener_xyz(index, value)
+{
+    OSCRoomsMessage['listenerPosition'](index, value);
+}
+
+function send_room_listener_x(index, value)
+{
+    OSCRoomsMessage['listenerPositionX'](index, value);
+}
+
+function send_room_listener_y(index, value)
+{
+    OSCRoomsMessage['listenerPositionY'](index, value);
+}
+
+function send_room_listener_z(index, value)
+{
+    OSCRoomsMessage['listenerPositionZ'](index, value);
+}
+
+function send_room_listener_xy(index, value)
+{
+    OSCRoomsMessage['listenerPositionXY'](index, value);
+}
+
+function send_room_listener_orientation(index, value)
+{
+    OSCRoomsMessage['listenerOrientation'](index, value);
+}
+
+function send_room_listener_orientation(index, value)
+{
+    OSCSnapshotsMessage['globalRecallSources'](index, value);
+}
+
+function send_room_listener_orientation(index, value)
+{
+    OSCSnapshotsMessage['globalRecallSources'](index, value);
 }

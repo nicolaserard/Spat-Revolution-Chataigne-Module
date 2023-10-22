@@ -130,7 +130,7 @@
         "Aperture": {
           "type": "Float",
           "description": "Aperture.\n",
-          "min": 0.0,
+          "min": 1.0,
           "max": 180.0
         },
         "Reverb": {
@@ -423,7 +423,7 @@
         "Aperture": {
           "type": "Float",
           "description": "Aperture.\n",
-          "min": 0.0,
+          "min": 10.0,
           "max": 180.0
         },
         "Reverb": {
@@ -724,7 +724,7 @@
         "Aperture": {
           "type": "Float",
           "description": "Aperture.\n",
-          "min": 0.0,
+          "min": 10.0,
           "max": 180.0
         },
         "Reverb": {
@@ -1017,7 +1017,7 @@
         "Aperture": {
           "type": "Float",
           "description": "Aperture.\n",
-          "min": 0.0,
+          "min": 10.0,
           "max": 180.0
         },
         "Reverb": {
@@ -1310,7 +1310,7 @@
         "Aperture": {
           "type": "Float",
           "description": "Aperture.\n",
-          "min": 0.0,
+          "min": 10.0,
           "max": 180.0
         },
         "Reverb": {
@@ -1603,7 +1603,7 @@
         "Aperture": {
           "type": "Float",
           "description": "Aperture.\n",
-          "min": 0.0,
+          "min": 10.0,
           "max": 180.0
         },
         "Reverb": {
@@ -1896,7 +1896,7 @@
         "Aperture": {
           "type": "Float",
           "description": "Aperture.\n",
-          "min": 0.0,
+          "min": 10.0,
           "max": 180.0
         },
         "Reverb": {
@@ -2189,7 +2189,7 @@
         "Aperture": {
           "type": "Float",
           "description": "Aperture.\n",
-          "min": 0.0,
+          "min": 10.0,
           "max": 180.0
         },
         "Reverb": {
@@ -2482,7 +2482,7 @@
         "Aperture": {
           "type": "Float",
           "description": "Aperture.\n",
-          "min": 0.0,
+          "min": 10.0,
           "max": 180.0
         },
         "Reverb": {
@@ -2775,7 +2775,7 @@
         "Aperture": {
           "type": "Float",
           "description": "Aperture.\n",
-          "min": 0.0,
+          "min": 10.0,
           "max": 180.0
         },
         "Reverb": {
@@ -3068,7 +3068,7 @@
         "Aperture": {
           "type": "Float",
           "description": "Aperture.\n",
-          "min": 0.0,
+          "min": 10.0,
           "max": 180.0
         },
         "Reverb": {
@@ -3361,7 +3361,7 @@
         "Aperture": {
           "type": "Float",
           "description": "Aperture.\n",
-          "min": 0.0,
+          "min": 10.0,
           "max": 180.0
         },
         "Reverb": {
@@ -3654,7 +3654,7 @@
         "Aperture": {
           "type": "Float",
           "description": "Aperture.\n",
-          "min": 0.0,
+          "min": 10.0,
           "max": 180.0
         },
         "Reverb": {
@@ -3947,7 +3947,7 @@
         "Aperture": {
           "type": "Float",
           "description": "Aperture.\n",
-          "min": 0.0,
+          "min": 10.0,
           "max": 180.0
         },
         "Reverb": {
@@ -4240,7 +4240,7 @@
         "Aperture": {
           "type": "Float",
           "description": "Aperture.\n",
-          "min": 0.0,
+          "min": 10.0,
           "max": 180.0
         },
         "Reverb": {
@@ -4533,7 +4533,7 @@
         "Aperture": {
           "type": "Float",
           "description": "Aperture.\n",
-          "min": 0.0,
+          "min": 10.0,
           "max": 180.0
         },
         "Reverb": {
@@ -4826,7 +4826,7 @@
         "Aperture": {
           "type": "Float",
           "description": "Aperture.\n",
-          "min": 0.0,
+          "min": 10.0,
           "max": 180.0
         },
         "Reverb": {
@@ -5119,7 +5119,7 @@
         "Aperture": {
           "type": "Float",
           "description": "Aperture.\n",
-          "min": 0.0,
+          "min": 10.0,
           "max": 180.0
         },
         "Reverb": {
@@ -5412,7 +5412,7 @@
         "Aperture": {
           "type": "Float",
           "description": "Aperture.\n",
-          "min": 0.0,
+          "min": 10.0,
           "max": 180.0
         },
         "Reverb": {
@@ -5705,7 +5705,7 @@
         "Aperture": {
           "type": "Float",
           "description": "Aperture.\n",
-          "min": 0.0,
+          "min": 10.0,
           "max": 180.0
         },
         "Reverb": {
@@ -5998,7 +5998,7 @@
         "Aperture": {
           "type": "Float",
           "description": "Aperture.\n",
-          "min": 0.0,
+          "min": 10.0,
           "max": 180.0
         },
         "Reverb": {
@@ -6291,7 +6291,7 @@
         "Aperture": {
           "type": "Float",
           "description": "Aperture.\n",
-          "min": 0.0,
+          "min": 10.0,
           "max": 180.0
         },
         "Reverb": {
@@ -6584,7 +6584,7 @@
         "Aperture": {
           "type": "Float",
           "description": "Aperture.\n",
-          "min": 0.0,
+          "min": 10.0,
           "max": 180.0
         },
         "Reverb": {
@@ -6877,7 +6877,7 @@
         "Aperture": {
           "type": "Float",
           "description": "Aperture.\n",
-          "min": 0.0,
+          "min": 10.0,
           "max": 180.0
         },
         "Reverb": {
@@ -7170,7 +7170,7 @@
         "Aperture": {
           "type": "Float",
           "description": "Aperture.\n",
-          "min": 0.0,
+          "min": 10.0,
           "max": 180.0
         },
         "Reverb": {
@@ -7463,7 +7463,7 @@
         "Aperture": {
           "type": "Float",
           "description": "Aperture.\n",
-          "min": 0.0,
+          "min": 10.0,
           "max": 180.0
         },
         "Reverb": {
@@ -7756,7 +7756,7 @@
         "Aperture": {
           "type": "Float",
           "description": "Aperture.\n",
-          "min": 0.0,
+          "min": 10.0,
           "max": 180.0
         },
         "Reverb": {
@@ -8049,7 +8049,7 @@
         "Aperture": {
           "type": "Float",
           "description": "Aperture.\n",
-          "min": 0.0,
+          "min": 10.0,
           "max": 180.0
         },
         "Reverb": {
@@ -8342,7 +8342,7 @@
         "Aperture": {
           "type": "Float",
           "description": "Aperture.\n",
-          "min": 0.0,
+          "min": 10.0,
           "max": 180.0
         },
         "Reverb": {
@@ -8635,7 +8635,7 @@
         "Aperture": {
           "type": "Float",
           "description": "Aperture.\n",
-          "min": 0.0,
+          "min": 10.0,
           "max": 180.0
         },
         "Reverb": {
@@ -8928,7 +8928,7 @@
         "Aperture": {
           "type": "Float",
           "description": "Aperture.\n",
-          "min": 0.0,
+          "min": 10.0,
           "max": 180.0
         },
         "Reverb": {
@@ -9221,7 +9221,7 @@
         "Aperture": {
           "type": "Float",
           "description": "Aperture.\n",
-          "min": 0.0,
+          "min": 10.0,
           "max": 180.0
         },
         "Reverb": {
@@ -9514,7 +9514,7 @@
         "Aperture": {
           "type": "Float",
           "description": "Aperture.\n",
-          "min": 0.0,
+          "min": 10.0,
           "max": 180.0
         },
         "Reverb": {
@@ -9807,7 +9807,7 @@
         "Aperture": {
           "type": "Float",
           "description": "Aperture.\n",
-          "min": 0.0,
+          "min": 10.0,
           "max": 180.0
         },
         "Reverb": {
@@ -10100,7 +10100,7 @@
         "Aperture": {
           "type": "Float",
           "description": "Aperture.\n",
-          "min": 0.0,
+          "min": 10.0,
           "max": 180.0
         },
         "Reverb": {
@@ -10393,7 +10393,7 @@
         "Aperture": {
           "type": "Float",
           "description": "Aperture.\n",
-          "min": 0.0,
+          "min": 10.0,
           "max": 180.0
         },
         "Reverb": {
@@ -10686,7 +10686,7 @@
         "Aperture": {
           "type": "Float",
           "description": "Aperture.\n",
-          "min": 0.0,
+          "min": 10.0,
           "max": 180.0
         },
         "Reverb": {
@@ -10979,7 +10979,7 @@
         "Aperture": {
           "type": "Float",
           "description": "Aperture.\n",
-          "min": 0.0,
+          "min": 10.0,
           "max": 180.0
         },
         "Reverb": {
@@ -11272,7 +11272,7 @@
         "Aperture": {
           "type": "Float",
           "description": "Aperture.\n",
-          "min": 0.0,
+          "min": 10.0,
           "max": 180.0
         },
         "Reverb": {
@@ -11565,7 +11565,7 @@
         "Aperture": {
           "type": "Float",
           "description": "Aperture.\n",
-          "min": 0.0,
+          "min": 10.0,
           "max": 180.0
         },
         "Reverb": {
@@ -11858,7 +11858,7 @@
         "Aperture": {
           "type": "Float",
           "description": "Aperture.\n",
-          "min": 0.0,
+          "min": 10.0,
           "max": 180.0
         },
         "Reverb": {
@@ -12151,7 +12151,7 @@
         "Aperture": {
           "type": "Float",
           "description": "Aperture.\n",
-          "min": 0.0,
+          "min": 10.0,
           "max": 180.0
         },
         "Reverb": {
@@ -12444,7 +12444,7 @@
         "Aperture": {
           "type": "Float",
           "description": "Aperture.\n",
-          "min": 0.0,
+          "min": 10.0,
           "max": 180.0
         },
         "Reverb": {
@@ -12737,7 +12737,7 @@
         "Aperture": {
           "type": "Float",
           "description": "Aperture.\n",
-          "min": 0.0,
+          "min": 10.0,
           "max": 180.0
         },
         "Reverb": {
@@ -13030,7 +13030,7 @@
         "Aperture": {
           "type": "Float",
           "description": "Aperture.\n",
-          "min": 0.0,
+          "min": 10.0,
           "max": 180.0
         },
         "Reverb": {
@@ -13323,7 +13323,7 @@
         "Aperture": {
           "type": "Float",
           "description": "Aperture.\n",
-          "min": 0.0,
+          "min": 10.0,
           "max": 180.0
         },
         "Reverb": {
@@ -13616,7 +13616,7 @@
         "Aperture": {
           "type": "Float",
           "description": "Aperture.\n",
-          "min": 0.0,
+          "min": 10.0,
           "max": 180.0
         },
         "Reverb": {
@@ -13909,7 +13909,7 @@
         "Aperture": {
           "type": "Float",
           "description": "Aperture.\n",
-          "min": 0.0,
+          "min": 10.0,
           "max": 180.0
         },
         "Reverb": {
@@ -14202,7 +14202,7 @@
         "Aperture": {
           "type": "Float",
           "description": "Aperture.\n",
-          "min": 0.0,
+          "min": 10.0,
           "max": 180.0
         },
         "Reverb": {
@@ -14495,7 +14495,7 @@
         "Aperture": {
           "type": "Float",
           "description": "Aperture.\n",
-          "min": 0.0,
+          "min": 10.0,
           "max": 180.0
         },
         "Reverb": {
@@ -14788,7 +14788,7 @@
         "Aperture": {
           "type": "Float",
           "description": "Aperture.\n",
-          "min": 0.0,
+          "min": 10.0,
           "max": 180.0
         },
         "Reverb": {
@@ -15081,7 +15081,7 @@
         "Aperture": {
           "type": "Float",
           "description": "Aperture.\n",
-          "min": 0.0,
+          "min": 10.0,
           "max": 180.0
         },
         "Reverb": {
@@ -15374,7 +15374,7 @@
         "Aperture": {
           "type": "Float",
           "description": "Aperture.\n",
-          "min": 0.0,
+          "min": 10.0,
           "max": 180.0
         },
         "Reverb": {
@@ -15667,7 +15667,7 @@
         "Aperture": {
           "type": "Float",
           "description": "Aperture.\n",
-          "min": 0.0,
+          "min": 10.0,
           "max": 180.0
         },
         "Reverb": {
@@ -15960,7 +15960,7 @@
         "Aperture": {
           "type": "Float",
           "description": "Aperture.\n",
-          "min": 0.0,
+          "min": 10.0,
           "max": 180.0
         },
         "Reverb": {
@@ -16253,7 +16253,7 @@
         "Aperture": {
           "type": "Float",
           "description": "Aperture.\n",
-          "min": 0.0,
+          "min": 10.0,
           "max": 180.0
         },
         "Reverb": {
@@ -16546,7 +16546,7 @@
         "Aperture": {
           "type": "Float",
           "description": "Aperture.\n",
-          "min": 0.0,
+          "min": 10.0,
           "max": 180.0
         },
         "Reverb": {
@@ -16839,7 +16839,7 @@
         "Aperture": {
           "type": "Float",
           "description": "Aperture.\n",
-          "min": 0.0,
+          "min": 10.0,
           "max": 180.0
         },
         "Reverb": {
@@ -17132,7 +17132,7 @@
         "Aperture": {
           "type": "Float",
           "description": "Aperture.\n",
-          "min": 0.0,
+          "min": 10.0,
           "max": 180.0
         },
         "Reverb": {
@@ -17425,7 +17425,7 @@
         "Aperture": {
           "type": "Float",
           "description": "Aperture.\n",
-          "min": 0.0,
+          "min": 10.0,
           "max": 180.0
         },
         "Reverb": {
@@ -17718,7 +17718,7 @@
         "Aperture": {
           "type": "Float",
           "description": "Aperture.\n",
-          "min": 0.0,
+          "min": 10.0,
           "max": 180.0
         },
         "Reverb": {
@@ -18011,7 +18011,7 @@
         "Aperture": {
           "type": "Float",
           "description": "Aperture.\n",
-          "min": 0.0,
+          "min": 10.0,
           "max": 180.0
         },
         "Reverb": {
@@ -18304,7 +18304,7 @@
         "Aperture": {
           "type": "Float",
           "description": "Aperture.\n",
-          "min": 0.0,
+          "min": 10.0,
           "max": 180.0
         },
         "Reverb": {
@@ -18597,7 +18597,7 @@
         "Aperture": {
           "type": "Float",
           "description": "Aperture.\n",
-          "min": 0.0,
+          "min": 10.0,
           "max": 180.0
         },
         "Reverb": {
@@ -20742,13 +20742,1531 @@
       }
 
     },
-     "Master index":  {"type":  "Integer", "description": "Control the index of all the remotes\n", "min":  1, "max":  128},
+     "Master index":  {"type":  "Integer", "description": "Control the index of all the remotes\n", "min":  1, "max":  128}
   },
 
   "commands": {
-    "Recall next snapshot": {"menu":"","callback":"recallNextSnapshot"},
-    "Recall previous snapshot": {"menu":"","callback":"recallPreviousSnapshot"},
-    "Recall snapshot": {"menu":"","callback":"recallSnapshot", "parameters":  {"Index":  {"type":  "Integer"}}},
+    "Azimuth": {
+        "menu": "Set source position parameter",
+        "callback": "send_azimuth",
+        "parameters": {
+          "Source index": {
+            "type": "Integer",
+            "min": 1,
+            "max": 128
+          },
+          "Azimuth": {
+            "type": "Float",
+            "min": -180,
+            "max": 180
+          }
+        }
+        },
+    "Elevation": {
+        "menu": "Set source position parameter",
+        "callback": "send_elevation",
+        "parameters": {
+          "Source index": {
+            "type": "Integer",
+            "min": 1,
+            "max": 128
+          },
+          "Elevation": {
+            "type": "Float",
+            "min": -90,
+            "max": 90
+          }
+        }
+        },
+    "Distance": {
+        "menu": "Set source position parameter",
+        "callback": "send_distance",
+        "parameters": {
+          "Source index": {
+            "type": "Integer",
+            "min": 1,
+            "max": 128
+          },
+          "Distance": {
+            "type": "Float",
+            "min": -180,
+            "max": 180
+          }
+        }
+        },
+    "Position X": {
+        "menu": "Set source position parameter",
+        "callback": "send_position_x",
+        "parameters": {
+          "Source index": {
+            "type": "Integer",
+            "min": 1,
+            "max": 128
+          },
+          "X": {
+            "type": "Float",
+            "min": -100.0,
+            "max": 100.0
+          }
+        }
+        },
+    "Position Y": {
+        "menu": "Set source position parameter",
+        "callback": "send_position_Y",
+        "parameters": {
+          "Source index": {
+            "type": "Integer",
+            "min": 1,
+            "max": 128
+          },
+          "Y": {
+            "type": "Float",
+            "min": -100.0,
+            "max": 100.0
+          }
+        }
+        },
+      "Position Z": {
+        "menu": "Set source position parameter",
+        "callback": "send_position_Z",
+        "parameters": {
+          "Source index": {
+            "type": "Integer",
+            "min": 1,
+            "max": 128
+          },
+          "Z": {
+            "type": "Float",
+            "min": -100.0,
+            "max": 100.0
+          }
+        }
+      },
+      "Position AED": {
+        "menu": "Set source position parameter",
+        "callback": "send_position_aed",
+        "parameters": {
+          "Source index": {
+            "type": "Integer",
+            "min": 1,
+            "max": 128
+          },
+
+          "AED": {
+            "type": "Point3D",
+            "min": [-180.0, -90.0, 0.0],
+            "max": [180.0, 90.0, 100.0]
+          }
+        }
+      },
+      "Position XYZ": {
+        "menu": "Set source position parameter",
+        "callback": "send_position_xyz",
+        "parameters": {
+          "Source index": {
+            "type": "Integer",
+            "min": 1,
+            "max": 128
+          },
+          "XYZ": {
+            "type": "Point3D",
+            "min": [-100.0, -100.0, -100.0],
+            "max": [100.0, 100.0, 100.0]
+          }
+        }
+      },
+      "Position XY": {
+        "menu": "Set source position parameter",
+        "callback": "send_position_xy",
+        "parameters": {
+          "Source index": {
+            "type": "Integer",
+            "min": 1,
+            "max": 128
+          },
+          "XY": {
+            "type": "Point2D",
+            "min": [-100.0, -100.0],
+            "max": [100.0, 100.0]
+          }
+        }
+      },
+      "Gain": {
+        "menu": "Set source general parameter",
+        "callback": "send_gain",
+        "parameters": {
+          "Source index": {
+            "type": "Integer",
+            "min": 1,
+            "max": 128
+          },
+          "Gain": {
+            "type": "Float",
+            "min": -144.5,
+            "max": 24.0
+          }
+        }
+      },
+      "Mute": {
+        "menu": "Set source general parameter",
+        "callback": "send_mute",
+        "parameters": {
+          "Source index": {
+            "type": "Integer",
+            "min": 1,
+            "max": 128
+          },
+          "Mute": {
+            "type": "Boolean"
+          }
+        }
+      },
+      "Selected": {
+        "menu": "Set source general parameter",
+        "callback": "send_selected",
+        "parameters": {
+          "Source index": {
+            "type": "Integer",
+            "min": 1,
+            "max": 128
+          },
+          "Selected": {
+            "type": "Boolean"
+          }
+        }
+      },
+      "Solo": {
+        "menu": "Set source general parameter",
+        "callback": "send_solo",
+        "parameters": {
+          "Source index": {
+            "type": "Integer",
+            "min": 1,
+            "max": 128
+          },
+          "Selected": {
+            "type": "Boolean"
+          }
+        }
+      },
+      "LFE 1": {
+        "menu": "Set source general parameter",
+        "callback": "send_lfe1",
+        "parameters": {
+          "Source index": {
+            "type": "Integer",
+            "min": 1,
+            "max": 128
+          },
+          "LFE 1": {
+            "type": "Float",
+            "min": -144.5,
+            "max": 12.0
+          }
+        }
+      },
+      "LFE 2": {
+        "menu": "Set source general parameter",
+        "callback": "send_lfe2",
+        "parameters": {
+          "Source index": {
+            "type": "Integer",
+            "min": 1,
+            "max": 128
+          },
+          "LFE 2": {
+            "type": "Float",
+            "min": -144.5,
+            "max": 12.0
+          }
+        }
+      },
+      "LFE 3": {
+        "menu": "Set source general parameter",
+        "callback": "send_lfe3",
+        "parameters": {
+          "Source index": {
+            "type": "Integer",
+            "min": 1,
+            "max": 128
+          },
+          "LFE 3": {
+            "type": "Float",
+            "min": -144.5,
+            "max": 12.0
+          }
+        }
+      },
+      "LFE 4": {
+        "menu": "Set source general parameter",
+        "callback": "send_lfe4",
+        "parameters": {
+          "Source index": {
+            "type": "Integer",
+            "min": 1,
+            "max": 128
+          },
+          "LFE 4": {
+            "type": "Float",
+            "min": -144.5,
+            "max": 12.0
+          }
+        }
+      },
+      "Reverb enable": {
+        "menu": "Set source reverb parameter",
+        "callback": "send_reverb_enable",
+        "parameters": {
+          "Source index": {
+            "type": "Integer",
+            "min": 1,
+            "max": 128
+          },
+          "Reverb enable": {
+            "type": "Boolean"
+          }
+        }
+      },
+      "Early enable": {
+        "menu": "Set source reverb parameter",
+        "callback": "send_early_enable",
+        "parameters": {
+          "Source index": {
+            "type": "Integer",
+            "min": 1,
+            "max": 128
+          },
+          "Early enable": {
+            "type": "Boolean"
+          }
+        }
+      },
+      "Cluster enable": {
+        "menu": "Set source reverb parameter",
+        "callback": "send_cluster_enable",
+        "parameters": {
+          "Source index": {
+            "type": "Integer",
+            "min": 1,
+            "max": 128
+          },
+          "Cluster enable": {
+            "type": "Boolean"
+          }
+        }
+      },
+      "Tail enable": {
+        "menu": "Set source reverb parameter",
+        "callback": "send_tail_enable",
+        "parameters": {
+          "Source index": {
+            "type": "Integer",
+            "min": 1,
+            "max": 128
+          },
+          "Tail enable": {
+            "type": "Boolean"
+          }
+        }
+      },
+      "Name": {
+        "menu": "Set source general parameter",
+        "callback": "send_name",
+        "parameters": {
+          "Source index": {
+            "type": "Integer",
+            "min": 1,
+            "max": 128
+          },
+          "Name": {
+            "type": "String"
+          }
+        }
+      },
+      "Presence": {
+        "menu": "Set source perceptual parameter",
+        "callback": "send_presence",
+        "parameters": {
+          "Source index": {
+            "type": "Integer",
+            "min": 1,
+            "max": 128
+          },
+          "Presence": {
+            "type": "Integer",
+            "min": 0,
+            "max": 120
+          }
+        }
+      },
+      "Room presence": {
+        "menu": "Set source perceptual parameter",
+        "callback": "send_room_presence",
+        "parameters": {
+          "Source index": {
+            "type": "Integer",
+            "min": 1,
+            "max": 128
+          },
+          "Room presence": {
+            "type": "Integer",
+            "min": 0,
+            "max": 120
+          }
+        }
+      },
+      "Running reverberance": {
+        "menu": "Set source perceptual parameter",
+        "callback": "send_running_reverberance",
+        "parameters": {
+          "Source index": {
+            "type": "Integer",
+            "min": 1,
+            "max": 128
+          },
+          "Running reverberance": {
+            "type": "Integer",
+            "min": 0,
+            "max": 50
+          }
+        }
+      },
+      "Envelopment": {
+        "menu": "Set source perceptual parameter",
+        "callback": "send_envelopment",
+        "parameters": {
+          "Source index": {
+            "type": "Integer",
+            "min": 1,
+            "max": 128
+          },
+          "Envelopment": {
+            "type": "Integer",
+            "min": 0,
+            "max": 50
+          }
+        }
+      },
+      "Warmth": {
+        "menu": "Set source perceptual parameter",
+        "callback": "send_warmth",
+        "parameters": {
+          "Source index": {
+            "type": "Integer",
+            "min": 1,
+            "max": 128
+          },
+          "Warmth": {
+            "type": "Integer",
+            "min": 0,
+            "max": 60
+          }
+        }
+      },
+      "Brilliance": {
+        "menu": "Set source perceptual parameter",
+        "callback": "send_brilliance",
+        "parameters": {
+          "Source index": {
+            "type": "Integer",
+            "min": 1,
+            "max": 128
+          },
+          "Brilliance": {
+            "type": "Integer",
+            "min": 0,
+            "max": 60
+          }
+        }
+      },
+      "Yaw": {
+        "menu": "Set source general parameter",
+        "callback": "send_yaw",
+        "parameters": {
+          "Source index": {
+            "type": "Integer",
+            "min": 1,
+            "max": 128
+          },
+          "Yaw": {
+            "type": "Float",
+            "min": -180.0,
+            "max": 180.0
+          }
+        }
+      },
+      "Pitch": {
+        "menu": "Set source general parameter",
+        "callback": "send_pitch",
+        "parameters": {
+          "Source index": {
+            "type": "Integer",
+            "min": 1,
+            "max": 128
+          },
+          "Pitch": {
+            "type": "Float",
+            "min": -90.0,
+            "max": 90.0
+          }
+        }
+      },
+      "Aperture": {
+        "menu": "Set source general parameter",
+        "callback": "send_aperture",
+        "parameters": {
+          "Source index": {
+            "type": "Integer",
+            "min": 1,
+            "max": 128
+          },
+          "Aperture": {
+            "type": "Float",
+            "min": 10.0,
+            "max": 180.0
+          }
+        }
+      },
+      "Scale": {
+        "menu": "Set source general parameter",
+        "callback": "send_scale",
+        "parameters": {
+          "Source index": {
+            "type": "Integer",
+            "min": 1,
+            "max": 128
+          },
+          "Scale": {
+            "type": "Float",
+            "min": 0.10,
+            "max": 100.0
+          }
+        }
+      },
+      "Spread": {
+        "menu": "Set source general parameter",
+        "callback": "send_spread",
+        "parameters": {
+          "Source index": {
+            "type": "Integer",
+            "min": 1,
+            "max": 128
+          },
+          "Spread": {
+            "type": "Float",
+            "min": 0.0,
+            "max": 100.0
+          }
+        }
+      },
+      "KNN": {
+        "menu": "Set source general parameter",
+        "callback": "send_knn",
+        "parameters": {
+          "Source index": {
+            "type": "Integer",
+            "min": 1,
+            "max": 128
+          },
+          "KNN": {
+            "type": "Float",
+            "min": 0.0,
+            "max": 100.0
+          }
+        }
+      },
+      "Early width": {
+        "menu": "Set source reverb parameter",
+        "callback": "send_early_width",
+        "parameters": {
+          "Source index": {
+            "type": "Integer",
+            "min": 1,
+            "max": 128
+          },
+          "Early width": {
+            "type": "Float",
+            "min": 1.0,
+            "max": 180.0
+          }
+        }
+      },
+      "Pan Rev": {
+        "menu": "Set source reverb parameter",
+        "callback": "send_pan_rev",
+        "parameters": {
+          "Source index": {
+            "type": "Integer",
+            "min": 1,
+            "max": 128
+          },
+          "Pan Rev": {
+            "type": "Float",
+            "min": 0.0,
+            "max": 100.0
+          }
+        }
+      },
+      "Doppler": {
+        "menu": "Set source option parameter",
+        "callback": "send_doppler",
+        "parameters": {
+          "Source index": {
+            "type": "Integer",
+            "min": 1,
+            "max": 128
+          },
+          "Doppler": {
+            "type": "Boolean"
+          }
+        }
+      },
+      "Air absorption": {
+        "menu": "Set source option parameter",
+        "callback": "send_air_absorption",
+        "parameters": {
+          "Source index": {
+            "type": "Integer",
+            "min": 1,
+            "max": 128
+          },
+          "Air absorption": {
+            "type": "Boolean"
+          }
+        }
+      },
+      "Radius": {
+        "menu": "Set source option parameter",
+        "callback": "send_radius",
+        "parameters": {
+          "Source index": {
+            "type": "Integer",
+            "min": 1,
+            "max": 128
+          },
+          "Radius": {
+            "type": "Float",
+            "min": 0.2,
+            "max": 100.0
+          }
+        }
+      },
+      "XY Coordinates mode": {
+        "menu": "Set source option parameter",
+        "callback": "send_xy_coordinates_mode",
+        "parameters": {
+          "Source index": {
+            "type": "Integer",
+            "min": 1,
+            "max": 128
+          },
+          "XY Coordinates mode": {
+            "type": "Boolean"
+          }
+        }
+      },
+      "Z Coordinates mode": {
+        "menu": "Set source option parameter",
+        "callback": "send_z_coordinates_mode",
+        "parameters": {
+          "Source index": {
+            "type": "Integer",
+            "min": 1,
+            "max": 128
+          },
+          "Z Coordinates mode": {
+            "type": "Boolean"
+          }
+        }
+      },
+      "Drop log": {
+        "menu": "Set source option parameter",
+        "callback": "send_drop_log",
+        "parameters": {
+          "Source index": {
+            "type": "Integer",
+            "min": 1,
+            "max": 128
+          },
+          "Drop log": {
+            "type": "Boolean"
+          }
+        }
+      },
+      "Drop factor": {
+        "menu": "Set source option parameter",
+        "callback": "send_drop_factor",
+        "parameters": {
+          "Source index": {
+            "type": "Integer",
+            "min": 1,
+            "max": 128
+          },
+          "Drop factor": {
+            "type": "Float",
+            "mix": -10.0,
+            "max": 30
+          }
+        }
+      },
+      "Rotation XYZ": {
+        "menu": "Set source general parameter",
+        "callback": "send_rotation_xyz",
+        "parameters": {
+          "Source index": {
+            "type": "Integer",
+            "min": 1,
+            "max": 128
+          },
+          "Rotation XYZ": {
+            "type": "Point3D",
+            "mix": [-180, -180, -180],
+            "max": [180, 180, 180]
+          }
+        }
+      },
+      "Omni gain": {
+        "menu": "Set source EQ parameter",
+        "callback": "send_omni_gain",
+        "parameters": {
+          "Source index": {
+            "type": "Integer",
+            "min": 1,
+            "max": 128
+          },
+          "Omni gain": {
+            "type": "Float",
+            "mix": -60.0,
+            "max": 10.0
+          }
+        }
+      },
+      "Omni gain low": {
+        "menu": "Set source EQ parameter",
+        "callback": "send_omni_gain_low",
+        "parameters": {
+          "Source index": {
+            "type": "Integer",
+            "min": 1,
+            "max": 128
+          },
+          "Omni gain low": {
+            "type": "Float",
+            "mix": -30.0,
+            "max": 30.0
+          }
+        }
+      },
+      "Omni gain mid": {
+        "menu": "Set source EQ parameter",
+        "callback": "send_omni_gain_mid",
+        "parameters": {
+          "Source index": {
+            "type": "Integer",
+            "min": 1,
+            "max": 128
+          },
+          "Omni gain mid": {
+            "type": "Float",
+            "mix": -30.0,
+            "max": 30.0
+          }
+        }
+      },
+      "Omni gain high": {
+        "menu": "Set source EQ parameter",
+        "callback": "send_omni_gain_high",
+        "parameters": {
+          "Source index": {
+            "type": "Integer",
+            "min": 1,
+            "max": 128
+          },
+          "Omni gain high": {
+            "type": "Float",
+            "mix": -30.0,
+            "max": 30.0
+          }
+        }
+      },
+      "Omni gain low frequency": {
+        "menu": "Set source EQ parameter",
+        "callback": "send_omni_low_frequency",
+        "parameters": {
+          "Source index": {
+            "type": "Integer",
+            "min": 1,
+            "max": 128
+          },
+          "Omni gain low frequency": {
+            "type": "Float",
+            "mix": 20.0,
+            "max": 20000.0
+          }
+        }
+      },
+      "Omni gain high frequency": {
+        "menu": "Set source EQ parameter",
+        "callback": "send_omni_high_frequency",
+        "parameters": {
+          "Source index": {
+            "type": "Integer",
+            "min": 1,
+            "max": 128
+          },
+          "Omni gain high frequency": {
+            "type": "Float",
+            "mix": 20.0,
+            "max": 20000.0
+          }
+        }
+      },
+      "Axis gain": {
+        "menu": "Set source EQ parameter",
+        "callback": "send_axis_gain",
+        "parameters": {
+          "Source index": {
+            "type": "Integer",
+            "min": 1,
+            "max": 128
+          },
+          "Axis gain": {
+            "type": "Float",
+            "mix": -60.0,
+            "max": 10.0
+          }
+        }
+      },
+      "Axis gain low": {
+        "menu": "Set source EQ parameter",
+        "callback": "send_axis_gain_low",
+        "parameters": {
+          "Source index": {
+            "type": "Integer",
+            "min": 1,
+            "max": 128
+          },
+          "Axis gain low": {
+            "type": "Float",
+            "mix": -30.0,
+            "max": 30.0
+          }
+        }
+      },
+      "Axis gain mid": {
+        "menu": "Set source EQ parameter",
+        "callback": "send_axis_gain_mid",
+        "parameters": {
+          "Source index": {
+            "type": "Integer",
+            "min": 1,
+            "max": 128
+          },
+          "Axis gain mid": {
+            "type": "Float",
+            "mix": -30.0,
+            "max": 30.0
+          }
+        }
+      },
+      "Axis gain high": {
+        "menu": "Set source EQ parameter",
+        "callback": "send_axis_gain_high",
+        "parameters": {
+          "Source index": {
+            "type": "Integer",
+            "min": 1,
+            "max": 128
+          },
+          "Axis gain high": {
+            "type": "Float",
+            "mix": -30.0,
+            "max": 30.0
+          }
+        }
+      },
+      "Axis gain low frequency": {
+        "menu": "Set source EQ parameter",
+        "callback": "send_axis_low_frequency",
+        "parameters": {
+          "Source index": {
+            "type": "Integer",
+            "min": 1,
+            "max": 128
+          },
+          "Axis gain low frequency": {
+            "type": "Float",
+            "mix": 20.0,
+            "max": 20000.0
+          }
+        }
+      },
+      "Axis gain high frequency": {
+        "menu": "Set source EQ parameter",
+        "callback": "send_axis_high_frequency",
+        "parameters": {
+          "Source index": {
+            "type": "Integer",
+            "min": 1,
+            "max": 128
+          },
+          "Axis gain high frequency": {
+            "type": "Float",
+            "mix": 20.0,
+            "max": 20000.0
+          }
+        }
+      },
+      "Room gain 1": {
+        "menu": "Set source room gain",
+        "callback": "send_room_gain_1",
+        "parameters": {
+          "Source index": {
+            "type": "Integer",
+            "min": 1,
+            "max": 128
+          },
+          "Room gain 1": {
+            "type": "Float",
+            "mix": -144.5,
+            "max": 24.0
+          }
+        }
+      },
+      "Room gain 2": {
+        "menu": "Set source room gain",
+        "callback": "send_room_gain_2",
+        "parameters": {
+          "Source index": {
+            "type": "Integer",
+            "min": 1,
+            "max": 128
+          },
+          "Room gain 2": {
+            "type": "Float",
+            "mix": -144.5,
+            "max": 24.0
+          }
+        }
+      },
+      "Room gain 3": {
+        "menu": "Set source room gain",
+        "callback": "send_room_gain_3",
+        "parameters": {
+          "Source index": {
+            "type": "Integer",
+            "min": 1,
+            "max": 128
+          },
+          "Room gain 3": {
+            "type": "Float",
+            "mix": -144.5,
+            "max": 24.0
+          }
+        }
+      },
+      "Room gain 4": {
+        "menu": "Set source room gain",
+        "callback": "send_room_gain_4",
+        "parameters": {
+          "Source index": {
+            "type": "Integer",
+            "min": 1,
+            "max": 128
+          },
+          "Room gain 4": {
+            "type": "Float",
+            "mix": -144.5,
+            "max": 24.0
+          }
+        }
+      },
+      "Room gain 5": {
+        "menu": "Set source room gain",
+        "callback": "send_room_gain_5",
+        "parameters": {
+          "Source index": {
+            "type": "Integer",
+            "min": 1,
+            "max": 128
+          },
+          "Room gain 5": {
+            "type": "Float",
+            "mix": -144.5,
+            "max": 24.0
+          }
+        }
+      },
+      "Room gain 6": {
+        "menu": "Set source room gain",
+        "callback": "send_room_gain_6",
+        "parameters": {
+          "Source index": {
+            "type": "Integer",
+            "min": 1,
+            "max": 128
+          },
+          "Room gain 6": {
+            "type": "Float",
+            "mix": -144.5,
+            "max": 24.0
+          }
+        }
+      },
+      "Room gain 7": {
+        "menu": "Set source room gain",
+        "callback": "send_room_gain_7",
+        "parameters": {
+          "Source index": {
+            "type": "Integer",
+            "min": 1,
+            "max": 128
+          },
+          "Room gain 7": {
+            "type": "Float",
+            "mix": -144.5,
+            "max": 24.0
+          }
+        }
+      },
+      "Room gain 8": {
+        "menu": "Set source room gain",
+        "callback": "send_room_gain_8",
+        "parameters": {
+          "Source index": {
+            "type": "Integer",
+            "min": 1,
+            "max": 128
+          },
+          "Room gain 8": {
+            "type": "Float",
+            "mix": -144.5,
+            "max": 24.0
+          }
+        }
+      },
+      "Room gain 9": {
+        "menu": "Set source room gain",
+        "callback": "send_room_gain_9",
+        "parameters": {
+          "Source index": {
+            "type": "Integer",
+            "min": 1,
+            "max": 128
+          },
+          "Room gain 9": {
+            "type": "Float",
+            "mix": -144.5,
+            "max": 24.0
+          }
+        }
+      },
+      "Room gain 10": {
+        "menu": "Set source room gain",
+        "callback": "send_room_gain_10",
+        "parameters": {
+          "Source index": {
+            "type": "Integer",
+            "min": 1,
+            "max": 128
+          },
+          "Room gain 10": {
+            "type": "Float",
+            "mix": -144.5,
+            "max": 24.0
+          }
+        }
+      },
+      "Name": {
+        "menu": "Set room general parameter",
+        "callback": "send_room_name",
+        "parameters": {
+          "Source index": {
+            "type": "Integer",
+            "min": 1,
+            "max": 128
+          },
+          "Name": {
+            "type": "String"
+          }
+        }
+      },
+      "Mute": {
+        "menu": "Set room general parameter",
+        "callback": "send_room_mute",
+        "parameters": {
+          "Source index": {
+            "type": "Integer",
+            "min": 1,
+            "max": 128
+          },
+          "Mute": {
+            "type": "Boolean"
+          }
+        }
+      },
+      "Solo": {
+        "menu": "Set room general parameter",
+        "callback": "send_room_solo",
+        "parameters": {
+          "Source index": {
+            "type": "Integer",
+            "min": 1,
+            "max": 128
+          },
+          "Solo": {
+            "type": "Boolean"
+          }
+        }
+      },
+      "Reverb density": {
+        "menu": "Set room reverb parameter",
+        "callback": "send_room_reverb_density",
+        "parameters": {
+          "Source index": {
+            "type": "Integer",
+            "min": 1,
+            "max": 128
+          },
+          "Reverb density": {
+            "type": "Boolean"
+          }
+        }
+      },
+      "Reverb enable": {
+        "menu": "Set room reverb parameter",
+        "callback": "send_room_reverb_enable",
+        "parameters": {
+          "Source index": {
+            "type": "Integer",
+            "min": 1,
+            "max": 128
+          },
+          "Reverb enable": {
+            "type": "Boolean"
+          }
+        }
+      },
+      "Reverb size": {
+        "menu": "Set room reverb parameter",
+        "callback": "send_room_reverb_size",
+        "parameters": {
+          "Source index": {
+            "type": "Integer",
+            "min": 1,
+            "max": 128
+          },
+          "Reverb size": {
+            "type": "Float",
+            "min": 10.0,
+            "max": 15000.0
+          }
+        }
+      },
+      "Reverb start": {
+        "menu": "Set room reverb parameter",
+        "callback": "send_room_reverb_start",
+        "parameters": {
+          "Source index": {
+            "type": "Integer",
+            "min": 1,
+            "max": 128
+          },
+          "Reverb start": {
+            "type": "Float",
+            "min": 1.6,
+            "max": 500.0
+          }
+        }
+      },
+      "Reverb gain": {
+        "menu": "Set room reverb parameter",
+        "callback": "send_room_reverb_gain",
+        "parameters": {
+          "Source index": {
+            "type": "Integer",
+            "min": 1,
+            "max": 128
+          },
+          "Reverb gain": {
+            "type": "Float",
+            "min": -24.0,
+            "max": 24.0
+          }
+        }
+      },
+      "Reverb factor": {
+        "menu": "Set room reverb parameter",
+        "callback": "send_room_reverb_factor",
+        "parameters": {
+          "Source index": {
+            "type": "Integer",
+            "min": 1,
+            "max": 128
+          },
+          "Reverb factor": {
+            "type": "Float",
+            "min": 0.1,
+            "max": 2.0
+          }
+        }
+      },
+      "Reverberance": {
+        "menu": "Set room reverb parameter",
+        "callback": "send_room_reverb_reverberance",
+        "parameters": {
+          "Source index": {
+            "type": "Integer",
+            "min": 1,
+            "max": 128
+          },
+          "Reverberance": {
+            "type": "Float",
+            "min": 5.0,
+            "max": 100.0
+          }
+        }
+      },
+      "Heaviness": {
+        "menu": "Set room reverb parameter",
+        "callback": "send_room_reverb_heaviness",
+        "parameters": {
+          "Source index": {
+            "type": "Integer",
+            "min": 1,
+            "max": 128
+          },
+          "Heaviness": {
+            "type": "Float",
+            "min": 5.0,
+            "max": 50.0
+          }
+        }
+      },
+      "Liveness": {
+        "menu": "Set room reverb parameter",
+        "callback": "send_room_reverb_liveness",
+        "parameters": {
+          "Source index": {
+            "type": "Integer",
+            "min": 1,
+            "max": 128
+          },
+          "Liveness": {
+            "type": "Float",
+            "min": 5.0,
+            "max": 50.0
+          }
+        }
+      },
+      "Early min": {
+        "menu": "Set room reverb parameter",
+        "callback": "send_room_reverb_early_min",
+        "parameters": {
+          "Source index": {
+            "type": "Integer",
+            "min": 1,
+            "max": 128
+          },
+          "Early min": {
+            "type": "Float",
+            "min": 1.1,
+            "max": 120.0
+          }
+        }
+      },
+      "Early max": {
+        "menu": "Set room reverb parameter",
+        "callback": "send_room_reverb_early_max",
+        "parameters": {
+          "Source index": {
+            "type": "Integer",
+            "min": 1,
+            "max": 128
+          },
+          "Early max": {
+            "type": "Float",
+            "min": 1.1,
+            "max": 120.0
+          }
+        }
+      },
+      "Early dist": {
+        "menu": "Set room reverb parameter",
+        "callback": "send_room_reverb_early_dist",
+        "parameters": {
+          "Source index": {
+            "type": "Integer",
+            "min": 1,
+            "max": 128
+          },
+          "Early dist": {
+            "type": "Float",
+            "min": 0.1,
+            "max": 0.9
+          }
+        }
+      },
+      "Early shape": {
+        "menu": "Set room reverb parameter",
+        "callback": "send_room_reverb_early_shape",
+        "parameters": {
+          "Source index": {
+            "type": "Integer",
+            "min": 1,
+            "max": 128
+          },
+          "Early shape": {
+            "type": "Float",
+            "min": 0.1,
+            "max": 0.9
+          }
+        }
+      },
+      "Cluster min": {
+        "menu": "Set room reverb parameter",
+        "callback": "send_room_reverb_cluster_min",
+        "parameters": {
+          "Source index": {
+            "type": "Integer",
+            "min": 1,
+            "max": 128
+          },
+          "Cluster min": {
+            "type": "Float",
+            "min": 1.1,
+            "max": 300.0
+          }
+        }
+      },
+      "Cluster max": {
+        "menu": "Set room reverb parameter",
+        "callback": "send_room_reverb_cluster_max",
+        "parameters": {
+          "Source index": {
+            "type": "Integer",
+            "min": 1,
+            "max": 128
+          },
+          "Cluster max": {
+            "type": "Float",
+            "min": 1.1,
+            "max": 30.0
+          }
+        }
+      },
+      "Cluster dist": {
+        "menu": "Set room reverb parameter",
+        "callback": "send_room_reverb_cluster_dist",
+        "parameters": {
+          "Source index": {
+            "type": "Integer",
+            "min": 1,
+            "max": 128
+          },
+          "Cluster dist": {
+            "type": "Float",
+            "min": 0.1,
+            "max": 0.9
+          }
+        }
+      },
+      "Infinite": {
+        "menu": "Set room reverb parameter",
+        "callback": "send_room_reverb_infinite",
+        "parameters": {
+          "Source index": {
+            "type": "Integer",
+            "min": 1,
+            "max": 128
+          },
+          "Infinite": {
+            "type": "Boolean"
+          }
+        }
+      },
+      "Air enable": {
+        "menu": "Set room reverb parameter",
+        "callback": "send_room_reverb_air_enable",
+        "parameters": {
+          "Source index": {
+            "type": "Integer",
+            "min": 1,
+            "max": 128
+          },
+          "Air enable": {
+            "type": "Boolean"
+          }
+        }
+      },
+      "Absorption rollOff": {
+        "menu": "Set room reverb parameter",
+        "callback": "send_room_reverb_air_freq",
+        "parameters": {
+          "Source index": {
+            "type": "Integer",
+            "min": 1,
+            "max": 128
+          },
+          "Absorption rollOff": {
+            "type": "Float",
+            "min": 20.0,
+            "max": 20000.0
+          }
+        }
+      },
+      "Modal density": {
+        "menu": "Set room reverb parameter",
+        "callback": "send_room_reverb_modal_density",
+        "parameters": {
+          "Source index": {
+            "type": "Integer",
+            "min": 1,
+            "max": 128
+          },
+          "Modal density": {
+            "type": "Float",
+            "min": 0.2,
+            "max": 2.0
+          }
+        }
+      },
+      "Frequency low": {
+        "menu": "Set room reverb parameter",
+        "callback": "send_room_reverb_frequency_low",
+        "parameters": {
+          "Source index": {
+            "type": "Integer",
+            "min": 1,
+            "max": 128
+          },
+          "Frequency low": {
+            "type": "Float",
+            "min": 20.0,
+            "max": 20000.0
+          }
+        }
+      },
+      "Frequency high": {
+        "menu": "Set room reverb parameter",
+        "callback": "send_room_reverb_frequency_high",
+        "parameters": {
+          "Source index": {
+            "type": "Integer",
+            "min": 1,
+            "max": 128
+          },
+          "Frequency high": {
+            "type": "Float",
+            "min": 20.0,
+            "max": 20000.0
+          }
+        }
+      },
+      "Listener XYZ": {
+        "menu": "Set room listener parameter",
+        "callback": "send_room_listener_xyz",
+        "parameters": {
+          "Source index": {
+            "type": "Integer",
+            "min": 1,
+            "max": 128
+          },
+          "Listener XYZ": {
+            "type": "Float",
+            "min": [-100.0, -100.0, -100.0],
+            "max": [100.0, 100.0, 100.0]
+          }
+        }
+      },
+      "Listener X": {
+        "menu": "Set room listener parameter",
+        "callback": "send_room_listener_x",
+        "parameters": {
+          "Source index": {
+            "type": "Integer",
+            "min": 1,
+            "max": 128
+          },
+          "Listener X": {
+            "type": "Float",
+            "min": -100.0,
+            "max": 100.0
+          }
+        }
+      },
+      "Listener Y": {
+        "menu": "Set room listener parameter",
+        "callback": "send_room_listener_y",
+        "parameters": {
+          "Source index": {
+            "type": "Integer",
+            "min": 1,
+            "max": 128
+          },
+          "Listener Y": {
+            "type": "Float",
+            "min": -100.0,
+            "max": 100.0
+          }
+        }
+      },
+      "Listener Z": {
+        "menu": "Set room listener parameter",
+        "callback": "send_room_listener_z",
+        "parameters": {
+          "Source index": {
+            "type": "Integer",
+            "min": 1,
+            "max": 128
+          },
+          "Listener Z": {
+            "type": "Float",
+            "min": -100.0,
+            "max": 100.0
+          }
+        }
+      },
+      "Listener XY": {
+        "menu": "Set room listener parameter",
+        "callback": "send_room_listener_xy",
+        "parameters": {
+          "Source index": {
+            "type": "Integer",
+            "min": 1,
+            "max": 128
+          },
+          "Listener XY": {
+            "type": "Point2D",
+            "min": [-100.0, -100.0],
+            "max": [100.0, 100.0]
+          }
+        }
+      },
+      "Listener orientation": {
+        "menu": "Set room listener parameter",
+        "callback": "send_room_listener_orientation",
+        "parameters": {
+          "Source index": {
+            "type": "Integer",
+            "min": 1,
+            "max": 128
+          },
+          "Listener orientation": {
+            "type": "Point3D",
+            "min": [-100.0, -100.0, -100.0],
+            "max": [100.0, 100.0, 100.0]
+          }
+        }
+      },
+
+    "Recall next snapshot": {"menu":"Snapshots","callback":"recallNextSnapshot"},
+    "Recall previous snapshot": {"menu":"Snapshots","callback":"recallPreviousSnapshot"},
+    "Recall snapshot": {"menu":"Snapshots","callback":"recallSnapshot", "parameters":  {"Remote number":  {"type":  "Integer"}}},
+    "Global recall sources": {"menu":"Snapshots","callback":"send_recall_sources", "parameters":  {"Global recall sources":  {"type":  "Boolean"}}},
+    "Global recall rooms": {"menu":"Snapshots","callback":"send_recall_rooms", "parameters":  {"Global recall rooms":  {"type":  "Boolean"}}},
+    "Global recall masters": {"menu":"Snapshots","callback":"send_recall_masters", "parameters":  {"Global recall masters":  {"type":  "Boolean"}}},
+    "Global recall timing": {"menu":"Snapshots","callback":"send_recall_timing", "parameters":  {"Global recall timing":  {"type":  "Float", "min": 0.0, "max":  600.0}}}
   }
 }
 
