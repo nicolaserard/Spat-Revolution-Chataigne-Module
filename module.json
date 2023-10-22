@@ -14,13 +14,13 @@
   "defaults": {
     "autoAdd": false,
     "oscInput": {
-      "localPort": 8001
+      "localPort": 8501
     },
     "OSC Outputs": {
       "OSC Output": {
         "local": true,
         "remoteHost": "192.168.0.100",
-        "remotePort": 8000
+        "remotePort": 8500
       }
     }
   },
