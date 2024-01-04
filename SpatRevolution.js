@@ -1035,18 +1035,18 @@ function moduleParameterChanged(param)
         RangeForParameter['sourcepositionZ'] = [-1 * val, val];
         RangeForParameter['sourcedistance'] = [-1 * val, val];
     }
-    else if (param.name === 'numberOfRemotes')
-    {
-        var val = param.get();
-        if (val > Remote.length)
-        {
-            addRemote(val);
-        }
-        else if (val < Remote.length)
-        {
-            deleteRemote(val + 1);
-        }
-    }
+    // else if (param.name === 'numberOfRemotes' && RemoteContainer)
+    // {
+    //     var val = param.get();
+    //     if (val > Remote.length)
+    //     {
+    //         addRemote(val);
+    //     }
+    //     else if (val < Remote.length)
+    //     {
+    //         deleteRemote(val + 1);
+    //     }
+    // }
 }
 
 /**
@@ -2784,7 +2784,8 @@ function addFloatControllable(remoteIndex, index)
  * @param {int} index: remote index
  */
 function addRemote(index)
-{   var i = index - 1;
+{
+    var i = index - 1;
     // TODO: check if reload is ok if numberOfControls and numberOfButtonControllable and Float are not similar to saved one
     // script.log("Adding Remote");
     Remote.push({});
@@ -2830,11 +2831,11 @@ function createRemoteContainer()
 {
     // Add the Remote container
     // RemotesContainer = local.values.addContainer("Remotes");
-
     // var numberOfRemotes = local.values.addIntParameter("number of remotes", "number of remotes", 1, 0, 64);
     // numberOfRemotes.setAttribute("readonly", true);
     var masterIndex = local.values.addIntParameter("Master index", "master index", 1, 1, 64);
-    for (var i = 1; i < SetupContainer.getChild("numberOfRemotes").get() + 1; i++)
+    // for (var i = 1; i < SetupContainer.getChild("numberOfRemotes").get() + 1; i++)
+    for (var i = 1; i < 5; i++)
     {
        addRemote(i);
     }
