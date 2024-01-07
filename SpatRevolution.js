@@ -1083,6 +1083,10 @@ function moduleValueChanged(value)
         {
             var remoteIndex = parseInt(value.getParent().name.substring(6, value.getParent().name.length)) - 1;
             var remote = Remote[remoteIndex];
+            if (remote === undefined)
+            {
+                return;
+            }
             var localRemoteRange = RemoteRangeFromString[remote.remoteRange.get()];
             var controlsNumber = remote.controlsNumber.get();
 
@@ -1100,8 +1104,8 @@ function moduleValueChanged(value)
                 {
                     var val = ParameterFromString[localParameterControlled]((value.get() - 1) * controlsNumber + l).get();
                     val = (val - localRangeForParameter[0]) / (localRangeForParameter[1] - localRangeForParameter[0]);
-                    var target = localOnOff["values"][l]["target"].getTarget();
                     localOnOff["values"][l]["value"].set(val);
+                    var target = localOnOff["values"][l]["target"].getTarget();
                     if (target)
                     {
                         target.set(val * (localRemoteRange[1] - localRemoteRange[0]) + localRemoteRange[0]);
@@ -1149,9 +1153,9 @@ function moduleValueChanged(value)
                         val = PolarToCartesian(val)[2];
                     }
 
-                    var target = localFloat["values"][l]["target"].getTarget();
                     val = (val - localRangeForParameter[0]) / (localRangeForParameter[1] - localRangeForParameter[0]);
                     localFloat["values"][l]["value"].set(val);
+                    var target = localFloat["values"][l]["target"].getTarget();
                     if (target)
                     {
                         target.set(val * (localRemoteRange[1] - localRemoteRange[0]) + localRemoteRange[0]);
@@ -1194,14 +1198,14 @@ function moduleValueChanged(value)
 
                 var localRangeForParameter = RangeForParameter[value.get()];
                 val = (val - localRangeForParameter[0]) / (localRangeForParameter[1] - localRangeForParameter[0]);
+                container.getChild("Values").getChild("value" + parseInt(l+1)).set(val);
+
                 var target = container.getChild("Target" + parseInt(l+1)).getTarget();
                 if (target)
                 {
                     target.set(val * (localRemoteRange[1] - localRemoteRange[0]) - localRemoteRange[0]);
                 }
-                container.getChild("Values").getChild("value" + parseInt(l+1)).set(val);
             }
-
         }
         else if (name === 'controlsNumber')
         {
@@ -1215,17 +1219,19 @@ function moduleValueChanged(value)
                     // onOff
                     for (var onOffIndex = 0; onOffIndex < remote["numberOfButtonControllable"]; onOffIndex++)
                     {
-                        remote.onOff[onOffIndex]['values'].push(
-                            {"value": remote.onOff[onOffIndex]['container'].getChild("Values").addBoolParameter("Value" + i, "Value" + i, false),
-                                "target": remote.onOff[onOffIndex]['container'].addTargetParameter("Target" + i, "Target for control number " + i)
+                        var onOff = remote.onOff[onOffIndex];
+                        onOff['values'].push(
+                            {"value": onOff['container'].getChild("Values").addBoolParameter("Value" + i, "Value" + i, false),
+                                "target": onOff['container'].addTargetParameter("Target" + i, "Target for control number " + i)
                             });
                     }
                     // float
-                    for (var floatIndex = 1; floatIndex < remote["numberOfFloatControllable"] + 1; floatIndex++)
+                    for (var floatIndex = 0; floatIndex < remote["numberOfFloatControllable"] + 0; floatIndex++)
                     {
-                        remote.float[floatIndex-1]['values'].push(
-                            {"value": remote.float[floatIndex-1]['container'].getChild("Values").addFloatParameter("Value" + i, "Value" + i, 0.0, 0.0, 1.0),
-                                "target": remote.float[floatIndex-1]['container'].addTargetParameter("Target" + i, "Target for control number " + i)});
+                        var float = remote.float[floatIndex];
+                        float['values'].push(
+                            {"value": float['container'].getChild("Values").addFloatParameter("Value" + i, "Value" + i, 0.0, 0.0, 1.0),
+                                "target": float['container'].addTargetParameter("Target" + i, "Target for control number " + i)});
                     }
                     remote['numberOfControls'] +=1;
                 }
@@ -1265,15 +1271,16 @@ function moduleValueChanged(value)
             var remote = Remote[remoteIndex];
             for (var i = 0; i < remote['numberOfButtonControllable']; i++)
             {
+                var onOff = remote.onOff[i];
                 // script.log("Container: " + Remote[remoteIndex].onOff[i].container.name + ", valueParent: " + value.getParent().name);
-                if (remote.onOff[i].container.name == value.getParent().name) {
-                    localParameterControlled = remote.onOff[i].parameterControlled.get();
+                if (onOff.container.name == value.getParent().name) {
+                    localParameterControlled = onOff.parameterControlled.get();
                     if (localParameterControlled === 'none') {
                         return;
                     }
                     // script.log("parameterControlled: " + localParameterControlled);
-                    for (var j = 0; j < remote.onOff[i]['values'].length; j++) {
-                        if (remote.onOff[i]['values'][j]["target"].name == value.name) ;
+                    for (var j = 0; j < onOff['values'].length; j++) {
+                        if (onOff['values'][j]["target"].name == value.name) ;
                         {
                             sourceIndex = (remote.indexNumber.get() - 1) * remote.controlsNumber.get() + j;
                             // script.log("We find it! sourceIndex: " + sourceIndex + ", localParameterControlled: " + localParameterControlled);
@@ -1286,19 +1293,20 @@ function moduleValueChanged(value)
 
             for (var i = 0; i < remote["numberOfFloatControllable"]; i++)
             {
+                var float = remote.float[i];
                 // script.log("Container: " + Remote[remoteIndex].float[i].container + ", valueParent: " + value.getParent());
-                if (remote.float[i].container.name == value.getParent().name)
+                if (float.container.name == value.getParent().name)
                 {
-                    localParameterControlled = remote.float[i].parameterControlled.get();
+                    localParameterControlled = float.parameterControlled.get();
                     if (localParameterControlled === 'none')
                     {
                         return;
                     }
                     // script.log("parameterControlled: " + localParameterControlled);
-                    for (var j = 0; j < remote.float[i]['values'].length; j++)
+                    for (var j = 0; j < float['values'].length; j++)
                     {
                         //script.log("Target: " + Remote[remoteIndex].float[i]['values'][j]["target"] + ", value: " + value.name);
-                        if (remote.float[i]['values'][j]["target"].name == value.name)
+                        if (float['values'][j]["target"].name == value.name)
                         {
                             sourceIndex = (remote.indexNumber.get() - 1) * remote.controlsNumber.get() + j;
                             //script.log("We find it! sourceIndex: " + sourceIndex + ", localParameterControlled: " + localParameterControlled);
