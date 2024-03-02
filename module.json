@@ -5,7 +5,7 @@
   "version": "1.0.0",
   "description": "Control FLUX SPAT Revolution via OSC.",
   "url": "https://github.com/nicolaserard/Spat-Revolution-Chataigne-Module",
-  "downloadURL": "https://github.com/nicolaserard/Spat-Revolution-Chataigne-Module/archive/master.zip",
+  "downloadURL": "https://github.com/nicolaserard/Spat-Revolution-Chataigne-Module/archive/refs/heads/main.zip",
   "hasInput": true,
   "hasOutput": true,
   "hideDefaultCommands": false,
