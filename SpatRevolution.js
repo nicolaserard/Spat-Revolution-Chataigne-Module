@@ -3105,7 +3105,7 @@ function addRemote(index)
 function createRemoteContainer()
 {
     // Add the Remote container
-    var masterIndex = local.values.addIntParameter("Master index", "master index", 1, 1, 64);
+    var masterIndex = local.values.addIntParameter("Master index", "master index", 1, 1, 1280);
     for (var i = 1; i < 5; i++)
     {
        addRemote(i);
