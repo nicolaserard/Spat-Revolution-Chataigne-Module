@@ -559,42 +559,56 @@ var OSCSourcesMessage = {
     'positionAzimuth': function (index, value) {
         var val = Sources[index-1].positionAED.get();
         val[0] = value;
+        Sources[index - 1].positionAED.set(val);
+        local.send("/source/" + index + "/aed", val);
         Sources[index - 1].positionXYZ.set(PolarToCartesian(val));
     },
     'positionElevation': function (index, value) {
         var val = Sources[index-1].positionAED.get();
         val[1] = value;
+        Sources[index - 1].positionAED.set(val);
+        local.send("/source/" + index + "/aed", val);
         Sources[index - 1].positionXYZ.set(PolarToCartesian(val));
     },
     'positionDistance': function (index, value) {
         var val = Sources[index-1].positionAED.get();
         val[2] = value;
+        Sources[index - 1].positionAED.set(val);
+        local.send("/source/" + index + "/aed", val);
         Sources[index - 1].positionXYZ.set(PolarToCartesian(val));
     },
     'positionX': function(index, value){
         var val = Sources[index-1].positionXYZ.get();
         val[0] = value;
+        Sources[index - 1].positionXYZ.set(val);
         Sources[index - 1].positionAED.set(CartesianToPolar(val));
+        local.send("/source/" + index + "/aed", CartesianToPolar(val));
     },
     'positionY': function(index, value){
         var val = Sources[index-1].positionXYZ.get();
         val[1] = value;
+        Sources[index - 1].positionXYZ.set(val);
         Sources[index - 1].positionAED.set(CartesianToPolar(val));
+        local.send("/source/" + index + "/aed", CartesianToPolar(val));
     },
     'positionZ': function(index, value){
         var val = Sources[index-1].positionXYZ.get();
         val[2] = value;
+        Sources[index - 1].positionXYZ.set(val);
         Sources[index - 1].positionAED.set(CartesianToPolar(val));
+        local.send("/source/" + index + "/aed", CartesianToPolar(val));
     },
     'positionXY': function(index, value){
         var val = Sources[index-1].positionXYZ.get();
         val[0] = value[0];
         val[1] = value[1];
+        Sources[index - 1].positionXYZ.set(val);
         Sources[index - 1].positionAED.set(CartesianToPolar(val));
+        local.send("/source/" + index + "/aed", CartesianToPolar(val));
     },
     'positionXYZ': function (index, value) {
         Sources[index - 1].positionAED.set(CartesianToPolar(value));
-        // local.send("/source/" + index + "/aed", CartesianToPolar(value));
+        local.send("/source/" + index + "/aed", CartesianToPolar(value));
     },
     'reverbEnable': function (index, value) {
         local.send("/source/" + index + "/reverb/enable", value);
@@ -3288,6 +3302,7 @@ function recallSnapshot(index)
 
 function send_azimuth(index, value)
 {
+    script.log("On envoie l'azimuth");
     OSCSourcesMessage['positionAzimuth'](index, value);
 }
 
