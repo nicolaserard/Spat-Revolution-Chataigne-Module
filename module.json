@@ -2,7 +2,7 @@
   "name": "SPAT Revolution",
   "type": "OSC",
   "path": "Immersive solution",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Control FLUX SPAT Revolution via OSC.",
   "url": "https://github.com/nicolaserard/Spat-Revolution-Chataigne-Module",
   "downloadURL": "https://github.com/nicolaserard/Spat-Revolution-Chataigne-Module/archive/refs/heads/main.zip",
@@ -18852,8 +18852,8 @@
         "Listener Orientation":
         {
           "type":"Point3D",
-          "min":[-180.0,-180.0,-180.0],
-          "max":[180.0,180.0,180.0]
+          "min":[-180.0,-90.0,-90.0],
+          "max":[180.0,90.0,90.0]
         },
         "Reverb":
         {
@@ -19045,8 +19045,8 @@
         "Listener Orientation":
         {
           "type":"Point3D",
-          "min":[-180.0,-180.0,-180.0],
-          "max":[180.0,180.0,180.0]
+          "min":[-180.0,-90.0,-90.0],
+          "max":[180.0,90.0,90.0]
         },
         "Reverb":
         {
@@ -19238,8 +19238,8 @@
         "Listener Orientation":
         {
           "type":"Point3D",
-          "min":[-180.0,-180.0,-180.0],
-          "max":[180.0,180.0,180.0]
+          "min":[-180.0,-90.0,-90.0],
+          "max":[180.0,90.0,90.0]
         },
         "Reverb":
         {
@@ -19431,8 +19431,8 @@
         "Listener Orientation":
         {
           "type":"Point3D",
-          "min":[-180.0,-180.0,-180.0],
-          "max":[180.0,180.0,180.0]
+          "min":[-180.0,-90.0,-90.0],
+          "max":[180.0,90.0,90.0]
         },
         "Reverb":
         {
@@ -19624,8 +19624,8 @@
         "Listener Orientation":
         {
           "type":"Point3D",
-          "min":[-180.0,-180.0,-180.0],
-          "max":[180.0,180.0,180.0]
+          "min":[-180.0,-90.0,-90.0],
+          "max":[180.0,90.0,90.0]
         },
         "Reverb":
         {
@@ -19817,8 +19817,8 @@
         "Listener Orientation":
         {
           "type":"Point3D",
-          "min":[-180.0,-180.0,-180.0],
-          "max":[180.0,180.0,180.0]
+          "min":[-180.0,-90.0,-90.0],
+          "max":[180.0,90.0,90.0]
         },
         "Reverb":
         {
@@ -20010,8 +20010,8 @@
         "Listener Orientation":
         {
           "type":"Point3D",
-          "min":[-180.0,-180.0,-180.0],
-          "max":[180.0,180.0,180.0]
+          "min":[-180.0,-90.0,-90.0],
+          "max":[180.0,90.0,90.0]
         },
         "Reverb":
         {
@@ -20203,8 +20203,8 @@
         "Listener Orientation":
         {
           "type":"Point3D",
-          "min":[-180.0,-180.0,-180.0],
-          "max":[180.0,180.0,180.0]
+          "min":[-180.0,-90.0,-90.0],
+          "max":[180.0,90.0,90.0]
         },
         "Reverb":
         {
@@ -20396,8 +20396,8 @@
         "Listener Orientation":
         {
           "type":"Point3D",
-          "min":[-180.0,-180.0,-180.0],
-          "max":[180.0,180.0,180.0]
+          "min":[-180.0,-90.0,-90.0],
+          "max":[180.0,90.0,90.0]
         },
         "Reverb":
         {
@@ -20589,8 +20589,8 @@
         "Listener Orientation":
         {
           "type":"Point3D",
-          "min":[-180.0,-180.0,-180.0],
-          "max":[180.0,180.0,180.0]
+          "min":[-180.0,-90.0,-90.0],
+          "max":[180.0,90.0,90.0]
         },
         "Reverb":
         {
@@ -22268,8 +22268,8 @@
           },
           "Listener orientation": {
             "type": "Point3D",
-            "min": [-100.0, -100.0, -100.0],
-            "max": [100.0, 100.0, 100.0]
+            "min": [-180.0, -90.0, -90.0],
+            "max": [180.0, 90.0, 90.0]
           }
         }
       },

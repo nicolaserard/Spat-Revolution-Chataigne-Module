@@ -51,3 +51,9 @@ Parameters of a remote are the following:
 In each onOff and float, you will select the parameter controlled over a list. Then the target selected will move according to the selected parameter, according to the index. For example, if controls number is set to 8 and parameter controlled to "source gain", target 1 will control the gain of the source 1 if Index is set to 1. If Index is set to 3, it will control the gain of the source 17. 
 
 If you want to change the index for all the remote, you have a "master index" available on the "Values" container, which will change the index for all the remotes.
+
+## Changelog
+
+Version 1.0.1
+
+- Fix range issue on Set Listener orientation
