@@ -54,6 +54,10 @@ If you want to change the index for all the remote, you have a "master index" av
 
 ## Changelog
 
+Version 1.0.2
+
+- Fix command tester room and source solo
+
 Version 1.0.1
 
 - Fix range issue on Set Listener orientation
