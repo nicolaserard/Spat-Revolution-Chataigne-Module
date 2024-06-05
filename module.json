@@ -2,7 +2,7 @@
   "name": "SPAT Revolution",
   "type": "OSC",
   "path": "Immersive solution",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Control FLUX SPAT Revolution via OSC.",
   "url": "https://github.com/nicolaserard/Spat-Revolution-Chataigne-Module",
   "downloadURL": "https://github.com/nicolaserard/Spat-Revolution-Chataigne-Module/archive/refs/heads/main.zip",
@@ -20921,7 +20921,7 @@
           }
         }
       },
-      "Mute": {
+      "Source mute": {
         "menu": "Set source general parameter",
         "callback": "send_mute",
         "parameters": {
@@ -21805,7 +21805,7 @@
           }
         }
       },
-      "Mute": {
+      "Room mute": {
         "menu": "Set room general parameter",
         "callback": "send_room_mute",
         "parameters": {
