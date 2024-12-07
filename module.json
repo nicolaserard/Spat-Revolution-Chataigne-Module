@@ -2,7 +2,7 @@
   "name": "SPAT Revolution",
   "type": "OSC",
   "path": "Immersive solution",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Control FLUX SPAT Revolution via OSC.",
   "url": "https://github.com/nicolaserard/Spat-Revolution-Chataigne-Module",
   "downloadURL": "https://github.com/nicolaserard/Spat-Revolution-Chataigne-Module/archive/refs/heads/main.zip",

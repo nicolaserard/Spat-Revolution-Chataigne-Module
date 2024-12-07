@@ -3,7 +3,7 @@
 
   Chataigne Module for SPAT Revolution
 
-  Copyright: Nicolas Erard, April 2022
+  Copyright: Nicolas Erard, December 2024
 
   ==============================================================================
 ===============================================================================
@@ -2684,6 +2684,11 @@ function oscSnapshotEvent(address, args)
             SnapshotsGlobalRecallTiming.set(args[0]);
         }
    }
+   else if (address[3] === 'recall')
+    {
+        script.log("On a bien recu !!!!");
+        currentSnapshotIndex.set(parseInt(address[2]));
+    }
     // to be completed later
 }
 
@@ -3018,6 +3023,8 @@ function createSnapshotsContainer() {
     SnapshotsGlobalRecallSources = SnapshotsContainer.addBoolParameter("Global recall sources", "global recall sources", 1);
     SnapshotsGlobalRecallRooms = SnapshotsContainer.addBoolParameter("Global recall rooms", "global recall rooms", 0);
     SnapshotsGlobalRecallMasters = SnapshotsContainer.addBoolParameter("Global recall masters", "global recall masters", 0);
+    currentSnapshotIndex = SnapshotsContainer.addIntParameter("Current snapshot remote number", "current snapshot remote number", -1, -1, 100000);
+    currentSnapshotIndex.setAttribute("readonly", true);
     currentSnasphotName = SnapshotsContainer.addStringParameter("Current snapshot name", "current snapshot name", "");
     previousSnasphotName = SnapshotsContainer.addStringParameter("Previous snapshot name", "previous snapshot name", "");
     nextSnasphotName = SnapshotsContainer.addStringParameter("Next snapshot name", "next snapshot name", "");

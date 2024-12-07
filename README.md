@@ -54,6 +54,10 @@ If you want to change the index for all the remote, you have a "master index" av
 
 ## Changelog
 
+Version 1.0.4
+
+- Add current snapshot remote number field
+
 Version 1.0.3
 
 - Fix command tester source and room mute
