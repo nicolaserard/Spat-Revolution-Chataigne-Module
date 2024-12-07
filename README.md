@@ -10,13 +10,16 @@ More documentation on SPAT Revolution and OSC on https://doc.flux.audio/#/en_US/
 For global support on how to use Chataigne and its modules, please visit the forum:
 http://benjamin.kuperberg.fr/chataigne/forum or join us on Discord: https://discord.com/invite/ngnJ5z .
 
+## Configuration
+
+On SPAT, the OSC connection should be the default input and output custom one.
 
 ## Module
 
 This module contains four different containers:
-- a **sources' container**, in which all the source parameters are declared and stocked ;
-- a **rooms' container**, in which all the source parameters are declared and stocked ;
-- a **snapshots' container**, in the global parameters of snapshots are listed, as well as current, previous and next snapshot ;
+- a **sources' container**, in which all the source parameters are declared and stocked;
+- a **rooms' container**, in which all the source parameters are declared and stocked;
+- a **snapshots' container**, in the global parameters of snapshots are listed, as well as current, previous and next snapshot;
 - a **remotes' container**, to enable the control of the below parameters via other modules.
 
 Command testers have been created for sources, rooms and snapshots parameters.
