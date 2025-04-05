@@ -296,6 +296,10 @@ var ParameterFromString = {
     {
         return Sources[index].roomGain10;
     },
+    'sourceColor': function(index)
+    {
+        return Sources[index].Color;
+    },
     'roomGain': function(index)
     {
         return Rooms[index].gainRoom;
@@ -756,6 +760,18 @@ var OSCSourcesMessage = {
     },
     'roomGain10': function (index, value) {
         local.send("/source/" + index + "/rg10", value);
+    },
+    'sourceColor': function (index, value) {
+        function intToHex(intValue) {
+            var hexDigits = "0123456789abcdef";
+            var highNibble = parseInt(Math.floor(intValue / 16));
+            var lowNibble = intValue % 16;
+            return hexDigits.charAt(highNibble) + hexDigits.charAt(lowNibble);
+        }
+
+        hexValue = intToHex(parseInt(value[0] * 255));
+        actual_value = "#" +  intToHex(parseInt(value[0] * 255)) + intToHex(parseInt(value[1] * 255)) + intToHex(parseInt(value[2] * 255)) + intToHex(parseInt(value[3] * 255));
+        local.send("/source/" + index + "/color", actual_value);
     }
 };
 //ROOM Parameter
@@ -1779,6 +1795,13 @@ function oscSourceEvent(address, args)
             source.sourceName.set(args[0]);
         }
     }
+    else if (address[3] === 'color')
+    {
+        if (typeof(args[0]) == 'string')
+        {
+            source.sourceColor.set([util.hexStringToInt(args[0].substring(1,3)) / 255,util.hexStringToInt(args[0].substring(3,5)) / 255, util.hexStringToInt(args[0].substring(5,7)) / 255, util.hexStringToInt(args[0].substring(7,9)) / 255]);
+        }
+    }
     else if (address[3]==='pres')
     {
         if (typeof(args[0]) == 'number')
@@ -2686,7 +2709,6 @@ function oscSnapshotEvent(address, args)
    }
    else if (address[3] === 'recall')
     {
-        script.log("On a bien recu !!!!");
         currentSnapshotIndex.set(parseInt(address[2]));
     }
     // to be completed later
@@ -2711,6 +2733,7 @@ function createSourceContainer()
 
         Sources[i].sourceName = Sources[i].SourceContainer.addStringParameter("Source Name", "Source name", "Source name");
         // Sources[i].sourceName.setAttribute("readonly", true);
+        Sources[i].sourceColor = Sources[i].SourceContainer.addColorParameter("Source color", "Source color", [0, 0, 0]);
 
         Sources[i].gain = Sources[i].SourceContainer.addFloatParameter("Gain", "Gain", 0, -144.5, 24);
         // Sources[i].gain.setAttribute("readonly", true);
@@ -3309,7 +3332,6 @@ function recallSnapshot(index)
 
 function send_azimuth(index, value)
 {
-    script.log("On envoie l'azimuth");
     OSCSourcesMessage['positionAzimuth'](index, value);
 }
 
@@ -3416,6 +3438,11 @@ function send_reverb_enable(index, value)
 function send_name(index, value)
 {
     OSCSourcesMessage['sourceName'](index, value);
+}
+
+function send_color(index, value)
+{
+    OSCSourcesMessage['sourceColor'](index, value);
 }
 
 function send_presence(index, value)
