@@ -3345,6 +3345,11 @@ function send_elevation(index, value)
     OSCSourcesMessage['positionElevation'](index, value);
 }
 
+function send_yaw(index, value)
+{
+    OSCSourcesMessage['yaw'](index, value);
+}
+
 function send_position_x(index, value)
 {
     OSCSourcesMessage['positionX'](index, value);

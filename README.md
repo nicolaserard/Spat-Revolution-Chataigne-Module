@@ -57,6 +57,10 @@ If you want to change the index for all the remote, you have a "master index" av
 
 ## Changelog
 
+Version 1.0.6
+
+- Fix send yaw action
+
 Version 1.0.5
 
 - Add source color field
